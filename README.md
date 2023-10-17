@@ -1,4 +1,4 @@
-# Repositório para o Projeto de Software de Gestão de Transações Imobiliárias.
+# Repositório para o Projeto de Gestão de Transações Imobiliárias.
 Será utilizado para modelar, desenvolver e dividir tarefas do projeto.
 
 ## Disciplinas que dão suporte ou onde vamos aplicar este projeto:
