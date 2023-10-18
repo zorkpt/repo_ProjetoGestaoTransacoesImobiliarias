@@ -1,0 +1,15 @@
+/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/bin/Debug/net7.0/Projeto de Gestao de Transacoes Imobiliarias
+/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/bin/Debug/net7.0/Projeto de Gestao de Transacoes Imobiliarias.deps.json
+/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/bin/Debug/net7.0/Projeto de Gestao de Transacoes Imobiliarias.runtimeconfig.json
+/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/bin/Debug/net7.0/Projeto de Gestao de Transacoes Imobiliarias.dll
+/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/bin/Debug/net7.0/Projeto de Gestao de Transacoes Imobiliarias.pdb
+/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/obj/Debug/net7.0/Projeto de Gestao de Transacoes Imobiliarias.csproj.AssemblyReference.cache
+/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/obj/Debug/net7.0/Projeto de Gestao de Transacoes Imobiliarias.GeneratedMSBuildEditorConfig.editorconfig
+/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/obj/Debug/net7.0/Projeto de Gestao de Transacoes Imobiliarias.AssemblyInfoInputs.cache
+/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/obj/Debug/net7.0/Projeto de Gestao de Transacoes Imobiliarias.AssemblyInfo.cs
+/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/obj/Debug/net7.0/Projeto de Gestao de Transacoes Imobiliarias.csproj.CoreCompileInputs.cache
+/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/obj/Debug/net7.0/Projeto de Gestao de Transacoes Imobiliarias.dll
+/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/obj/Debug/net7.0/refint/Projeto de Gestao de Transacoes Imobiliarias.dll
+/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/obj/Debug/net7.0/Projeto de Gestao de Transacoes Imobiliarias.pdb
+/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/obj/Debug/net7.0/Projeto de Gestao de Transacoes Imobiliarias.genruntimeconfig.cache
+/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/obj/Debug/net7.0/ref/Projeto de Gestao de Transacoes Imobiliarias.dll
