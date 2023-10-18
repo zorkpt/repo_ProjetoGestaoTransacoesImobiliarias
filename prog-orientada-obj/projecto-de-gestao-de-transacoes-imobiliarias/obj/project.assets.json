@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/Projeto de Gestao de Transacoes Imobiliarias.csproj",
-      "projectName": "Projeto de Gestao de Transacoes Imobiliarias",
-      "projectPath": "/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/Projeto de Gestao de Transacoes Imobiliarias.csproj",
+      "projectUniqueName": "/home/zork/repo/repo_TP-AMS/prog-orientada-obj/projecto-de-gestao-de-transacoes-imobiliarias/projeto-de-gestao-de-transacoes-imobiliarias.csproj",
+      "projectName": "projeto-de-gestao-de-transacoes-imobiliarias",
+      "projectPath": "/home/zork/repo/repo_TP-AMS/prog-orientada-obj/projecto-de-gestao-de-transacoes-imobiliarias/projeto-de-gestao-de-transacoes-imobiliarias.csproj",
       "packagesPath": "/home/zork/.nuget/packages/",
-      "outputPath": "/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/obj/",
+      "outputPath": "/home/zork/repo/repo_TP-AMS/prog-orientada-obj/projecto-de-gestao-de-transacoes-imobiliarias/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/zork/.nuget/NuGet/NuGet.Config"

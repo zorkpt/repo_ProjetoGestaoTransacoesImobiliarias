@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projeto de Gestao de Transacoes Imobiliarias", "Projeto de Gestao de Transacoes Imobiliarias\Projeto de Gestao de Transacoes Imobiliarias.csproj", "{88749CD3-38F5-42CA-B0D6-9EB3CCFB46F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projeto de Gestao de Transacoes Imobiliarias", "projecto-de-gestao-de-transacoes-imobiliarias\projeto-de-gestao-de-transacoes-imobiliarias.csproj", "{88749CD3-38F5-42CA-B0D6-9EB3CCFB46F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
