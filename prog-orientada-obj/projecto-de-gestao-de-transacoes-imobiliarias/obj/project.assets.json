@@ -8,24 +8,25 @@
     "net7.0": []
   },
   "packageFolders": {
-    "/home/zork/.nuget/packages/": {}
+    "/Users/pedroricardosilva/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/Projeto de Gestao de Transacoes Imobiliarias.csproj",
+      "projectUniqueName": "/Users/pedroricardosilva/Library/CloudStorage/OneDrive-InstitutoPolitécnicodoCávadoedoAve/2_ano/1_semestre/POO/repo_ProjetoGestaoTransacoesImobiliarias/prog-orientada-obj/projecto-de-gestao-de-transacoes-imobiliarias/Projeto de Gestao de Transacoes Imobiliarias.csproj",
       "projectName": "Projeto de Gestao de Transacoes Imobiliarias",
-      "projectPath": "/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/Projeto de Gestao de Transacoes Imobiliarias.csproj",
-      "packagesPath": "/home/zork/.nuget/packages/",
-      "outputPath": "/home/zork/repo/repo_TP-AMS/prog-orientada-obj/Projeto de Gestao de Transacoes Imobiliarias/obj/",
+      "projectPath": "/Users/pedroricardosilva/Library/CloudStorage/OneDrive-InstitutoPolitécnicodoCávadoedoAve/2_ano/1_semestre/POO/repo_ProjetoGestaoTransacoesImobiliarias/prog-orientada-obj/projecto-de-gestao-de-transacoes-imobiliarias/Projeto de Gestao de Transacoes Imobiliarias.csproj",
+      "packagesPath": "/Users/pedroricardosilva/.nuget/packages/",
+      "outputPath": "/Users/pedroricardosilva/Library/CloudStorage/OneDrive-InstitutoPolitécnicodoCávadoedoAve/2_ano/1_semestre/POO/repo_ProjetoGestaoTransacoesImobiliarias/prog-orientada-obj/projecto-de-gestao-de-transacoes-imobiliarias/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/zork/.nuget/NuGet/NuGet.Config"
+        "/Users/pedroricardosilva/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -59,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.112/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.401/RuntimeIdentifierGraph.json"
       }
     }
   }
