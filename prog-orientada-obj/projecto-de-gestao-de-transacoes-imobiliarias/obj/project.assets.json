@@ -8,33 +8,24 @@
     "net7.0": []
   },
   "packageFolders": {
-    "/Users/pedroricardosilva/.nuget/packages/": {}
+    "/home/zork/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "/home/zork/repo/repo_TP-AMS/prog-orientada-obj/projecto-de-gestao-de-transacoes-imobiliarias/projeto-de-gestao-de-transacoes-imobiliarias.csproj",
       "projectName": "projeto-de-gestao-de-transacoes-imobiliarias",
       "projectPath": "/home/zork/repo/repo_TP-AMS/prog-orientada-obj/projecto-de-gestao-de-transacoes-imobiliarias/projeto-de-gestao-de-transacoes-imobiliarias.csproj",
       "packagesPath": "/home/zork/.nuget/packages/",
       "outputPath": "/home/zork/repo/repo_TP-AMS/prog-orientada-obj/projecto-de-gestao-de-transacoes-imobiliarias/obj/",
-=======
-      "projectUniqueName": "/Users/pedroricardosilva/Library/CloudStorage/OneDrive-InstitutoPolitécnicodoCávadoedoAve/2_ano/1_semestre/POO/repo_ProjetoGestaoTransacoesImobiliarias/prog-orientada-obj/projecto-de-gestao-de-transacoes-imobiliarias/Projeto de Gestao de Transacoes Imobiliarias.csproj",
-      "projectName": "Projeto de Gestao de Transacoes Imobiliarias",
-      "projectPath": "/Users/pedroricardosilva/Library/CloudStorage/OneDrive-InstitutoPolitécnicodoCávadoedoAve/2_ano/1_semestre/POO/repo_ProjetoGestaoTransacoesImobiliarias/prog-orientada-obj/projecto-de-gestao-de-transacoes-imobiliarias/Projeto de Gestao de Transacoes Imobiliarias.csproj",
-      "packagesPath": "/Users/pedroricardosilva/.nuget/packages/",
-      "outputPath": "/Users/pedroricardosilva/Library/CloudStorage/OneDrive-InstitutoPolitécnicodoCávadoedoAve/2_ano/1_semestre/POO/repo_ProjetoGestaoTransacoesImobiliarias/prog-orientada-obj/projecto-de-gestao-de-transacoes-imobiliarias/obj/",
->>>>>>> origin/main
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/pedroricardosilva/.nuget/NuGet/NuGet.Config"
+        "/home/zork/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -68,12 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.401/RuntimeIdentifierGraph.json"
-      "projectUniqueName": "/home/zork/repo/repo_TP-AMS/prog-orientada-obj/projecto-de-gestao-de-transacoes-imobiliarias/projeto-de-gestao-de-transacoes-imobiliarias.csproj",
-      "projectName": "projeto-de-gestao-de-transacoes-imobiliarias",
-      "projectPath": "/home/zork/repo/repo_TP-AMS/prog-orientada-obj/projecto-de-gestao-de-transacoes-imobiliarias/projeto-de-gestao-de-transacoes-imobiliarias.csproj",
-      "packagesPath": "/home/zork/.nuget/packages/",
-      "outputPath": "/home/zork/repo/repo_TP-AMS/prog-orientada-obj/projecto-de-gestao-de-transacoes-imobiliarias/obj/",
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.112/RuntimeIdentifierGraph.json"
       }
     }
   }
