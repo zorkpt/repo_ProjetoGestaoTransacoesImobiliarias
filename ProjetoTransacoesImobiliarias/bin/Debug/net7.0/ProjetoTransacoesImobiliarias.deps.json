@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "ProjetoTransacoesImobiliarias/1.0.0": {
+        "runtime": {
+          "ProjetoTransacoesImobiliarias.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ProjetoTransacoesImobiliarias/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

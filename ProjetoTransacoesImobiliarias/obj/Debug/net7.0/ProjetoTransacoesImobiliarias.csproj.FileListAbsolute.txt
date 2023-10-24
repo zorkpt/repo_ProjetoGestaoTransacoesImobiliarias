@@ -1,0 +1,15 @@
+/home/zork/repo/projecto-poo/ProjetoTransacoesImobiliarias/bin/Debug/net7.0/ProjetoTransacoesImobiliarias
+/home/zork/repo/projecto-poo/ProjetoTransacoesImobiliarias/bin/Debug/net7.0/ProjetoTransacoesImobiliarias.deps.json
+/home/zork/repo/projecto-poo/ProjetoTransacoesImobiliarias/bin/Debug/net7.0/ProjetoTransacoesImobiliarias.runtimeconfig.json
+/home/zork/repo/projecto-poo/ProjetoTransacoesImobiliarias/bin/Debug/net7.0/ProjetoTransacoesImobiliarias.dll
+/home/zork/repo/projecto-poo/ProjetoTransacoesImobiliarias/bin/Debug/net7.0/ProjetoTransacoesImobiliarias.pdb
+/home/zork/repo/projecto-poo/ProjetoTransacoesImobiliarias/obj/Debug/net7.0/ProjetoTransacoesImobiliarias.csproj.AssemblyReference.cache
+/home/zork/repo/projecto-poo/ProjetoTransacoesImobiliarias/obj/Debug/net7.0/ProjetoTransacoesImobiliarias.GeneratedMSBuildEditorConfig.editorconfig
+/home/zork/repo/projecto-poo/ProjetoTransacoesImobiliarias/obj/Debug/net7.0/ProjetoTransacoesImobiliarias.AssemblyInfoInputs.cache
+/home/zork/repo/projecto-poo/ProjetoTransacoesImobiliarias/obj/Debug/net7.0/ProjetoTransacoesImobiliarias.AssemblyInfo.cs
+/home/zork/repo/projecto-poo/ProjetoTransacoesImobiliarias/obj/Debug/net7.0/ProjetoTransacoesImobiliarias.csproj.CoreCompileInputs.cache
+/home/zork/repo/projecto-poo/ProjetoTransacoesImobiliarias/obj/Debug/net7.0/ProjetoTransacoesImobiliarias.dll
+/home/zork/repo/projecto-poo/ProjetoTransacoesImobiliarias/obj/Debug/net7.0/refint/ProjetoTransacoesImobiliarias.dll
+/home/zork/repo/projecto-poo/ProjetoTransacoesImobiliarias/obj/Debug/net7.0/ProjetoTransacoesImobiliarias.pdb
+/home/zork/repo/projecto-poo/ProjetoTransacoesImobiliarias/obj/Debug/net7.0/ProjetoTransacoesImobiliarias.genruntimeconfig.cache
+/home/zork/repo/projecto-poo/ProjetoTransacoesImobiliarias/obj/Debug/net7.0/ref/ProjetoTransacoesImobiliarias.dll
