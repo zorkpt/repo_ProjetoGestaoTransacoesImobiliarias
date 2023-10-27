@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
@@ -8,14 +9,27 @@ namespace ProjetoTransacoesImobiliarias.Controllers;
 
 public class ManagerController
 {
+    Manager Manager1;
+    List<Client> ClientList;
     public static void StartView() //podemos passar os dados do user aqui ? 
     {
         ManagerView.StartView();
     }
 
-    public Client AddClient(string name, string adress, int IdAgent)
+    public ManagerController(Manager manager){
+        Manager1 = manager;
+        ClientList = new List<Client>();
+    }
+
+    public void SeeList(List<Client> l){
+        
+        ManagerView.ListView(l);
+    }
+
+    public Client AddClient(string name, string adress)
     {
-        Client a = new Client(name, adress, IdAgent);
+        Client a = new Client(name, adress, Manager1.Id);
+        this.ClientList.Add(a);
         return a;
     }
 
