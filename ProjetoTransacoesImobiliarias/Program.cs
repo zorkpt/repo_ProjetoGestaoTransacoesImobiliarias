@@ -7,14 +7,19 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Manager managerTeste = new Manager(1,"Teste", "passwordSegura");
+        
+        Manager manager = new Manager("USERNAME", "PASS");
+        ManagerController lidar = new ManagerController();
 
-        Console.WriteLine(managerTeste.Username);
-        Console.WriteLine(managerTeste.DisplayRoleSpecificInfo());
-        
-        Console.WriteLine(managerTeste.RegisterClient());
-        bool registrationSuccess = managerTeste.RegisterClient();
-        
+        Client novoCliente = lidar.AddClient("Hugo", "Morada", manager.Id);
+
+        List<Client> lista = new List<Client>();
+
+        lista.Add(novoCliente);
+
+        int num = lidar.SearchClientById(novoCliente, lista);
+        Console.WriteLine($"O numdero do ID do cliente é: {num}");
+
         AppController.Run();
         
     }

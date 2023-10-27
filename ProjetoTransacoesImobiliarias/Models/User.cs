@@ -8,13 +8,17 @@ public abstract class User : IUser
     public string Username { get; set; }
     public string Password { get; set; }
     public UserRole Role { get; set; }  // Novo campo para o Role
+    public int Contador = 0;
 
-    protected User(int id, string username, string password, UserRole role)
+    protected User(string username, string password, UserRole role)
     {
-        Id = id;
+        Id = Contador++;
         Username = username;
         Password = password;
         Role = role;
+    }
+    public User(){
+        
     }
     
     public virtual string DisplayRoleSpecificInfo()
