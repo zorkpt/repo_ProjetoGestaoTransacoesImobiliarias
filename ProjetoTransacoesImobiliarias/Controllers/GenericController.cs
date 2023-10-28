@@ -14,11 +14,11 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             foreach (var item in l)
             {
                 if(typeof(T) == typeof(Client)){
-                    Client item1 = item as Client;
+                    Client? item1 = item as Client;
                     Console.WriteLine($"{item1.Name}");
                 }
                 if(typeof(T) == typeof(Manager)){
-                    Manager item1 = item as Manager;
+                    Manager? item1 = item as Manager;
                     Console.WriteLine($"{item1.Username}");
                 }
                 
@@ -31,14 +31,14 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             foreach (var item in list)
             {
                 if(typeof(T) == typeof(Manager)){
-                    Manager itemManager = item as Manager;
+                    Manager? itemManager = item as Manager;
                     if(itemManager.Id == searchId){
 
                         return searchId;
                     }
                 }
                 if(typeof(T) == typeof(Client)){
-                    Client itemClient = item as Client;
+                    Client? itemClient = item as Client;
                     if(itemClient.IdClient == searchId){
 
                         return searchId;
@@ -49,6 +49,20 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             }
             return -1;
         }
+    
+    #region Client
+
+        public static void PrintCientDetails(int id){
+            Client? a = Client.ClientList.FirstOrDefault(c => c.IdClient == id);
+
+            if(a != null){
+                Console.WriteLine($"Name: {a.Name} {a.IdClient} -> AgentID {a.IdAgent}");
+            }
+            
+        }
+    
+    #endregion
     }
+
 
 }

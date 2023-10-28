@@ -12,6 +12,7 @@ namespace ProjetoTransacoesImobiliarias.Models
         public string Name;
         public string Adress {get; set;}
         public int IdAgent;
+        public static List<Client> ClientList = new List<Client>();
 
         public Client(string nome, string morada, int agentID)
         {
@@ -19,6 +20,8 @@ namespace ProjetoTransacoesImobiliarias.Models
             this.Name = nome;
             this.Adress = morada;
             this.IdAgent = agentID;
+
+            ClientList.Add(this);
         }
     }
 }

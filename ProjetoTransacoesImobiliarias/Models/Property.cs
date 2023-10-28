@@ -9,7 +9,7 @@ public class Property
     public PropertyType type { get; set;}
 
     public Property(){
-        
+        //quando chegar aqui
     }
 
 }

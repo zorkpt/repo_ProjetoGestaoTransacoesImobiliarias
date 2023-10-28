@@ -51,7 +51,11 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                         break;
                     case 3:
                         //delete
+                        break;
                     case 4:
+
+                        CliClientPrint.All();
+                        break;
                         //Details
                     case 0:
                         //exit

@@ -14,7 +14,7 @@ public abstract class User : IUser
     protected User(string username, string password, UserRole role)
     {
 
-        Id = Contador++;
+        Id = ++Contador;
         Username = username;
         Password = password;
         Role = role;

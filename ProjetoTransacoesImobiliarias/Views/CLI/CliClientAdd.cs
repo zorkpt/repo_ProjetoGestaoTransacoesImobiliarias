@@ -17,6 +17,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
             Console.WriteLine("Adress: ");
             string adress = Console.ReadLine();
             man.AddClient(name, adress);
+            
         }
     }
 }
