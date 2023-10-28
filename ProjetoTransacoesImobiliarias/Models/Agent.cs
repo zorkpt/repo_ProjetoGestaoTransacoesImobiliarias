@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 
 namespace ProjetoTransacoesImobiliarias.Models
 {
-    public class Admin : User
+    public class Agent : User
     {
-        public Admin(string username, string password)
-            : base(username, password, UserRole.Admin)
+        public Agent(string username, string password)
+            : base(username, password, UserRole.Agent)
         {
             
         }
+
     }
 }

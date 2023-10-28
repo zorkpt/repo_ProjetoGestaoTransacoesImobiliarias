@@ -11,19 +11,16 @@ public class ManagerController
 {
     Manager Manager1;
     List<Client> ClientList;
-    public static void StartView() //podemos passar os dados do user aqui ? 
-    {
-        ManagerView.StartView();
-    }
+
 
     public ManagerController(Manager manager){
         Manager1 = manager;
-        ClientList = new List<Client>();
+        ClientList = new List<Client>(); // Ver se isto é mesmo preciso.
     }
 
     public void SeeList(List<Client> l){
         
-        ManagerView.ListView(l);
+        GenericController.ListView(l);
     }
 
     public Client AddClient(string name, string adress)

@@ -1,16 +1,20 @@
-namespace ProjetoTransacoesImobiliarias.Controllers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-public class AppController
+namespace ProjetoTransacoesImobiliarias.Views.CLI
 {
-    public static void Run()
+    public class CliMainView
     {
-        while (true)  
-        {
-            Console.WriteLine("Escolhe o tipo de utilizador:");
-            Console.WriteLine("1. Admin");
-            Console.WriteLine("2. Manager");
-            // ... outras opções
-            Console.WriteLine("0. Sair");
+        public static void Show(){
+            Console.Clear();
+            Console.WriteLine("\t\tMain View");
+            while (true){
+                Console.WriteLine("1. LogIn");
+                Console.WriteLine("2. Register new user");
+                // ... outras opções
+                Console.WriteLine("0. Sair");
 
             int choice;
             if (int.TryParse(Console.ReadLine(), out choice))
@@ -19,10 +23,12 @@ public class AppController
                 switch (choice)
                 {
                     case 1:
-                        //AdminController.StartView();
+                        CliLogIn.Show();
+                        return;
                         break;
                     case 2:
-                        //
+                        //Registar Novo user
+                        CliNewUser.Show();
                         break;
                     
                     case 0:
@@ -36,6 +42,7 @@ public class AppController
             else
             {
                 Console.WriteLine("Entrada inválida. Por favor, insere um número.");
+            }
             }
         }
     }

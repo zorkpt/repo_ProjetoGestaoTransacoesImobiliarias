@@ -9,13 +9,18 @@ public abstract class User : IUser
     public string Password { get; set; }
     public UserRole Role { get; set; }  // Novo campo para o Role
     public int Contador = 0;
+    public static List<User> UserList = new List<User>();
 
     protected User(string username, string password, UserRole role)
     {
+
         Id = Contador++;
         Username = username;
         Password = password;
         Role = role;
+
+        UserList.Add(this);
+
     }
     public User(){
         
