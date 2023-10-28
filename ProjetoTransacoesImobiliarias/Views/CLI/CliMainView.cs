@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProjetoTransacoesImobiliarias.Controllers;
+using ProjetoTransacoesImobiliarias.Models;
 
 namespace ProjetoTransacoesImobiliarias.Views.CLI
 {
@@ -9,12 +11,18 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
     {
         public static void Show(){
             Console.Clear();
-            Console.WriteLine("\t\tMain View");
+            Console.WriteLine("\t\tMain View)");
+            
+            Console.WriteLine(Data.ReadFromJson(Manager.ManagerList) ? "Manager data upload successfully" : "Error uploading");
+
+            Console.WriteLine(Manager.ManagerList.Count);
+            Console.WriteLine(Manager.ManagerList[2].Id);
+            GenericController.ListView(Manager.ManagerList);
             while (true){
                 Console.WriteLine("1. LogIn");
                 Console.WriteLine("2. Register new user");
                 // ... outras opções
-                Console.WriteLine("0. Sair");
+                Console.WriteLine("0. Exit");
 
             int choice;
             if (int.TryParse(Console.ReadLine(), out choice))
@@ -25,7 +33,6 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                     case 1:
                         CliLogIn.Show();
                         return;
-                        break;
                     case 2:
                         //Registar Novo user
                         CliNewUser.Show();

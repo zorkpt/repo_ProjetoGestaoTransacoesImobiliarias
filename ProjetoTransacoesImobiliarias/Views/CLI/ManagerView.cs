@@ -9,7 +9,7 @@ public class ManagerView
     public static void StartManagerView(int userID) //podemos passar os dados do user aqui ? 
     {
         Console.Clear();
-        Console.WriteLine($"\t\tManager (number {userID}) view:");
+        Console.WriteLine($"\t\tManager view: (Log with: {userID})");
         while (true)  
                 {
                     
@@ -17,7 +17,7 @@ public class ManagerView
                     Console.WriteLine("1. Client");
                     Console.WriteLine("2. Property");
 
-                    Console.WriteLine("3. Manager");
+                    Console.WriteLine("3. Manager settings");
                     // ... outras opções
                     Console.WriteLine("0. Exit");
 

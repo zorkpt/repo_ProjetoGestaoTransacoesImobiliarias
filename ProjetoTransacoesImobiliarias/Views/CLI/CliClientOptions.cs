@@ -11,7 +11,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
     {
         public static void Show(int userID){
             Console.Clear();
-            Console.WriteLine("\t\tCliente Options");
+            Console.WriteLine($"\t\tCliente Options (Log with: {userID})");
             while (true){
                 Console.WriteLine("1. Add Client");
                 Console.WriteLine("2. Edit Client");

@@ -12,12 +12,14 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
             Console.Clear();
             Console.WriteLine("\t\tClient details view");
             Console.WriteLine("Client ID:");
-            if(!int.TryParse(Console.ReadLine(), out int id)){
-                Console.WriteLine("Id does not exist");
-            }else{
-                GenericController.PrintCientDetails(id);
+            while(true){
+                if(!int.TryParse(Console.ReadLine(), out int id)){
+                    Console.WriteLine("Id does not exist");
+                }else{
+                    GenericController.PrintCientDetails(id);
+                    return;
+                }
             }
-            
 
         }
     }

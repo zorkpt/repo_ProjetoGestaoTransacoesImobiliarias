@@ -10,6 +10,11 @@ namespace ProjetoTransacoesImobiliarias.Controllers
 {
     public static class GenericController 
     {
+        /// <summary>
+        /// Iterates over a generic list and prints out specific properties of each item.
+        /// </summary>
+        /// <typeparam name="T">Generic list</typeparam>
+        /// <param name="l">List to iterate</param>
         public static void ListView<T>(List<T> l){
             foreach (var item in l)
             {
@@ -26,6 +31,14 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         }
     
 
+
+        /// <summary>
+        /// Searches for a user by their ID in a given list.
+        /// </summary>
+        /// <typeparam name="T">Generic list</typeparam>
+        /// <param name="list"></param>
+        /// <param name="searchId"></param>
+        /// <returns>The ID of the user if found, or -1 if not found.</returns>
         public static int SearchUserById<T>(List<T> list, int searchId){
 
             foreach (var item in list)
@@ -51,7 +64,10 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         }
     
     #region Client
-
+        /// <summary>
+        /// Prints the details of a client based on their ID.
+        /// </summary>
+        /// <param name="id">Client id</param>
         public static void PrintCientDetails(int id){
             Client? a = Client.ClientList.FirstOrDefault(c => c.IdClient == id);
 

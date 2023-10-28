@@ -11,13 +11,13 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
     {
         public static void Show(ManagerController man){
             Console.Clear();
-            Console.WriteLine("\t\tAdd Client");
+            Console.WriteLine("\t\tAdd Client ");
             Console.WriteLine("Name: ");
             string name = Console.ReadLine();
             Console.WriteLine("Adress: ");
             string adress = Console.ReadLine();
             man.AddClient(name, adress);
-            
+            Console.Clear();
         }
     }
 }

@@ -35,6 +35,9 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                         case 2:
                             //Manger
                             Manager a = new Manager(name, pass);
+                            Console.Clear();
+                            if(Data.SaveToJson(Manager.ManagerList)) Console.WriteLine("Manager list saved");
+                            Console.WriteLine(Manager.ManagerList.Count);
                             return;
                             //ManagerController newManager = new ManagerController(a);
 
