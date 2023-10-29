@@ -9,8 +9,6 @@ namespace ProjetoTransacoesImobiliarias.Controllers;
 
 public class ManagerController : Manager
 {
-  //  Manager Manager1;
-//    List<Client> ClientList;
 
 
     public ManagerController(string userName, string password)

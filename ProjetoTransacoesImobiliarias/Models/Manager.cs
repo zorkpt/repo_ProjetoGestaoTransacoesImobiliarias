@@ -15,12 +15,4 @@ public class Manager : User
     }
 
 
-
-    
-    public override string DisplayRoleSpecificInfo()
-    {
-        
-        return "Fiz Override. Sou Manager";
-    }
-
 }

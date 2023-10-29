@@ -20,7 +20,7 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         /// <param name="UserID"></param>
         /// <param name="level"></param>
         /// <returns> `true` if the user has access at the given level; otherwise, `false`.</returns>
-        protected static bool Access(int UserID, int level){
+        public static bool Access(int UserID, int level){
             
             User? log = User.UserList.FirstOrDefault(u => u.Id == UserID);
 
@@ -64,10 +64,15 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             #region Validations
             if(!Access(UserID, 2)) return null;
             #endregion
+            try{
+                Client? a = Admin.AddClient(name, adress, UserID);
+                return a;
+            }
+            catch(Exception error){
+                Console.WriteLine(error.Message);
+                return null;
+            }
             
-            Client? a = Admin.AddClient(name, adress, UserID);
-            
-            return a;
         }
 
 

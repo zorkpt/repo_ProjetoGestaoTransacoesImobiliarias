@@ -33,7 +33,7 @@ public class ManagerView
                                 break;
                             case 2:
                                 //Property
-                                
+                                CliPropertyOptions.Show(userID);
                                 break;
                             
                             case 0:

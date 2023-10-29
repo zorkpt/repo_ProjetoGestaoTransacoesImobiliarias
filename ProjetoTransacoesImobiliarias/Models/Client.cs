@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProjetoTransacoesImobiliarias.Controllers;
 
 namespace ProjetoTransacoesImobiliarias.Models
 {
@@ -16,6 +17,9 @@ namespace ProjetoTransacoesImobiliarias.Models
 
         public Client(string nome, string morada, int userID)
         {
+            if(!UserController.Access(userID, 2)){
+                throw new InvalidOperationException("Acess denied");
+            }
             this.IdClient = Contador++;
             this.Name = nome;
             this.Adress = morada;
