@@ -7,15 +7,18 @@ using ProjetoTransacoesImobiliarias.Views;
 
 namespace ProjetoTransacoesImobiliarias.Controllers;
 
-public class ManagerController
+public class ManagerController : AdminController
 {
     Manager Manager1;
     List<Client> ClientList;
 
 
+    public ManagerController(){
+        //vazio
+    }
     public ManagerController(Manager manager){
         Manager1 = manager;
-        ClientList = new List<Client>(); // Ver se isto é mesmo preciso.
+        //ClientList = new List<Client>(); // Ver se isto é mesmo preciso.
     }
 
     public void SeeList(List<Client> l){
@@ -23,12 +26,14 @@ public class ManagerController
         GenericController.ListView(l);
     }
 
-    public Client AddClient(string name, string adress)
-    {
-        Client a = new Client(name, adress, Manager1.Id);
-        this.ClientList.Add(a);
-        return a;
-    }
+
+
+    // public Client AddClient(string name, string adress)
+    // {
+    //     Client a = new Client(name, adress, Manager1.Id);
+    //     this.ClientList.Add(a);
+    //     return a;
+    // }
 
 /// <summary>
 /// 
@@ -57,13 +62,13 @@ public class ManagerController
 
     public bool EditClientNameByID(Client c, string newName, List<Client> clientList)
     {
-
+        c.Name = newName;
         
-        return false;
+        return true;
     }
     public bool EditClientAdressyID(Client c, string newAdress)
     {
-
+        c.Adress = newAdress;
 
         return false;
     }

@@ -14,12 +14,12 @@ namespace ProjetoTransacoesImobiliarias.Models
         public int IdAgent;
         public static List<Client> ClientList = new List<Client>();
 
-        public Client(string nome, string morada, int agentID)
+        public Client(string nome, string morada, int userID)
         {
             this.IdClient = Contador++;
             this.Name = nome;
             this.Adress = morada;
-            this.IdAgent = agentID;
+            this.IdAgent = userID;
 
             ClientList.Add(this);
         }

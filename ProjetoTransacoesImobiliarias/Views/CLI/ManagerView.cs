@@ -6,7 +6,7 @@ namespace ProjetoTransacoesImobiliarias.Views;
 public class ManagerView
 {
 
-    public static void StartManagerView(int userID) //podemos passar os dados do user aqui ? 
+    public static void StartManagerView(int userID) //Precisamos passar os dados do user aqui ? 
     {
         Console.Clear();
         Console.WriteLine($"\t\tManager view: (Log with: {userID})");
@@ -29,11 +29,11 @@ public class ManagerView
                         {
                             case 1:
                                 //Client
-
                                 CliClientOptions.Show(userID);
                                 break;
                             case 2:
-                                //
+                                //Property
+                                
                                 break;
                             
                             case 0:

@@ -11,13 +11,11 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
     {
         public static void Show(){
             Console.Clear();
-            Console.WriteLine("\t\tMain View)");
+            Console.WriteLine("\t\tMain View");
             
-            Console.WriteLine(Data.ReadFromJson(Manager.ManagerList) ? "Manager data upload successfully" : "Error uploading");
+            Console.WriteLine(Data.ReadFromJson(Manager.ManagerList) ? $"Manager [{Manager.ManagerList.Count} users] data upload successfully" : "Error uploading");
 
-            Console.WriteLine(Manager.ManagerList.Count);
-            Console.WriteLine(Manager.ManagerList[2].Id);
-            GenericController.ListView(Manager.ManagerList);
+
             while (true){
                 Console.WriteLine("1. LogIn");
                 Console.WriteLine("2. Register new user");
@@ -43,6 +41,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                         return;  // Sai da aplicação
                     default:
                         Console.WriteLine("Opção inválida. Tenta novamente.");
+                        Console.Clear();
                         break;
                 }
             }

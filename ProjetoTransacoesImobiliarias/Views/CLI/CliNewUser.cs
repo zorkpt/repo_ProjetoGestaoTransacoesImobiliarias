@@ -13,12 +13,16 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
         public static void Show(){
             Console.Clear();
             Console.WriteLine("\t\tRegister new user");
-
-            Console.WriteLine("Insert User Name:");
-            string name = Console.ReadLine();
-            Console.WriteLine("Insert password:");
-            string pass = Console.ReadLine();
-            
+            string? name; string? pass;
+            while(true){
+                Console.WriteLine("Insert User Name:");
+                name = Console.ReadLine();
+                Console.WriteLine("Insert password:");
+                pass = Console.ReadLine();
+                if(!string.IsNullOrEmpty(name)){
+                    break;
+                }
+            }
             while(true){
                 Console.WriteLine("Choose User role");
                 Console.WriteLine("1. Admin");
@@ -34,14 +38,12 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                             break;
                         case 2:
                             //Manger
-                            Manager a = new Manager(name, pass);
+                            Manager? a = new Manager(name, pass);
                             Console.Clear();
                             if(Data.SaveToJson(Manager.ManagerList)) Console.WriteLine("Manager list saved");
                             Console.WriteLine(Manager.ManagerList.Count);
                             return;
-                            //ManagerController newManager = new ManagerController(a);
 
-                            break;
                         case 3:
                             //Agent
                             break;

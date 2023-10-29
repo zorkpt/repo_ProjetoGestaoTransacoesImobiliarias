@@ -16,21 +16,25 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         /// <typeparam name="T">Generic list</typeparam>
         /// <param name="l">List to iterate</param>
         public static void ListView<T>(List<T> l){
+
             foreach (var item in l)
             {
                 if(typeof(T) == typeof(Client)){
                     Client? item1 = item as Client;
-                    Console.WriteLine($"{item1.Name}");
+                    Console.WriteLine($"ID: {item1.IdClient}");
+                    Console.WriteLine($"Name: {item1.Name}");
+                    Console.WriteLine($"Adress: {item1.Adress}");
+                    Console.WriteLine($"Agent ID: {item1.IdAgent}");
                 }
+                
                 if(typeof(T) == typeof(Manager)){
                     Manager? item1 = item as Manager;
-                    Console.WriteLine($"{item1.Username}");
+                    Console.WriteLine($"UserName {item1.Username}");
                 }
                 
             }
         }
     
-
 
         /// <summary>
         /// Searches for a user by their ID in a given list.

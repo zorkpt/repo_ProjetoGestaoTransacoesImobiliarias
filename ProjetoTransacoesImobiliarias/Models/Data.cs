@@ -10,8 +10,7 @@ namespace ProjetoTransacoesImobiliarias.Models
     
     public class Data
     {
-        private static string FileBin = "../Files/FileBin";
-        private static string FileJson = "Files/FileJson.json";
+
 
         public static bool SaveToJson<T>(List<T> list){
             string json = JsonSerializer.Serialize(list);
@@ -37,7 +36,7 @@ namespace ProjetoTransacoesImobiliarias.Models
                     File.WriteAllText(FileJson, json);
                     return true;
                 }
-                return true;
+                return false;
             }
         }
         public static bool ReadFromJson<T>(List<T> list){
@@ -49,7 +48,6 @@ namespace ProjetoTransacoesImobiliarias.Models
                     string json = File.ReadAllText(filePath);
                     if(json != null){
                         List<T> deserializedList = JsonSerializer.Deserialize<List<T>>(json);
-
 
                         return true;
                     }

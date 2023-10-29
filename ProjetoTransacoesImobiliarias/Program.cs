@@ -13,7 +13,7 @@ internal class Program
         while(true){
             Console.WriteLine("Choose one option:");
             Console.WriteLine("1. CLI");
-            Console.WriteLine("2. WinFOrms");
+            Console.WriteLine("2. WinForms");
             Console.WriteLine("0. Sair");
 
             int choice;
@@ -34,19 +34,19 @@ internal class Program
             }
         }
 
-        Manager manager = new Manager("USERNAME", "PASS");
-        ManagerController hugo = new ManagerController(manager);
+        // Manager manager = new Manager("USERNAME", "PASS");
+        // ManagerController hugo = new ManagerController(manager);
         
-        Client novoCliente = hugo.AddClient("Hugo", "Morada");
+        // Client novoCliente = hugo.AddClient("Hugo", "Morada");
 
-        List<Client> lista = new List<Client>();
+        // List<Client> lista = new List<Client>();
 
-        lista.Add(novoCliente);
+        // lista.Add(novoCliente);
 
-        hugo.SeeList(lista);
+        // hugo.SeeList(lista);
 
-        int num = hugo.SearchClientById(novoCliente, lista);
-        Console.WriteLine($"O numdero do ID do cliente é: {num}");
+        // int num = hugo.SearchClientById(novoCliente, lista);
+        // Console.WriteLine($"O numdero do ID do cliente é: {num}");
 
         //AppController.Run();
         

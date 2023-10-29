@@ -17,10 +17,10 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                 Console.WriteLine("2. Edit Client");
                 Console.WriteLine("3. Delete Client");
                 Console.WriteLine("4. Details of Client");
-
-                // ... outras opções
+                Console.WriteLine("5. List of Clients");
                 Console.WriteLine("0. Sair");
-            User log = User.UserList.FirstOrDefault(u => u.Id == userID);
+
+
 
             int choice;
             if (int.TryParse(Console.ReadLine(), out choice))
@@ -29,22 +29,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                 switch (choice)
                 {
                     case 1:
-                        //Add
-                        if(log.Role == UserRole.Manager){
-                            Manager manager = Manager.ManagerList.FirstOrDefault(m => m.Id == userID);
-                            ManagerController man = new ManagerController(manager);
-                            CliClientAdd.Show(man);
-                            return;
-                        }
-                        if(log.Role == UserRole.Agent){
-                            //Case, quem esteja a adicionar seja agent
-                        }
-                        if(log.Role == UserRole.Admin){
-
-                        }
-                        if(log.Role == UserRole.Avaliator){
-                            Console.WriteLine("User without access");
-                        }
+                        CliClientAdd.Show(userID);
                         break;
                     case 2:
                         //Edit
@@ -54,9 +39,13 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                         break;
                     case 4:
 
-                        CliClientPrint.All();
+                        CliClientPrint.PrintClientDetailsById();
                         break;
                         //Details
+                    case 5:
+                        Console.Clear();
+                        GenericController.ListView(Client.ClientList);
+                        break;
                     case 0:
                         //exit
                         return;

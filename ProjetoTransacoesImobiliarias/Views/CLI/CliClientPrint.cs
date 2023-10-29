@@ -8,7 +8,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
 {
     public class CliClientPrint
     {
-        public static void All(){
+        public static void PrintClientDetailsById(){
             Console.Clear();
             Console.WriteLine("\t\tClient details view");
             Console.WriteLine("Client ID:");

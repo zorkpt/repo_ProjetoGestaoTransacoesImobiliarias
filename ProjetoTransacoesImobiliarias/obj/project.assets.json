@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/pedroricardosilva/Library/CloudStorage/OneDrive-InstitutoPolitécnicodoCávadoedoAve/2_ano/1_semestre/POO/repo_ProjetoGestaoTransacoesImobiliarias/ProjetoTransacoesImobiliarias/ProjetoTransacoesImobiliarias.csproj",
+      "projectUniqueName": "/Users/pedroricardosilva/Library/CloudStorage/OneDrive-InstitutoPolitécnicodoCávadoedoAve/2_ano/1_semestre/POO/repo_ProjetoGestaoTransacoesImobiliarias/ProjetoTransacoesImobiliarias/ProjetoTransacoesImobiliarias.csproj",
       "projectName": "ProjetoTransacoesImobiliarias",
-      "projectPath": "/Users/pedroricardosilva/Library/CloudStorage/OneDrive-InstitutoPolitécnicodoCávadoedoAve/2_ano/1_semestre/POO/repo_ProjetoGestaoTransacoesImobiliarias/ProjetoTransacoesImobiliarias/ProjetoTransacoesImobiliarias.csproj",
+      "projectPath": "/Users/pedroricardosilva/Library/CloudStorage/OneDrive-InstitutoPolitécnicodoCávadoedoAve/2_ano/1_semestre/POO/repo_ProjetoGestaoTransacoesImobiliarias/ProjetoTransacoesImobiliarias/ProjetoTransacoesImobiliarias.csproj",
       "packagesPath": "/Users/pedroricardosilva/.nuget/packages/",
-      "outputPath": "/Users/pedroricardosilva/Library/CloudStorage/OneDrive-InstitutoPolitécnicodoCávadoedoAve/2_ano/1_semestre/POO/repo_ProjetoGestaoTransacoesImobiliarias/ProjetoTransacoesImobiliarias/obj/",
+      "outputPath": "/Users/pedroricardosilva/Library/CloudStorage/OneDrive-InstitutoPolitécnicodoCávadoedoAve/2_ano/1_semestre/POO/repo_ProjetoGestaoTransacoesImobiliarias/ProjetoTransacoesImobiliarias/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/pedroricardosilva/.nuget/NuGet/NuGet.Config"
