@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using ProjetoTransacoesImobiliarias.Controllers;
@@ -17,14 +18,16 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
             string? name = Console.ReadLine();
             Console.WriteLine("Adress: ");
             string? adress = Console.ReadLine();
+            if(string.IsNullOrEmpty(name)) return;
+            if(string.IsNullOrEmpty(adress)) return;
 
-            Client? a = UserController.AddClient(name, adress, userID);
+            Client? a = UserController.AddClientGeneric(name, adress, userID);
             if(a == null){
                 Console.WriteLine("Error, client not added");
                 return;
             }
 
-            bool save = Data.SaveToJson(Client.ClientList);
+            bool save = Data.SaveToJsonGeneric(userID, Client.ClientList);
             if(!save){
                 Console.WriteLine("Error, client not save in jsonFiles");
             }

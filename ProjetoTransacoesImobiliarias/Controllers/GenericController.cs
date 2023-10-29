@@ -21,14 +21,16 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             {
                 if(typeof(T) == typeof(Client)){
                     Client? item1 = item as Client;
+                    if(item1 == null) return;
                     Console.WriteLine($"ID: {item1.IdClient}");
-                    Console.WriteLine($"Name: {item1.Name}");
-                    Console.WriteLine($"Adress: {item1.Adress}");
-                    Console.WriteLine($"Agent ID: {item1.IdAgent}");
+                    Console.Write($"Name: {item1.Name} ");
+                    Console.Write($"Adress: {item1.Adress} ");
+                    Console.Write($"Agent ID: {item1.IdAgent} \n");
                 }
                 
                 if(typeof(T) == typeof(Manager)){
                     Manager? item1 = item as Manager;
+                    if(item1 == null) return;
                     Console.WriteLine($"UserName {item1.Username}");
                 }
                 
@@ -43,12 +45,13 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         /// <param name="list"></param>
         /// <param name="searchId"></param>
         /// <returns>The ID of the user if found, or -1 if not found.</returns>
-        public static int SearchUserById<T>(List<T> list, int searchId){
+        public static int ?SearchUserById<T>(List<T> list, int searchId){
 
             foreach (var item in list)
             {
                 if(typeof(T) == typeof(Manager)){
                     Manager? itemManager = item as Manager;
+                    if(itemManager == null) return null;
                     if(itemManager.Id == searchId){
 
                         return searchId;
@@ -56,6 +59,7 @@ namespace ProjetoTransacoesImobiliarias.Controllers
                 }
                 if(typeof(T) == typeof(Client)){
                     Client? itemClient = item as Client;
+                    if(itemClient == null) return null;
                     if(itemClient.IdClient == searchId){
 
                         return searchId;

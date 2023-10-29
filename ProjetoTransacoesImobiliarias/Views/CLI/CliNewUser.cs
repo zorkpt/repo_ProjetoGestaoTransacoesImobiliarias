@@ -19,9 +19,9 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                 name = Console.ReadLine();
                 Console.WriteLine("Insert password:");
                 pass = Console.ReadLine();
-                if(!string.IsNullOrEmpty(name)){
-                    break;
-                }
+                if(!string.IsNullOrEmpty(name)) break;
+                if(!string.IsNullOrEmpty(pass)) break;
+
             }
             while(true){
                 Console.WriteLine("Choose User role");
@@ -38,10 +38,11 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                             break;
                         case 2:
                             //Manger
-                            Manager? a = new Manager(name, pass);
+//                            Manager? a = new Manager(name, pass);
+                            ManagerController hugo = new ManagerController(name, pass);
+                            
                             Console.Clear();
-                            if(Data.SaveToJson(Manager.ManagerList)) Console.WriteLine("Manager list saved");
-                            Console.WriteLine(Manager.ManagerList.Count);
+                            if(Data.SaveToJsonGeneric(hugo.Id, ManagerController.GetManagerList)) Console.WriteLine("Manager list saved");
                             return;
 
                         case 3:

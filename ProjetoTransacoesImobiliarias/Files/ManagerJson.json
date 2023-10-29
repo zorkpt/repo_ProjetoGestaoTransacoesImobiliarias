@@ -1,5 +1,1 @@
-[{"NumberOfPropertiesManaged":0,"Id":0,"Username":"Pedro","Password":"asd","Role":1},
-{"NumberOfPropertiesManaged":0,"Id":1,"Username":"Sonia","Password":"das","Role":1},
-{"NumberOfPropertiesManaged":0,"Id":2,"Username":"Alice","Password":"adsw","Role":1},
-{"NumberOfPropertiesManaged":0,"Id":3,"Username":"Hugo","Password":"po\u00E7a","Role":1},
-{"NumberOfPropertiesManaged":0,"Id":4,"Username":"teste","Password":"asd","Role":1}]
+[{"NumberOfPropertiesManaged":0,"Id":0,"Username":"Pedro","Password":"asd","Role":1},{"NumberOfPropertiesManaged":0,"Id":1,"Username":"Sonia","Password":"das","Role":1},{"NumberOfPropertiesManaged":0,"Id":2,"Username":"Alice","Password":"adsw","Role":1},{"NumberOfPropertiesManaged":0,"Id":3,"Username":"Hugo","Password":"po\u00E7a","Role":1},{"NumberOfPropertiesManaged":0,"Id":4,"Username":"teste","Password":"asd","Role":1},{"NumberOfPropertiesManaged":0,"Id":5,"Username":"TEste2","Password":"dpfms","Role":1}]

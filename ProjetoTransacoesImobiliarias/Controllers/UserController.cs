@@ -9,9 +9,10 @@ using ProjetoTransacoesImobiliarias.Views;
 
 namespace ProjetoTransacoesImobiliarias.Controllers
 {
-    public class UserController
+    public class UserController : Admin
     {
         public int UserID;
+
 
         /// <summary>
         /// Determines whether the specified user has access at the given level.
@@ -20,7 +21,7 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         /// <param name="level"></param>
         /// <returns> `true` if the user has access at the given level; otherwise, `false`.</returns>
         protected static bool Access(int UserID, int level){
-
+            
             User? log = User.UserList.FirstOrDefault(u => u.Id == UserID);
 
             if(log == null){
@@ -58,12 +59,17 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         }
         
 
-        public static Client? AddClient(string name, string adress, int UserID)
+        public static Client? AddClientGeneric(string name, string adress, int UserID)
         {
+            #region Validations
             if(!Access(UserID, 2)) return null;
-
-            Client a = new Client(name, adress, UserID);
+            #endregion
+            
+            Client? a = Admin.AddClient(name, adress, UserID);
+            
             return a;
         }
+
+
     }
 }

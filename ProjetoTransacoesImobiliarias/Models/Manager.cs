@@ -1,11 +1,13 @@
+using System.Dynamic;
+
 namespace ProjetoTransacoesImobiliarias.Models;
 
 public class Manager : User
 {
     public int NumberOfPropertiesManaged { get; set; }
-    public static List<Manager> ManagerList = new List<Manager>();
+    protected static List<Manager> ManagerList = new List<Manager>();
 
-    public Manager(string username, string password)
+    protected Manager(string username, string password)
         : base(username, password, UserRole.Manager)
     {
 
@@ -13,9 +15,11 @@ public class Manager : User
     }
 
 
+
     
     public override string DisplayRoleSpecificInfo()
     {
+        
         return "Fiz Override. Sou Manager";
     }
 

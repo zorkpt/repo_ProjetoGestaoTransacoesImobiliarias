@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Text.Json;
+using System.Reflection.Metadata;
+using ProjetoTransacoesImobiliarias.Controllers;
 
 namespace ProjetoTransacoesImobiliarias.Models
 {
@@ -11,8 +13,23 @@ namespace ProjetoTransacoesImobiliarias.Models
     public class Data
     {
 
+        public static bool SaveToJsonGeneric<T>(int userID, List<T> list){
+            #region validations
+            UserRole? log =  UserController.Login(userID);
+            if(log == UserRole.Avaliator) return false;
+            #endregion
 
-        public static bool SaveToJson<T>(List<T> list){
+            if(SaveToJson(list)) return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Saves a list of objects to a JSON file.
+        /// </summary>
+        /// <typeparam name="T">Generic list defined in the class</typeparam>
+        /// <param name="list">Generic list</param>
+        /// <returns>True if the list was successfully saved to a JSON file. False otherwise.</returns>
+        private static bool SaveToJson<T>(List<T> list){
             string json = JsonSerializer.Serialize(list);
             {
                 if(typeof(T) == typeof(Client)){
@@ -82,11 +99,12 @@ namespace ProjetoTransacoesImobiliarias.Models
             throw new ArgumentException($"Unsupported type: {typeof(T).Name}");
         }
 
-        public static bool SaveToSql<T>(List<T> list){
+        private static bool SaveToSql<T>(List<T> list){
             
 
             return false;
         }
 
+        
     }
 }
