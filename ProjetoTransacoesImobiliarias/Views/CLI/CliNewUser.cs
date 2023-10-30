@@ -25,10 +25,16 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
             }
             while(true){
                 Console.WriteLine("Choose User role");
-                Console.WriteLine("1. Admin");
-                Console.WriteLine("2. Manager");
-                Console.WriteLine("3. Agent");
+                // Console.WriteLine("1. Admin");
+                // Console.WriteLine("2. Manager");
+                // Console.WriteLine("3. Agent");
                 
+                foreach (var item in Enum.GetValues(typeof(UserRole)))
+                {
+                    Console.WriteLine($"{(int) item+1} - {item}");                    
+                }
+
+
                 int choice;
                 if(int.TryParse(Console.ReadLine(), out choice)){
                     switch (choice){
@@ -42,7 +48,9 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                             ManagerController hugo = new ManagerController(name, pass);
                             
                             Console.Clear();
-                            if(Data.SaveToJsonGeneric(hugo.Id, ManagerController.GetManagerList)) Console.WriteLine("Manager list saved");
+//                            if(Data.SaveToJsonGeneric(hugo.Id, ManagerController.GetManagerList)) Console.WriteLine("Manager list saved");
+                            if(Data.SaveToJsonGeneric(hugo.Id, ManagerController.ManagerControllerList)) Console.WriteLine("Manager list saved");
+
                             return;
 
                         case 3:

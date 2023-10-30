@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
 using System.Text.Json;
 using System.Reflection.Metadata;
 using ProjetoTransacoesImobiliarias.Controllers;
@@ -53,6 +54,13 @@ namespace ProjetoTransacoesImobiliarias.Models
                     File.WriteAllText(FileJson, json);
                     return true;
                 }
+
+                if(typeof(T) == typeof(PropertyController)){
+                    string FileJson = "Files/PropertyJson.json";
+                    File.WriteAllText(FileJson, json);
+                    return true;
+                }
+                
                 return false;
             }
         }
@@ -64,12 +72,13 @@ namespace ProjetoTransacoesImobiliarias.Models
                 try{
                     string json = File.ReadAllText(filePath);
                     if(json != null){
-                        List<T> deserializedList = JsonSerializer.Deserialize<List<T>>(json);
+                        List<T>? deserializedList = JsonSerializer.Deserialize<List<T>>(json);
 
                         return true;
                     }
                 }
-                catch{
+                catch( Exception e){
+                    Console.WriteLine(e.Message);
                     return false;
                 }
             }
@@ -84,6 +93,10 @@ namespace ProjetoTransacoesImobiliarias.Models
                 return "Files/ClientJson.json";
             }
             if (typeof(T) == typeof(Manager))
+            {
+                return "Files/ManagerJson.json";
+            }
+            if (typeof(T) == typeof(ManagerController))
             {
                 return "Files/ManagerJson.json";
             }

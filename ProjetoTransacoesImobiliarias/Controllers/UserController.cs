@@ -37,6 +37,11 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             }
         }
 
+        /// <summary>
+        /// Login function is used to authenticate a user based on their userID.
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns>The function returns a nullable UserRole indicating the role of the user if they are successfully authenticated, or null if the user is not found.</returns>
         public static UserRole? Login(int userID){
             User? log = User.UserList.FirstOrDefault(u => u.Id == userID);
             if (log == null) return null;
@@ -64,6 +69,7 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             #region Validations
             if(!Access(UserID, 2)) return null;
             #endregion
+
             try{
                 Client? a = Admin.AddClient(name, adress, UserID);
                 return a;
