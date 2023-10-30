@@ -7,8 +7,8 @@ namespace ProjetoTransacoesImobiliarias.Models
 {
     public enum PropertyType
     {
-        Terreno,
-        Apartamento,
-        Moradia
+        Land,
+        Apartment,
+        House
     }
 }

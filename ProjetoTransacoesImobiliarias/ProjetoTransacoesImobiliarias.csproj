@@ -7,4 +7,10 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Views/CLI/" />
+      <Folder Include="Views/CLI/Property/" />
+      <Folder Include="Views/WinForms/" />
+    </ItemGroup>
+
 </Project>
