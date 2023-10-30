@@ -7,6 +7,7 @@ namespace ProjetoTransacoesImobiliarias.Models
 {
     public class Admin : User
     {
+        protected decimal CommissionValue { get; set; }
         public Admin(){
             //vazio
         }
