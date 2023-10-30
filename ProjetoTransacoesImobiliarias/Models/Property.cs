@@ -13,6 +13,7 @@ public class Property
     private double SquareMeters { get; set; }
     private int ClienteID { get; set; }
     private int AgentID { get; set; }
+    private bool ForSale { get; set;}
     private static List<Property> PropertyList = new List<Property>();// test readonly
 
 
@@ -32,6 +33,14 @@ public class Property
         this.ClienteID = clienteID;
         this.AgentID = userID;
         
+        if(avaliatorValue != 0)
+        {
+            this.ForSale = true;
+        }else
+        {
+            this.ForSale = false;
+        }
+
         PropertyList.Add(this);
 
     }
