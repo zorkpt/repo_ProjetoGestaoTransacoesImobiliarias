@@ -31,29 +31,27 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                 
                 foreach (var item in Enum.GetValues(typeof(UserRole)))
                 {
-                    Console.WriteLine($"{(int) item+1} - {item}");                    
+                    Console.WriteLine($"{(int) item} - {item}");                    
                 }
 
 
                 int choice;
                 if(int.TryParse(Console.ReadLine(), out choice)){
                     switch (choice){
-                        case 1:
+                        case 0:
                             //admin
                             
                             break;
-                        case 2:
+                        case 1:
                             //Manger
-//                            Manager? a = new Manager(name, pass);
-                            ManagerController hugo = new ManagerController(name, pass);
+                            ManagerController? hugo = new (name, pass);
                             
                             Console.Clear();
-//                            if(Data.SaveToJsonGeneric(hugo.Id, ManagerController.GetManagerList)) Console.WriteLine("Manager list saved");
                             if(Data.SaveToJsonGeneric(hugo.Id, ManagerController.ManagerControllerList)) Console.WriteLine("Manager list saved");
 
                             return;
 
-                        case 3:
+                        case 2:
                             //Agent
                             break;
                     }

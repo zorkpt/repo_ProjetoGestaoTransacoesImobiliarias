@@ -44,7 +44,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                         //Details
                     case 5:
                         Console.Clear();
-                        GenericController.ListView(Client.ClientList);
+                        GenericController.ListView(ClientController.ClientManagerList);
                         break;
                     case 0:
                         //exit

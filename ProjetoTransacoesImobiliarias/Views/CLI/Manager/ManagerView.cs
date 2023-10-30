@@ -46,6 +46,7 @@ public class ManagerView
                     }
                     else
                     {
+                        Console.Clear();
                         Console.WriteLine("Entrada inválida. Por favor, insere um número.");
                     }
                 }

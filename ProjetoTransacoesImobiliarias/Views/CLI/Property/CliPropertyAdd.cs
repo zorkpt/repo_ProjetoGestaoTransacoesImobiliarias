@@ -27,7 +27,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                 while(true){
                     Console.WriteLine("Client ID:");
                     int.TryParse(Console.ReadLine(), out clientID);
-                    if(ClientController.GetClientById(clientID)) break;
+                    if(ClientController.GetClientById(userID)) break;
                     Console.Clear();
                     Console.WriteLine($"Id does not exis, insert new client");
                     Console.WriteLine("Press any key to continue");
@@ -43,7 +43,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                     return;
                 }
                 
-                //Guardar lista no disco?
+                //Guardar lista no disco? vale a pena?
                 Data.SaveToJsonGeneric(userID, PropertyController.PropertyControllerList);
                 //in the end send to avaliation list
 

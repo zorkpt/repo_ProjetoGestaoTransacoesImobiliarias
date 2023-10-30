@@ -31,14 +31,22 @@ namespace ProjetoTransacoesImobiliarias.Models
         /// <param name="list">Generic list</param>
         /// <returns>True if the list was successfully saved to a JSON file. False otherwise.</returns>
         private static bool SaveToJson<T>(List<T> list){
+
             string json = JsonSerializer.Serialize(list);
+
             {
-                if(typeof(T) == typeof(Client)){
+                if(typeof(T) == typeof(ClientController)){
+                    json = JsonSerializer.Serialize(value: list);
                     string FileJson = "Files/ClientJson.json";
                     File.WriteAllText(FileJson, json);
                     return true;
                 }
                 if(typeof(T) == typeof(Manager)){
+                    string FileJson = "Files/ManagerJson.json";
+                    File.WriteAllText(FileJson, json);
+                    return true;
+                }
+                if(typeof(T) == typeof(ManagerController)){
                     string FileJson = "Files/ManagerJson.json";
                     File.WriteAllText(FileJson, json);
                     return true;

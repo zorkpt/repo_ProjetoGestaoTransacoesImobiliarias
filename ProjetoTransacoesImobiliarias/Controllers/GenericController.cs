@@ -19,13 +19,13 @@ namespace ProjetoTransacoesImobiliarias.Controllers
 
             foreach (var item in l)
             {
-                if(typeof(T) == typeof(Client)){
-                    Client? item1 = item as Client;
+                if(typeof(T) == typeof(ClientController)){
+                    ClientController? item1 = item as ClientController;
                     if(item1 == null) return;
-                    Console.WriteLine($"ID: {item1.IdClient}");
-                    Console.Write($"Name: {item1.Name} ");
-                    Console.Write($"Adress: {item1.Adress} ");
-                    Console.Write($"Agent ID: {item1.IdAgent} \n");
+                    Console.WriteLine($"ID: {item1.ShowClientId()}");
+                    Console.Write($"Name: {item1.ShowClientName()} ");
+                    Console.Write($"Adress: {item1.ShowClientAdress()} ");
+                    Console.Write($"Agent ID: {item1.ShowClientAgent()} \n");
                 }
                 
                 if(typeof(T) == typeof(Manager)){
@@ -57,10 +57,10 @@ namespace ProjetoTransacoesImobiliarias.Controllers
                         return searchId;
                     }
                 }
-                if(typeof(T) == typeof(Client)){
-                    Client? itemClient = item as Client;
+                if(typeof(T) == typeof(ClientController)){
+                    ClientController? itemClient = item as ClientController;
                     if(itemClient == null) return null;
-                    if(itemClient.IdClient == searchId){
+                    if(itemClient.ShowClientId() == searchId){
 
                         return searchId;
                     }
@@ -77,10 +77,10 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         /// </summary>
         /// <param name="id">Client id</param>
         public static void PrintCientDetails(int id){
-            Client? a = Client.ClientList.FirstOrDefault(c => c.IdClient == id);
+            ClientController? a = ClientController.ClientManagerList.FirstOrDefault(c => c.ShowClientId() == id);
 
             if(a != null){
-                Console.WriteLine($"Name: {a.Name} {a.IdClient} -> AgentID {a.IdAgent}");
+                Console.WriteLine($"Name: {a.ShowClientName()} {a.ShowClientId()} -> AgentID {a.ShowClientName()}");
             }
             
         }

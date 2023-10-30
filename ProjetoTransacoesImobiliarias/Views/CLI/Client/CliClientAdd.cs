@@ -21,17 +21,20 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
             if(string.IsNullOrEmpty(name)) return;
             if(string.IsNullOrEmpty(adress)) return;
 
-            Client? a = UserController.AddClientGeneric(name, adress, userID);
+            ClientController? a = ClientController.AddClient(name, adress, userID);
             if(a == null){
                 Console.WriteLine("Error, client not added");
                 return;
             }
 
-            bool save = Data.SaveToJsonGeneric(userID, Client.ClientList);
+            bool save = Data.SaveToJsonGeneric(userID, ClientController.ClientManagerList);
             if(!save){
                 Console.WriteLine("Error, client not save in jsonFiles");
+            }else{
+                Console.Clear();
+                Console.WriteLine("Client added successfully");
             }
-            Console.Clear();
+            //Console.Clear();
         }
     }
 }

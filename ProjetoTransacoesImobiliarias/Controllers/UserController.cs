@@ -64,22 +64,22 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         }
         
 
-        public static Client? AddClientGeneric(string name, string adress, int UserID)
-        {
-            #region Validations
-            if(!Access(UserID, 2)) return null;
-            #endregion
+        // public static ClientController? AddClientGeneric(string name, string adress, int UserID)
+        // {
+        //     #region Validations
+        //     if(!Access(UserID, 2)) return null;
+        //     #endregion
 
-            try{
-                Client? a = Admin.AddClient(name, adress, UserID);
-                return a;
-            }
-            catch(Exception error){
-                Console.WriteLine(error.Message);
-                return null;
-            }
+        //     try{
+        //         ClientController? a = ClientController.AddClient(name, adress, UserID);
+        //         return a;
+        //     }
+        //     catch(Exception error){
+        //         Console.WriteLine(error.Message);
+        //         return null;
+        //     }
             
-        }
+        //}
 
 
     }
