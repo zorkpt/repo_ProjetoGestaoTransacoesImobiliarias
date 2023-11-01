@@ -36,15 +36,16 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
 
                 }
 
-                if(!PropertyController.CreateProperty(adress, type, 0, wantedValue, 
-                                    squareMeters, clientID, userID))
-                {
+                PropertyController? a = new PropertyController(adress, type, 0, wantedValue, squareMeters, clientID, userID);
+                if(a != null ){
                     Console.WriteLine("Property not created");
                     return;
+                }else{
+                    Data.SaveToJsonGeneric(userID, PropertyController.PropertyControllerList);
+
                 }
                 
                 //Guardar lista no disco? vale a pena?
-                Data.SaveToJsonGeneric(userID, PropertyController.PropertyControllerList);
                 //in the end send to avaliation list
 
                 Console.WriteLine("Property created successfully");

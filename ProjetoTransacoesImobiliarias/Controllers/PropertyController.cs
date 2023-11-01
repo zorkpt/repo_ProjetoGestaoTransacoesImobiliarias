@@ -19,13 +19,8 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             PropertyControllerList.Add(this);
         }
         
+        
 
 
-        public static bool CreateProperty(string adress, PropertyType type, decimal avaliatorValue, 
-                    decimal wantedValue, double squareMeters, int clienteID, int agentID){
-            
-            PropertyController a = new PropertyController(adress, type, avaliatorValue, wantedValue, squareMeters, clienteID, agentID);
-            return true;
-        }
     }
 }

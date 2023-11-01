@@ -28,10 +28,10 @@ namespace ProjetoTransacoesImobiliarias.Controllers
                     Console.Write($"Agent ID: {item1.ShowClientAgent()} \n");
                 }
                 
-                if(typeof(T) == typeof(Manager)){
-                    Manager? item1 = item as Manager;
+                if(typeof(T) == typeof(ManagerController)){
+                    ManagerController? item1 = item as ManagerController;
                     if(item1 == null) return;
-                    Console.WriteLine($"UserName {item1.Username}");
+                    Console.WriteLine($"UserName {item1}");
                 }
                 
             }
@@ -45,31 +45,31 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         /// <param name="list"></param>
         /// <param name="searchId"></param>
         /// <returns>The ID of the user if found, or -1 if not found.</returns>
-        public static int ?SearchUserById<T>(List<T> list, int searchId){
+        // public static int ?SearchUserById<T>(List<T> list, int searchId){
+        //     return 0;
+            // foreach (var item in list)
+            // {
+            //     if(typeof(T) == typeof(Manager)){
+            //         Manager? itemManager = item as Manager;
+            //         if(itemManager == null) return null;
+            //         if(itemManager.Id == searchId){
 
-            foreach (var item in list)
-            {
-                if(typeof(T) == typeof(Manager)){
-                    Manager? itemManager = item as Manager;
-                    if(itemManager == null) return null;
-                    if(itemManager.Id == searchId){
+            //             return searchId;
+            //         }
+            //     }
+            //     if(typeof(T) == typeof(ClientController)){
+            //         ClientController? itemClient = item as ClientController;
+            //         if(itemClient == null) return null;
+            //         if(itemClient.ShowClientId() == searchId){
 
-                        return searchId;
-                    }
-                }
-                if(typeof(T) == typeof(ClientController)){
-                    ClientController? itemClient = item as ClientController;
-                    if(itemClient == null) return null;
-                    if(itemClient.ShowClientId() == searchId){
-
-                        return searchId;
-                    }
-                }
+            //             return searchId;
+            //         }
+            //     }
 
 
-            }
-            return -1;
-        }
+            // }
+            // return -1;
+        //}
     
     #region Client
         /// <summary>

@@ -6,13 +6,13 @@ using ProjetoTransacoesImobiliarias.Models;
 
 namespace ProjetoTransacoesImobiliarias.Controllers
 {
-    public class AgentController : UserController
+    public class AgentController 
     {
-        Agent Agent1;
+        //Agent Agent1;
 
-        public AgentController(Agent agent)
+        public AgentController()
         {
-            Agent1 = agent;
+            //Agent1 = agent;
         }
     }
 }

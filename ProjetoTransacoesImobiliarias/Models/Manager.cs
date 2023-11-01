@@ -13,6 +13,7 @@ public class Manager : User
 
         ManagerList.Add(this);
     }
+    
 
 
 }

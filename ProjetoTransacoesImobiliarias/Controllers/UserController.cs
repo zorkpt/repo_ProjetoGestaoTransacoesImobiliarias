@@ -9,9 +9,14 @@ using ProjetoTransacoesImobiliarias.Views;
 
 namespace ProjetoTransacoesImobiliarias.Controllers
 {
-    public class UserController : Admin
+    public class UserController : User
     {
         public int UserID;
+
+        public UserController(string username, string password, UserRole role):
+            base(username, password, role){
+                
+        }
 
 
         /// <summary>

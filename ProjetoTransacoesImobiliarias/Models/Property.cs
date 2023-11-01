@@ -5,15 +5,22 @@ namespace ProjetoTransacoesImobiliarias.Models;
 public class Property
 {
     private static int Contador = 0;
-    private int IdProperty { get; set;}
-    private string Adress { get; set; }
-    private PropertyType type { get; set;}
-    private decimal AvaliatorValue { get; set; }
-    private decimal WantedValue { get; set; }
-    private double SquareMeters { get; set; }
-    private int ClienteID { get; set; }
-    private int AgentID { get; set; }
-    private bool ForSale { get; set;}
+    private int idProperty;
+
+
+
+    private string adress;
+    private PropertyType type1;
+    private decimal avaliatorValue;
+    private bool forSale;
+    private decimal wantedValue;
+    private double squareMeters;
+    private int clienteID;
+    private int agentID;
+
+
+
+
     private static List<Property> PropertyList = new List<Property>();// test readonly
 
 
@@ -24,25 +31,121 @@ public class Property
             throw new InvalidOperationException("Acess denied");
         }
 
-        this.IdProperty = Contador++;
-        this.Adress = adress;
-        this.type = type;
-        this.AvaliatorValue = avaliatorValue;
-        this.WantedValue = wantedValue;
-        this.SquareMeters = squareMeters;
-        this.ClienteID = clienteID;
-        this.AgentID = userID;
+        this.SetIdProperty(Contador++);
+        this.SetAdress(adress);
+        this.Settype(type);
+        this.SetAvaliatorValue(avaliatorValue);
+        this.SetWantedValue(wantedValue);
+        this.SetSquareMeters(squareMeters);
+        this.SetClienteID(clienteID);
+        this.SetAgentID(userID);
         
         if(avaliatorValue != 0)
         {
-            this.ForSale = true;
+            this.SetForSale(true);
         }else
         {
-            this.ForSale = false;
+            this.SetForSale(false);
         }
 
         PropertyList.Add(this);
 
     }
+
+    #region Proprities
+            private int GetIdProperty()
+            {
+                return idProperty;
+            }
+
+            private void SetIdProperty(int value)
+            {
+                idProperty = value;
+            }
+            private string GetAdress()
+            {
+                return adress;
+            }
+
+            private void SetAdress(string value)
+            {
+                adress = value;
+            }
+
+            private PropertyType Gettype()
+            {
+                return type1;
+            }
+
+            private void Settype(PropertyType value)
+            {
+                type1 = value;
+            }
+            private decimal GetAvaliatorValue()
+            {
+                return avaliatorValue;
+            }
+
+            private void SetAvaliatorValue(decimal value)
+            {
+                avaliatorValue = value;
+            }
+
+
+            private decimal GetWantedValue()
+            {
+                return wantedValue;
+            }
+
+            private void SetWantedValue(decimal value)
+            {
+                wantedValue = value;
+            }
+
+
+            private double GetSquareMeters()
+            {
+                return squareMeters;
+            }
+
+            private void SetSquareMeters(double value)
+            {
+                squareMeters = value;
+            }
+
+
+            private int GetClienteID()
+            {
+                return clienteID;
+            }
+
+            private void SetClienteID(int value)
+            {
+                clienteID = value;
+            }
+
+
+            private int GetAgentID()
+            {
+                return agentID;
+            }
+
+            private void SetAgentID(int value)
+            {
+                agentID = value;
+            }
+
+
+            private bool GetForSale()
+            {
+                return forSale;
+            }
+
+            private void SetForSale(bool value)
+            {
+                forSale = value;
+            }
+
+    #endregion Proprities
 
 }

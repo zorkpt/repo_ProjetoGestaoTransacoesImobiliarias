@@ -13,6 +13,7 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         #region getClient
         public int ShowClientId()
         {
+
             return GetIdClient();
         }
         public string ShowClientName()
@@ -55,6 +56,10 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         public ClientController(string name, string address, int userID) 
                             : base (name, address, userID)
         {
+
+            if(!UserController.Access(userID, 2)){// Talvez nao por aqui
+                throw new InvalidOperationException("Acess denied");
+            }
             ClientManagerList.Add(this);
         }
 
