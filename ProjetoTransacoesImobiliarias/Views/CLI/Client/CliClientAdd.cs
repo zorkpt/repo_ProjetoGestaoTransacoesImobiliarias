@@ -27,7 +27,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                 return;
             }
 
-            bool save = Data.SaveToJsonGeneric(userID, ClientController.ClientManagerList);
+            bool save = Data.SaveToJsonGeneric(userID, ClientController.ClientControllerList);
             if(!save){
                 Console.WriteLine("Error, client not save in jsonFiles");
             }else{

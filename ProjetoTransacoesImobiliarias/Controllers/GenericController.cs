@@ -77,7 +77,7 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         /// </summary>
         /// <param name="id">Client id</param>
         public static void PrintCientDetails(int id){
-            ClientController? a = ClientController.ClientManagerList.FirstOrDefault(c => c.ShowClientId() == id);
+            ClientController? a = ClientController.ClientControllerList.FirstOrDefault(c => c.ShowClientId() == id);
 
             if(a != null){
                 Console.WriteLine($"Name: {a.ShowClientName()} {a.ShowClientId()} -> AgentID {a.ShowClientName()}");

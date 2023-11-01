@@ -51,7 +51,7 @@ namespace ProjetoTransacoesImobiliarias.Models
                     File.WriteAllText(FileJson, json);
                     return true;
                 }
-                if(typeof(T) == typeof(Admin)){
+                if(typeof(T) == typeof(AdminController)){
                     string FileJson = "Files/AdminJson.json";
                     File.WriteAllText(FileJson, json);
                     return true;

@@ -12,61 +12,36 @@ namespace ProjetoTransacoesImobiliarias.Models
     public class Client
     {
         private static int Contador = 0;//ver esta linha
-        public int idClient;
-        public string name;
-        public string adress;
-        public int idAgent;
+        private int idClient;
+        private string name;
+        private string adress;
+        private int idAgent;
         public static List<Client> ClientList = new List<Client>();
 
-        // public Client(string nome, string morada, int userID)
-        // {
+        public Client(string nome, string morada, int userID)
+        {
 
-        //     this.SetIdClient(Contador++);
-        //     this.SetNameClient(nome);
-        //     this.SetAdressClient(morada);
-        //     this.SetIdAgentClient(userID);
-
-        //     ClientList.Add(this);
-
-
-        // }
-
-        public Client(string nome, string morada, int userID){
-            this.name = nome;
-            this.adress = morada;
-            this.idAgent = userID;
+            this.SetIdClient(Contador++);
+            this.SetNameClient(nome);
+            this.SetAdressClient(morada);
+            this.SetIdAgentClient(userID);
 
             ClientList.Add(this);
 
-            Client.SaveToJson1();
-        }
-
-        // Method to save the ClientList to JSON file
-        public static void SaveToJson1()
-        {
-            try{
-                string json = JsonSerializer.Serialize(ClientList);
-                string FileJson = "Files/ClientJson.json";
-                File.WriteAllText(FileJson, json);
-            }
-            catch(Exception e){
-                Console.WriteLine(e.Message);
-            }
 
         }
 
         #region Proprities
 
-        private int SetIdClient(int id)
-        {
-            if(id < 0 ){
-                return -1;
-            }
-            return idClient = id;
-        }
         protected int GetIdClient()
         {
             return idClient;
+        }
+
+        protected bool SetIdClient(int id){
+            
+            idClient = id;
+            return true;
         }
 
         protected string GetNameClient()
@@ -98,6 +73,22 @@ namespace ProjetoTransacoesImobiliarias.Models
             idAgent = value;
         }
         #endregion
+
+        protected bool RemoveClient(){
+            //remove cliente na instancia atual
+            ClientList.Remove(this);
+            return true;
+        }
+        protected static bool RemoveClientById(int id)
+        {
+            Client? log = ClientList.FirstOrDefault(c => c.GetIdClient() == id);
+            if(log == null) return false;
+
+            ClientList.Remove(log);
+            Contador--;
+            return true;
+        }
+
 
     }
 }

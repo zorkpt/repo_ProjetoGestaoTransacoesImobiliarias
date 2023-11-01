@@ -25,9 +25,6 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
             }
             while(true){
                 Console.WriteLine("Choose User role");
-                // Console.WriteLine("1. Admin");
-                // Console.WriteLine("2. Manager");
-                // Console.WriteLine("3. Agent");
                 
                 foreach (var item in Enum.GetValues(typeof(UserRole)))
                 {
@@ -40,8 +37,10 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                     switch (choice){
                         case 0:
                             //admin
-                            
-                            break;
+                            AdminController? admin1 = new AdminController(name, pass);
+                            Console.Clear();
+                            if(Data.SaveToJsonGeneric(admin1.Id, AdminController.AdminControllersList)) Console.WriteLine("Admin list saved");
+                            return;
                         case 1:
                             //Manger
                             ManagerController? hugo = new (name, pass);

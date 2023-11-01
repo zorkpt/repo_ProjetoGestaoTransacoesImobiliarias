@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProjetoTransacoesImobiliarias.Controllers;
 using ProjetoTransacoesImobiliarias.Models;
+using ProjetoTransacoesImobiliarias.Views.CLI.Client;
 
 namespace ProjetoTransacoesImobiliarias.Views.CLI
 {
@@ -33,9 +34,12 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                         break;
                     case 2:
                         //Edit
+                        CliClientEdit.Show();
+                        
                         break;
                     case 3:
                         //delete
+                        CliClientDelete.Show();
                         break;
                     case 4:
 
@@ -44,7 +48,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                         //Details
                     case 5:
                         Console.Clear();
-                        GenericController.ListView(ClientController.ClientManagerList);
+                        GenericController.ListView(ClientController.ClientControllerList);
                         break;
                     case 0:
                         //exit

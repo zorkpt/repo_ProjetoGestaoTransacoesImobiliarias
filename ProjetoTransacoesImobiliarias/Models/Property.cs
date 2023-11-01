@@ -1,3 +1,4 @@
+using System.Net.WebSockets;
 using Microsoft.VisualBasic;
 using ProjetoTransacoesImobiliarias.Controllers;
 namespace ProjetoTransacoesImobiliarias.Models;
@@ -23,127 +24,155 @@ public class Property
 
     private static List<Property> PropertyList = new List<Property>();// test readonly
 
-
+    /// <summary>
+    /// A constructor for the Property class that initializes its properties with the given values.
+    /// </summary>
+    /// <param name="adress"></param>
+    /// <param name="type"></param>
+    /// <param name="avaliatorValue"></param>
+    /// <param name="wantedValue"></param>
+    /// <param name="squareMeters"></param>
+    /// <param name="clienteID"></param>
+    /// <param name="userID"></param>
+    /// <exception cref="InvalidOperationException"></exception>
     protected Property(string adress, PropertyType type, decimal avaliatorValue, 
                     decimal wantedValue, double squareMeters, int clienteID, int userID){
 
-        if(!UserController.Access(userID, 2)){
+        if(!UserController.Access(userID, 2)){//talvez não seja necessário por aqui mas sim no controller, ver com pessoal
             throw new InvalidOperationException("Acess denied");
         }
 
         this.SetIdProperty(Contador++);
-        this.SetAdress(adress);
-        this.Settype(type);
-        this.SetAvaliatorValue(avaliatorValue);
-        this.SetWantedValue(wantedValue);
-        this.SetSquareMeters(squareMeters);
-        this.SetClienteID(clienteID);
-        this.SetAgentID(userID);
+        this.SetAdressProperty(adress);
+        this.SettypeProperty(type);
+        this.SetAvaliatorValueProperty(avaliatorValue);
+        this.SetWantedValueProperty(wantedValue);
+        this.SetSquareMetersProperty(squareMeters);
+        this.SetClienteIDProperty(clienteID);
+        this.SetAgentIDProperty(userID);
         
-        if(avaliatorValue != 0)
-        {
-            this.SetForSale(true);
-        }else
-        {
-            this.SetForSale(false);
-        }
-
         PropertyList.Add(this);
 
     }
 
     #region Proprities
-            private int GetIdProperty()
+            protected int GetIdProperty()
             {
                 return idProperty;
             }
 
-            private void SetIdProperty(int value)
+            protected bool SetIdProperty(int value)
             {
-                idProperty = value;
+                if(!int.TryParse(value.ToString(), out int number));
+                if(number < 0) return false;
+
+                idProperty = number;
+                return true;
             }
-            private string GetAdress()
+            protected string GetAdressProperty()
             {
                 return adress;
             }
 
-            private void SetAdress(string value)
+            protected bool SetAdressProperty(string value)
             {
+                if(value == null) return false;
                 adress = value;
+                return true;
             }
 
-            private PropertyType Gettype()
+            protected PropertyType GettypeProperty()
             {
                 return type1;
             }
 
-            private void Settype(PropertyType value)
+            protected bool SettypeProperty(PropertyType value)
             {
+                if(value == null) return false;
                 type1 = value;
+                return true;
             }
-            private decimal GetAvaliatorValue()
+            protected decimal GetAvaliatorValueProperty()
             {
                 return avaliatorValue;
             }
 
-            private void SetAvaliatorValue(decimal value)
+            protected bool SetAvaliatorValueProperty(decimal value)
             {
+                if(value < 0) return false;
                 avaliatorValue = value;
+                return true;
             }
 
 
-            private decimal GetWantedValue()
+            protected decimal GetWantedValueProperty()
             {
                 return wantedValue;
             }
 
-            private void SetWantedValue(decimal value)
+            protected bool SetWantedValueProperty(decimal value)
             {
+                if(value < 0) return false;
                 wantedValue = value;
+                return true;
             }
 
 
-            private double GetSquareMeters()
+            protected double GetSquareMetersProperty()
             {
                 return squareMeters;
             }
 
-            private void SetSquareMeters(double value)
+            protected bool SetSquareMetersProperty(double value)
             {
+                if(value < 0) return false;
                 squareMeters = value;
+                return true;
             }
 
 
-            private int GetClienteID()
+            protected int GetClienteIDProperty()
             {
                 return clienteID;
             }
 
-            private void SetClienteID(int value)
+            protected bool SetClienteIDProperty(int value)
             {
+                if(value < 0) return false;
                 clienteID = value;
+                return true;
             }
 
 
-            private int GetAgentID()
+            protected int GetAgentIDProperty()
             {
                 return agentID;
             }
 
-            private void SetAgentID(int value)
+            protected bool SetAgentIDProperty(int value)
             {
+                if(value < 0) return false;
                 agentID = value;
+                return true;
             }
 
 
-            private bool GetForSale()
+            protected bool GetForSaleProperty()
             {
                 return forSale;
             }
 
-            private void SetForSale(bool value)
+            protected bool SetForSaleProperty(bool value)
             {
-                forSale = value;
+                if(GetAvaliatorValueProperty() != 0)
+                {
+                    this.SetForSaleProperty(true);
+                    return true;
+                }else
+                {
+                    this.SetForSaleProperty(false);
+                    return false;
+                }
             }
 
     #endregion Proprities

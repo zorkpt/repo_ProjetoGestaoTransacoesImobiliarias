@@ -15,30 +15,73 @@ namespace ProjetoTransacoesImobiliarias.Models
         public Admin(string username, string password)
             : base(username, password, UserRole.Admin)
         {
+            //add list of admin?
+        }
+        public Admin(string username, string password, UserRole role)
+            : base(username, password, role)
+        {
+            //With this constructor, we can create manager and agents
+        }
+        protected bool AddClient(string name, string adress, int userID)
+        {
             
+            ClientController? a = new ClientController(name, adress, userID);
+            return a != null;
         }
 
-        protected static bool EditClientNameByID(ClientController c, string newName, List<ClientController> clientList)
+        /// <summary>
+        /// Removes an element from the specified index in the given list.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="index"></param>
+        /// <returns>True if the element was successfully removed; otherwise, false.</returns>
+        protected bool RemoveIdFromList<T>(List<T> list, int index)
         {
-            c.SetClientName(newName);
-            
+            if(index < 0) return false;
+            if(list.Count < index) return false;
+
+            list.RemoveAt(index);
             return true;
         }
-        protected static bool EditClientAdressyID(ClientController c, string newAdress)
+
+        /// <summary>
+        /// Finds the index of an element in a list by its ID.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="id"></param>
+        /// <returns>The index of the element with the specified ID in the list, or -1 if not found.</returns>
+        protected int FindIndexById<T>(List<T> list, int id)
         {
-            c.SetClientAdress(newAdress);
+            int index = -1;
+            if(typeof(T) == typeof(ClientController)){
+                List<ClientController>? a = list as List<ClientController>;
+                index = a.FindIndex(x => x.ShowClientId() == id);
+                
+            }
+            if(typeof(T) == typeof(PropertyController)){
+                List<PropertyController>? a = list as List<PropertyController>;
+                index = a.FindIndex(x => x.ShowPropertyId(id) == id);
+            }
+            // if(typeof(T) == typeof(AgentController)){
+            //     List<AgentController>? a = list as List<AgentController>;
+            //     index = a.FindIndex(x => x.idAgent == id);
+            // }
+            if(typeof(T) == typeof(ManagerController)){
+                List<ManagerController>? a = list as List<ManagerController>;
+                index = a.FindIndex(x => x.Id == id);
+            }
+            if(typeof(T) == typeof(AdminController)){
+                List<AdminController>? a = list as List<AdminController>;
+                index = a.FindIndex(x => x.Id == id);
+            }
 
-            return false;
+
+            return index < 0 ? -1 : index;
+
+            
         }
-
-
-        protected static ClientController RegisterProperty(string name, string adress, int IdAgent)
-        {
-            ClientController a = new ClientController(name, adress, IdAgent);
-            return a;
-        }
-
-
 
     }
 }
