@@ -26,7 +26,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                     if(log == null){
                         Console.Clear();
                         Console.WriteLine($"User {choice} doenst exists.");
-                        return;
+                        break;
                     }
 
                     if(log == UserRole.Manager){

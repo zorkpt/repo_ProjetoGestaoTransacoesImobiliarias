@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProjetoTransacoesImobiliarias.Controllers;
+using System.Text.Json;
+using System.IO;
+
 
 namespace ProjetoTransacoesImobiliarias.Models
 {
@@ -13,31 +16,32 @@ namespace ProjetoTransacoesImobiliarias.Models
         private string name;
         private string adress;
         private int idAgent;
-        protected static List<Client> ClientList = new List<Client>();
+        public static List<Client> ClientList = new List<Client>();
 
-        protected Client(string nome, string morada, int userID)
+        public Client(string nome, string morada, int userID)
         {
-            if(!UserController.Access(userID, 2)){
-                throw new InvalidOperationException("Acess denied");
-            }
+
             this.SetIdClient(Contador++);
             this.SetNameClient(nome);
             this.SetAdressClient(morada);
             this.SetIdAgentClient(userID);
 
             ClientList.Add(this);
-        }
 
+
+        }
 
         #region Proprities
 
-        private int SetIdClient(int id)
-        {
-            return idClient = id;
-        }
         protected int GetIdClient()
         {
             return idClient;
+        }
+
+        protected bool SetIdClient(int id){
+            
+            idClient = id;
+            return true;
         }
 
         protected string GetNameClient()
@@ -69,6 +73,22 @@ namespace ProjetoTransacoesImobiliarias.Models
             idAgent = value;
         }
         #endregion
+
+        protected bool RemoveClient(){
+            //remove cliente na instancia atual
+            ClientList.Remove(this);
+            return true;
+        }
+        protected static bool RemoveClientById(int id)
+        {
+            Client? log = ClientList.FirstOrDefault(c => c.GetIdClient() == id);
+            if(log == null) return false;
+
+            ClientList.Remove(log);
+            Contador--;
+            return true;
+        }
+
 
     }
 }

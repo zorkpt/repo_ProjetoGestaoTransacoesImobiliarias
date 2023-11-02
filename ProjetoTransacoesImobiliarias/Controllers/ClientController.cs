@@ -10,9 +10,11 @@ namespace ProjetoTransacoesImobiliarias.Controllers
 {
     public class ClientController : Client
     {
+
         #region getClient
         public int ShowClientId()
         {
+
             return GetIdClient();
         }
         public string ShowClientName()
@@ -35,7 +37,7 @@ namespace ProjetoTransacoesImobiliarias.Controllers
 
         public void SetClientName(string name)
         {
-            SetClientName(name);
+            SetNameClient(name);
         }
 
         public void SetClientAdress(string adress)
@@ -49,20 +51,25 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         }
 
         #endregion endSet
-        public static List<ClientController> ClientManagerList = new List<ClientController>();
+        public static List<ClientController> ClientControllerList = new List<ClientController>();
 
         //gerir clientes por aqui
         public ClientController(string name, string address, int userID) 
                             : base (name, address, userID)
         {
-            ClientManagerList.Add(this);
+
+            if(!UserController.Access(userID, 2)){// Talvez nao por aqui
+                throw new InvalidOperationException("Acess denied");
+            }
+            
+            ClientControllerList.Add(this);//
         }
 
 
         //Fazer verificacao do ID do cliente com clientController? Ver com pessoal
         public static bool GetClientById(int id){
             
-            ClientController? log = ClientController.ClientManagerList.FirstOrDefault(c => c.GetIdClient() == id);
+            ClientController? log = ClientController.ClientControllerList.FirstOrDefault(c => c.GetIdClient() == id);
             return log == null ? false : true;
             
         }
@@ -72,39 +79,12 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             return a;
         }
 
-        /// <summary>
-        /// Searches for a client in the clientList by their IdClient.
-        /// </summary>
-        /// <param name="c"></param>
-        /// <param name="clientList"></param>
-        /// <returns>The IdClient of the found client if it exists in the clientList, otherwise -1.</returns>
-        protected int SearchClientById(ClientController c, List<ClientController> clientList){
 
-            foreach(ClientController? cliente in clientList){
-                return cliente.ShowClientId() == c.ShowClientId() ? c.ShowClientId() : -1;
-            }
 
-            return -1;
+        public bool RemoveClientController(){
+            ClientController.ClientControllerList.Remove(this);
+            this.RemoveClient();            
+            return true;
         }
-
-        /// <summary>
-        /// Removes a client from the clientList by the specified Id.
-        /// </summary>
-        /// <param name="Id">The Id number of the client to be removed.</param>
-        /// <param name="clientList">List of clients</param>
-        /// <returns>True if the client was successfully removed, false otherwise.</returns>
-        protected static bool RemoveClientById(int Id, List<ClientController> clientList)
-        {
-            
-            foreach(ClientController cliente in clientList){
-                if(cliente.ShowClientId() == Id){
-                    clientList.Remove(cliente);
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
     }
 }
