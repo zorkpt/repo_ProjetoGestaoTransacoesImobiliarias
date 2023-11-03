@@ -14,7 +14,7 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         #region getClient
         public int ShowClientId()
         {
-
+            
             return GetIdClient();
         }
         public string ShowClientName()
