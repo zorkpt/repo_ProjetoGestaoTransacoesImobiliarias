@@ -8,17 +8,34 @@ public abstract class User : IUser
     public string Username { get; set; }
     public string Password { get; set; }
     public UserRole Role { get; set; }  // Novo campo para o Role
+    public static int Contador = 0;
+    public static List<User> UserList = new List<User>();
 
-    protected User(int id, string username, string password, UserRole role)
+    /// <summary>
+    /// Initializes a new instance of the User class with the specified username, password, and role.
+    /// </summary>
+    /// <param name="username"></param>
+    /// <param name="password"></param>
+    /// <param name="role"></param>
+    protected User(string username, string password, UserRole role)
     {
-        Id = id;
+
+        Id = Contador++;
         Username = username;
         Password = password;
         Role = role;
+        
+        UserList.Add(this);
+
     }
     
-    public virtual string DisplayRoleSpecificInfo()
-    {
-        return "Comportamento Padrão.";
+    /// <summary>
+    /// Creates a protected constructor for the User class.
+    /// </summary>
+    protected User(){
+        //empty
     }
+    
+
+
 }
