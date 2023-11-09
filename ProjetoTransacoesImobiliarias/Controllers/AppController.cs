@@ -19,10 +19,10 @@ public class AppController
                 switch (choice)
                 {
                     case 1:
-                        AdminController.StartView();
+                        //AdminController.StartView();
                         break;
                     case 2:
-                        ManagerController.StartView();
+                        //
                         break;
                     
                     case 0:

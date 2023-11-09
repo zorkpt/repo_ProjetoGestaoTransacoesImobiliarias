@@ -1,23 +1,30 @@
+using System.Dynamic;
+using ProjetoTransacoesImobiliarias.Controllers;
+
 namespace ProjetoTransacoesImobiliarias.Models;
 
-public class Manager : User
+public class Manager : Admin
 {
     public int NumberOfPropertiesManaged { get; set; }
+    protected static List<Manager> ManagerList = new List<Manager>();
 
-    public Manager(int id, string username, string password)
-        : base(id, username, password, UserRole.Manager)
+    protected Manager(string username, string password)
+        : base(username, password, UserRole.Manager)
     {
+
+        ManagerList.Add(this);
     }
-    
-    public bool RegisterClient()
+
+    protected Manager(){
+        //vazio;
+    }
+
+    protected Manager AddManager(string name, string adress, int userID)
     {
-        Console.WriteLine("A adicionar um novo cliente");
-        return true;
+        Manager a = new Manager(name, adress);
+        return a != null ? a : null;
     }
-    
-    public override string DisplayRoleSpecificInfo()
-    {
-        return "Fiz Override. Sou Manager";
-    }
+
 
 }
+
