@@ -8,6 +8,8 @@ public abstract class User : IUser
     public string Username { get; set; }
     public string Password { get; set; }
     public UserRole Role { get; set; }  // Novo campo para o Role
+    
+    
     public static int Contador = 0;
     public static List<User> UserList = new List<User>();
 
@@ -28,6 +30,8 @@ public abstract class User : IUser
         UserList.Add(this);
 
     }
+    
+    
     
     /// <summary>
     /// Creates a protected constructor for the User class.

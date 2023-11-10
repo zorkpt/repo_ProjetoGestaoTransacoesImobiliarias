@@ -1,0 +1,34 @@
+[
+  {
+    "userType": "Admin",
+    "id": 1,
+    "username": "adminUser",
+    "password": "1234"
+  },
+  {
+    "userType": "Admin",
+    "id": 2,
+    "username": "admin1",
+    "password": "1234"
+  },
+  {
+    "userType": "Admin",
+    "id": 3,
+    "username": "admin2",
+    "password": "1234"
+  },
+  {
+    "userType": "Admin",
+    "id": 4,
+    "username": "admin3",
+    "password": "1234"
+  },
+  {
+    "userType": "Manager",
+    "id": 5,
+    "username": "managerUser",
+    "password": "anotherSecurePasswordHash",
+    "numberOfPropertiesManaged": 15
+  }
+]
+

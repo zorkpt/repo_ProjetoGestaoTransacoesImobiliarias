@@ -9,6 +9,7 @@ namespace ProjetoTransacoesImobiliarias.Models
     public class Admin : User
     {
         protected decimal CommissionValue { get; set; }
+        private static List<Admin> adminList = new List<Admin>();
         public Admin(){
             //vazio
         }
@@ -81,6 +82,20 @@ namespace ProjetoTransacoesImobiliarias.Models
             return index < 0 ? -1 : index;
 
             
+        }
+        public static void AddAdmin(Admin admin)
+        {
+            adminList.Add(admin);
+        }
+        
+        public static void AddAdmins(IEnumerable<Admin> admins)
+        {
+            adminList.AddRange(admins);
+        }
+        
+        public static List<Admin> GetAdminList()
+        {
+            return adminList;
         }
 
     }

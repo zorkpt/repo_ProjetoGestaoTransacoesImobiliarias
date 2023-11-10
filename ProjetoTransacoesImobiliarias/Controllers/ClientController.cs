@@ -23,7 +23,7 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         }
         public string ShowClientAdress()
         {
-            return GetAdress();
+            return GetAddress();
         }
 
         public int ShowClientAgent()
@@ -42,7 +42,7 @@ namespace ProjetoTransacoesImobiliarias.Controllers
 
         public void SetClientAdress(string adress)
         {
-            SetAdressClient(adress);
+            SetAddressClient(adress);
         }
 
         public void SetClientAgent(int id)

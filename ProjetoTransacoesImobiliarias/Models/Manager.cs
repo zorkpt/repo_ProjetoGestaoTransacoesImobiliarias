@@ -1,4 +1,5 @@
 using System.Dynamic;
+using System.Text.Json.Serialization;
 using ProjetoTransacoesImobiliarias.Controllers;
 
 namespace ProjetoTransacoesImobiliarias.Models;
@@ -6,25 +7,32 @@ namespace ProjetoTransacoesImobiliarias.Models;
 public class Manager : Admin
 {
     public int NumberOfPropertiesManaged { get; set; }
-    protected static List<Manager> ManagerList = new List<Manager>();
-
-    protected Manager(string username, string password)
+    private static List<Manager> ManagerList = new List<Manager>();
+    
+    public Manager(string username, string password)
         : base(username, password, UserRole.Manager)
     {
-
-        ManagerList.Add(this);
     }
-
-    protected Manager(){
-        //vazio;
-    }
-
+    
     protected Manager AddManager(string name, string adress, int userID)
     {
         Manager a = new Manager(name, adress);
         return a != null ? a : null;
     }
 
-
+    public static void AddManager(Manager manager)
+    {
+        ManagerList.Add(manager);
+    }
+        
+    public static void AddManagers(IEnumerable<Manager> managers)
+    {
+        ManagerList.AddRange(managers);
+    }
+        
+    public static List<Manager> GetManagerList()
+    {
+        return ManagerList;
+    }
 }
 

@@ -18,14 +18,7 @@ public class ManagerController : Manager
     {
         ManagerControllerList.Add(this);
     }
-
-
-    public static List<Manager> GetManagerList{//em principio já não é preciso 
-
-      get{ return ManagerList; }
     
-      set{}
-    }
 
     public bool AddClientByManager(string name, string address, int userID){
 
