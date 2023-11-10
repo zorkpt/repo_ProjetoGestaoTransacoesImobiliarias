@@ -1,3 +1,4 @@
+using System;
 using ProjetoTransacoesImobiliarias.Models;
 
 namespace ProjetoTransacoesImobiliarias.Views.CLI;

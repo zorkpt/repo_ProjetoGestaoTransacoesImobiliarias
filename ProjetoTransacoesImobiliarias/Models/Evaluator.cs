@@ -1,4 +1,6 @@
-﻿namespace ProjetoTransacoesImobiliarias;
+﻿using System.Collections.Generic;
+
+namespace ProjetoTransacoesImobiliarias;
 
 public class Evaluator
 {

@@ -1,4 +1,5 @@
-﻿using ProjetoTransacoesImobiliarias.Controllers;
+﻿using System;
+using ProjetoTransacoesImobiliarias.Controllers;
 using ProjetoTransacoesImobiliarias.Models;
 using ProjetoTransacoesImobiliarias.Services;
 using ProjetoTransacoesImobiliarias.Views.CLI;

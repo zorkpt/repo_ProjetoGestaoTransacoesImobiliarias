@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Net.WebSockets;
 using Microsoft.VisualBasic;
 using ProjetoTransacoesImobiliarias.Controllers;

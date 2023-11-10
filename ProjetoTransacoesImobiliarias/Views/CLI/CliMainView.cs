@@ -22,7 +22,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
 
             Console.WriteLine("\t\tMain View");
             
-            Console.WriteLine(Data.ReadFromJson(ManagerController.ManagerControllerList) ? $"Users [{ManagerController.ManagerControllerList.Count} users] data upload successfully" : "Error uploading");
+        //    Console.WriteLine(Data.ReadFromJson(ManagerController.ManagerControllerList) ? $"Users [{ManagerController.ManagerControllerList.Count} users] data upload successfully" : "Error uploading");
 
 
             while (true){

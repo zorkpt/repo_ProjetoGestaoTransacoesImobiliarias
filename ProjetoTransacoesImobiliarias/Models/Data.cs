@@ -127,58 +127,6 @@ namespace ProjetoTransacoesImobiliarias.Models
             throw new ArgumentException($"Unsupported type: {typeof(T).Name}");
         }
 
-        public static bool ReadAllUserDataFromJson()
-        {
-            string filePath = "/home/zork/repo/repo_TP-AMS/ProjetoTransacoesImobiliarias/Files/Data.json";
-
-            if (!File.Exists(filePath))
-            {
-                Console.WriteLine("Ficheiro não encontrado");
-                return false;
-            }
-
-            Console.WriteLine("Ficheiro Lido");
-            try
-            {
-                string json = File.ReadAllText(filePath);
-                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-                var userData = JsonSerializer.Deserialize<Data>(json, options);
-
-                if (userData == null)
-                {
-                    Console.WriteLine("Nenhum dado foi encontrado no ficheiro JSON.");
-                    return false;
-                }
-
-                if (userData.Admin.Any())
-                {
-                    Models.Admin.AddAdmins(userData.Admin);
-                }
-                if (userData.Manager.Any())
-                {
-                    Models.Manager.AddManagers(userData.Manager);
-                }
-                if (userData.Client.Any())
-                {
-                    Models.Client.ClientList.AddRange(userData.Client);
-                }
-              
-
-                return true;
-            }
-            catch (JsonException e)
-            {
-                Console.WriteLine("Erro de deserialização: " + e.Message);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Erro desconhecido: " + e.Message);
-            }
-
-            return false;
-        }
-
-
         
         private static bool SaveToSql<T>(List<T> list){
             return false;

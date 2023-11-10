@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using ProjetoTransacoesImobiliarias.Models;
 using ProjetoTransacoesImobiliarias.Views.CLI;
 

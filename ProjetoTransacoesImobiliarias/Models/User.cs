@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ProjetoTransacoesImobiliarias.Interfaces;
 
 namespace ProjetoTransacoesImobiliarias.Models;
