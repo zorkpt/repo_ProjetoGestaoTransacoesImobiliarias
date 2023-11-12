@@ -1,16 +1,31 @@
+using ProjetoTransacoesImobiliarias.Interfaces;
 using ProjetoTransacoesImobiliarias.Models;
+using ProjetoTransacoesImobiliarias.Services;
 using ProjetoTransacoesImobiliarias.Views.CLI;
 
 namespace ProjetoTransacoesImobiliarias.Controllers;
 
-public class AppController
+public class AppController 
 {
-    public static void ShowUserMenu(User user)
+    private readonly IUserService _userService;
+
+    public AppController(IUserService userService)
+    {
+        _userService = userService;
+    }
+
+    public void Start(User user)
+    {
+        ShowUserMenu(user);
+    }
+
+    private void ShowUserMenu(User user)
     {
         switch (user)
         {
             case Admin admin:
-                AdminController.Menu(admin); 
+                var adminController = new AdminController(admin, _userService);
+                adminController.Menu(); 
                 break;
             case Manager manager:
                 ManagerController.Menu(manager);

@@ -1,28 +1,33 @@
+using ProjetoTransacoesImobiliarias.Interfaces;
 using ProjetoTransacoesImobiliarias.Models;
+using ProjetoTransacoesImobiliarias.Services;
 //using ProjetoTransacoesImobiliarias.Models;
 using ProjetoTransacoesImobiliarias.Views;
 using ProjetoTransacoesImobiliarias.Views.CLI;
 
 namespace ProjetoTransacoesImobiliarias.Controllers;
 
-public class AdminController : Admin
+public class AdminController
 {
-
-    public AdminController(string username, string password) : base(username, password)
+    private readonly IUserService _userService;
+    private readonly Admin _admin;
+    
+    public AdminController(Admin admin, IUserService userService)
     {
+        _admin = admin;
+        _userService = userService;
     }
     
-    public static void Menu(Admin admin)
+    public void Menu()
     {
-        bool exitMenu = false;
+        var exitMenu = false;
         while (!exitMenu)
         {
-            var option = AdminView.ShowAdminMenu(admin);
+            var option = AdminView.ShowAdminMenu(_admin);
             switch (option)
             {
                 case "1":
-                    Console.WriteLine("escolhi a opcao 1");
-                    // ManageUsers();
+                    ListAllUsers();
                     break;
                 case "2":
                     // ViewReports();
@@ -43,6 +48,11 @@ public class AdminController : Admin
         }
     }
     
+    private void ListAllUsers()
+    {
+        var allUsers = _userService.GetAllUsers();
+        AdminView.DisplayUsers(allUsers);
+    }
     
     public bool AddClientByAdmin(string name, string address, int userID){
         //      this.AddClient(name, address, userID);

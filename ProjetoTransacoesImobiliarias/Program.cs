@@ -12,8 +12,6 @@ internal class Program
     
     private static void Main(string[] args)
     {
-        Console.Clear();
-
         var userService = new UserService();
         
         if (!userService.LoadUsersFromJson())
@@ -25,13 +23,9 @@ internal class Program
         var authService = new AuthenticationService(userService);
 
         var user = authService.StartLoginProcess();
-        
-        AppController.ShowUserMenu(user);
-        
-        foreach (var user1 in userService.GetAllUsers())
-        {
-            Console.WriteLine($"Nome: {user1.Id} - {user1.Username}");
-        }
+
+        var appController = new AppController(userService);
+        appController.Start(user);
         
     }
 }

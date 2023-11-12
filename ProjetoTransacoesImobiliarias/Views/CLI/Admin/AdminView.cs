@@ -24,7 +24,29 @@ public static class AdminView
     public static void WrongOption()
     {
         Console.WriteLine("Opção inválida.");
+        PressAnyKey();
+    }
+
+    private static void PressAnyKey()
+    {
         Console.WriteLine("Pressione qualquer tecla para continuar...");
         Console.ReadKey();
+    }
+
+
+    public static void DisplayUsers(IEnumerable<User> users)
+    {
+        Console.Clear();
+        Console.WriteLine("Lista de Todos os Utilizadores:");
+        Console.WriteLine("---------------------------------------------------");
+        Console.WriteLine("| ID | Username | Role                            |");
+        Console.WriteLine("---------------------------------------------------");
+        foreach (var user in users)
+        {
+            var role = user.GetType().Name; 
+            Console.WriteLine($"| {user.Id} | {user.Username} | {role,-30} |");
+        }
+        Console.WriteLine("---------------------------------------------------");
+        PressAnyKey();
     }
 }

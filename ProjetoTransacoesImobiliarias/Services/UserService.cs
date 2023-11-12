@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using ProjetoTransacoesImobiliarias.Interfaces;
 using ProjetoTransacoesImobiliarias.Models;
 
 namespace ProjetoTransacoesImobiliarias.Services;
 
-public class UserService
+public class UserService : IUserService
 {
     private static int _counter = 0;
     private readonly List<User> _users = new();
