@@ -39,7 +39,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                             //admin
                             AdminController? admin1 = new AdminController(name, pass);
                             Console.Clear();
-                            if(Data.SaveToJsonGeneric(admin1.Id, AdminController.AdminControllersList)) Console.WriteLine("Admin list saved");
+                            // if(Data.SaveToJsonGeneric(admin1.Id, AdminController.AdminControllersList)) Console.WriteLine("Admin list saved");
                             return;
                         case 1:
                             //Manger

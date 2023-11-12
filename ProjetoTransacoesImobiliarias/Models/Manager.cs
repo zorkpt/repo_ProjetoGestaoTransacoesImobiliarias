@@ -5,9 +5,15 @@ using ProjetoTransacoesImobiliarias.Controllers;
 
 namespace ProjetoTransacoesImobiliarias.Models;
 
-public class Manager : Admin
+public class Manager : User
 {
-    public int NumberOfPropertiesManaged { get; set; }
+    public Manager(string username, string password)
+        : base(username, password, UserRole.Manager)
+    {
+    }
+    
+    
+    /*public int NumberOfPropertiesManaged { get; set; }
     private static List<Manager> ManagerList = new List<Manager>();
     
     public Manager(string username, string password)
@@ -34,6 +40,7 @@ public class Manager : Admin
     public static List<Manager> GetManagerList()
     {
         return ManagerList;
-    }
+    }*/
+
 }
 

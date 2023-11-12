@@ -1,1 +1,73 @@
-obj/
+# Arquivos de Bytecode e Dados de Programa
+**/[Bb]in/
+**/[Oo]bj/
+**/[Ll]og/
+
+# Arquivos de Símbolos de Depuração
+*.pdb
+
+# Arquivos de Performance
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Arquivos de Projeto do Rider
+.idea/
+
+# Arquivos de Configuração de Build
+*.userprefs
+*.csproj.user
+*.booproj.user
+*.vbproj.user
+
+# Arquivos de Configuração do Visual Studio
+.vs/
+
+# Pasta de Cache do Visual Studio para Testes Descobertos
+.vscode/
+
+# Arquivos de Configuração do NuGet
+packages/
+*.nupkg
+nuget.exe
+*.nuget.targets
+*.nuget.props
+# O diretório global-packages e o cache são armazenados fora do repositório.
+
+# Ferramentas do Windows que podem ser instaladas via NuGet
+ReSharper/
+_ReSharper.*/
+*.resharper
+*.DotSettings.user
+
+# Arquivos de Banco de Dados do Visual Studio
+*.mdf
+*.ldf
+*.ndf
+
+# Outros Arquivos e Diretórios
+*.swp
+*~
+.DS_Store
+Thumbs.db
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Arquivos de Configuração do Editor
+*.sublime-workspace
+
+# Arquivos de Cache do NCrunch
+_NCrunch_*
+.*crunch*.local.xml
+nCrunchTemp_*
+
+# Arquivos de Configuração do Visual Studio Code
+.vscode/*
+
+# Pasta de Build do Cake
+tools/
+**/cake.config
+
+# Arquivos de Configuração do StyleCop
+StyleCopReport.xml

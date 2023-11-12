@@ -13,20 +13,9 @@ namespace ProjetoTransacoesImobiliarias.Models
     
     public class Data
     {
-            public List<User> User { get; set; } = new();
-            public List<Admin> Admin { get; set; } = new List<Admin>();
-
-            public List<Manager> Manager { get; set; } = new List<Manager>();
-            public List<Client> Client { get; set; } = new List<Client>();
-        
-
-        
+        public List<User> User { get; set; } = new();
+            
         public static bool SaveToJsonGeneric<T>(int userID, List<T> list){
-            #region validations
-            UserRole? log =  UserController.Login(userID);
-            if(log == UserRole.Avaliator) return false;
-            #endregion
-
             if(SaveToJson(list)) return true;
             return false;
         }
@@ -79,54 +68,7 @@ namespace ProjetoTransacoesImobiliarias.Models
                 return false;
             }
         }
-        public static bool ReadFromJson<T>(List<T> list){
-            string filePath = GetJsonFilePath<T>();
-
-            if(File.Exists(filePath))
-            {
-                try{
-                    string json = File.ReadAllText(filePath);
-                    if(json != null){
-                        List<T>? deserializedList = JsonSerializer.Deserialize<List<T>>(json);
-
-                        return true;
-                    }
-                }
-                catch( Exception e){
-                    Console.WriteLine(e.Message);
-                    return false;
-                }
-            }
-
-            return false;
-        }
-    
-        private static string GetJsonFilePath<T>()
-        {
-            if (typeof(T) == typeof(Client))
-            {
-                return "Files/ClientJson.json";
-            }
-            if (typeof(T) == typeof(Manager))
-            {
-                return "Files/ManagerJson.json";
-            }
-            if (typeof(T) == typeof(ManagerController))
-            {
-                return "Files/ManagerJson.json";
-            }
-            if (typeof(T) == typeof(Admin))
-            {
-                return "Files/AdminJson.json";
-            }
-            if (typeof(T) == typeof(Agent))
-            {
-                return "Files/AgentJson.json";
-            }
-
-            throw new ArgumentException($"Unsupported type: {typeof(T).Name}");
-        }
-
+        
         
         private static bool SaveToSql<T>(List<T> list){
             return false;

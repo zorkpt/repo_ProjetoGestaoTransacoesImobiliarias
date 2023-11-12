@@ -40,9 +40,9 @@ public class Property
     protected Property(string adress, PropertyType type, decimal avaliatorValue, 
                     decimal wantedValue, double squareMeters, int clienteID, int userID){
 
-        if(!UserController.Access(userID, 2)){//talvez não seja necessário por aqui mas sim no controller, ver com pessoal
-            throw new InvalidOperationException("Acess denied");
-        }
+        // if(!UserController.Access(userID, 2)){//talvez não seja necessário por aqui mas sim no controller, ver com pessoal
+        //     throw new InvalidOperationException("Acess denied");
+        // }
 
         this.SetIdProperty(Contador++);
         this.SetAdressProperty(adress);

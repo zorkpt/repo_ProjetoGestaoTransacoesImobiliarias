@@ -58,9 +58,9 @@ namespace ProjetoTransacoesImobiliarias.Controllers
                             : base (name, address, userID)
         {
 
-            if(!UserController.Access(userID, 2)){// Talvez nao por aqui
-                throw new InvalidOperationException("Acess denied");
-            }
+            // if(!UserController.Access(userID, 2)){// Talvez nao por aqui
+            //     throw new InvalidOperationException("Acess denied");
+            // }
             
             ClientControllerList.Add(this);//
         }

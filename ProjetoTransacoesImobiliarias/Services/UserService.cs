@@ -9,13 +9,14 @@ namespace ProjetoTransacoesImobiliarias.Services;
 
 public class UserService
 {
-    private const string LastIdFilePath = "lastId.txt";
-    private static int _counter = 0; 
-    private readonly List<UserTest> _users = new();
-    private static readonly string FilePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "Files", "Data.json");
+    private static int _counter = 0;
+    private readonly List<User> _users = new();
 
-    public IEnumerable<UserTest> GetAllUsers() => _users.AsReadOnly();
-    
+    private static readonly string FilePath =
+        Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "Files", "Data.json");
+
+    public IEnumerable<User> GetAllUsers() => _users.AsReadOnly();
+
 
     public bool LoadUsersFromJson()
     {
@@ -23,40 +24,51 @@ public class UserService
         {
             var json = File.ReadAllText(FilePath);
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-
-            using var doc = JsonDocument.Parse(json);
+            var dataFailedCounter = 0;
             
+            using var doc = JsonDocument.Parse(json);
+
             if (doc.RootElement.ValueKind != JsonValueKind.Array)
             {
                 Console.WriteLine("Formato do JSON Inválido.");
                 return false;
             }
-            
+
             foreach (var element in doc.RootElement.EnumerateArray())
             {
                 var userType = element.GetProperty("userType").GetString();
                 switch (userType)
                 {
-                    // usa userrole
-                    case "Admin":
-                        _users.Add(JsonSerializer.Deserialize<AdminTest>(element.GetRawText(), options));
+                    case nameof(UserRole.Admin):
+                        _users.Add(JsonSerializer.Deserialize<Admin>(element.GetRawText(), options));
                         break;
-                    //     case "Manager":
-                    //         _users.Add(JsonSerializer.Deserialize<ManagerTest>(element.GetRawText(), options));
-                    //       break;
-                    // ... cases for other user types
+                    case nameof(UserRole.Manager):
+                        _users.Add(JsonSerializer.Deserialize<Manager>(element.GetRawText(), options));
+                        break;
+                    case nameof(UserRole.Agent):
+                        _users.Add(JsonSerializer.Deserialize<Manager>(element.GetRawText(), options));
+                        break;
+                    case nameof(UserRole.Evaluator):
+                        _users.Add(JsonSerializer.Deserialize<Manager>(element.GetRawText(), options));
+                        break;
+
                     default:
-                        Console.WriteLine($"tipo de user errado: {userType}");
+                        dataFailedCounter++;
                         break;
                 }
             }
-            
+
             // Updates _counter to the last id in the json
             if (_users.Any())
             {
                 _counter = _users.Max(u => u.Id) + 1;
             }
 
+            if (dataFailedCounter > 0)
+            {
+                Console.WriteLine($"Falhou o carregamente de {dataFailedCounter} registos.");
+            }
+            
             return true;
         }
         catch (FileNotFoundException)
@@ -70,31 +82,34 @@ public class UserService
 
         return false;
     }
-    
-    
-    public UserTest CreateUser(string username, string password, UserRole role)
+
+
+    public User CreateUser(string username, string password, UserRole role)
     {
         int newId = _counter++;
 
         switch (role)
         {
             case UserRole.Admin:
-                var adminUser = new AdminTest(username, password) { Id = newId };
+                var adminUser = new Admin(username, password) { Id = newId };
                 _users.Add(adminUser);
                 return adminUser;
             case UserRole.Manager:
-                /*var managerUser = new ManagerTest(username, password) { Id = newId };
+                var managerUser = new Manager(username, password) { Id = newId };
                 _users.Add(managerUser);
-                return managerUser;*/
+                return managerUser;
             case UserRole.Agent:
-                break;
-            case UserRole.Avaliator:
+                var agentUser = new Agent(username, password) { Id = newId };
+                _users.Add(agentUser);
+                return agentUser;
+            case UserRole.Evaluator:
+                var evaluatorUser = new Evaluator(username, password) { Id = newId };
+                _users.Add(evaluatorUser);
                 break;
             default:
                 throw new ArgumentException("Role inválido");
         }
+
         throw new InvalidOperationException("O user não foi criado devido a um role inválido.");
     }
-    
-    
 }

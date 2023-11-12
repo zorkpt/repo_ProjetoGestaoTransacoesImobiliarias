@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProjetoTransacoesImobiliarias.Models;
+using ProjetoTransacoesImobiliarias.Views.CLI;
 
 namespace ProjetoTransacoesImobiliarias.Controllers
 {
     public class AgentController 
     {
-        //Agent Agent1;
-
-        public AgentController()
+        public static void Menu(Agent agent)
         {
-            //Agent1 = agent;
+            AgentView.ShowAgentMenu(agent);
         }
+
     }
 }
