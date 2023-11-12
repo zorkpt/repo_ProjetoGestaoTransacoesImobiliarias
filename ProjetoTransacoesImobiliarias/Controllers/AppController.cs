@@ -1,42 +1,45 @@
+using ProjetoTransacoesImobiliarias.Interfaces;
+using ProjetoTransacoesImobiliarias.Models;
+using ProjetoTransacoesImobiliarias.Services;
+using ProjetoTransacoesImobiliarias.Views.CLI;
+
 namespace ProjetoTransacoesImobiliarias.Controllers;
 
-public class AppController
+public class AppController 
 {
-    public static void Run()
-    {
-        while (true)  
-        {
-            Console.WriteLine("Escolhe o tipo de utilizador:");
-            Console.WriteLine("1. Admin");
-            Console.WriteLine("2. Manager");
-            // ... outras opções
-            Console.WriteLine("0. Sair");
+    private readonly IUserService _userService;
 
-            int choice;
-            if (int.TryParse(Console.ReadLine(), out choice))
-            {
-                Console.WriteLine(choice);
-                switch (choice)
-                {
-                    case 1:
-                        //AdminController.StartView();
-                        break;
-                    case 2:
-                        //
-                        break;
-                    
-                    case 0:
-                        Console.WriteLine("Adeus!");
-                        return;  // Sai da aplicação
-                    default:
-                        Console.WriteLine("Opção inválida. Tenta novamente.");
-                        break;
-                }
-            }
-            else
-            {
-                Console.WriteLine("Entrada inválida. Por favor, insere um número.");
-            }
+    public AppController(IUserService userService)
+    {
+        _userService = userService;
+    }
+
+    public void Start(User user)
+    {
+        ShowUserMenu(user);
+    }
+
+    private void ShowUserMenu(User user)
+    {
+        switch (user)
+        {
+            case Admin admin:
+                var adminController = new AdminController(admin, _userService);
+                adminController.Menu(); 
+                break;
+            case Manager manager:
+                ManagerController.Menu(manager);
+                break;
+            case Agent agent:
+                AgentController.Menu(agent);
+                break;
+            case Evaluator evaluator:
+                EvaluatorController.Menu(evaluator);
+                break;
+            
+            default:
+                // use default to deal with error ? 
+                break;
         }
     }
 }

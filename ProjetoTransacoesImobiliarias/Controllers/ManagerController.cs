@@ -18,31 +18,29 @@ public class ManagerController : Manager
     {
         ManagerControllerList.Add(this);
     }
-
-
-    public static List<Manager> GetManagerList{//em principio já não é preciso 
-
-      get{ return ManagerList; }
     
-      set{}
+    public static void Menu(Manager manager)
+    {
+        ManagerView.ShowManagerMenu(manager);
     }
+    
 
-    public bool AddClientByManager(string name, string address, int userID){
-
-        this.AddClient(name, address, userID);
-        return this != null ? true : false;
-
-    }
-
-    public bool FindIndexByIdManager<T>(int id, List<T> list){
-        
-        int num = this.FindIndexById(list, id);
-        return num != -1 ? true : false;
-    }
-
-    public bool RemoveIdFromListManager<T>(List<T> list, int index){
-        return RemoveIdFromList(list, index);
-    }
+    // public bool AddClientByManager(string name, string address, int userID){
+    //
+    //     this.AddClient(name, address, userID);
+    //     return this != null ? true : false;
+    //
+    // }
+    //
+    // public bool FindIndexByIdManager<T>(int id, List<T> list){
+    //     
+    //     int num = this.FindIndexById(list, id);
+    //     return num != -1 ? true : false;
+    // }
+    //
+    // public bool RemoveIdFromListManager<T>(List<T> list, int index){
+    //     return RemoveIdFromList(list, index);
+    // }
 
 
 

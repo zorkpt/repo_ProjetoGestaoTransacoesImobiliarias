@@ -23,41 +23,41 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                 if(!string.IsNullOrEmpty(pass)) break;
 
             }
-            while(true){
-                Console.WriteLine("Choose User role");
-                
-                foreach (var item in Enum.GetValues(typeof(UserRole)))
-                {
-                    Console.WriteLine($"{(int) item} - {item}");                    
-                }
+            // while(true){
+            //     Console.WriteLine("Choose User role");
+            //     
+            //     foreach (var item in Enum.GetValues(typeof(UserRole)))
+            //     {
+            //         Console.WriteLine($"{(int) item} - {item}");                    
+            //     }
+            //
 
-
-                int choice;
-                if(int.TryParse(Console.ReadLine(), out choice)){
-                    switch (choice){
-                        case 0:
-                            //admin
-                            AdminController? admin1 = new AdminController(name, pass);
-                            Console.Clear();
-                            if(Data.SaveToJsonGeneric(admin1.Id, AdminController.AdminControllersList)) Console.WriteLine("Admin list saved");
-                            return;
-                        case 1:
-                            //Manger
-                            ManagerController? hugo = new (name, pass);
-                            
-                            Console.Clear();
-                            if(Data.SaveToJsonGeneric(hugo.Id, ManagerController.ManagerControllerList)) Console.WriteLine("Manager list saved");
-
-                            return;
-
-                        case 2:
-                            //Agent
-                            break;
-                    }
-                }else{
-                    //nada? ver melhor
-                }
-            }
+            //     int choice;
+            //     if(int.TryParse(Console.ReadLine(), out choice)){
+            //         switch (choice){
+            //             case 0:
+            //                 //admin
+            //                 AdminController? admin1 = new AdminController(name, pass);
+            //                 Console.Clear();
+            //                 // if(Data.SaveToJsonGeneric(admin1.Id, AdminController.AdminControllersList)) Console.WriteLine("Admin list saved");
+            //                 return;
+            //             case 1:
+            //                 //Manger
+            //                 ManagerController? hugo = new (name, pass);
+            //                 
+            //                 Console.Clear();
+            //                 if(Data.SaveToJsonGeneric(hugo.Id, ManagerController.ManagerControllerList)) Console.WriteLine("Manager list saved");
+            //
+            //                 return;
+            //
+            //             case 2:
+            //                 //Agent
+            //                 break;
+            //         }
+            //     }else{
+            //         //nada? ver melhor
+            //     }
+            // }
 
         } 
     }

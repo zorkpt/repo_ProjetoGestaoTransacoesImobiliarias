@@ -1,47 +1,13 @@
-﻿namespace ProjetoTransacoesImobiliarias;
+﻿using System.Collections.Generic;
+using ProjetoTransacoesImobiliarias.Models;
 
-public class Evaluator
+namespace ProjetoTransacoesImobiliarias.Models;
+
+public class Evaluator : User
 {
-    private static int Contador = 0;
-    private int idEvaluator;
-    private string? name;
-
-    private List<Evaluator> EvaluatorList = new List<Evaluator>();
-
-
-    protected Evaluator(string? name)
+    public Evaluator(string username, string password)
+        : base(username, password, UserRole.Evaluator)
     {
-        this.SetNameEvaluator(name);
-        this.SetIdEvaluatorEvaluator();
-
-        EvaluatorList.Add(this);
-
     }
-
-
-    #region Propirties
-        protected string? GetNameEvaluator()
-        {
-            return name;
-        }
-
-        protected bool SetNameEvaluator(string? value)
-        {
-            name = value;
-            return true;
-        }
-
-        protected int GetIdEvaluatorEvaluator()
-        {
-            return idEvaluator;
-        }
-
-        protected bool SetIdEvaluatorEvaluator()
-        {
-
-            idEvaluator = Contador++;
-            return true;
-        }
-
-    #endregion
+    
 }

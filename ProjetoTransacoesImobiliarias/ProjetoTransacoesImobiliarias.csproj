@@ -8,9 +8,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Views/CLI/" />
       <Folder Include="Views/CLI/Property/" />
       <Folder Include="Views/WinForms/" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Services\UserJsonConverter.cs" />
+      <Compile Remove="Models\UserTest.cs" />
+      <Compile Remove="Models\AdminTest.cs" />
+      <Compile Remove="Controllers\AvaliatorController.cs" />
     </ItemGroup>
 
 </Project>

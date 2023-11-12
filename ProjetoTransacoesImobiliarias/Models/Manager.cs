@@ -1,30 +1,46 @@
+using System.Collections.Generic;
 using System.Dynamic;
+using System.Text.Json.Serialization;
 using ProjetoTransacoesImobiliarias.Controllers;
 
 namespace ProjetoTransacoesImobiliarias.Models;
 
-public class Manager : Admin
+public class Manager : User
 {
-    public int NumberOfPropertiesManaged { get; set; }
-    protected static List<Manager> ManagerList = new List<Manager>();
-
-    protected Manager(string username, string password)
+    public Manager(string username, string password)
         : base(username, password, UserRole.Manager)
     {
-
-        ManagerList.Add(this);
     }
-
-    protected Manager(){
-        //vazio;
+    
+    
+    /*public int NumberOfPropertiesManaged { get; set; }
+    private static List<Manager> ManagerList = new List<Manager>();
+    
+    public Manager(string username, string password)
+        : base(username, password, UserRole.Manager)
+    {
     }
-
+    
     protected Manager AddManager(string name, string adress, int userID)
     {
         Manager a = new Manager(name, adress);
         return a != null ? a : null;
     }
 
+    public static void AddManager(Manager manager)
+    {
+        ManagerList.Add(manager);
+    }
+        
+    public static void AddManagers(IEnumerable<Manager> managers)
+    {
+        ManagerList.AddRange(managers);
+    }
+        
+    public static List<Manager> GetManagerList()
+    {
+        return ManagerList;
+    }*/
 
 }
 
