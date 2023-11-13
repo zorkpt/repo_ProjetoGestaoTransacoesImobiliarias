@@ -87,7 +87,7 @@ public class UserService : IUserService
 
     public User CreateUser(string username, string password, UserRole role)
     {
-        int newId = _counter++;
+        var newId = _counter++;
 
         switch (role)
         {

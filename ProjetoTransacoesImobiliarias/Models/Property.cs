@@ -7,51 +7,45 @@ namespace ProjetoTransacoesImobiliarias.Models;
 
 public class Property
 {
-    private static int Contador = 0;
-    private int idProperty;
-
-
-
-    private string adress;
-    private PropertyType type1;
-    private decimal avaliatorValue;
-    private bool forSale;
-    private decimal wantedValue;
-    private double squareMeters;
-    private int clienteID;
-    private int agentID;
-
-
-
+    private static int _counter = 0;
+    private int _propertyId;
+    private string _address;
+    private PropertyType _propertyType;
+    private decimal _evaluatorValue;
+    private bool _forSale;
+    private decimal _wantedValue;
+    private double _squareMeters;
+    private int _clientId;
+    private int _agentId;
 
     private static List<Property> PropertyList = new List<Property>();// test readonly
 
     /// <summary>
     /// A constructor for the Property class that initializes its properties with the given values.
     /// </summary>
-    /// <param name="adress"></param>
-    /// <param name="type"></param>
-    /// <param name="avaliatorValue"></param>
+    /// <param name="address"></param>
+    /// <param name="propertyType"></param>
+    /// <param name="evaluatorValue"></param>
     /// <param name="wantedValue"></param>
     /// <param name="squareMeters"></param>
-    /// <param name="clienteID"></param>
-    /// <param name="userID"></param>
+    /// <param name="clientId"></param>
+    /// <param name="userId"></param>
     /// <exception cref="InvalidOperationException"></exception>
-    protected Property(string adress, PropertyType type, decimal avaliatorValue, 
-                    decimal wantedValue, double squareMeters, int clienteID, int userID){
+    protected Property(string address, PropertyType propertyType, decimal evaluatorValue, 
+                    decimal wantedValue, double squareMeters, int clientId, int userId){
 
         // if(!UserController.Access(userID, 2)){//talvez não seja necessário por aqui mas sim no controller, ver com pessoal
         //     throw new InvalidOperationException("Acess denied");
         // }
 
-        this.SetIdProperty(Contador++);
-        this.SetAdressProperty(adress);
-        this.SettypeProperty(type);
-        this.SetAvaliatorValueProperty(avaliatorValue);
+        this.SetIdProperty(_counter++);
+        this.SetAddressProperty(address);
+        this.SetTypeProperty(propertyType);
+        this.SetEvaluatorValueProperty(evaluatorValue);
         this.SetWantedValueProperty(wantedValue);
         this.SetSquareMetersProperty(squareMeters);
-        this.SetClienteIDProperty(clienteID);
-        this.SetAgentIDProperty(userID);
+        this.SetClientIdProperty(clientId);
+        this.SetAgentIdProperty(userId);
         
         PropertyList.Add(this);
 
@@ -60,7 +54,7 @@ public class Property
     #region Proprities
             protected int GetIdProperty()
             {
-                return idProperty;
+                return _propertyId;
             }
 
             protected bool SetIdProperty(int value)
@@ -68,105 +62,106 @@ public class Property
                 if(!int.TryParse(value.ToString(), out int number));
                 if(number < 0) return false;
 
-                idProperty = number;
+                _propertyId = number;
                 return true;
             }
-            protected string GetAdressProperty()
+            
+            protected string GetAddressProperty()
             {
-                return adress;
+                return _address;
             }
 
-            protected bool SetAdressProperty(string value)
+            protected bool SetAddressProperty(string value)
             {
                 if(value == null) return false;
-                adress = value;
+                _address = value;
                 return true;
             }
 
             protected PropertyType GettypeProperty()
             {
-                return type1;
+                return _propertyType;
             }
 
-            protected bool SettypeProperty(PropertyType value)
+            protected bool SetTypeProperty(PropertyType value)
             {
                 if(value == null) return false;
-                type1 = value;
+                _propertyType = value;
                 return true;
             }
-            protected decimal GetAvaliatorValueProperty()
+            protected decimal GetEvaluatorValueProperty()
             {
-                return avaliatorValue;
+                return _evaluatorValue;
             }
 
-            protected bool SetAvaliatorValueProperty(decimal value)
+            protected bool SetEvaluatorValueProperty(decimal value)
             {
                 if(value < 0) return false;
-                avaliatorValue = value;
+                _evaluatorValue = value;
                 return true;
             }
 
 
             protected decimal GetWantedValueProperty()
             {
-                return wantedValue;
+                return _wantedValue;
             }
 
             protected bool SetWantedValueProperty(decimal value)
             {
                 if(value < 0) return false;
-                wantedValue = value;
+                _wantedValue = value;
                 return true;
             }
 
 
             protected double GetSquareMetersProperty()
             {
-                return squareMeters;
+                return _squareMeters;
             }
 
             protected bool SetSquareMetersProperty(double value)
             {
                 if(value < 0) return false;
-                squareMeters = value;
+                _squareMeters = value;
                 return true;
             }
 
 
-            protected int GetClienteIDProperty()
+            protected int GetClientIdProperty()
             {
-                return clienteID;
+                return _clientId;
             }
 
-            protected bool SetClienteIDProperty(int value)
+            protected bool SetClientIdProperty(int value)
             {
                 if(value < 0) return false;
-                clienteID = value;
+                _clientId = value;
                 return true;
             }
 
 
-            protected int GetAgentIDProperty()
+            protected int GetAgentIdProperty()
             {
-                return agentID;
+                return _agentId;
             }
 
-            protected bool SetAgentIDProperty(int value)
+            protected bool SetAgentIdProperty(int value)
             {
                 if(value < 0) return false;
-                agentID = value;
+                _agentId = value;
                 return true;
             }
 
 
             protected bool GetForSaleProperty()
             {
-                return forSale;
+                return _forSale;
             }
 
             protected bool SetForSaleProperty(bool value)
             {
-                if(GetAvaliatorValueProperty() != 0)
+                if(GetEvaluatorValueProperty() != 0)
                 {
                     this.SetForSaleProperty(true);
                     return true;

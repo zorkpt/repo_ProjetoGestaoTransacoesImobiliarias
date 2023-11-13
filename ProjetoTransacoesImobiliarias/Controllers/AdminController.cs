@@ -1,7 +1,6 @@
 using ProjetoTransacoesImobiliarias.Interfaces;
 using ProjetoTransacoesImobiliarias.Models;
 using ProjetoTransacoesImobiliarias.Services;
-//using ProjetoTransacoesImobiliarias.Models;
 using ProjetoTransacoesImobiliarias.Views;
 using ProjetoTransacoesImobiliarias.Views.CLI;
 
@@ -36,13 +35,13 @@ public class AdminController
                     // SystemSettings();
                     break;
                 case "4":
-                    // UpdateProfile(admin);
+                    // UpdateProfile(_admin);
                     break;
                 case "0":
                     exitMenu = true;
                     break;
                 default:
-                    AdminView.WrongOption();
+                    ErrorHandler.WrongOption();
                     break;
             }
         }

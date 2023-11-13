@@ -1,7 +1,8 @@
 using System;
 using ProjetoTransacoesImobiliarias.Models;
+using ProjetoTransacoesImobiliarias.Views.CLI;
 
-namespace ProjetoTransacoesImobiliarias.Views.CLI;
+namespace ProjetoTransacoesImobiliarias.Controllers;
 
 public static class AdminView
 {
@@ -17,24 +18,9 @@ public static class AdminView
         Console.WriteLine("0. Sair");
         return Console.ReadLine();
     }
-    
-    
-    
-// talvez colocar esta funcao numa classe de utilidades
-    public static void WrongOption()
-    {
-        Console.WriteLine("Opção inválida.");
-        PressAnyKey();
-    }
-
-    private static void PressAnyKey()
-    {
-        Console.WriteLine("Pressione qualquer tecla para continuar...");
-        Console.ReadKey();
-    }
 
 
-    public static void DisplayUsers(IEnumerable<User> users)
+public static void DisplayUsers(IEnumerable<User> users)
     {
         Console.Clear();
         Console.WriteLine("Lista de Todos os Utilizadores:");
@@ -47,6 +33,6 @@ public static class AdminView
             Console.WriteLine($"| {user.Id} | {user.Username} | {role,-30} |");
         }
         Console.WriteLine("---------------------------------------------------");
-        PressAnyKey();
+        ErrorHandler.PressAnyKey();
     }
 }

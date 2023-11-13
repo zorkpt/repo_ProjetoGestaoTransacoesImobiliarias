@@ -12,14 +12,14 @@ namespace ProjetoTransacoesImobiliarias.Models
 {
     public class Client
     {
-        private static int Contador = 1;
+        private static int _counter = 1;
 
-        public int IdClient { get; private set; }
-        public string Name { get; private set; }
-        public string Address { get; private set; }
-        public int IdAgent { get; private set; }
+        private int IdClient { get; set; }
+        private string Name { get; set; }
+        private string Address { get; set; }
+        private int IdAgent { get; set; }
 
-        public static List<Client> ClientList { get; } = new List<Client>();
+        private static List<Client> ClientList { get; } = new List<Client>();
 
   
         public Client(string name, string address, int idAgent)
@@ -101,20 +101,20 @@ namespace ProjetoTransacoesImobiliarias.Models
             if(log == null) return false;
 
             ClientList.Remove(log);
-            Contador--;
+            _counter--;
             return true;
         }
 
         private static int GetNextId()
         {
-            return Contador++;
+            return _counter++;
         }
 
         public static void InitializeNextId()
         {
             if (ClientList.Any())
             {
-                Contador = ClientList.Max(c => c.IdClient) + 1;
+                _counter = ClientList.Max(c => c.IdClient) + 1;
             }
         }
     }
