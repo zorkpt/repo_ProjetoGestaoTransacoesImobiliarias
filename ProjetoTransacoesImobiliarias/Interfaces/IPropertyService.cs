@@ -13,7 +13,6 @@ namespace ProjetoTransacoesImobiliarias.Interfaces
                                 PropertyType propertyType, double size, 
                                 User addedBy, Client owner);
 
-                                 
                     
     }
 }

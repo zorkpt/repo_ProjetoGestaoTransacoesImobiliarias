@@ -21,12 +21,13 @@ namespace ProjetoTransacoesImobiliarias.Models
         public int AddedById {get; set;}
         public User AddedBy { get; set; }
 
-        public Client(string name, string address, string phoneNumber, User addedBy)
+        public Client(string name, string address, string phoneNumber, User addedBy, int addedById)
         {
             Name = name;
             Address = address;
             AddedBy = addedBy;
             PhoneNumber = phoneNumber;
+            AddedById = addedById;
         }
 
         [JsonConstructor]
