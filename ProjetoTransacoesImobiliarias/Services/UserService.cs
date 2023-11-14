@@ -89,8 +89,7 @@ public User GetUserById(int id)
 
         return false;
     }
-
-
+    
     public User CreateUser(string username, string password, string name, UserRole role)
     {
         var newId = _counter++;

@@ -30,6 +30,12 @@ public class AdminView
         return Console.ReadLine();
     }
 
+    public static string? ManageTransactionsMenu()
+    {
+        Menu.ManageTransactions();
+        return Console.ReadLine();
+    }
+
 
     public static void DisplayUsers(IEnumerable<User> users)
     {
@@ -43,11 +49,12 @@ public class AdminView
             var role = user.GetType().Name;
             Console.WriteLine($"| {user.Id} | {user.Username} | {role,-30} |");
         }
+
         Console.WriteLine("---------------------------------------------------");
         ErrorHandler.PressAnyKey();
     }
 
-    public ClientData AddClient()
+    public static ClientData AddClient()
     {
         Console.WriteLine("Adicionar novo cliente:");
         Console.Write("Nome: ");
@@ -79,8 +86,62 @@ public class AdminView
             var role = client.GetType().Name;
             Console.WriteLine($"| {client.Id} | {client.Name} | {client.Address} |");
         }
+
         Console.WriteLine("---------------------------------------------------");
         ErrorHandler.PressAnyKey();
+    }
+
+
+    public static UserData AddUser()
+    {
+        Console.WriteLine("Adicionar novo utilizador:");
+        Console.Write("Nome: ");
+        string name = Console.ReadLine() ?? string.Empty;
+
+        Console.Write("Username: ");
+        string username = Console.ReadLine() ?? string.Empty;
+
+
+        Console.Write("Password: ");
+        string password = Console.ReadLine() ?? string.Empty;
+
+        Console.Write("Role\n");
+        var userRole = SelectUserRole();
+
+        return new UserData
+        {
+            Name = name,
+            Userame = username,
+            Password = password,
+            Role = userRole
+        };
+    }
+
+    private static UserRole SelectUserRole()
+    {
+        while (true)
+        {
+            Console.WriteLine("1. Admin");
+            Console.WriteLine("2. Manager");
+            Console.WriteLine("3. Agent");
+            Console.WriteLine("4. Evaluator");
+
+            string choice = Console.ReadLine() ?? string.Empty;
+            switch (choice)
+            {
+                case "1":
+                    return UserRole.Admin;
+                case "2":
+                    return UserRole.Manager;
+                case "3":
+                    return UserRole.Agent;
+                case "4":
+                    return UserRole.Evaluator;
+                default:
+                    ErrorHandler.PressAnyKey("Seleção Inválida. Escolhe entre 1 e 4.");
+                    continue;
+            }
+        }
     }
 }
 
@@ -89,4 +150,13 @@ public class ClientData
     public string Name { get; set; }
     public string Address { get; set; }
     public string PhoneNumber { get; set; }
+}
+
+public class UserData
+{
+    public string Name { get; set; }
+    public string Userame { get; set; }
+
+    public string Password { get; set; }
+    public UserRole Role { get; set; }
 }

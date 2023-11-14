@@ -2,14 +2,13 @@ using ProjetoTransacoesImobiliarias.Models;
 
 public class Menu
 {
-
     public static void AdminMenu(Admin admin)
     {
         Console.Clear();
         Console.WriteLine("========== Menu de Administração ==========");
         Console.WriteLine($"Bem-Vindo {admin.Username}");
-        Console.WriteLine("1. Gerir Utilizadores");
-        Console.WriteLine("2. Gerir Propriedades");
+        Console.WriteLine("1. Gerir Clientes");
+        Console.WriteLine("2. Gerir Utilizadores");
         Console.WriteLine("3. Gerir Transação");
         Console.WriteLine("4. Gerir Propriedades");
         Console.WriteLine("0. Sair");
@@ -24,6 +23,7 @@ public class Menu
         Console.WriteLine("1. Adicionar Utilizador");
         Console.WriteLine("2. Editar Utilizador");
         Console.WriteLine("3. Eliminar Utilizador");
+        Console.WriteLine("4. Listar Utilizadores");
         Console.WriteLine("0. Voltar ao Menu Principal");
         Console.Write("Escolha uma opção: ");
     }
@@ -63,7 +63,6 @@ public class Menu
         Console.Write("Escolha uma opção: ");
 
     }
-
 
 }
 

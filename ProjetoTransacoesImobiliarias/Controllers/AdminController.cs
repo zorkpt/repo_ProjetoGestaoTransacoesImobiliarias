@@ -29,15 +29,16 @@ public class AdminController
             switch (option)
             {
                 case "1":
-                    AdminView.ManageUsersMenu();
+                    SubMenuManageClients();
                     break;
                 case "2":
-                    AdminView.ManageClientsMenu();
+                    SubMenuManageUsers();
                     break;
                 case "3":
+                    SubMenuManageTransactions();
                     break;
                 case "4":
-                    AdminView.ManagePropertiesMenu();
+                    SubMenuManageProperties();
                     break;
 
                 case "5":
@@ -48,6 +49,123 @@ public class AdminController
                     break;
                 case "7":
                     AddClient();
+                    break;
+                case "0":
+                    exitMenu = true;
+                    break;
+                default:
+                    ErrorHandler.WrongOption();
+                    break;
+            }
+        }
+    }
+
+    private void SubMenuManageClients()
+    {
+        var exitMenu = false;
+        while (!exitMenu)
+        {
+            var option = AdminView.ManageClientsMenu();
+            switch (option)
+            {
+                case "1":
+                    AddClient();
+                    break;
+                case "2":
+                    EditClient();
+                    break;
+                case "3":
+                    DeleteClient();
+                    break;
+                case "4":
+                    ListClients(false);
+                    break;
+                case "5":
+                    ListClients();
+                    break;
+                case "0":
+                    exitMenu = true;
+                    break;
+                default:
+                    ErrorHandler.WrongOption();
+                    break;
+            }
+        }
+    }
+
+    private void SubMenuManageUsers()
+    {
+        var exitMenu = false;
+        while (!exitMenu)
+        {
+            var option = AdminView.ManageUsersMenu();
+            switch (option)
+            {
+                case "1":
+                    AddUser();
+                    break;
+                case "2":
+                    // Editar User
+                    break;
+                case "3":
+                    // Eliminar User
+                    break;
+                case "4":
+                    ListAllUsers();
+                    break;
+                case "0":
+                    exitMenu = true;
+                    break;
+                default:
+                    ErrorHandler.WrongOption();
+                    break;
+            }
+        }
+    }
+
+    private void SubMenuManageTransactions()
+    {
+        var exitMenu = false;
+        while (!exitMenu)
+        {
+            var option = AdminView.ManageTransactionsMenu();
+            switch (option)
+            {
+                case "1":
+                    // Nova Visita
+                    break;
+                case "2":
+                    // Nova transação
+                    break;
+                case "3":
+                    // Editar Transação
+                    break;
+                case "0":
+                    exitMenu = true;
+                    break;
+                default:
+                    ErrorHandler.WrongOption();
+                    break;
+            }
+        }
+    }
+
+    private void SubMenuManageProperties()
+    {
+        var exitMenu = false;
+        while (!exitMenu)
+        {
+            var option = AdminView.ManagePropertiesMenu();
+            switch (option)
+            {
+                case "1":
+                    // Adicionar Propriedade
+                    break;
+                case "2":
+                    // Editar Propriedade
+                    break;
+                case "3":
+                    // Eliminar Propriedade
                     break;
                 case "0":
                     exitMenu = true;
@@ -78,12 +196,13 @@ public class AdminController
         AdminView.DisplayUsers(allUsers);
     }
 
-    public Client AddClient()
+    private Client AddClient()
     {
         var adminView = new AdminView();
-        var clientData = adminView.AddClient();
+        var clientData = AdminView.AddClient();
 
-        var newClient = _clientService.CreateClient(clientData.Name, clientData.Address, clientData.PhoneNumber, _admin);
+        var newClient =
+            _clientService.CreateClient(clientData.Name, clientData.Address, clientData.PhoneNumber, _admin);
 
         if (newClient is null)
         {
@@ -97,11 +216,32 @@ public class AdminController
         return newClient;
     }
 
-    public bool AddClientByAdmin(string name, string address, int userID)
+    private Client EditClient()
     {
-        //      this.AddClient(name, address, userID);
-        //      return this != null ? true : false;
-        return true;
+        return null;
     }
 
+    private Client DeleteClient()
+    {
+        return null;
+    }
+
+    private User AddUser()
+    {
+        var adminView = new AdminView();
+        var clientData = AdminView.AddUser();
+
+        var newUser =
+            _userService.CreateUser(clientData.Userame,clientData.Password,clientData.Name,clientData.Role);
+
+        if (newUser is null)
+        {
+            // tratar do erro aqui ? 
+            return null;
+        }
+
+        // @TODO: Deveriamos alterar o nome da classe para MessageHandler ?
+        ErrorHandler.PressAnyKey("Utilizador Adicionado com sucesso.");
+        return newUser;
+    }
 }
