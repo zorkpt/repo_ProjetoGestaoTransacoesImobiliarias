@@ -18,7 +18,6 @@ public class ClientService : IClientService
     private static readonly string FilePath =
         Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "Files", "Clients.json");
 
-
     public IEnumerable<Client> GetAllClients() => _clients.AsReadOnly();
 
 
@@ -66,10 +65,28 @@ public class ClientService : IClientService
         return false;
     }
 
+    public bool SaveClientsToJson(){
+        string json = JsonSerializer.Serialize(_clients);
+
+        string FileJson = "./Files/ClientJson.json";
+
+        Console.WriteLine($"File Path: {FilePath}");
+        try{
+            File.WriteAllText(FilePath, json);
+        }
+
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro Inesperado: {ex.Message}");
+        }
+
+        return true;
+    }
+
     public Client CreateClient(string name, string address, string phoneNumber, User addedBy) 
     { 
         var newId = _counter++;
-        var newClient = new Client(name, address, name, addedBy) { Id = newId };
+        var newClient = new Client(name, address, name, addedBy, addedBy.Id) { Id = newId };
         _clients.Add(newClient);
         return newClient;
     }
