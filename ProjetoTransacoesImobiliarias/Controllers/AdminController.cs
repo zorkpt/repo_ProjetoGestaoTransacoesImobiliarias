@@ -29,7 +29,7 @@ public class AdminController
             switch (option)
             {
                 case "1":
-                    ListAllUsers();
+                    AdminView.ManageUsersMenu();
                     break;
                 case "2":
                     AddClient();

@@ -8,17 +8,27 @@ public class AdminView
 {
     public static string? ShowAdminMenu(Admin admin)
     {
-        Console.Clear();
-        Console.WriteLine("========== Menu de Administração ==========");
-        Console.WriteLine($"Bem-Vindo {admin.Username}");
-        Console.WriteLine("1. Gerir Utilizadores");
-        Console.WriteLine("2. Adicionar Cliente");
-        Console.WriteLine("3. Ver Todos Clientes");
-        Console.WriteLine("4. Ver os meus Clientes");
-        Console.WriteLine("0. Sair");
+        Menu.AdminMenu(admin);
         return Console.ReadLine();
     }
 
+    public static string? ManageUsersMenu()
+    {
+        Menu.ManageUsers();
+        return Console.ReadLine();
+    }
+
+    public static string? ManageClientsMenu()
+    {
+        Menu.ManageClients();
+        return Console.ReadLine();
+    }
+
+    public static string? ManagePropertiesMenu()
+    {
+        Menu.ManageProperties();
+        return Console.ReadLine();
+    }
 
     public static void DisplayUsers(IEnumerable<User> users)
     {
