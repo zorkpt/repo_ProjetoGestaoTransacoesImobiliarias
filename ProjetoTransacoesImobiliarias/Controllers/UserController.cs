@@ -9,16 +9,10 @@ using ProjetoTransacoesImobiliarias.Views;
 
 namespace ProjetoTransacoesImobiliarias.Controllers
 {
-    public class UserController : User
+    public class UserController
     {
-        public UserController(string username, string password, UserRole role):
-            base(username, password, role){
-                
-        }
         
-        
-        
-
+       // string teste = "";
         // public static ClientController? AddClientGeneric(string name, string adress, int UserID)
         // {
         //     #region Validations

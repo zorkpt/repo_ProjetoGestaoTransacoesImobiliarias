@@ -7,18 +7,8 @@ using ProjetoTransacoesImobiliarias.Views;
 
 namespace ProjetoTransacoesImobiliarias.Controllers;
 
-public class ManagerController : Manager
-{
-
-    public static List<ManagerController> ManagerControllerList = new List<ManagerController>();
-
-
-    public ManagerController(string userName, string password)
-        : base(userName, password)
-    {
-        ManagerControllerList.Add(this);
-    }
-    
+public class ManagerController
+{   
     public static void Menu(Manager manager)
     {
         ManagerView.ShowManagerMenu(manager);

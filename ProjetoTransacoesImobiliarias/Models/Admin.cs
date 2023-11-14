@@ -8,8 +8,8 @@ namespace ProjetoTransacoesImobiliarias.Models
 {
     public class Admin : User
     {
-        public Admin(string username, string password)
-            : base(username, password, UserRole.Admin)
+        public Admin(string username, string password, string name)
+            : base(username, password, name, UserRole.Admin)
         {
         }
         
