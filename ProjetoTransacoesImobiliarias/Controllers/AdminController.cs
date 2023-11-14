@@ -12,14 +12,14 @@ public class AdminController
     private readonly IUserService _userService;
     private readonly IClientService _clientService;
     private readonly Admin _admin;
-    
+
     public AdminController(Admin admin, IUserService userService, IClientService clientService)
     {
         _admin = admin;
         _userService = userService;
         _clientService = clientService;
     }
-    
+
     public void Menu()
     {
         var exitMenu = false;
@@ -33,13 +33,12 @@ public class AdminController
                     break;
                 case "2":
                     AddClient();
-                    Console.WriteLine("adicionado com sucesso.");
                     break;
                 case "3":
-                    // SystemSettings();
+                    ListClients();
                     break;
                 case "4":
-                    // UpdateProfile(_admin);
+                    ListClients(false);
                     break;
                 case "0":
                     exitMenu = true;
@@ -50,30 +49,47 @@ public class AdminController
             }
         }
     }
-    
+
+    private void ListClients(bool all = true)
+    {
+        var clients = all ? _clientService.GetAllClients() : _admin.GetAdminClients();
+        if (!clients.Any())
+        {
+            ErrorHandler.PressAnyKey("Sem dados.");
+        }
+        else
+        {
+            AdminView.DisplayAllClients(clients);
+        }
+    }
+
     private void ListAllUsers()
     {
         var allUsers = _userService.GetAllUsers();
         AdminView.DisplayUsers(allUsers);
     }
-    
- public Client AddClient()
-{
-    var adminView = new AdminView();
-    var clientData = adminView.AddClient();
 
-    var newClient = _clientService.CreateClient(clientData.Name, clientData.Address, clientData.PhoneNumber, _admin);
+    public Client AddClient()
+    {
+        var adminView = new AdminView();
+        var clientData = adminView.AddClient();
 
-    if (newClient is null) {
-        // tratar do erro aqui ? 
-        return null;
+        var newClient = _clientService.CreateClient(clientData.Name, clientData.Address, clientData.PhoneNumber, _admin);
+
+        if (newClient is null)
+        {
+            // tratar do erro aqui ? 
+            return null;
+        }
+
+        // @TODO: Deveriamos alterar o nome da classe para MessageHandler ?
+        ErrorHandler.PressAnyKey("Cliente Adicionado com sucesso.");
+        _admin.AddClient(newClient);
+        return newClient;
     }
 
-    return newClient;
-    // @TODO: adicionar a uma lista de clientes do admin ?
-}
-
-    public bool AddClientByAdmin(string name, string address, int userID){
+    public bool AddClientByAdmin(string name, string address, int userID)
+    {
         //      this.AddClient(name, address, userID);
         //      return this != null ? true : false;
         return true;

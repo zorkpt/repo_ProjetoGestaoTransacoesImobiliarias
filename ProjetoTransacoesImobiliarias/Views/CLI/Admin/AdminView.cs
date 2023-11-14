@@ -13,8 +13,8 @@ public class AdminView
         Console.WriteLine($"Bem-Vindo {admin.Username}");
         Console.WriteLine("1. Gerir Utilizadores");
         Console.WriteLine("2. Adicionar Cliente");
-        Console.WriteLine("3. Configurações do Sistema");
-        Console.WriteLine("4. Atualizar Perfil");
+        Console.WriteLine("3. Ver Todos Clientes");
+        Console.WriteLine("4. Ver os meus Clientes");
         Console.WriteLine("0. Sair");
         return Console.ReadLine();
     }
@@ -36,7 +36,7 @@ public class AdminView
         ErrorHandler.PressAnyKey();
     }
 
-   public ClientData AddClient()
+    public ClientData AddClient()
     {
         Console.WriteLine("Adicionar novo cliente:");
         Console.Write("Nome: ");
@@ -54,6 +54,22 @@ public class AdminView
             Address = clientAddress,
             PhoneNumber = clientPhoneNumber
         };
+    }
+
+    public static void DisplayAllClients(IEnumerable<Client> clients)
+    {
+        Console.Clear();
+        Console.WriteLine("Lista de Todos os Utilizadores:");
+        Console.WriteLine("---------------------------------------------------");
+        Console.WriteLine("| ID | Username | Morada                            |");
+        Console.WriteLine("---------------------------------------------------");
+        foreach (var client in clients)
+        {
+            var role = client.GetType().Name;
+            Console.WriteLine($"| {client.Id} | {client.Name} | {client.Address} |");
+        }
+        Console.WriteLine("---------------------------------------------------");
+        ErrorHandler.PressAnyKey();
     }
 }
 

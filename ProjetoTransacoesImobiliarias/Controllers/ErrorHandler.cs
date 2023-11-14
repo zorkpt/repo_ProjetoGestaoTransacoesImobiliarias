@@ -8,8 +8,9 @@ public static class ErrorHandler
         PressAnyKey();
     }
 
-    public static void PressAnyKey()
+    public static void PressAnyKey(string message = "")
     {
+        Console.WriteLine(message);
         Console.WriteLine("Pressione qualquer tecla para continuar...");
         Console.ReadKey();
     }
