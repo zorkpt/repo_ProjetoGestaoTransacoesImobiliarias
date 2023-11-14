@@ -32,13 +32,22 @@ public class AdminController
                     AdminView.ManageUsersMenu();
                     break;
                 case "2":
-                    AddClient();
+                    AdminView.ManageClientsMenu();
                     break;
                 case "3":
-                    ListClients();
                     break;
                 case "4":
+                    AdminView.ManagePropertiesMenu();
+                    break;
+
+                case "5":
                     ListClients(false);
+                    break;
+                case "6":
+                    ListClients();
+                    break;
+                case "7":
+                    AddClient();
                     break;
                 case "0":
                     exitMenu = true;

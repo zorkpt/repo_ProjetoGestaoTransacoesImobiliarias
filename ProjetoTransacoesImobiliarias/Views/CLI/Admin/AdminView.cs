@@ -30,6 +30,7 @@ public class AdminView
         return Console.ReadLine();
     }
 
+
     public static void DisplayUsers(IEnumerable<User> users)
     {
         Console.Clear();
