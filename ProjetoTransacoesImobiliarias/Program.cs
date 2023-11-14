@@ -23,7 +23,7 @@ internal class Program
 
         var clientService = new ClientService(userService);
         clientService.LoadClientsFromJson();
-        clientService.SaveClientsToJson();
+        
         
         var authService = new AuthenticationService(userService);
 

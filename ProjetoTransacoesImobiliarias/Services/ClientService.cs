@@ -66,7 +66,18 @@ public class ClientService : IClientService
     }
 
     public bool SaveClientsToJson(){
-        string json = JsonSerializer.Serialize(_clients);
+
+    //var simplifiedClientList = _clients.Select(c => new { c.Name, c.Email }).ToList();
+
+        var clientList = _clients.Select(client => new {
+            Id = client.Id,
+            Name = client.Name,
+            Address = client.Address,
+            PhoneNumber = client.PhoneNumber,
+            AddedById = client.AddedById
+        }).ToList();
+
+        string json = JsonSerializer.Serialize(clientList);
 
         string FileJson = "./Files/ClientJson.json";
 

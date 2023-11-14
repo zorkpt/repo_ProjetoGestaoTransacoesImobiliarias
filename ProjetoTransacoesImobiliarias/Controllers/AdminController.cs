@@ -50,6 +50,13 @@ public class AdminController
                 case "7":
                     AddClient();
                     break;
+
+                case "99":
+                    if(_clientService.SaveClientsToJson()){
+                        ErrorHandler.PressAnyKey("Fechando aplicação...");
+                    }
+
+                    break;
                 case "0":
                     exitMenu = true;
                     break;
