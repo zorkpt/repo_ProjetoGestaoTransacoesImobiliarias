@@ -7,8 +7,8 @@ namespace ProjetoTransacoesImobiliarias.Models;
 
 public class Manager : User
 {
-    public Manager(string username, string password)
-        : base(username, password, UserRole.Manager)
+    public Manager(string username, string password, string name)
+        : base(username, password, name, UserRole.Manager)
     {
     }
     

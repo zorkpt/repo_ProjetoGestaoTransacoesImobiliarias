@@ -3,32 +3,74 @@
     "userType": "Admin",
     "id": 1,
     "username": "adminUser",
-    "password": "1234"
+    "password": "1234",
+    "name": "Admin Name"
   },
   {
     "userType": "Admin",
     "id": 2,
     "username": "admin1",
-    "password": "1234"
+    "password": "1234",
+    "name": "Admin Name1"
   },
   {
     "userType": "Admin",
     "id": 3,
     "username": "admin2",
-    "password": "1234"
+    "password": "1234",
+    "name": "Admin Name2"
   },
   {
     "userType": "Admin",
     "id": 4,
     "username": "admin3",
-    "password": "1234"
+    "password": "1234",
+    "name": "Admin Name3"
   },
   {
     "userType": "Manager",
     "id": 5,
     "username": "managerUser",
     "password": "anotherSecurePasswordHash",
+    "name": "Manager Name",
     "numberOfPropertiesManaged": 15
+  },
+  {
+    "userType": "Manager",
+    "id": 6,
+    "username": "managerUser1",
+    "password": "anotherSecurePasswordHash",
+    "name": "Manager Name1",
+    "numberOfPropertiesManaged": 15
+  },
+  {
+    "userType": "Manager",
+    "id": 7,
+    "username": "managerUser2",
+    "password": "anotherSecurePasswordHash",
+    "name": "Manager Name2",
+    "numberOfPropertiesManaged": 15
+  },
+  {
+    "userType": "Agent",
+    "id": 8,
+    "username": "agent1",
+    "password": "1234",
+    "name": "Agent Name1"
+  },
+  {
+    "userType": "Agent",
+    "id": 9,
+    "username": "agent2",
+    "password": "1234",
+    "name": "Agent Name2"
+  },
+  {
+    "userType": "Evaluator",
+    "id": 10,
+    "username": "evaluator",
+    "password": "1234",
+    "name": "Evaluator Name3"
   }
 ]
 

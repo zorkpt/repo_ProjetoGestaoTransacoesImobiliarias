@@ -47,10 +47,10 @@ public class UserService : IUserService
                         _users.Add(JsonSerializer.Deserialize<Manager>(element.GetRawText(), options));
                         break;
                     case nameof(UserRole.Agent):
-                        _users.Add(JsonSerializer.Deserialize<Manager>(element.GetRawText(), options));
+                        _users.Add(JsonSerializer.Deserialize<Agent>(element.GetRawText(), options));
                         break;
                     case nameof(UserRole.Evaluator):
-                        _users.Add(JsonSerializer.Deserialize<Manager>(element.GetRawText(), options));
+                        _users.Add(JsonSerializer.Deserialize<Evaluator>(element.GetRawText(), options));
                         break;
 
                     default:
@@ -85,26 +85,26 @@ public class UserService : IUserService
     }
 
 
-    public User CreateUser(string username, string password, UserRole role)
+    public User CreateUser(string username, string password, string name, UserRole role)
     {
         var newId = _counter++;
 
         switch (role)
         {
             case UserRole.Admin:
-                var adminUser = new Admin(username, password) { Id = newId };
+                var adminUser = new Admin(username, password, name) { Id = newId };
                 _users.Add(adminUser);
                 return adminUser;
             case UserRole.Manager:
-                var managerUser = new Manager(username, password) { Id = newId };
+                var managerUser = new Manager(username, password, name) { Id = newId };
                 _users.Add(managerUser);
                 return managerUser;
             case UserRole.Agent:
-                var agentUser = new Agent(username, password) { Id = newId };
+                var agentUser = new Agent(username, password, name) { Id = newId };
                 _users.Add(agentUser);
                 return agentUser;
             case UserRole.Evaluator:
-                var evaluatorUser = new Evaluator(username, password) { Id = newId };
+                var evaluatorUser = new Evaluator(username, password, name) { Id = newId };
                 _users.Add(evaluatorUser);
                 break;
             default:

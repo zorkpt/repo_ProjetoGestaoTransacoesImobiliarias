@@ -9,8 +9,8 @@ namespace ProjetoTransacoesImobiliarias.Models
 {
     public class Agent : User
     {
-        public Agent(string username, string password)
-            : base(username, password, UserRole.Agent)
+        public Agent(string username, string password, string name)
+            : base(username, password, name, UserRole.Agent)
         {
             
         }
