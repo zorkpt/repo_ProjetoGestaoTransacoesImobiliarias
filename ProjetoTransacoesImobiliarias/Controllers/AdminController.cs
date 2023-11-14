@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using ProjetoTransacoesImobiliarias.Interfaces;
 using ProjetoTransacoesImobiliarias.Models;
 using ProjetoTransacoesImobiliarias.Services;
@@ -9,14 +10,16 @@ namespace ProjetoTransacoesImobiliarias.Controllers;
 public class AdminController
 {
     private readonly IUserService _userService;
+    private readonly IClientService _clientService;
     private readonly Admin _admin;
-    
-    public AdminController(Admin admin, IUserService userService)
+
+    public AdminController(Admin admin, IUserService userService, IClientService clientService)
     {
         _admin = admin;
         _userService = userService;
+        _clientService = clientService;
     }
-    
+
     public void Menu()
     {
         var exitMenu = false;
@@ -26,16 +29,16 @@ public class AdminController
             switch (option)
             {
                 case "1":
-                    ListAllUsers();
+                    AdminView.ManageUsersMenu();
                     break;
                 case "2":
-                    // ViewReports();
+                    AddClient();
                     break;
                 case "3":
-                    // SystemSettings();
+                    ListClients();
                     break;
                 case "4":
-                    // UpdateProfile(_admin);
+                    ListClients(false);
                     break;
                 case "0":
                     exitMenu = true;
@@ -46,14 +49,47 @@ public class AdminController
             }
         }
     }
-    
+
+    private void ListClients(bool all = true)
+    {
+        var clients = all ? _clientService.GetAllClients() : _admin.GetAdminClients();
+        if (!clients.Any())
+        {
+            ErrorHandler.PressAnyKey("Sem dados.");
+        }
+        else
+        {
+            AdminView.DisplayAllClients(clients);
+        }
+    }
+
     private void ListAllUsers()
     {
         var allUsers = _userService.GetAllUsers();
         AdminView.DisplayUsers(allUsers);
     }
-    
-    public bool AddClientByAdmin(string name, string address, int userID){
+
+    public Client AddClient()
+    {
+        var adminView = new AdminView();
+        var clientData = adminView.AddClient();
+
+        var newClient = _clientService.CreateClient(clientData.Name, clientData.Address, clientData.PhoneNumber, _admin);
+
+        if (newClient is null)
+        {
+            // tratar do erro aqui ? 
+            return null;
+        }
+
+        // @TODO: Deveriamos alterar o nome da classe para MessageHandler ?
+        ErrorHandler.PressAnyKey("Cliente Adicionado com sucesso.");
+        _admin.AddClient(newClient);
+        return newClient;
+    }
+
+    public bool AddClientByAdmin(string name, string address, int userID)
+    {
         //      this.AddClient(name, address, userID);
         //      return this != null ? true : false;
         return true;

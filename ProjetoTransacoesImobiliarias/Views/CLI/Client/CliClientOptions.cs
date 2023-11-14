@@ -30,7 +30,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                 switch (choice)
                 {
                     case 1:
-                        CliClientAdd.Show(userID);
+                      //  CliClientAdd.Show(userID);
                         break;
                     case 2:
                         //Edit
@@ -48,7 +48,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                         //Details
                     case 5:
                         Console.Clear();
-                        GenericController.ListView(ClientController.ClientControllerList);
+                      //  GenericController.ListView(ClientController.ClientControllerList);
                         break;
                     case 0:
                         //exit

@@ -18,6 +18,12 @@ public class UserService : IUserService
 
     public IEnumerable<User> GetAllUsers() => _users.AsReadOnly();
 
+public User GetUserById(int id) 
+{
+    return _users.FirstOrDefault(user => user.Id == id);
+}
+
+
 
     public bool LoadUsersFromJson()
     {
