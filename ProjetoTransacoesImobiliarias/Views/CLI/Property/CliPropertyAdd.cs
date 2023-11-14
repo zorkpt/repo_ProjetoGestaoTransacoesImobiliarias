@@ -27,12 +27,12 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                 while(true){
                     Console.WriteLine("Client ID:");
                     int.TryParse(Console.ReadLine(), out clientID);
-                    if(ClientController.GetClientById(userID)) break;
+                    // if(ClientController.GetClientById(userID)) break;
                     Console.Clear();
                     Console.WriteLine($"Id does not exis, insert new client");
                     Console.WriteLine("Press any key to continue");
                     string? pause = Console.ReadLine();
-                    CliClientAdd.Show(userID);
+                //    CliClientAdd.Show(userID);
 
                 }
 

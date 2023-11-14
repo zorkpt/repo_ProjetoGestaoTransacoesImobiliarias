@@ -8,10 +8,12 @@ namespace ProjetoTransacoesImobiliarias.Controllers;
 public class AppController 
 {
     private readonly IUserService _userService;
+    private readonly IClientService _clientService;
 
-    public AppController(IUserService userService)
+    public AppController(IUserService userService, IClientService clientService)
     {
         _userService = userService;
+        _clientService = clientService;
     }
 
     public void Start(User user)
@@ -24,7 +26,7 @@ public class AppController
         switch (user)
         {
             case Admin admin:
-                var adminController = new AdminController(admin, _userService);
+                var adminController = new AdminController(admin, _userService, _clientService);
                 adminController.Menu(); 
                 break;
             case Manager manager:

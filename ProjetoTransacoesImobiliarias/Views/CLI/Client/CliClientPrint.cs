@@ -16,7 +16,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI
                 if(!int.TryParse(Console.ReadLine(), out int id)){
                     Console.WriteLine("Id does not exist");
                 }else{
-                    GenericController.PrintCientDetails(id);
+               //     GenericController.PrintCientDetails(id);
                     return;
                 }
             }

@@ -6,116 +6,56 @@ using ProjetoTransacoesImobiliarias.Controllers;
 using System.Text.Json;
 using System.IO;
 using System.Text.Json.Serialization;
+using ProjetoTransacoesImobiliarias.Interfaces;
+using ProjetoTransacoesImobiliarias.Services;
 
 
 namespace ProjetoTransacoesImobiliarias.Models
 {
     public class Client
     {
-        private static int _counter = 1;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string PhoneNumber { get; set; }
+        public int AddedById {get; set;}
+        public User AddedBy { get; set; }
 
-        private int IdClient { get; set; }
-        private string Name { get; set; }
-        private string Address { get; set; }
-        private int IdAgent { get; set; }
-
-        private static List<Client> ClientList { get; } = new List<Client>();
-
-  
-        public Client(string name, string address, int idAgent)
+        public Client(string name, string address, string phoneNumber, User addedBy)
         {
-            IdClient = GetNextId();
             Name = name;
             Address = address;
-            IdAgent = idAgent;
-            RegisterClient();
+            AddedBy = addedBy;
+            PhoneNumber = phoneNumber;
         }
-        
-        // json constructor
+
         [JsonConstructor]
-        public Client(int idClient, string name, string address, int idAgent)
+        public Client(string name, string address, string phoneNumber, int addedById)
         {
-            IdClient = idClient;
             Name = name;
             Address = address;
-            IdAgent = idAgent;
-            RegisterClient();
+            PhoneNumber = phoneNumber;
+            AddedById = addedById;
         }
-
-        private void RegisterClient()
+        public void SetAddedBy(User user)
         {
-            ClientList.Add(this);
+            AddedBy = user;
         }
 
-        #region Proprities
+        public string AddedByName() {
+            return AddedBy != null ? AddedBy.Name : "Desconhecido";
+        }
 
-        protected int GetIdClient()
+        public string AddedByUsername() {
+            return AddedBy != null ? AddedBy.Username : "Desconhecido";
+        }
+
+        protected bool RemoveClient()
         {
-            return IdClient;
-        }
-
-        protected bool SetIdClient(int id){
-            
-            IdClient = id;
-            return true;
-        }
-
-        protected string GetNameClient()
-        {
-            return Name;
-        }
-        protected string GetAddress()
-        {
-            return Address;
-        }
-
-        protected void SetAddressClient(string value)
-        {
-            Address = value;
-        }
-
-        protected void SetNameClient(string value)
-        {
-            Name = value;
-        }
-
-        protected int GetIdAgentClient()
-        {
-            return IdAgent;
-        }
-
-        protected void SetIdAgentClient(int value)
-        {
-            IdAgent = value;
-        }
-        #endregion
-
-        protected bool RemoveClient(){
             //remove cliente na instancia atual
-            ClientList.Remove(this);
-            return true;
-        }
-        protected static bool RemoveClientById(int id)
-        {
-            Client? log = ClientList.FirstOrDefault(c => c.GetIdClient() == id);
-            if(log == null) return false;
-
-            ClientList.Remove(log);
-            _counter--;
+            //    ClientList.Remove(this);
             return true;
         }
 
-        private static int GetNextId()
-        {
-            return _counter++;
-        }
-
-        public static void InitializeNextId()
-        {
-            if (ClientList.Any())
-            {
-                _counter = ClientList.Max(c => c.IdClient) + 1;
-            }
-        }
     }
 }

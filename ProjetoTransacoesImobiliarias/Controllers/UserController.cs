@@ -11,8 +11,6 @@ namespace ProjetoTransacoesImobiliarias.Controllers
 {
     public class UserController
     {
-        
-       // string teste = "";
         // public static ClientController? AddClientGeneric(string name, string adress, int UserID)
         // {
         //     #region Validations
