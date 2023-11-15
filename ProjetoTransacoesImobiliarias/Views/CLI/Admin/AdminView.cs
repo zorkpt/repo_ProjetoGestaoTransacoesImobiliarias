@@ -1,36 +1,39 @@
 using System;
 using ProjetoTransacoesImobiliarias.Models;
+using ProjetoTransacoesImobiliarias.Views.CLI;
 
-namespace ProjetoTransacoesImobiliarias.Views.CLI;
+namespace ProjetoTransacoesImobiliarias.Controllers;
 
-public static class AdminView
+public class AdminView
 {
     public static string? ShowAdminMenu(Admin admin)
     {
-        Console.Clear();
-        Console.WriteLine("========== Menu de Administração ==========");
-        Console.WriteLine($"Bem-Vindo {admin.Username}");
-        Console.WriteLine("1. Gerir Utilizadores");
-        Console.WriteLine("2. Ver Relatórios");
-        Console.WriteLine("3. Configurações do Sistema");
-        Console.WriteLine("4. Atualizar Perfil");
-        Console.WriteLine("0. Sair");
+        Menu.AdminMenu(admin);
         return Console.ReadLine();
     }
-    
-    
-    
-// talvez colocar esta funcao numa classe de utilidades
-    public static void WrongOption()
+
+    public static string? ManageUsersMenu()
     {
-        Console.WriteLine("Opção inválida.");
-        PressAnyKey();
+        Menu.ManageUsers();
+        return Console.ReadLine();
     }
 
-    private static void PressAnyKey()
+    public static string? ManageClientsMenu()
     {
-        Console.WriteLine("Pressione qualquer tecla para continuar...");
-        Console.ReadKey();
+        Menu.ManageClients();
+        return Console.ReadLine();
+    }
+
+    public static string? ManagePropertiesMenu()
+    {
+        Menu.ManageProperties();
+        return Console.ReadLine();
+    }
+
+    public static string? ManageTransactionsMenu()
+    {
+        Menu.ManageTransactions();
+        return Console.ReadLine();
     }
 
 
@@ -43,10 +46,117 @@ public static class AdminView
         Console.WriteLine("---------------------------------------------------");
         foreach (var user in users)
         {
-            var role = user.GetType().Name; 
+            var role = user.GetType().Name;
             Console.WriteLine($"| {user.Id} | {user.Username} | {role,-30} |");
         }
+
         Console.WriteLine("---------------------------------------------------");
-        PressAnyKey();
+        ErrorHandler.PressAnyKey();
     }
+
+    public static ClientData AddClient()
+    {
+        Console.WriteLine("Adicionar novo cliente:");
+        Console.Write("Nome: ");
+        string clientName = Console.ReadLine() ?? string.Empty;
+
+        Console.Write("Endereço: ");
+        string clientAddress = Console.ReadLine() ?? string.Empty;
+
+        Console.Write("Número de telefone: ");
+        string clientPhoneNumber = Console.ReadLine() ?? string.Empty;
+
+        return new ClientData
+        {
+            Name = clientName,
+            Address = clientAddress,
+            PhoneNumber = clientPhoneNumber
+        };
+    }
+
+    public static void DisplayAllClients(IEnumerable<Client> clients)
+    {
+        Console.Clear();
+        Console.WriteLine("Lista de Todos os Utilizadores:");
+        Console.WriteLine("---------------------------------------------------");
+        Console.WriteLine("| ID | Username | Morada                            |");
+        Console.WriteLine("---------------------------------------------------");
+        foreach (var client in clients)
+        {
+            var role = client.GetType().Name;
+            Console.WriteLine($"| {client.Id} | {client.Name} | {client.Address} |");
+        }
+
+        Console.WriteLine("---------------------------------------------------");
+        ErrorHandler.PressAnyKey();
+    }
+
+
+    public static UserData AddUser()
+    {
+        Console.WriteLine("Adicionar novo utilizador:");
+        Console.Write("Nome: ");
+        string name = Console.ReadLine() ?? string.Empty;
+
+        Console.Write("Username: ");
+        string username = Console.ReadLine() ?? string.Empty;
+
+
+        Console.Write("Password: ");
+        string password = Console.ReadLine() ?? string.Empty;
+
+        Console.Write("Role\n");
+        var userRole = SelectUserRole();
+
+        return new UserData
+        {
+            Name = name,
+            Userame = username,
+            Password = password,
+            Role = userRole
+        };
+    }
+
+    private static UserRole SelectUserRole()
+    {
+        while (true)
+        {
+            Console.WriteLine("1. Admin");
+            Console.WriteLine("2. Manager");
+            Console.WriteLine("3. Agent");
+            Console.WriteLine("4. Evaluator");
+
+            string choice = Console.ReadLine() ?? string.Empty;
+            switch (choice)
+            {
+                case "1":
+                    return UserRole.Admin;
+                case "2":
+                    return UserRole.Manager;
+                case "3":
+                    return UserRole.Agent;
+                case "4":
+                    return UserRole.Evaluator;
+                default:
+                    ErrorHandler.PressAnyKey("Seleção Inválida. Escolhe entre 1 e 4.");
+                    continue;
+            }
+        }
+    }
+}
+
+public class ClientData
+{
+    public string Name { get; set; }
+    public string Address { get; set; }
+    public string PhoneNumber { get; set; }
+}
+
+public class UserData
+{
+    public string Name { get; set; }
+    public string Userame { get; set; }
+
+    public string Password { get; set; }
+    public UserRole Role { get; set; }
 }

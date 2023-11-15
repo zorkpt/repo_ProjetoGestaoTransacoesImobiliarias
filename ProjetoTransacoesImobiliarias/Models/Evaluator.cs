@@ -5,8 +5,8 @@ namespace ProjetoTransacoesImobiliarias.Models;
 
 public class Evaluator : User
 {
-    public Evaluator(string username, string password)
-        : base(username, password, UserRole.Evaluator)
+    public Evaluator(string username, string password, string name)
+        : base(username, password, name, UserRole.Evaluator)
     {
     }
     

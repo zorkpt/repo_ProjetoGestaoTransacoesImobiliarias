@@ -8,10 +8,18 @@ namespace ProjetoTransacoesImobiliarias.Models
 {
     public class Admin : User
     {
-        public Admin(string username, string password)
-            : base(username, password, UserRole.Admin)
+        public List<Client> Clients { get; private set; }
+        public Admin(string username, string password, string name)
+            : base(username, password, name, UserRole.Admin)
         {
+            Clients = new List<Client>();
         }
-        
+
+        public void AddClient(Client client)
+        {
+            Clients.Add(client);
+        }
+
+        public IEnumerable<Client> GetAdminClients() => Clients.AsReadOnly();
     }
 }
