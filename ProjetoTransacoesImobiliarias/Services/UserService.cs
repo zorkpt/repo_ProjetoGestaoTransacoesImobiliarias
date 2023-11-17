@@ -18,13 +18,16 @@ public class UserService : IUserService
 
     public IEnumerable<User> GetAllUsers() => _users.AsReadOnly();
 
-public User GetUserById(int id) 
-{
-    return _users.FirstOrDefault(user => user.Id == id);
-}
+    public User GetUserById(int id) 
+    {
+        return _users.FirstOrDefault(user => user.Id == id);
+    }
 
 
-
+    /// <summary>
+    /// Loads users from a JSON file.
+    /// </summary>
+    /// <returns>Returns true if the users are successfully loaded, otherwise false.</returns>
     public bool LoadUsersFromJson()
     {
         try
@@ -90,6 +93,16 @@ public User GetUserById(int id)
         return false;
     }
     
+    /// <summary>
+    /// Creates a new user with the specified username, password, name, and role.
+    /// </summary>
+    /// <param name="username"></param>
+    /// <param name="password"></param>
+    /// <param name="name"></param>
+    /// <param name="role"></param>
+    /// <returns>Returns the created user object.</returns>
+    /// <exception cref="ArgumentException">Throws an ArgumentException if the role is invalid.</exception>
+    /// <exception cref="InvalidOperationException">Throws an InvalidOperationException if the user is not created due to an invalid role.</exception>
     public User CreateUser(string username, string password, string name, UserRole role)
     {
         var newId = _counter++;

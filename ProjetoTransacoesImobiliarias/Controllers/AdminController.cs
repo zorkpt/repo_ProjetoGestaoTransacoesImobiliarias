@@ -20,6 +20,9 @@ public class AdminController
         _clientService = clientService;
     }
 
+    /// <summary>
+    /// Executes the menu functionality for the admin user.
+    /// </summary>
     public void Menu()
     {
         var exitMenu = false;
@@ -67,6 +70,9 @@ public class AdminController
         }
     }
 
+    /// <summary>
+    /// Manages the submenu for managing clients.
+    /// </summary>
     private void SubMenuManageClients()
     {
         var exitMenu = false;
@@ -100,6 +106,9 @@ public class AdminController
         }
     }
 
+    /// <summary>
+    /// Manages the submenu for user management.
+    /// </summary>
     private void SubMenuManageUsers()
     {
         var exitMenu = false;
@@ -157,6 +166,9 @@ public class AdminController
         }
     }
 
+    /// <summary>
+    /// Manages the submenu for managing transactions.
+    /// </summary>
     private void SubMenuManageProperties()
     {
         var exitMenu = false;
@@ -184,6 +196,10 @@ public class AdminController
         }
     }
 
+    /// <summary>
+    /// Lists clients based on the specified criteria.
+    /// </summary>
+    /// <param name="all"></param>
     private void ListClients(bool all = true)
     {
         var clients = all ? _clientService.GetAllClients() : _admin.GetAdminClients();
@@ -197,12 +213,19 @@ public class AdminController
         }
     }
 
+    /// <summary>
+    /// Lists all users.
+    /// </summary>
     private void ListAllUsers()
     {
         var allUsers = _userService.GetAllUsers();
         AdminView.DisplayUsers(allUsers);
     }
 
+    /// <summary>
+    /// Adds a new client to the system.
+    /// </summary>
+    /// <returns>Returns the newly created client object if successful, otherwise returns null.</returns>
     private Client AddClient()
     {
         var adminView = new AdminView();
@@ -223,16 +246,28 @@ public class AdminController
         return newClient;
     }
 
+    /// <summary>
+    /// Edits a client and returns the modified client.
+    /// </summary>
+    /// <returns></returns>
     private Client EditClient()
     {
         return null;
     }
 
+    /// <summary>
+    /// Deletes a client.
+    /// </summary>
+    /// <returns></returns>
     private Client DeleteClient()
     {
         return null;
     }
 
+    /// <summary>
+    /// Adds a new user to the system.
+    /// </summary>
+    /// <returns></returns>
     private User AddUser()
     {
         var adminView = new AdminView();

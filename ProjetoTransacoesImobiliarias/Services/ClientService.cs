@@ -9,6 +9,10 @@ public class ClientService : IClientService
     private static int _counter = 0;
     private readonly IUserService _userService;
 
+    /// <summary>
+    /// Initializes a new instance of the ClientService class.
+    /// </summary>
+    /// <param name="userService"></param>
     public ClientService(IUserService userService){
         _userService = userService;
     }
@@ -21,6 +25,10 @@ public class ClientService : IClientService
     public IEnumerable<Client> GetAllClients() => _clients.AsReadOnly();
 
 
+    /// <summary>
+    /// Loads clients from a JSON file.
+    /// </summary>
+    /// <returns>Returns true if the clients are successfully loaded, false otherwise.</returns>
     public bool LoadClientsFromJson()
     {
         try
@@ -65,6 +73,10 @@ public class ClientService : IClientService
         return false;
     }
 
+    /// <summary>
+    /// Saves clients to a JSON file.
+    /// </summary>
+    /// <returns>Returns true if the clients are successfully saved, false otherwise.</returns>
     public bool SaveClientsToJson(){
 
     //var simplifiedClientList = _clients.Select(c => new { c.Name, c.Email }).ToList();
@@ -94,6 +106,14 @@ public class ClientService : IClientService
         return true;
     }
 
+    /// <summary>
+    /// Creates a new client with the given name, address, phone number, and added by user.
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="address"></param>
+    /// <param name="phoneNumber"></param>
+    /// <param name="addedBy"></param>
+    /// <returns>Returns the newly created client.</returns>
     public Client CreateClient(string name, string address, string phoneNumber, User addedBy) 
     { 
         var newId = _counter++;
