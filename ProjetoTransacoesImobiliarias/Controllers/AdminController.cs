@@ -13,13 +13,15 @@ public class AdminController
     private readonly IClientService _clientService;
     private readonly Admin _admin;
     private readonly IPropertyService _propertyService;
-
+    private AdminView AdminView { get; set; }
+    
     public AdminController(Admin admin, IUserService userService, IClientService clientService, IPropertyService propertyService)
     {
         _admin = admin;
         _userService = userService;
         _clientService = clientService;
         _propertyService = propertyService;
+        AdminView = new AdminView();
     }
 
     /// <summary>
@@ -121,7 +123,7 @@ public class AdminController
             switch (option)
             {
                 case "1":
-                    var user = AddUser();
+                    AddUser();
                     break;
                 case "2":
                     // Editar User
@@ -203,9 +205,26 @@ public class AdminController
         }
     }
 
-    private void AddProperty()
+    private Property AddProperty()
     {
-        throw new NotImplementedException();
+        var propertyData = AdminView.AddProperty();
+        var client = _clientService.GetClientById(propertyData.ClientId);
+        var newProperty =
+            _propertyService.CreateProperty(propertyData.Address,
+                propertyData.Description,
+                propertyData.PropertyType,
+                propertyData.Size,
+                _admin,
+                client);
+      
+        if (newProperty is null)
+        {
+            return null;
+        }
+
+        MessageHandler.PressAnyKey("Propriedade adicionada com sucesso.");
+        _admin.AddProperty(newProperty);
+        return newProperty;
     }
 
     /// <summary>

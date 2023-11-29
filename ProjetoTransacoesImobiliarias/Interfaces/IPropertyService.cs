@@ -11,6 +11,6 @@ namespace ProjetoTransacoesImobiliarias.Interfaces
         IEnumerable<Property> GetAllProperties();
 
         Property CreateProperty(string address, string description, PropertyType propertyType, double size,
-            int addedById, User addedBy, int clientId, Client client);
+             User addedBy,Client client);
     }
 }

@@ -16,10 +16,18 @@ public class ServiceRepository
         }
 
         ClientService = new ClientService(UserService);
-        ClientService.LoadClientsFromJson();
-
+        if(!ClientService.LoadClientsFromJson())
+        {
+            return false;
+        }
+        
+        
         PropertyService = new PropertyService(UserService, ClientService);
-        PropertyService.LoadPropertiesFromJson();
+        if (!PropertyService.LoadPropertiesFromJson())
+        {
+            return false;
+        }
+        
         AuthenticationService = new AuthenticationService(UserService);
 
         return true;

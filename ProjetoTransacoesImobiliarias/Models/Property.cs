@@ -38,15 +38,13 @@ public class Property
 
     
     public Property(string address, string description,
-        PropertyType propertyType, double size, int addedById, User addedBy, int clientId, Client client)
+        PropertyType propertyType, double size, User addedBy, Client client)
     {
         Address = address;
         Description = description;
         PropertyType = propertyType;
         SquareMeters = size;
-        ClientId = clientId;
         Client = client;
-        AddedById = addedById;
         AddedBy = addedBy;
         ForSale = true;
     }

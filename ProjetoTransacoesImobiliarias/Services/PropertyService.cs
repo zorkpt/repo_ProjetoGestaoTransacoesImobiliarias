@@ -84,6 +84,7 @@ namespace ProjetoTransacoesImobiliarias.Services
         
         public IEnumerable<Property> GetAllProperties() => _propertiesList.AsReadOnly();
 
+
         /// <summary>
         /// Creates a new Property object with the given address, description, property type, size, added by user, and owner client.
         /// </summary>
@@ -94,10 +95,10 @@ namespace ProjetoTransacoesImobiliarias.Services
         /// <param name="addedBy"></param>
         /// <param name="owner"></param>
         /// <returns>The newly created Property object.</returns>
-        public Property CreateProperty(string address, string description, PropertyType propertyType, double size, int addedById, User addedBy, int clientId, Client client)
+        public Property CreateProperty(string address, string description, PropertyType propertyType, double size,  User addedBy,  Client client)
         { 
             var newId = _counter++;
-            var newProperty = new Property(address, description, propertyType, size, addedById, addedBy, clientId, client) { Id = newId };
+            var newProperty = new Property(address, description, propertyType, size, addedBy, client) { Id = newId };
             _propertiesList.Add(newProperty);
             return newProperty;
         }

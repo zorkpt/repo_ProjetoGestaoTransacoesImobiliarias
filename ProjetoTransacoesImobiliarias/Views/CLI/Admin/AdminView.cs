@@ -114,7 +114,57 @@ public class AdminView
             Role = userRole
         };
     }
+    
+    public static PropertyData AddProperty()
+    {
+        Console.WriteLine("Adicionar nova propriedade:");
+        Console.Write("Morada: ");
+        var address = Console.ReadLine() ?? string.Empty;
 
+        Console.Write("Descrição: ");
+        var description = Console.ReadLine() ?? string.Empty;
+        
+        Console.Write("Tipo de Propriedade\n");
+        var propertyType = SelectPropertyType();
+        
+        Console.Write("Área: ");
+        var size = double.Parse(Console.ReadLine() ?? string.Empty);
+
+        Console.Write("ID do Cliente: ");
+        var clientId = int.Parse(Console.ReadLine() ?? string.Empty);
+        
+        return new PropertyData
+        {
+            Address = address,
+            Description = description,
+            PropertyType = propertyType,
+            Size = size,
+            ClientId = clientId
+        };
+    }
+    private static PropertyType SelectPropertyType()
+    {
+        while (true)
+        {
+            Console.WriteLine("1. Apartamento");
+            Console.WriteLine("2. Moradia");
+            Console.WriteLine("3. Terreno");
+
+            var choice = Console.ReadLine() ?? string.Empty;
+            switch (choice)
+            {
+                case "1":
+                    return PropertyType.Apartment;
+                case "2":
+                    return PropertyType.House;
+                case "3":
+                    return PropertyType.Land;
+                default:
+                    MessageHandler.PressAnyKey("Seleção Inválida. Escolhe entre 1 e 3.");
+                    continue;
+            }
+        }
+    }
     private static UserRole SelectUserRole()
     {
         while (true)
@@ -157,4 +207,13 @@ public class UserData
 
     public string Password { get; set; }
     public UserRole Role { get; set; }
+}
+
+public class PropertyData
+{
+    public string Address { get; set; }
+    public string Description { get; set; }
+    public PropertyType PropertyType { get; set; }
+    public double Size { get; set; }
+    public int ClientId { get; set; }
 }
