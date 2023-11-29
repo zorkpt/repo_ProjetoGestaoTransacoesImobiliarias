@@ -51,7 +51,7 @@ public class AdminView
         }
 
         Console.WriteLine("---------------------------------------------------");
-        ErrorHandler.PressAnyKey();
+        MessageHandler.PressAnyKey();
     }
 
     public static ClientData AddClient()
@@ -79,16 +79,15 @@ public class AdminView
         Console.Clear();
         Console.WriteLine("Lista de Todos os Utilizadores:");
         Console.WriteLine("---------------------------------------------------");
-        Console.WriteLine("| ID | Username | Morada                            |");
+        Console.WriteLine("| ID | Username | Morada  |                        |");
         Console.WriteLine("---------------------------------------------------");
         foreach (var client in clients)
         {
-            var role = client.GetType().Name;
-            Console.WriteLine($"| {client.Id} | {client.Name} | {client.Address} |");
+            Console.WriteLine($"| {client.Id} | {client.Name} | {client.Address} | ");
         }
 
         Console.WriteLine("---------------------------------------------------");
-        ErrorHandler.PressAnyKey();
+        MessageHandler.PressAnyKey();
     }
 
 
@@ -96,14 +95,13 @@ public class AdminView
     {
         Console.WriteLine("Adicionar novo utilizador:");
         Console.Write("Nome: ");
-        string name = Console.ReadLine() ?? string.Empty;
+        var name = Console.ReadLine() ?? string.Empty;
 
         Console.Write("Username: ");
-        string username = Console.ReadLine() ?? string.Empty;
-
-
+        var username = Console.ReadLine() ?? string.Empty;
+        
         Console.Write("Password: ");
-        string password = Console.ReadLine() ?? string.Empty;
+        var password = Console.ReadLine() ?? string.Empty;
 
         Console.Write("Role\n");
         var userRole = SelectUserRole();
@@ -126,7 +124,7 @@ public class AdminView
             Console.WriteLine("3. Agent");
             Console.WriteLine("4. Evaluator");
 
-            string choice = Console.ReadLine() ?? string.Empty;
+            var choice = Console.ReadLine() ?? string.Empty;
             switch (choice)
             {
                 case "1":
@@ -138,7 +136,7 @@ public class AdminView
                 case "4":
                     return UserRole.Evaluator;
                 default:
-                    ErrorHandler.PressAnyKey("Seleção Inválida. Escolhe entre 1 e 4.");
+                    MessageHandler.PressAnyKey("Seleção Inválida. Escolhe entre 1 e 4.");
                     continue;
             }
         }

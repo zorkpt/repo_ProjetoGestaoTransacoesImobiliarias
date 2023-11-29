@@ -9,10 +9,8 @@ namespace ProjetoTransacoesImobiliarias.Interfaces
     public interface IPropertyService
     {
         IEnumerable<Property> GetAllProperties();
-        Property CreateProperty(string address, string description, 
-                                PropertyType propertyType, double size, 
-                                User addedBy, Client owner);
 
-                    
+        Property CreateProperty(string address, string description, PropertyType propertyType, double size,
+            int addedById, User addedBy, int clientId, Client client);
     }
 }

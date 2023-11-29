@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "address": "Rua dos Testes, 223",
+    "description": "Teste em bom estado",
+    "propertyType": "Moradia",
+    "squareMeters": 100,
+    "addedById": 1,
+    "forSale": true,
+    "clientId": 1
+  },
+  {
+    "id": 2,
+    "address": "Rua dos Testes, 33",
+    "description": "Teste em bom estado",
+    "propertyType": "Apartamento",
+    "squareMeters": 100,
+    "addedById": 1,
+    "forSale": true,
+    "clientId": 2
+  },
+  {
+    "id": 3,
+    "address": "Rua dos Testes, 23",
+    "description": "Teste em bom estado",
+    "propertyType": "Terreno",
+    "squareMeters": 100,
+    "addedById": 1,
+    "forSale": true,
+    "clientId": 3
+  }
+]

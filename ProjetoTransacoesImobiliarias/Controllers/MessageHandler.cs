@@ -1,6 +1,6 @@
 namespace ProjetoTransacoesImobiliarias.Views.CLI;
 
-public static class ErrorHandler
+public static class MessageHandler
 {
     public static void WrongOption()
     {

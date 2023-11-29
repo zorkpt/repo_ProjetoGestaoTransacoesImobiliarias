@@ -1,14 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ProjetoTransacoesImobiliarias.Controllers;
-using System.Text.Json;
-using System.IO;
 using System.Text.Json.Serialization;
-using ProjetoTransacoesImobiliarias.Interfaces;
-using ProjetoTransacoesImobiliarias.Services;
-
 
 namespace ProjetoTransacoesImobiliarias.Models
 {

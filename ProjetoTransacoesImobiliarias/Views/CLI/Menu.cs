@@ -35,6 +35,7 @@ public class Menu
         Console.WriteLine("1. Adicionar Propriedade");
         Console.WriteLine("2. Editar Propriedade");
         Console.WriteLine("3. Eliminar Propriedade");
+        Console.WriteLine("4. Ver Todas Propriedades");
         Console.WriteLine("0. Voltar ao Menu Principal");
         Console.Write("Escolha uma opção: ");
     }

@@ -46,12 +46,10 @@ public class ClientService : IClientService
             foreach (var element in doc.RootElement.EnumerateArray())
             {
                 var client = JsonSerializer.Deserialize<Client>(element.GetRawText(), options);
-                if (client != null)
-                {
-                    var addedByUser = _userService.GetUserById(client.AddedById);
-                    client.SetAddedBy(addedByUser);
-                    _clients.Add(client);
-                }
+                if (client == null) continue;
+                var addedByUser = _userService.GetUserById(client.AddedById);
+                client.SetAddedBy(addedByUser);
+                _clients.Add(client);
             }
 
             if (_clients.Any())
@@ -82,17 +80,15 @@ public class ClientService : IClientService
     //var simplifiedClientList = _clients.Select(c => new { c.Name, c.Email }).ToList();
 
         var clientList = _clients.Select(client => new {
-            Id = client.Id,
-            Name = client.Name,
-            Address = client.Address,
-            PhoneNumber = client.PhoneNumber,
-            AddedById = client.AddedById
+            client.Id,
+            client.Name,
+            client.Address,
+            client.PhoneNumber,
+            client.AddedById
         }).ToList();
 
-        string json = JsonSerializer.Serialize(clientList);
-
-        string FileJson = "./Files/ClientJson.json";
-
+        var json = JsonSerializer.Serialize(clientList);
+        
         Console.WriteLine($"File Path: {FilePath}");
         try{
             File.WriteAllText(FilePath, json);
@@ -106,6 +102,9 @@ public class ClientService : IClientService
         return true;
     }
 
+    // GetClientById
+    public Client GetClientById(int id) => _clients.FirstOrDefault(c => c.Id == id);
+    
     /// <summary>
     /// Creates a new client with the given name, address, phone number, and added by user.
     /// </summary>

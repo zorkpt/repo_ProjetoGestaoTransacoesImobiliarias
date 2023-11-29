@@ -9,30 +9,20 @@ namespace ProjetoTransacoesImobiliarias;
 internal class Program
 {
     private static UserService _userService;
+    private static ServiceRepository _serviceRepository;
 
     private static void Main(string[] args)
     {
-        var userService = new UserService();
+        _serviceRepository = new ServiceRepository();
 
-
-        if (!userService.LoadUsersFromJson())
+        if (!_serviceRepository.StartServices())
         {
-            Console.WriteLine("Não foi possível carregar os dados do usuário. A aplicação será encerrada.");
+            Console.WriteLine("Não foi possível iniciar os serviços. A aplicação será encerrada.");
             return;
         }
 
-        var clientService = new ClientService(userService);
-        clientService.LoadClientsFromJson();
-        
-        
-        var authService = new AuthenticationService(userService);
-
-        var user = authService.StartLoginProcess();
-
-        var appController = new AppController(userService, clientService);
+        var user = _serviceRepository.AuthenticationService.StartLoginProcess();
+        var appController = new AppController(_serviceRepository.UserService, _serviceRepository.ClientService, _serviceRepository.PropertyService);
         appController.Start(user);
-
-
-
     }
 }

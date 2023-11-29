@@ -1,35 +1,64 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Net.WebSockets;
+using System.Text.Json.Serialization;
 using Microsoft.VisualBasic;
 using ProjetoTransacoesImobiliarias.Controllers;
+
 namespace ProjetoTransacoesImobiliarias.Models;
 
 public class Property
 {
     private static int _counter = 0;
-    private string _address {get; set;}
-    private string _description {get; set;}
-    private PropertyType _propertyType {get; set;}
-    private bool _forSale {get; set;}
-    private double _squareMeters {get; set;}
-    private int _clientId {get; set;}
-    private int _userId {get; set;}
-
-
-
-    public Property(string address, string description, 
-                                PropertyType propertyType, double size, 
-                                int addedBy, int owner){
-        _address = address;
-        _description = description;
-        _propertyType = propertyType;
-        _squareMeters = size;
-        _clientId = owner;
-        _userId = addedBy;
-        _forSale = true;
+    public int Id { get; set; }
+    public string Address { get; set; }
+    public string Description { get; set; }
+    public PropertyType PropertyType { get; set; }
+    public bool ForSale { get; set; }
+    public double SquareMeters { get; set; }
+    public int ClientId { get; set; }
+    public Client Client { get; set; }
+    public int AddedById { get; set; }
+    public User AddedBy { get; set; }
+    
+    
+    [JsonConstructor]
+    public Property(int id, string address, string description, PropertyType propertyType, double squareMeters, int addedById, bool forSale, int clientId)
+    {
+        Id = id;
+        Address = address;
+        Description = description;
+        PropertyType = propertyType;
+        SquareMeters = squareMeters;
+        AddedById = addedById;
+        ForSale = forSale;
+        ClientId = clientId;
     }
 
+    
+    public Property(string address, string description,
+        PropertyType propertyType, double size, int addedById, User addedBy, int clientId, Client client)
+    {
+        Address = address;
+        Description = description;
+        PropertyType = propertyType;
+        SquareMeters = size;
+        ClientId = clientId;
+        Client = client;
+        AddedById = addedById;
+        AddedBy = addedBy;
+        ForSale = true;
+    }
 
-
+    public void SetAddedBy(User user)
+    {
+        AddedBy = user;
+    }
+    
+    public void SetClient(Client client)
+    {
+        Client = client;
+    }
+    
 }

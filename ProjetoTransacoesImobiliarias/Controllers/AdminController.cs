@@ -12,12 +12,14 @@ public class AdminController
     private readonly IUserService _userService;
     private readonly IClientService _clientService;
     private readonly Admin _admin;
+    private readonly IPropertyService _propertyService;
 
-    public AdminController(Admin admin, IUserService userService, IClientService clientService)
+    public AdminController(Admin admin, IUserService userService, IClientService clientService, IPropertyService propertyService)
     {
         _admin = admin;
         _userService = userService;
         _clientService = clientService;
+        _propertyService = propertyService;
     }
 
     /// <summary>
@@ -55,8 +57,9 @@ public class AdminController
                     break;
 
                 case "99":
-                    if(_clientService.SaveClientsToJson()){
-                        ErrorHandler.PressAnyKey("Fechando aplicação...");
+                    if (_clientService.SaveClientsToJson())
+                    {
+                        MessageHandler.PressAnyKey("Fechando aplicação...");
                     }
 
                     break;
@@ -64,7 +67,7 @@ public class AdminController
                     exitMenu = true;
                     break;
                 default:
-                    ErrorHandler.WrongOption();
+                    MessageHandler.WrongOption();
                     break;
             }
         }
@@ -100,7 +103,7 @@ public class AdminController
                     exitMenu = true;
                     break;
                 default:
-                    ErrorHandler.WrongOption();
+                    MessageHandler.WrongOption();
                     break;
             }
         }
@@ -118,7 +121,7 @@ public class AdminController
             switch (option)
             {
                 case "1":
-                    AddUser();
+                    var user = AddUser();
                     break;
                 case "2":
                     // Editar User
@@ -133,7 +136,7 @@ public class AdminController
                     exitMenu = true;
                     break;
                 default:
-                    ErrorHandler.WrongOption();
+                    MessageHandler.WrongOption();
                     break;
             }
         }
@@ -160,7 +163,7 @@ public class AdminController
                     exitMenu = true;
                     break;
                 default:
-                    ErrorHandler.WrongOption();
+                    MessageHandler.WrongOption();
                     break;
             }
         }
@@ -178,7 +181,7 @@ public class AdminController
             switch (option)
             {
                 case "1":
-                    // Adicionar Propriedade
+                    AddProperty();
                     break;
                 case "2":
                     // Editar Propriedade
@@ -186,14 +189,23 @@ public class AdminController
                 case "3":
                     // Eliminar Propriedade
                     break;
+                case "4":
+                    var allProperties = _propertyService.GetAllProperties();
+                    PropertyView.DisplayAllProperties(allProperties);
+                    break;
                 case "0":
                     exitMenu = true;
                     break;
                 default:
-                    ErrorHandler.WrongOption();
+                    MessageHandler.WrongOption();
                     break;
             }
         }
+    }
+
+    private void AddProperty()
+    {
+        throw new NotImplementedException();
     }
 
     /// <summary>
@@ -205,7 +217,7 @@ public class AdminController
         var clients = all ? _clientService.GetAllClients() : _admin.GetAdminClients();
         if (!clients.Any())
         {
-            ErrorHandler.PressAnyKey("Sem dados.");
+            MessageHandler.PressAnyKey("Sem dados.");
         }
         else
         {
@@ -240,8 +252,7 @@ public class AdminController
             return null;
         }
 
-        // @TODO: Deveriamos alterar o nome da classe para MessageHandler ?
-        ErrorHandler.PressAnyKey("Cliente Adicionado com sucesso.");
+        MessageHandler.PressAnyKey("Cliente Adicionado com sucesso.");
         _admin.AddClient(newClient);
         return newClient;
     }
@@ -270,20 +281,13 @@ public class AdminController
     /// <returns></returns>
     private User AddUser()
     {
-        var adminView = new AdminView();
         var clientData = AdminView.AddUser();
+        var newUser = _userService.CreateUser(clientData.Userame,
+                                                        clientData.Password,
+                                                        clientData.Name,
+                                                        clientData.Role);
 
-        var newUser =
-            _userService.CreateUser(clientData.Userame,clientData.Password,clientData.Name,clientData.Role);
-
-        if (newUser is null)
-        {
-            // tratar do erro aqui ? 
-            return null;
-        }
-
-        // @TODO: Deveriamos alterar o nome da classe para MessageHandler ?
-        ErrorHandler.PressAnyKey("Utilizador Adicionado com sucesso.");
+        MessageHandler.PressAnyKey("Utilizador Adicionado com sucesso.");
         return newUser;
     }
 }
