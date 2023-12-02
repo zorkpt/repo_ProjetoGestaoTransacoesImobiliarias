@@ -65,5 +65,38 @@ public class Menu
 
     }
 
+    #region Agent
+    /// <summary>
+    /// Everything, but the ability to manage users.
+    /// </summary>
+    /// <param name="agent"></param>
+    public static void AgentMenu(Agent agent)
+    {
+        Console.Clear();
+        Console.WriteLine("========== Agent menu ==========");
+        Console.WriteLine($"Bem-Vindo {agent.Username}");
+        Console.WriteLine("1. Gerir Clientes");
+        Console.WriteLine("2. Gerir Transação");
+        Console.WriteLine("3. Gerir Propriedades");
+        Console.WriteLine("0. Sair");
+        Console.Write("Escolha uma opção: ");
+    }
+    /// <summary>
+    /// Everything related to managing clients, but with out the ability to see ALL clients.
+    /// </summary>
+    public static void ManageClientsAgentView()
+    {
+        Console.Clear();
+        Console.WriteLine("========== Gerir Clientes ==========");
+        Console.WriteLine("1. Adicionar Cliente");
+        Console.WriteLine("2. Editar Cliente");
+        Console.WriteLine("3. Eliminar Cliente");
+        Console.WriteLine("4. Ver meus Cliente");
+        //Console.WriteLine("5. Ver todos Clientes");
+        Console.WriteLine("0. Voltar ao Menu Principal");
+        Console.Write("Escolha uma opção: ");
+    }
+
+    #endregion
 }
 
