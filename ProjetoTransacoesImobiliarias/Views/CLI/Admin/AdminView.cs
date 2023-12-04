@@ -54,25 +54,25 @@ public class AdminView
         MessageHandler.PressAnyKey();
     }
 
-    public static ClientData AddClient()
-    {
-        Console.WriteLine("Adicionar novo cliente:");
-        Console.Write("Nome: ");
-        string clientName = Console.ReadLine() ?? string.Empty;
-
-        Console.Write("Endereço: ");
-        string clientAddress = Console.ReadLine() ?? string.Empty;
-
-        Console.Write("Número de telefone: ");
-        string clientPhoneNumber = Console.ReadLine() ?? string.Empty;
-
-        return new ClientData
-        {
-            Name = clientName,
-            Address = clientAddress,
-            PhoneNumber = clientPhoneNumber
-        };
-    }
+//    public static ClientData AddClient()
+ //   {
+  //      Console.WriteLine("Adicionar novo cliente:");
+   //     Console.Write("Nome: ");
+    //    string clientName = Console.ReadLine() ?? string.Empty;
+//
+ //       Console.Write("Endereço: ");
+  //      string clientAddress = Console.ReadLine() ?? string.Empty;
+//
+ //       Console.Write("Número de telefone: ");
+  //      string clientPhoneNumber = Console.ReadLine() ?? string.Empty;
+//
+ //       return new ClientData
+  //      {
+   //         Name = clientName,
+    //        Address = clientAddress,
+     //       PhoneNumber = clientPhoneNumber
+      //  };
+   // }
 
     public static void DisplayAllClients(IEnumerable<Client> clients)
     {
@@ -191,13 +191,6 @@ public class AdminView
             }
         }
     }
-}
-
-public class ClientData
-{
-    public string Name { get; set; }
-    public string Address { get; set; }
-    public string PhoneNumber { get; set; }
 }
 
 public class UserData

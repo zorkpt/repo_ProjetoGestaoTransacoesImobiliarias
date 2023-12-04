@@ -4,6 +4,7 @@ using ProjetoTransacoesImobiliarias.Models;
 using ProjetoTransacoesImobiliarias.Services;
 using ProjetoTransacoesImobiliarias.Views;
 using ProjetoTransacoesImobiliarias.Views.CLI;
+using ProjetoTransacoesImobiliarias.Views.CLI.Client;
 
 namespace ProjetoTransacoesImobiliarias.Controllers;
 
@@ -55,7 +56,7 @@ public class AdminController
                     ListClients();
                     break;
                 case "7":
-                    AddClient();
+                 //   AddClient();
                     break;
 
                 case "99":
@@ -87,7 +88,8 @@ public class AdminController
             switch (option)
             {
                 case "1":
-                    AddClient();
+                    var clientData = ClientView.AddClient();
+                    _clientService.AddClient(clientData, _admin);
                     break;
                 case "2":
                     EditClient();
@@ -215,7 +217,7 @@ public class AdminController
                 propertyData.PropertyType,
                 propertyData.Size,
                 _admin,
-                client);
+              client);
       
         if (newProperty is null)
         {
@@ -251,29 +253,6 @@ public class AdminController
     {
         var allUsers = _userService.GetAllUsers();
         AdminView.DisplayUsers(allUsers);
-    }
-
-    /// <summary>
-    /// Adds a new client to the system.
-    /// </summary>
-    /// <returns>Returns the newly created client object if successful, otherwise returns null.</returns>
-    private Client AddClient()
-    {
-        var adminView = new AdminView();
-        var clientData = AdminView.AddClient();
-
-        var newClient =
-            _clientService.CreateClient(clientData.Name, clientData.Address, clientData.PhoneNumber, _admin);
-
-        if (newClient is null)
-        {
-            // tratar do erro aqui ? 
-            return null;
-        }
-
-        MessageHandler.PressAnyKey("Cliente Adicionado com sucesso.");
-        _admin.AddClient(newClient);
-        return newClient;
     }
 
     /// <summary>

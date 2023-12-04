@@ -1,6 +1,8 @@
 using ProjetoTransacoesImobiliarias.Interfaces;
 using ProjetoTransacoesImobiliarias.Models;
 using System.Text.Json;
+using ProjetoTransacoesImobiliarias.Views.CLI;
+using ProjetoTransacoesImobiliarias.Views.CLI.Client;
 
 namespace ProjetoTransacoesImobiliarias.Services;
 
@@ -118,6 +120,19 @@ public class ClientService : IClientService
         var newId = _counter++;
         var newClient = new Client(name, address, name, addedBy, addedBy.Id) { Id = newId };
         _clients.Add(newClient);
+        return newClient;
+    }
+   
+    public Client AddClient(ClientView.ClientData clientData, User user)
+    {
+        var newClient = CreateClient(clientData.Name, clientData.Address, clientData.PhoneNumber, user);
+
+        if (newClient is null)
+        {
+            return null;
+        }
+
+        user.AddClient(newClient);
         return newClient;
     }
 }
