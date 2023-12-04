@@ -11,7 +11,7 @@ namespace ProjetoTransacoesImobiliarias.Controllers
     {
         public static void Menu(Agent agent)
         {
-            AgentView.ShowAgentMenu(agent);
+            //AgentView.ShowAgentMenu(agent);
         }
 
     }
