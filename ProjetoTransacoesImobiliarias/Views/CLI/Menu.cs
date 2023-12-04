@@ -62,10 +62,9 @@ public class Menu
         Console.WriteLine("3. Editar Transação");
         Console.WriteLine("0. Voltar ao Menu Principal");
         Console.Write("Escolha uma opção: ");
-
     }
 
-    #region Agent
+
     /// <summary>
     /// Everything, but the ability to manage users.
     /// </summary>
@@ -76,8 +75,10 @@ public class Menu
         Console.WriteLine("========== Agent menu ==========");
         Console.WriteLine($"Bem-Vindo {agent.Username}");
         Console.WriteLine("1. Gerir Clientes");
+    }
 
     #region Manager menu
+
     public static void ManagerMenu(Manager manager)
     {
         Console.Clear();
@@ -90,6 +91,7 @@ public class Menu
         Console.WriteLine("0. Sair");
         Console.Write("Escolha uma opção: ");
     }
+
     /// <summary>
     /// Everything related to managing clients, but with out the ability to see ALL clients.
     /// </summary>
@@ -108,4 +110,3 @@ public class Menu
 
     #endregion
 }
-
