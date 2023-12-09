@@ -71,16 +71,22 @@ namespace ProjetoTransacoesImobiliarias.Controllers
 
         public bool AcceptProposal(int proposalId){
             
-            Proposal? proposal = Proposal.ProposalList.Find(x => x.ProposalId == proposalId);
+            try{
+                Proposal? proposal = Proposal.ProposalList.Find(x => x.ProposalId == proposalId);
 
-            if(proposal == null){
-                Menu.ErrorMessage();
+                if(proposal == null){
+                    Menu.ErrorMessage();
+                    return false;
+                }
+                
+                proposal.Active = false;
+                proposal.ProposalAceptedDate = DateTime.Now;
+                return true;
+            }catch(Exception ex){
+                Console.WriteLine(ex.Message);
                 return false;
             }
             
-            proposal.Active = false;
-            proposal.ProposalAceptedDate = DateTime.Now;
-            return true;
         }
     
     } 
