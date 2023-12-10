@@ -25,6 +25,7 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             if(ExistsTransactionByProperty(proposal)) return null;//Propriedade existe, nao pode ter nova transacao
             Transactions a = new Transactions(proposal);
             transactioView.TransactionsViewSucessMessage();
+            transactioView.TransactionsViewShowReference(a.PaymentRef);
             return a;
         }
 
@@ -34,8 +35,9 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         {
             if(proposal == null) return false;
             //Algo do genero disto:
-            // if(Transactions.TransactionsMap.ContainsKey(proposal.PropertyId)) return true;
-            // if(Transactions.TransactionList.Find(t => t.proposal.PropertyId == proposal.PropertyId)) return true;
+            if(Transactions.TransactionsMap.ContainsKey(proposal.PropertyId)) return true;
+            Transactions? a = Transactions.TransactionList.Find(t => t.proposal.PropertyId == proposal.PropertyId);
+            if(a != null) return true;
             return false;
         }
 
