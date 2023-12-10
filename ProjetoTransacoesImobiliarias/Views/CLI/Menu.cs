@@ -109,4 +109,31 @@ public class Menu
     }
 
     #endregion
+
+    #region Proposal menu
+    public static void ProposalMenu()
+    {
+        Console.Clear();
+        Console.WriteLine("========== Proposta ==========");
+        Console.WriteLine("1. Fazer Proposta");
+        Console.WriteLine("2. Responder Proposta");
+        Console.WriteLine("3. Ver Todas Propostas");
+        Console.WriteLine("4. Gerir Propriedades");
+        Console.WriteLine("0. Sair");
+        Console.Write("Escolha uma opção: ");
+    }
+
+    public static void MensagemSucesso(){
+        Console.Clear();
+        Console.WriteLine("========== Feito com sucesso ==========");
+    }
+
+    public static void ErrorMessage(){
+        Console.Clear();
+        Console.WriteLine("========== Algo de errado não está certo ==========");
+    }
+
+    
+
+    #endregion
 }
