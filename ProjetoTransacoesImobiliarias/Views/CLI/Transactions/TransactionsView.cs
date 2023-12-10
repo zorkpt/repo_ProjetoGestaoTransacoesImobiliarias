@@ -18,5 +18,15 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI.Transactions
             Console.WriteLine("Transação adicionada com sucesso");
         }
 
+        public void TransactionsViewErrorMessage()
+        {
+            Console.WriteLine("Algo de errado não está certo");
+        }
+
+        public void TransactionsViewShowReference(int reference)
+        {
+            Console.WriteLine($"Referencia para pagamento: {reference}");
+        }
+
     }
 }
