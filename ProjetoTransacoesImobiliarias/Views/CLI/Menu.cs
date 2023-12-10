@@ -142,15 +142,16 @@ public class Menu
 
     #region Managing clients menu
 
-    public static void ManageClientsView()
+    public static void ManageClientsView(string nomeCLiente)
     {
-        Console.Clear();
-        //Console.WriteLine("----------------------------------");
+
+        //Console.Clear();
+        Console.WriteLine("========== ========== ========== ==========");
+        Console.WriteLine("Cliente " + nomeCLiente);
         Console.WriteLine("1 Fazer proposta");
-        Console.WriteLine("2 Listar propostas recebidas");
-        Console.WriteLine("3 Listar propostas enviadas");
-        Console.WriteLine("4 Aceitar proposta");
-        Console.WriteLine("5 Rejeitar proposta");
+        Console.WriteLine("2 Aprovar proposta");
+        Console.WriteLine("3 Rejeitar proposta");
+        Console.WriteLine("4 Listar propostas");
         Console.WriteLine("0 Sair");
         Console.Write("Escolha uma opção: ");
         

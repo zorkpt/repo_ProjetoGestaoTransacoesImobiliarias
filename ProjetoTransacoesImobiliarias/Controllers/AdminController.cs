@@ -15,7 +15,7 @@ public class AdminController
     private readonly Admin _admin;
     private readonly IPropertyService _propertyService;
     private ProposalController proposalController;
-
+    private TransactionController transactionController;
     private AdminView AdminView { get; set; }
     
     public AdminController(Admin admin, IUserService userService, IClientService clientService, IPropertyService propertyService)
@@ -25,6 +25,7 @@ public class AdminController
         _clientService = clientService;
         _propertyService = propertyService;
         proposalController = new ProposalController(); 
+        transactionController = new TransactionController();
         AdminView = new AdminView();
     }
 
@@ -214,7 +215,7 @@ public class AdminController
         }
     }
 
-    private Property AddProperty()
+    private Property? AddProperty()
     {
         var propertyData = AdminView.AddProperty();
         var client = _clientService.GetClientById(propertyData.ClientId);
@@ -266,7 +267,7 @@ public class AdminController
     /// Edits a client and returns the modified client.
     /// </summary>
     /// <returns></returns>
-    private Client EditClient()
+    private Client? EditClient()
     {
         return null;
     }
@@ -275,7 +276,7 @@ public class AdminController
     /// Deletes a client.
     /// </summary>
     /// <returns></returns>
-    private Client DeleteClient()
+    private Client? DeleteClient()
     {
         return null;
     }
@@ -301,6 +302,13 @@ public class AdminController
         while (true)
         {
             int clientId = AdminView.ChooseClientIdView();
+
+            while (!int.TryParse(clientId.ToString(), out clientId))
+            {
+                Console.WriteLine("Pf inserir um numero valido");
+                clientId = AdminView.ChooseClientIdView();
+            }
+
             Client client = _clientService.GetClientById(clientId);
             if (client != null)
             {
@@ -320,28 +328,38 @@ public class AdminController
         var exitMenu = false;
         while (!exitMenu)
         {
-            AdminView.ManageClientOptionsView();
+            AdminView.ManageClientOptionsView(client.Name);
             var option = Console.ReadLine();
             switch (option)
             {
                 case "1":
-                    //Listar propostas
-                    break;
-                case "2":
                     //Fazer proposta
-                    if(proposalController.MakeProposal())
+                    if(proposalController.MakeProposal(client.Id))
                     {
                         MessageHandler.PressAnyKey("Proposta enviada com sucesso.");
                     }
                     
-                    proposalController.MakeProposal();
                     //Proposal a = new Proposal(client, property, price);
-                    return;
-                case "3":
+                    break;
+                case "2":
                     //Aprovar proposta
+                    //escolher proposta a aprovar 
+                    Proposal proposal = proposalController.ChooseProposal();
+                    //aceitar proposta
+                    proposalController.AcceptProposal(proposal.ProposalId.Value);
+                    //Iniciar transação
+                    transactionController.AddTransaction(proposal);
+                    MessageHandler.PressAnyKey("Proposta aprovada com sucesso.");
+                    break;
+                case "3":
+                    //Rejeitar proposta
+                    Proposal proposal1 = proposalController.ChooseProposal();
+                    bool a = proposalController.DeclineProposal(proposal1.ProposalId.Value);
+                    MessageHandler.PressAnyKey("Proposta rejeitada com sucesso.");
                     break;
                 case "4":
-                    //Rejeitar proposta
+                    //Listar propostas
+                    proposalController.SeeProposalsByClient(client);
                     break;
                 case "0":
                     exitMenu = true;

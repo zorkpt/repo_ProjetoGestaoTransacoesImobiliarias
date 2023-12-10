@@ -4,16 +4,16 @@ using ProjetoTransacoesImobiliarias.Models;
 
 namespace ProjetoTransacoesImobiliarias;
 
-public class Proposal
+internal class Proposal
 {
     private static int ProposalIdCounter = 0;
-    public int ProposalId { get; set; }
-    public Client Client { get; set; }
-    public Property Property { get; set; }
-    protected decimal ProposalValue { get; set; }
+    public int? ProposalId { get; set; }
+    public Client? Client { get; set; }
+    public Property? Property { get; set; }
+    protected decimal? ProposalValue { get; set; }
     public DateTime? ProposalDate {get ; set ;}
     public DateTime? ProposalAceptedDate {get ; set ;}
-    public DateTime? ProposalDateLimit {get ; set ;}
+    public DateTime? ProposalRejectedDate {get ; set ;}
     public bool Active;
     public static List<Proposal> ProposalList = new List<Proposal>();
 
@@ -23,7 +23,7 @@ public class Proposal
         Client = clientId;
         Property = propertyId;
         ProposalValue = proposalValue;
-        //ProposalDate = proposalDate;
+        ProposalDate = DateTime.Now;
         //ProposalDateLimit = proposalDateLimit;
         Active = true;
         ProposalList.Add(this);

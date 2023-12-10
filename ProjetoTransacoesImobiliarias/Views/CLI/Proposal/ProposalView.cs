@@ -24,12 +24,12 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI.Proposal
         }
 
         public int ProposalViewIdClient()
-        {
-            int id;
-            Console.Clear();
-            Console.WriteLine("Id do cliente");
-            id = Convert.ToInt32(Console.ReadLine());
-            return id;
+        {   
+                int id;
+                Console.Clear();
+                Console.WriteLine("Id do cliente");
+                id = Convert.ToInt32(Console.ReadLine());
+                return id;
         }
 
         public decimal ProposalViewProposalValue()
@@ -43,10 +43,18 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI.Proposal
 
         public void Print <T>(List<T> list)
         {
-            foreach (var item in list)
-            {
-                Console.WriteLine(item);
-            }
+                foreach (var item in list)
+                {
+                    Console.Write(item);
+                    Console.Write(item);
+                }
+            
+        }
+
+        public void ChooseProposalView()
+        {
+            Console.Clear();
+            Console.WriteLine("========== Escolha o Id da proposta ==========");
         }
 
 

@@ -114,7 +114,6 @@ public class AdminView
             Role = userRole
         };
     }
-    
     public static PropertyData AddProperty()
     {
         Console.WriteLine("Adicionar nova propriedade:");
@@ -194,9 +193,10 @@ public class AdminView
     /// <summary>
     /// Manages the submenu for managing clients.
     /// </summary>
-    public void ManageClientOptionsView()
+    public void ManageClientOptionsView(string nomeCLiente)
     {
-        Menu.ManageClientsView();
+
+        Menu.ManageClientsView(nomeCLiente);
     }
 
     public static int ChoosePropertyIdView(){
@@ -220,10 +220,26 @@ public class AdminView
     public static int ChooseClientIdView()
     {
         Console.Clear();
-        int id;
+        
         Console.WriteLine("========== Escolha o ID do cliente ==========");
-        id = Convert.ToInt32(Console.ReadLine());
-        return id;
+        
+        bool isValidInput = false;
+        
+        while (!isValidInput)
+        {
+            string input = Console.ReadLine();
+            
+            // Tenta converter a string em um número inteiro
+            isValidInput = int.TryParse(input, out int id);
+            
+            if (!isValidInput)
+            {
+                Console.WriteLine("Entrada inválida. Por favor, insira um número válido.");
+            }
+            return id;
+        }
+        return -1;
+        
     }
 
 }

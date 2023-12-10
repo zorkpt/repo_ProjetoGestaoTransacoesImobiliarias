@@ -12,6 +12,6 @@ public static class MessageHandler
     {
         Console.WriteLine(message);
         Console.WriteLine("Pressione qualquer tecla para continuar...");
-        Console.ReadKey();
+        //Console.ReadKey(); // Comentei apenas para fazer debug, não estaá a dar no VSCode
     }
 }

@@ -11,7 +11,7 @@ namespace ProjetoTransacoesImobiliarias.Models
     {
         private static int IdCounter = 0;
         public int? TransactionId { get; set; }
-        public int ProposalId { get; set; }
+        //public int ProposalId { get; set; }
         public Proposal proposal { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime PaidDate { get; set; }
