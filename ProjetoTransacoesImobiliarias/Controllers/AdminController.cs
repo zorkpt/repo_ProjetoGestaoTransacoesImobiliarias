@@ -17,6 +17,8 @@ public class AdminController
     private ProposalController proposalController;
     private TransactionController transactionController;
     private AdminView AdminView { get; set; }
+    private VisitsController visitsController;
+    private PropertyController propertyController;
     
     public AdminController(Admin admin, IUserService userService, IClientService clientService, IPropertyService propertyService)
     {
@@ -27,6 +29,8 @@ public class AdminController
         proposalController = new ProposalController(); 
         transactionController = new TransactionController();
         AdminView = new AdminView();
+        visitsController = new VisitsController();
+        propertyController = new PropertyController();
     }
 
     /// <summary>
@@ -360,6 +364,18 @@ public class AdminController
                 case "4":
                     //Listar propostas
                     proposalController.SeeProposalsByClient(client);
+                    break;
+                case "5":
+                    // Marcar visita
+                    var allProperties = _propertyService.GetAllProperties();
+                    PropertyView.DisplayAllProperties(allProperties);
+                    Property? property = propertyController.ChooseProperty();
+                    if (property == null) return;
+                    DateTime date = visitsController.ChooseDate();
+                    if(visitsController.MakeVisit(property, client, date))
+                    {
+                        MessageHandler.PressAnyKey("Visita marcada com sucesso.");
+                    }
                     break;
                 case "0":
                     exitMenu = true;

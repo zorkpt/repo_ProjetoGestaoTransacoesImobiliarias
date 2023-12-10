@@ -4,6 +4,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI;
 
 public static class PropertyView
 {
+
     public static void DisplayAllProperties(IEnumerable<Property> properties)
     {
         Console.Clear();
@@ -22,6 +23,17 @@ public static class PropertyView
 
         Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
         MessageHandler.PressAnyKey();
+    }
+
+    public static int ChooseProperty(){
+            Console.Clear();
+            Console.WriteLine("Inserir Id da propriedade:");
+            int id;
+            while (!int.TryParse(Console.ReadLine(), out id))
+            {
+                Console.WriteLine("Id invalida. Tente novamente:");
+            }
+            return id;                    
     }
 
 
