@@ -1,24 +1,42 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Transactions;
 using ProjetoTransacoesImobiliarias.Models;
+using ProjetoTransacoesImobiliarias.Views.CLI.Transactions;
 
 namespace ProjetoTransacoesImobiliarias.Controllers
 {
-    public class TransactionController
+    internal class TransactionController
     {
-        public TransactionController(){
-
+        private TransactionsView transactioView;
+        public TransactionController()
+        {
+            transactioView = new TransactionsView();
         }
 
-        public Transactions AddTransaction(Proposal proposal){
+        public Transactions? AddTransaction(Proposal proposal){
             if(proposal == null){
                 return null;
             }
+
+            if(ExistsTransactionByProperty(proposal)) return null;//Propriedade existe, nao pode ter nova transacao
             Transactions a = new Transactions(proposal);
+            transactioView.TransactionsViewSucessMessage();
             return a;
+        }
+
+        //TODO: Fazer quando fizer merge com proposal... 
+        // Não vou fazer agora para não dar conflito
+        private bool ExistsTransactionByProperty(Proposal proposal)
+        {
+            if(proposal == null) return false;
+            //Algo do genero disto:
+            // if(Transactions.TransactionsMap.ContainsKey(proposal.PropertyId)) return true;
+            // if(Transactions.TransactionList.Find(t => t.proposal.PropertyId == proposal.PropertyId)) return true;
+            return false;
         }
 
         /// <summary>
@@ -31,6 +49,7 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             if(item == null) return false;
             Transactions.TransactionList.Remove(item);//Remove from list
             Transactions.TransactionsMap.Remove(item.TransactionId);//Remove from hashtable
+            transactioView.TransactionsViewSucessMessage();
             return true;
         }
 
