@@ -10,6 +10,7 @@ namespace ProjetoTransacoesImobiliarias.Models
         public string PhoneNumber { get; set; }
         public int AddedById {get; set;}
         public User AddedBy { get; set; }
+        public static List<Client> ClientList = new List<Client>();
 
         public Client(string name, string address, string phoneNumber, User addedBy, int addedById)
         {
@@ -18,6 +19,7 @@ namespace ProjetoTransacoesImobiliarias.Models
             AddedBy = addedBy;
             PhoneNumber = phoneNumber;
             AddedById = addedById;
+            ClientList.Add(this);
         }
 
         [JsonConstructor]
@@ -27,6 +29,7 @@ namespace ProjetoTransacoesImobiliarias.Models
             Address = address;
             PhoneNumber = phoneNumber;
             AddedById = addedById;
+            ClientList.Add(this);
         }
         public void SetAddedBy(User user)
         {

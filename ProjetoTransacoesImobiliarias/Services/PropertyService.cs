@@ -102,5 +102,11 @@ namespace ProjetoTransacoesImobiliarias.Services
             _propertiesList.Add(newProperty);
             return newProperty;
         }
+
+        public Property GetPropertyById(int id)
+        {
+            if (id < 0) return null;
+            return _propertiesList.FirstOrDefault(property => property.Id == id);
+        }
     }
 }

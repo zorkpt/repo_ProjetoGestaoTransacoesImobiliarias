@@ -18,7 +18,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI.Proposal
         {
             int id;
             Console.Clear();
-            Console.Write("Id da propriedade");
+            Console.WriteLine("Id da propriedade");
             id = Convert.ToInt32(Console.ReadLine());
             return id;
         }
@@ -27,7 +27,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI.Proposal
         {
             int id;
             Console.Clear();
-            Console.Write("Id do cliente");
+            Console.WriteLine("Id do cliente");
             id = Convert.ToInt32(Console.ReadLine());
             return id;
         }
@@ -36,7 +36,7 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI.Proposal
         {
             decimal value;
             Console.Clear();
-            Console.Write("Valor");
+            Console.WriteLine("Valor");
             value = Convert.ToDecimal(Console.ReadLine());
             return value;
         }

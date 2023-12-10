@@ -191,6 +191,41 @@ public class AdminView
             }
         }
     }
+    /// <summary>
+    /// Manages the submenu for managing clients.
+    /// </summary>
+    public void ManageClientOptionsView()
+    {
+        Menu.ManageClientsView();
+    }
+
+    public static int ChoosePropertyIdView(){
+        Console.Clear();
+        
+        int id;
+        Console.WriteLine("========== Escolha o ID da propriedade ==========");
+        id = Convert.ToInt32(Console.ReadLine());
+        return id;
+    }
+
+    public static decimal ChoosePropertyPriceView()
+    {
+        Console.Clear();
+        decimal price;
+        Console.WriteLine("========== Escolha o valor da proposta ==========");
+        price = Convert.ToDecimal(Console.ReadLine());
+        return price;
+    }
+
+    public static int ChooseClientIdView()
+    {
+        Console.Clear();
+        int id;
+        Console.WriteLine("========== Escolha o ID do cliente ==========");
+        id = Convert.ToInt32(Console.ReadLine());
+        return id;
+    }
+
 }
 
 public class UserData

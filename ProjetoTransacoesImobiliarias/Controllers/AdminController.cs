@@ -14,6 +14,8 @@ public class AdminController
     private readonly IClientService _clientService;
     private readonly Admin _admin;
     private readonly IPropertyService _propertyService;
+    private ProposalController proposalController;
+
     private AdminView AdminView { get; set; }
     
     public AdminController(Admin admin, IUserService userService, IClientService clientService, IPropertyService propertyService)
@@ -22,6 +24,7 @@ public class AdminController
         _userService = userService;
         _clientService = clientService;
         _propertyService = propertyService;
+        proposalController = new ProposalController(); 
         AdminView = new AdminView();
     }
 
@@ -103,6 +106,10 @@ public class AdminController
                 case "5":
                     ListClients();
                     break;
+                case "6":
+                    ManageClientOptions();//novo
+                    break;
+                
                 case "0":
                     exitMenu = true;
                     break;
@@ -287,5 +294,62 @@ public class AdminController
 
         MessageHandler.PressAnyKey("Utilizador Adicionado com sucesso.");
         return newUser;
+    }
+
+
+    public Client ChooseClient(){
+        while (true)
+        {
+            int clientId = AdminView.ChooseClientIdView();
+            Client client = _clientService.GetClientById(clientId);
+            if (client != null)
+            {
+                return client;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Manages a client. 
+    /// </summary>
+    public void ManageClientOptions()
+    {
+        
+        Client client = ChooseClient();
+
+        var exitMenu = false;
+        while (!exitMenu)
+        {
+            AdminView.ManageClientOptionsView();
+            var option = Console.ReadLine();
+            switch (option)
+            {
+                case "1":
+                    //Listar propostas
+                    break;
+                case "2":
+                    //Fazer proposta
+                    if(proposalController.MakeProposal())
+                    {
+                        MessageHandler.PressAnyKey("Proposta enviada com sucesso.");
+                    }
+                    
+                    proposalController.MakeProposal();
+                    //Proposal a = new Proposal(client, property, price);
+                    return;
+                case "3":
+                    //Aprovar proposta
+                    break;
+                case "4":
+                    //Rejeitar proposta
+                    break;
+                case "0":
+                    exitMenu = true;
+                    break;
+                default:
+                    MessageHandler.WrongOption();
+                    break;
+            }        
+        }
     }
 }

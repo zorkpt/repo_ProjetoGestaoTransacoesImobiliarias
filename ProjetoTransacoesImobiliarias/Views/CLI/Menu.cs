@@ -49,6 +49,7 @@ public class Menu
         Console.WriteLine("3. Eliminar Cliente");
         Console.WriteLine("4. Ver meus Cliente");
         Console.WriteLine("5. Ver todos Clientes");
+        Console.WriteLine("6. Gerir cliente"); //novo
         Console.WriteLine("0. Voltar ao Menu Principal");
         Console.Write("Escolha uma opção: ");
     }
@@ -133,7 +134,26 @@ public class Menu
         Console.WriteLine("========== Algo de errado não está certo ==========");
     }
 
+
+
     
 
+    #endregion
+
+    #region Managing clients menu
+
+    public static void ManageClientsView()
+    {
+        Console.Clear();
+        //Console.WriteLine("----------------------------------");
+        Console.WriteLine("1 Fazer proposta");
+        Console.WriteLine("2 Listar propostas recebidas");
+        Console.WriteLine("3 Listar propostas enviadas");
+        Console.WriteLine("4 Aceitar proposta");
+        Console.WriteLine("5 Rejeitar proposta");
+        Console.WriteLine("0 Sair");
+        Console.Write("Escolha uma opção: ");
+        
+    }
     #endregion
 }

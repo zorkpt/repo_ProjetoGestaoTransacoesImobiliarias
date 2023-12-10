@@ -35,9 +35,9 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         {
             if(proposal == null) return false;
             //Algo do genero disto:
-            if(Transactions.TransactionsMap.ContainsKey(proposal.PropertyId)) return true;
-            Transactions? a = Transactions.TransactionList.Find(t => t.proposal.PropertyId == proposal.PropertyId);
-            if(a != null) return true;
+            //if(Transactions.TransactionsMap.ContainsKey(proposal.property.PropertyId)) return true;
+            //Transactions? a = Transactions.TransactionList.Find(t => t.proposal.property.PropertyId == proposal.property.PropertyId);
+            //if(a != null) return true;
             return false;
         }
 
