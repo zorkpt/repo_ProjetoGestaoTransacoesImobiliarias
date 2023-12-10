@@ -14,7 +14,11 @@ public class AdminController
     private readonly IClientService _clientService;
     private readonly Admin _admin;
     private readonly IPropertyService _propertyService;
+    private ProposalController proposalController;
+    private TransactionController transactionController;
     private AdminView AdminView { get; set; }
+    private VisitsController visitsController;
+    private PropertyController propertyController;
     
     public AdminController(Admin admin, IUserService userService, IClientService clientService, IPropertyService propertyService)
     {
@@ -22,7 +26,11 @@ public class AdminController
         _userService = userService;
         _clientService = clientService;
         _propertyService = propertyService;
+        proposalController = new ProposalController(); 
+        transactionController = new TransactionController();
         AdminView = new AdminView();
+        visitsController = new VisitsController();
+        propertyController = new PropertyController();
     }
 
     /// <summary>
@@ -103,6 +111,10 @@ public class AdminController
                 case "5":
                     ListClients();
                     break;
+                case "6":
+                    ManageClientOptions();//novo
+                    break;
+                
                 case "0":
                     exitMenu = true;
                     break;
@@ -207,7 +219,7 @@ public class AdminController
         }
     }
 
-    private Property AddProperty()
+    private Property? AddProperty()
     {
         var propertyData = AdminView.AddProperty();
         var client = _clientService.GetClientById(propertyData.ClientId);
@@ -259,7 +271,7 @@ public class AdminController
     /// Edits a client and returns the modified client.
     /// </summary>
     /// <returns></returns>
-    private Client EditClient()
+    private Client? EditClient()
     {
         return null;
     }
@@ -268,7 +280,7 @@ public class AdminController
     /// Deletes a client.
     /// </summary>
     /// <returns></returns>
-    private Client DeleteClient()
+    private Client? DeleteClient()
     {
         return null;
     }
@@ -287,5 +299,91 @@ public class AdminController
 
         MessageHandler.PressAnyKey("Utilizador Adicionado com sucesso.");
         return newUser;
+    }
+
+
+    public Client ChooseClient(){
+        while (true)
+        {
+            int clientId = AdminView.ChooseClientIdView();
+
+            while (!int.TryParse(clientId.ToString(), out clientId))
+            {
+                Console.WriteLine("Pf inserir um numero valido");
+                clientId = AdminView.ChooseClientIdView();
+            }
+
+            Client client = _clientService.GetClientById(clientId);
+            if (client != null)
+            {
+                return client;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Manages a client. 
+    /// </summary>
+    public void ManageClientOptions()
+    {
+        
+        Client client = ChooseClient();
+
+        var exitMenu = false;
+        while (!exitMenu)
+        {
+            AdminView.ManageClientOptionsView(client.Name);
+            var option = Console.ReadLine();
+            switch (option)
+            {
+                case "1":
+                    //Fazer proposta
+                    if(proposalController.MakeProposal(client.Id))
+                    {
+                        MessageHandler.PressAnyKey("Proposta enviada com sucesso.");
+                    }
+                    
+                    //Proposal a = new Proposal(client, property, price);
+                    break;
+                case "2":
+                    //Aprovar proposta
+                    //escolher proposta a aprovar 
+                    Proposal proposal = proposalController.ChooseProposal();
+                    //aceitar proposta
+                    proposalController.AcceptProposal(proposal.ProposalId.Value);
+                    //Iniciar transação
+                    transactionController.AddTransaction(proposal);
+                    MessageHandler.PressAnyKey("Proposta aprovada com sucesso.");
+                    break;
+                case "3":
+                    //Rejeitar proposta
+                    Proposal proposal1 = proposalController.ChooseProposal();
+                    bool a = proposalController.DeclineProposal(proposal1.ProposalId.Value);
+                    MessageHandler.PressAnyKey("Proposta rejeitada com sucesso.");
+                    break;
+                case "4":
+                    //Listar propostas
+                    proposalController.SeeProposalsByClient(client);
+                    break;
+                case "5":
+                    // Marcar visita
+                    var allProperties = _propertyService.GetAllProperties();
+                    PropertyView.DisplayAllProperties(allProperties);
+                    Property? property = propertyController.ChooseProperty();
+                    if (property == null) return;
+                    DateTime date = visitsController.ChooseDate();
+                    if(visitsController.MakeVisit(property, client, date))
+                    {
+                        MessageHandler.PressAnyKey("Visita marcada com sucesso.");
+                    }
+                    break;
+                case "0":
+                    exitMenu = true;
+                    break;
+                default:
+                    MessageHandler.WrongOption();
+                    break;
+            }        
+        }
     }
 }

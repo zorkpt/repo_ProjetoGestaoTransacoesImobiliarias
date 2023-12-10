@@ -21,6 +21,7 @@ public class Property
     public Client Client { get; set; }
     public int AddedById { get; set; }
     public User AddedBy { get; set; }
+    public static List<Property> PropertyList = new List<Property>();
     
     
     [JsonConstructor]
@@ -34,6 +35,7 @@ public class Property
         AddedById = addedById;
         ForSale = forSale;
         ClientId = clientId;
+        PropertyList.Add(this);
     }
 
     
@@ -47,6 +49,7 @@ public class Property
         Client = client;
         AddedBy = addedBy;
         ForSale = true;
+        PropertyList.Add(this);
     }
 
     public void SetAddedBy(User user)

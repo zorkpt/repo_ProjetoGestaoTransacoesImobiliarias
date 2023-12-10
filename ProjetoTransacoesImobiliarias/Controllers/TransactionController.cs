@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Transactions;
 using ProjetoTransacoesImobiliarias.Models;
+
 using ProjetoTransacoesImobiliarias.Views.CLI.Transactions;
 
 namespace ProjetoTransacoesImobiliarias.Controllers
@@ -15,6 +16,7 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         public TransactionController()
         {
             transactioView = new TransactionsView();
+            
         }
 
         public Transactions? AddTransaction(Proposal proposal){
@@ -23,22 +25,26 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             }
 
             if(ExistsTransactionByProperty(proposal)) return null;//Propriedade existe, nao pode ter nova transacao
+            //adicionar condicao para comparar clientes, se o comprador e o vendedor for o mesmo cliente, acusamos à AT 
             Transactions a = new Transactions(proposal);
             transactioView.TransactionsViewSucessMessage();
             transactioView.TransactionsViewShowReference(a.PaymentRef);
             return a;
         }
-
-        //TODO: Fazer quando fizer merge com proposal... 
-        // Não vou fazer agora para não dar conflito
-        private bool ExistsTransactionByProperty(Proposal proposal)
+        
+        /// <summary>
+        /// Checks if a transaction already exists.
+        /// </summary>
+        /// <param name="prop"></param>
+        /// <returns></returns>
+        private bool ExistsTransactionByProperty(Proposal prop)
         {
-            if(proposal == null) return false;
-            //Algo do genero disto:
-            if(Transactions.TransactionsMap.ContainsKey(proposal.PropertyId)) return true;
-            Transactions? a = Transactions.TransactionList.Find(t => t.proposal.PropertyId == proposal.PropertyId);
-            if(a != null) return true;
-            return false;
+            if(prop == null) return false;
+            //Verifica se a propriedade está ja tem transicao.
+            bool exist = Transactions.TransactionList.Exists(x => x.proposal.Property.Id == prop.Property.Id);
+            if (exist) return true;
+            
+            return true;
         }
 
         /// <summary>

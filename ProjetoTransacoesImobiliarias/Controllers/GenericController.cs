@@ -86,4 +86,8 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         }
     
     #endregion
+
+        #region DateTime
+   
+        #endregion
     }
