@@ -9,5 +9,6 @@ public class Evaluator : User
         : base(username, password, name, UserRole.Evaluator)
     {
     }
-    
+    public IEnumerable<Client> GetEvaluatorClients() => Clients.AsReadOnly();
+ 
 }

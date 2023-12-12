@@ -10,4 +10,5 @@ public interface IClientService
     Client CreateClient(string name, string address, string phoneNumber, User addedBy);
     bool SaveClientsToJson();
     Client AddClient(ClientView.ClientData clientData, User user);
+    Client UpdateClient(Client client);
 }

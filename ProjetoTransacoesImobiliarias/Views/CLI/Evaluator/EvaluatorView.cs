@@ -5,9 +5,21 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI;
 
 public class EvaluatorView
 {
-    public static void ShowEvaluatorMenu(Evaluator evaluator)
+    public static string? ShowEvaluatorMenu(Evaluator evaluator)
     {
-        Console.WriteLine("Menu de Gestão");
-        Console.WriteLine($"Bem-Vindo {evaluator.Username} com id {evaluator.Id}");
+        Menu.EvaluatorMenu(evaluator);
+        return Console.ReadLine();
+    }
+    
+    public static string? ManageTransactionsMenu()
+    {
+        Menu.ManageTransactions();
+        return Console.ReadLine();
+    }
+    
+    public static string? ManagePropertiesMenu()
+    {
+        Menu.ManageProperties();
+        return Console.ReadLine();
     }
 }

@@ -4,7 +4,7 @@ using ProjetoTransacoesImobiliarias.Models;
 
 namespace ProjetoTransacoesImobiliarias;
 
-internal class Proposal
+public class Proposal
 {
     private static int ProposalIdCounter = 0;
     public int? ProposalId { get; set; }

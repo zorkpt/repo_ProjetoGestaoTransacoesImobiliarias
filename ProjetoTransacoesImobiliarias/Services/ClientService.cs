@@ -135,4 +135,20 @@ public class ClientService : IClientService
         user.AddClient(newClient);
         return newClient;
     }
+    
+   public Client UpdateClient(Client client)
+    {
+        var clientToUpdate = GetClientById(client.Id);
+        if (clientToUpdate == null)
+        {
+            return null;
+        }
+
+        clientToUpdate.Name = client.Name;
+        clientToUpdate.Address = client.Address;
+        clientToUpdate.PhoneNumber = client.PhoneNumber;
+
+        return clientToUpdate;
+    }
+    
 }

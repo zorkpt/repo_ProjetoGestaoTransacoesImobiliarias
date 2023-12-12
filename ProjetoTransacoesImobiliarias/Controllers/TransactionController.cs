@@ -10,7 +10,7 @@ using ProjetoTransacoesImobiliarias.Views.CLI.Transactions;
 
 namespace ProjetoTransacoesImobiliarias.Controllers
 {
-    internal class TransactionController
+    public class TransactionController
     {
         private TransactionsView transactioView;
         public TransactionController()
@@ -19,17 +19,17 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             
         }
 
-        public Transactions? AddTransaction(Proposal proposal){
-            if(proposal == null){
-                return null;
+        public void AddTransaction(Proposal proposal){
+            if(proposal == null)
+            {
+                return;
             }
 
-            if(ExistsTransactionByProperty(proposal)) return null;//Propriedade existe, nao pode ter nova transacao
+            if(ExistsTransactionByProperty(proposal)) return;
             //adicionar condicao para comparar clientes, se o comprador e o vendedor for o mesmo cliente, acusamos à AT 
             Transactions a = new Transactions(proposal);
             transactioView.TransactionsViewSucessMessage();
             transactioView.TransactionsViewShowReference(a.PaymentRef);
-            return a;
         }
         
         /// <summary>
