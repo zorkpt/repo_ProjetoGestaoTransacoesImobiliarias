@@ -3,7 +3,7 @@ using ProjetoTransacoesImobiliarias.Models;
 
 namespace ProjetoTransacoesImobiliarias.Controllers;
 
-public class AppController 
+public class AppController
 {
     private readonly IUserService _userService;
     private readonly IClientService _clientService;
@@ -21,27 +21,33 @@ public class AppController
         ShowUserMenu(user);
     }
 
-    private void ShowUserMenu(User user)
+    public void ShowUserMenu(User user)
     {
+        UserController userController;
+
         switch (user)
         {
             case Admin admin:
-                var adminController = new AdminController(admin, _userService, _clientService, _propertyService );
-                adminController.Menu(); 
+                userController = new AdminController(admin, _userService, _clientService, _propertyService,
+                    new ProposalController(), new TransactionController(), new PropertyController(),
+                    new VisitsController());
                 break;
             case Manager manager:
-                ManagerController.Menu(manager);
+                 userController = new ManagerController(manager, _userService, _clientService, _propertyService);
                 break;
             case Agent agent:
-                AgentController.Menu(agent);
+                userController = new AgentController(agent, _userService, _clientService, _propertyService);
                 break;
             case Evaluator evaluator:
-                EvaluatorController.Menu(evaluator);
+                userController = new EvaluatorController(evaluator, _userService, _clientService, _propertyService);
                 break;
-            
+
             default:
-                // use default to deal with error ? 
-                break;
+                Console.WriteLine("Tipo de usuário desconhecido.");
+                return;
         }
+
+     userController.MenuStart();
+        
     }
 }

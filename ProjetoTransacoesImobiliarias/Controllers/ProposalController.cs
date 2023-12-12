@@ -9,7 +9,7 @@ using ProjetoTransacoesImobiliarias.Interfaces;
 
 namespace ProjetoTransacoesImobiliarias.Controllers
 {
-    internal class ProposalController 
+    public class ProposalController 
     {
 
         private ProposalView proposalView { get; set; }

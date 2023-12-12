@@ -6,7 +6,7 @@ public class AgentView
 {
     public static string? ShowAgentMenu(Agent agent)
     {
-        ShowAgentMenu(agent);
+        Menu.AgentMenu(agent);
         return Console.ReadLine();
     }
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjetoTransacoesImobiliarias.Models
 {
-    internal class Transactions//Transaction is a reserved name 
+    public class Transactions//Transaction is a reserved name 
     {
         private static int IdCounter = 0;
         public int? TransactionId { get; set; }
@@ -52,6 +52,5 @@ namespace ProjetoTransacoesImobiliarias.Models
             TransactionsMap.Add(TransactionId, this); // Ver com pessoal se vale a pena...
             TransactionList.Add(this);
         }
-
     }
 }

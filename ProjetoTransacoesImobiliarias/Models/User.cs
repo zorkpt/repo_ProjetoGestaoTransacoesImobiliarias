@@ -18,6 +18,7 @@ public abstract class User
         Name = name;
         Role = role;
         Clients = new List<Client>();
+        Properties = new List<Property>();
     }
 
     public void AddClient(Client client)

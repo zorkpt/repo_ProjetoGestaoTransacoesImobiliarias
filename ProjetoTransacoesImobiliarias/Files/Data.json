@@ -30,8 +30,8 @@
   {
     "userType": "Manager",
     "id": 5,
-    "username": "managerUser",
-    "password": "anotherSecurePasswordHash",
+    "username": "manager1",
+    "password": "1234",
     "name": "Manager Name",
     "numberOfPropertiesManaged": 15
   },

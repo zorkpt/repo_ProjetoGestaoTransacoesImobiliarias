@@ -8,35 +8,24 @@ using ProjetoTransacoesImobiliarias.Views.CLI.Client;
 
 namespace ProjetoTransacoesImobiliarias.Controllers;
 
-public class AdminController
+public class AdminController : UserController
 {
-    private readonly IUserService _userService;
-    private readonly IClientService _clientService;
     private readonly Admin _admin;
-    private readonly IPropertyService _propertyService;
-    private ProposalController proposalController;
-    private TransactionController transactionController;
     private AdminView AdminView { get; set; }
-    private VisitsController visitsController;
-    private PropertyController propertyController;
     
-    public AdminController(Admin admin, IUserService userService, IClientService clientService, IPropertyService propertyService)
+
+    public AdminController(Admin admin, IUserService userService, IClientService clientService, IPropertyService propertyService,
+        ProposalController proposalController, TransactionController transactionController, PropertyController propertyController, VisitsController visitsController)
+        : base(userService, clientService, propertyService, proposalController, transactionController, propertyController, visitsController)
     {
         _admin = admin;
-        _userService = userService;
-        _clientService = clientService;
-        _propertyService = propertyService;
-        proposalController = new ProposalController(); 
-        transactionController = new TransactionController();
         AdminView = new AdminView();
-        visitsController = new VisitsController();
-        propertyController = new PropertyController();
     }
 
     /// <summary>
     /// Executes the menu functionality for the admin user.
     /// </summary>
-    public void Menu()
+    public override void MenuStart()
     {
         var exitMenu = false;
         while (!exitMenu)
@@ -56,23 +45,11 @@ public class AdminController
                 case "4":
                     SubMenuManageProperties();
                     break;
-
-                case "5":
-                    ListClients(false);
-                    break;
-                case "6":
-                    ListClients();
-                    break;
-                case "7":
-                 //   AddClient();
-                    break;
-
                 case "99":
                     if (_clientService.SaveClientsToJson())
                     {
                         MessageHandler.PressAnyKey("Fechando aplicação...");
                     }
-
                     break;
                 case "0":
                     exitMenu = true;
@@ -146,7 +123,7 @@ public class AdminController
                     // Eliminar User
                     break;
                 case "4":
-                    ListAllUsers();
+                    ListAllUsers(_userService);
                     break;
                 case "0":
                     exitMenu = true;
@@ -197,7 +174,7 @@ public class AdminController
             switch (option)
             {
                 case "1":
-                    AddProperty();
+                    AddProperty(_admin);
                     break;
                 case "2":
                     // Editar Propriedade
@@ -219,28 +196,6 @@ public class AdminController
         }
     }
 
-    private Property? AddProperty()
-    {
-        var propertyData = AdminView.AddProperty();
-        var client = _clientService.GetClientById(propertyData.ClientId);
-        var newProperty =
-            _propertyService.CreateProperty(propertyData.Address,
-                propertyData.Description,
-                propertyData.PropertyType,
-                propertyData.Size,
-                _admin,
-              client);
-      
-        if (newProperty is null)
-        {
-            return null;
-        }
-
-        MessageHandler.PressAnyKey("Propriedade adicionada com sucesso.");
-        _admin.AddProperty(newProperty);
-        return newProperty;
-    }
-
     /// <summary>
     /// Lists clients based on the specified criteria.
     /// </summary>
@@ -248,33 +203,9 @@ public class AdminController
     private void ListClients(bool all = true)
     {
         var clients = all ? _clientService.GetAllClients() : _admin.GetAdminClients();
-        if (!clients.Any())
-        {
-            MessageHandler.PressAnyKey("Sem dados.");
-        }
-        else
-        {
-            AdminView.DisplayAllClients(clients);
-        }
+        ListClients(clients);
     }
 
-    /// <summary>
-    /// Lists all users.
-    /// </summary>
-    private void ListAllUsers()
-    {
-        var allUsers = _userService.GetAllUsers();
-        AdminView.DisplayUsers(allUsers);
-    }
-
-    /// <summary>
-    /// Edits a client and returns the modified client.
-    /// </summary>
-    /// <returns></returns>
-    private Client? EditClient()
-    {
-        return null;
-    }
 
     /// <summary>
     /// Deletes a client.
@@ -283,107 +214,5 @@ public class AdminController
     private Client? DeleteClient()
     {
         return null;
-    }
-
-    /// <summary>
-    /// Adds a new user to the system.
-    /// </summary>
-    /// <returns></returns>
-    private User AddUser()
-    {
-        var clientData = AdminView.AddUser();
-        var newUser = _userService.CreateUser(clientData.Userame,
-                                                        clientData.Password,
-                                                        clientData.Name,
-                                                        clientData.Role);
-
-        MessageHandler.PressAnyKey("Utilizador Adicionado com sucesso.");
-        return newUser;
-    }
-
-
-    public Client ChooseClient(){
-        while (true)
-        {
-            int clientId = AdminView.ChooseClientIdView();
-
-            while (!int.TryParse(clientId.ToString(), out clientId))
-            {
-                Console.WriteLine("Pf inserir um numero valido");
-                clientId = AdminView.ChooseClientIdView();
-            }
-
-            Client client = _clientService.GetClientById(clientId);
-            if (client != null)
-            {
-                return client;
-            }
-        }
-    }
-
-    /// <summary>
-    /// Manages a client. 
-    /// </summary>
-    public void ManageClientOptions()
-    {
-        
-        Client client = ChooseClient();
-
-        var exitMenu = false;
-        while (!exitMenu)
-        {
-            AdminView.ManageClientOptionsView(client.Name);
-            var option = Console.ReadLine();
-            switch (option)
-            {
-                case "1":
-                    //Fazer proposta
-                    if(proposalController.MakeProposal(client.Id))
-                    {
-                        MessageHandler.PressAnyKey("Proposta enviada com sucesso.");
-                    }
-                    
-                    //Proposal a = new Proposal(client, property, price);
-                    break;
-                case "2":
-                    //Aprovar proposta
-                    //escolher proposta a aprovar 
-                    Proposal proposal = proposalController.ChooseProposal();
-                    //aceitar proposta
-                    proposalController.AcceptProposal(proposal.ProposalId.Value);
-                    //Iniciar transação
-                    transactionController.AddTransaction(proposal);
-                    MessageHandler.PressAnyKey("Proposta aprovada com sucesso.");
-                    break;
-                case "3":
-                    //Rejeitar proposta
-                    Proposal proposal1 = proposalController.ChooseProposal();
-                    bool a = proposalController.DeclineProposal(proposal1.ProposalId.Value);
-                    MessageHandler.PressAnyKey("Proposta rejeitada com sucesso.");
-                    break;
-                case "4":
-                    //Listar propostas
-                    proposalController.SeeProposalsByClient(client);
-                    break;
-                case "5":
-                    // Marcar visita
-                    var allProperties = _propertyService.GetAllProperties();
-                    PropertyView.DisplayAllProperties(allProperties);
-                    Property? property = propertyController.ChooseProperty();
-                    if (property == null) return;
-                    DateTime date = visitsController.ChooseDate();
-                    if(visitsController.MakeVisit(property, client, date))
-                    {
-                        MessageHandler.PressAnyKey("Visita marcada com sucesso.");
-                    }
-                    break;
-                case "0":
-                    exitMenu = true;
-                    break;
-                default:
-                    MessageHandler.WrongOption();
-                    break;
-            }        
-        }
     }
 }

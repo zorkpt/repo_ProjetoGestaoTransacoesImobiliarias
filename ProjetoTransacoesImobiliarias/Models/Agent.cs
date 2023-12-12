@@ -15,6 +15,7 @@ namespace ProjetoTransacoesImobiliarias.Models
             
         }
 
+        public IEnumerable<Client> GetAgentClients() => Clients.AsReadOnly();
  
 
     }

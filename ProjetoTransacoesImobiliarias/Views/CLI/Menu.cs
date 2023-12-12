@@ -86,7 +86,6 @@ public class Menu
         Console.WriteLine("========== Manager Menu ==========");
         Console.WriteLine($"Bem-Vindo {manager.Username}");
         Console.WriteLine("1. Gerir Clientes");
-        //Console.WriteLine("2. Gerir Utilizadores");
         Console.WriteLine("2. Gerir Transação");
         Console.WriteLine("3. Gerir Propriedades");
         Console.WriteLine("0. Sair");
@@ -157,5 +156,31 @@ public class Menu
         Console.Write("Escolha uma opção: ");
         
     }
+    #endregion
+    
+    
+    public static string? ManageClientsMenu()
+    {
+        Menu.ManageClients();
+        return Console.ReadLine();
+    }
+
+
+
+    #region evaluator
+
+    public static void EvaluatorMenu(Evaluator evaluator)
+    {
+        Console.Clear();
+        Console.WriteLine("========== Manager Menu ==========");
+        Console.WriteLine($"Bem-Vindo {evaluator.Username}");
+        Console.WriteLine("1. Gerir Clientes");
+        Console.WriteLine("2. Gerir Transação");
+        Console.WriteLine("3. Gerir Propriedades");
+        Console.WriteLine("0. Sair");
+        Console.Write("Escolha uma opção: ");
+
+    }
+
     #endregion
 }
