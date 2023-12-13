@@ -166,21 +166,24 @@ public class Menu
     }
 
 
-
     #region evaluator
 
     public static void EvaluatorMenu(Evaluator evaluator)
     {
         Console.Clear();
-        Console.WriteLine("========== Manager Menu ==========");
+        Console.WriteLine("========== Evaluator Menu ==========");
         Console.WriteLine($"Bem-Vindo {evaluator.Username}");
-        Console.WriteLine("1. Gerir Clientes");
-        Console.WriteLine("2. Gerir Transação");
-        Console.WriteLine("3. Gerir Propriedades");
+        Console.WriteLine("1. Avaliar Propriedades");
+        Console.WriteLine("2. Listar Avaliações das Propriedades");
         Console.WriteLine("0. Sair");
         Console.Write("Escolha uma opção: ");
-
     }
 
+    public static void EvaluateAddAssessmentPropertyMenu(Evaluator evaluator)
+    {
+        Console.Clear();
+        Console.WriteLine("========== ID da Propriedade a avaliar ==========");
+        Console.Write("Escolha uma opção: ");
+    }
     #endregion
 }
