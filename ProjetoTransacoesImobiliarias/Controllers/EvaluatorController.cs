@@ -14,144 +14,90 @@ public class EvaluatorController : UserController
     private VisitsController visitsController;
     private PropertyController propertyController;
 
+    private AssessmentController _assessmentController;
     public EvaluatorController(Evaluator evaluator, IUserService userService, IClientService clientService, IPropertyService propertyService)
         : base(userService, clientService, propertyService, new ProposalController(), new TransactionController(), new PropertyController(), new VisitsController())
     {
         _evaluator = evaluator;
         evaluatorView = new EvaluatorView();
+        _assessmentController = new AssessmentController();
     }
 
-public override void MenuStart()
-{
-    var exitMenu = false;
-    while (!exitMenu)
+    public override void MenuStart()
     {
-        var option = EvaluatorView.ShowEvaluatorMenu(_evaluator);
-        switch (option)
+        var exitMenu = false;
+        while (!exitMenu)
         {
-            case "1":
-                SubMenuManageClients();
-                break;
-            case "2":
-                SubMenuManageTransactions();
-                break;
-            case "3":
-                SubMenuManageProperties();
-                break;
-            case "99":
-                if (_clientService.SaveClientsToJson())
+            var option = EvaluatorView.ShowEvaluatorMenu(_evaluator);
+            switch (option)
+            {
+                case "1":
+                    AddAssessmentProperty();
+                    break;
+                case "2":
+                    ListAssessmentProperty();
+                    break;
+                case "0":
+                    exitMenu = true;
+                    break;
+                default:
+                    MessageHandler.WrongOption();
+                    break;
+            }
+        }
+    }
+
+
+
+    // Methods
+
+    private void ListAssessmentProperty()
+    {
+        Console.Clear();
+        //Tabela de avaliações
+        Console.WriteLine("========== Avaliações ==========");
+        foreach (var assessment in Assessment.AssessmentList)
+        {
+            // Exibir informações da avaliação
+            Console.WriteLine($"Avaliação ID: {assessment.Id} \nAvaliador: {assessment.evaluator.Name} \nPropriedade: {assessment.property.Id} \nData: {assessment.assessmentDate} \nValor: {assessment.assessmentValue}\n");
+        }
+        MessageHandler.PressAnyKey();
+    }
+
+    private void AddAssessmentProperty()
+    {
+        var propertyId = EvaluatorView.EvaluateAddAssessmentPropertyView(_evaluator);
+        if (propertyId.HasValue)
+        {
+            var property = _propertyService.GetPropertyById(propertyId.Value);
+            if (property != null)
+            {
+                var assessmentDate = DateTime.Now;
+
+                // Pedir ao avaliador para inserir o valor da avaliação
+                Console.WriteLine("Insira o valor da avaliação:");
+                decimal assessmentValue;
+                while (!decimal.TryParse(Console.ReadLine(), out assessmentValue))
                 {
-                    MessageHandler.PressAnyKey("Fechando aplicação...");
+                    Console.WriteLine("Valor inválido, por favor insira um número decimal válido (por exemplo, 1000000.00):");
                 }
-                break;
-            case "0":
-                exitMenu = true;
-                break;
-            default:
-                MessageHandler.WrongOption();
-                break;
-        }
-    }
-}
 
-private void SubMenuManageClients()
-{
-    var exitMenu = false;
-    while (!exitMenu)
-    {
-        var option = Menu.ManageClientsMenu();
-        switch (option)
+                AssessmentController.AddAssessmentToProperty(_evaluator, property, assessmentDate, assessmentValue);
+                MessageHandler.PressAnyKey("Avaliação adicionada com sucesso");
+            }
+            else
+            {
+                Console.WriteLine("Propriedade não encontrada.");
+                // Outras ações, como retornar ao menu
+            }
+        }
+        else
         {
-            case "1":
-                var clientData = ClientView.AddClient();
-                _clientService.AddClient(clientData, _evaluator);
-                break;
-            case "2":
-                EditClient();
-                break;
-            case "3":
-                // DeleteClient();
-                break;
-            case "4":
-                ListClients(false);
-                break;
-            case "5":
-                ListClients();
-                break;
-            case "6":
-                ManageClientOptions();
-                break;
-            case "0":
-                exitMenu = true;
-                break;
-            default:
-                MessageHandler.WrongOption();
-                break;
+            Console.WriteLine("ID da Propriedade inválido. Por favor, tente novamente.");
+            // Retornar ao menu ou tomar outra ação apropriada
         }
     }
-}
 
-private void SubMenuManageTransactions()
-{
-    var exitMenu = false;
-    while (!exitMenu)
-    {
-        var option = EvaluatorView.ManageTransactionsMenu();
-        switch (option)
-        {
-            case "1":
-                // Nova Visita
-                break;
-            case "2":
-                // Nova transação
-                break;
-            case "3":
-                // Editar Transação
-                break;
-            case "0":
-                exitMenu = true;
-                break;
-            default:
-                MessageHandler.WrongOption();
-                break;
-        }
-    }
-}
 
-private void SubMenuManageProperties()
-{
-    var exitMenu = false;
-    while (!exitMenu)
-    {
-        var option = EvaluatorView.ManagePropertiesMenu();
-        switch (option)
-        {
-            case "1":
-                AddProperty(_evaluator);
-                break;
-            case "2":
-                // Editar Propriedade
-                break;
-            case "3":
-                // Eliminar Propriedade
-                break;
-            case "4":
-                var allProperties = _propertyService.GetAllProperties();
-                PropertyView.DisplayAllProperties(allProperties);
-                break;
-            case "0":
-                exitMenu = true;
-                break;
-            default:
-                MessageHandler.WrongOption();
-                break;
-        }
-    }
-}
 
-private void ListClients(bool all = true)
-{
-    var clients = all ? _clientService.GetAllClients() : _evaluator.GetEvaluatorClients();
-    ListClients(clients);
-}
 }

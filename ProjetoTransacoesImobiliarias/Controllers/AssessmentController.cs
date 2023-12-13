@@ -3,40 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualBasic;
+using ProjetoTransacoesImobiliarias.Models;
 
 namespace ProjetoTransacoesImobiliarias.Controllers
 {
-    public class AssessmentController : Assessment
+    public class AssessmentController
     {
 
-        public static List<AssessmentController> AssessmentControllerList = new List<AssessmentController>();
-
-        public AssessmentController(int idProperty, DateAndTime assessmentDate, decimal assessmentValue)
-            : base(idProperty, assessmentDate, assessmentValue)
+        
+        public AssessmentController()
         {
-            // ChangeIdEvaluatorAssessment();
-            // ChangePropertyIdAssessment(idProperty);
-            // ChangeAssessmentDateAssessment(assessmentDate);
-            // ChangeAssessmentValueAssessment(assessmentValue);
-
-            AssessmentControllerList.Add(this);
+            
         }
 
         
 
-        #region Properties
+        #region Methods
 
-        public int ShowIdEvaluatorAssessment() => GetIdEvaluatorAssessment();
-        public int ShowIdPropertyAssessment() => GetIdPropertyAssessment();
-        //public DateTime? ShowAssessmentDateAssessment() => GetAssessmentDateAssessment();
-        
-        public decimal ShowAssessmentValueAssessment() => GetAssessmentValueAssessment();
+        // Add new assessment to property
+        public static void AddAssessmentToProperty(Evaluator evaluator, Property property, DateTime assessmentDate, decimal assessmentValue)
+        {
+            Assessment assessment = new Assessment(evaluator, property, assessmentDate, assessmentValue);
+        }
 
+        // Change assessment value
+        public static void ChangeAssessmentValue(Assessment assessment, decimal newAssessmentValue)
+        {
+            assessment.assessmentValue = newAssessmentValue;
+        }
 
-        public bool ChangeIdEvaluatorAssessment() => SetIdEvaluatorAssessment();
-        public bool ChangePropertyIdAssessment(int value) => SetIdPropertyAssessment(value);
-        public bool ChangeAssessmentDateAssessment(DateAndTime? value) => SetAssessmentDateAssessment(value);
-        public bool ChangeAssessmentValueAssessment(decimal value) => SetAssessmentValueAssessment(value);
 
         #endregion
     }
