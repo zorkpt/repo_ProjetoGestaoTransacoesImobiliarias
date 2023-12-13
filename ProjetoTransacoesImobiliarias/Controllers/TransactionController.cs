@@ -25,7 +25,10 @@ namespace ProjetoTransacoesImobiliarias.Controllers
                 return;
             }
 
-            if(ExistsTransactionByProperty(proposal)) return;
+            if(ExistsTransactionByProperty(proposal)){
+                transactioView.TransactionsViewErrorMessage();
+                return;
+            };
             //adicionar condicao para comparar clientes, se o comprador e o vendedor for o mesmo cliente, acusamos à AT 
             Transactions a = new Transactions(proposal);
             transactioView.TransactionsViewSucessMessage();
@@ -39,12 +42,12 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         /// <returns></returns>
         private bool ExistsTransactionByProperty(Proposal prop)
         {
-            if(prop == null) return false;
+            //if(prop == null) return false;
             //Verifica se a propriedade está ja tem transicao.
             bool exist = Transactions.TransactionList.Exists(x => x.proposal.Property.Id == prop.Property.Id);
             if (exist) return true;
             
-            return true;
+            return false;
         }
 
         /// <summary>
@@ -59,6 +62,21 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             Transactions.TransactionsMap.Remove(item.TransactionId);//Remove from hashtable
             transactioView.TransactionsViewSucessMessage();
             return true;
+        }
+        /// <summary>
+        /// Chooses a transaction from the list.
+        /// </summary>
+        /// <returns></returns>
+        public Transactions? ChooseTransaction()
+        {
+            int? id = transactioView.ChooseTransactionView();
+
+            if(id == -1){
+                return null;
+            }else{
+                Transactions? transaction = Transactions.TransactionList.Find(x => x.TransactionId == id);
+                return transaction;
+            }
         }
 
     }

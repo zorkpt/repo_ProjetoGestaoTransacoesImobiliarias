@@ -13,6 +13,7 @@ public abstract class UserController
     protected TransactionController _transactionController;
     protected PropertyController _propertyController;
     protected VisitsController _visitsController;
+    protected PaymentController _paymentController;
 
     protected UserController(IUserService userService, IClientService clientService, IPropertyService propertyService,
         ProposalController proposalController, TransactionController transactionController, 
@@ -25,6 +26,7 @@ public abstract class UserController
         _transactionController = transactionController;
         _propertyController = propertyController;
         _visitsController = visitsController;
+        _paymentController = new PaymentController();
     }
     public abstract void MenuStart();
     
@@ -129,6 +131,7 @@ public abstract class UserController
                     }
                     break;
                 case "2":
+                    // Aprovar proposta
                     Proposal proposal = _proposalController.ChooseProposal();
                     _proposalController.AcceptProposal(proposal.ProposalId.Value);
                     _transactionController.AddTransaction(proposal);
@@ -153,6 +156,23 @@ public abstract class UserController
                     if(_visitsController.MakeVisit(property, client, date))
                     {
                         MessageHandler.PressAnyKey("Visita marcada com sucesso.");
+                    }
+                    break;
+                case "6":
+                    // Fazer pagamento
+                    Transactions? transaction = _transactionController.ChooseTransaction();
+                    if(transaction == null)
+                    {
+                        MessageHandler.PressAnyKey("Transação não encontrada.");
+                    }else
+                    {
+                        if(_paymentController.MakePayment(transaction))
+                        {
+                            MessageHandler.PressAnyKey("Pagamento efetuado com sucesso.");
+                        }else
+                        {
+                            MessageHandler.PressAnyKey("Pagamento falhou.");
+                        }
                     }
                     break;
                 case "0":
