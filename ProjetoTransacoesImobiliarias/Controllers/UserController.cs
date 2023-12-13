@@ -95,7 +95,7 @@ public abstract class UserController
     {
         while (true)
         {
-            int clientId = AdminView.ChooseClientIdView();
+            int clientId = AdminView.ChooseClientIdView();// Em vez de passar o ID, passamos o nome? para quem utiliza é mais facil...
 
             while (!int.TryParse(clientId.ToString(), out clientId))
             {
