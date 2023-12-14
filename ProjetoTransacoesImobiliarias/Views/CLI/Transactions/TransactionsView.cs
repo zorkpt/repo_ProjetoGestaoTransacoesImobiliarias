@@ -28,5 +28,26 @@ namespace ProjetoTransacoesImobiliarias.Views.CLI.Transactions
             Console.WriteLine($"Referencia para pagamento: {reference}");
         }
 
+        public int? ChooseTransactionView()
+        {
+            Console.WriteLine("========== Escolha uma transação ==========");
+            //aceitar quando for um numero 
+            bool valido = false;
+            while (!valido)
+            {
+                Console.Write("Escolha uma opção: ");
+                string? input = Console.ReadLine();
+                if (int.TryParse(input, out int value))
+                {
+                    return value;
+                }
+                else
+                {
+                    Console.WriteLine("Opcão inválida. Tente novamente.");
+                }
+            }
+            return -1;
+        }
+
     }
 }

@@ -21,6 +21,7 @@ namespace ProjetoTransacoesImobiliarias.Models
         public enum TransactionState{// Mudar para novo ficheiro? Vale a pena?
             Rejected,
             WaitingPayment,
+            Cancelled,
             Paid
         }
         public TransactionState State { get{ return State;}

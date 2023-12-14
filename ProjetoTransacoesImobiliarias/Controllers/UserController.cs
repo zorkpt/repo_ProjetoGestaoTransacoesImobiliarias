@@ -13,6 +13,7 @@ public abstract class UserController
     protected TransactionController _transactionController;
     protected PropertyController _propertyController;
     protected VisitsController _visitsController;
+    protected PaymentController _paymentController;
 
     protected UserController(IUserService userService, IClientService clientService, IPropertyService propertyService,
         ProposalController proposalController, TransactionController transactionController, 
@@ -25,6 +26,7 @@ public abstract class UserController
         _transactionController = transactionController;
         _propertyController = propertyController;
         _visitsController = visitsController;
+        _paymentController = new PaymentController();
     }
     public abstract void MenuStart();
     
@@ -95,7 +97,7 @@ public abstract class UserController
     {
         while (true)
         {
-            int clientId = AdminView.ChooseClientIdView();
+            int clientId = AdminView.ChooseClientIdView();// Em vez de passar o ID, passamos o nome? para quem utiliza é mais facil...
 
             while (!int.TryParse(clientId.ToString(), out clientId))
             {
@@ -129,18 +131,37 @@ public abstract class UserController
                     }
                     break;
                 case "2":
-                    Proposal proposal = _proposalController.ChooseProposal();
-                    _proposalController.AcceptProposal(proposal.ProposalId.Value);
-                    _transactionController.AddTransaction(proposal);
-                    MessageHandler.PressAnyKey("Proposta aprovada com sucesso.");
+                    // Aprovar proposta
+                    Proposal? proposal = _proposalController.ChooseProposal();
+                    if(proposal == null)
+                    {
+                        break;
+                    }else
+                    {
+                        _proposalController.AcceptProposal(proposal.ProposalId.Value);
+                        _transactionController.AddTransaction(proposal);
+                        MessageHandler.PressAnyKey("Proposta aprovada com sucesso.");
+                    }
+
                     break;
                 case "3":
-                    if (_proposalController.DeclineProposal(_proposalController.ChooseProposal().ProposalId.Value))
+                    // Rejeitar proposta
+                    Proposal? proposal1 = _proposalController.ChooseProposal();
+                    if(proposal1 == null)
                     {
-                        MessageHandler.PressAnyKey("Proposta rejeitada com sucesso.");
+                        break;
+                    }else{
+                        bool rej = _proposalController.DeclineProposal(_proposalController.ChooseProposal().ProposalId.Value);
+                        if (rej)
+                        {
+                            MessageHandler.PressAnyKey("Proposta rejeitada com sucesso.");
+                        }else{
+                            MessageHandler.PressAnyKey("Erro ao rejeitar proposta.");
+                        }
                     }
                     break;
                 case "4":
+                    // Ver propostas por cliente
                     _proposalController.SeeProposalsByClient(client);
                     break;
                 case "5":
@@ -148,11 +169,39 @@ public abstract class UserController
                     var allProperties = _propertyService.GetAllProperties();
                     PropertyView.DisplayAllProperties(allProperties);
                     Property? property = _propertyController.ChooseProperty();
-                    if (property == null) return;
+
+                    if (property == null){
+                        MessageHandler.PressAnyKey("Nenhuma propriedade encontrada.");
+                        break;
+                    }
                     DateTime date = _visitsController.ChooseDate();
+                    if(date == null){
+                        MessageHandler.PressAnyKey("Data inválida.");
+                        break;
+                    }
                     if(_visitsController.MakeVisit(property, client, date))
                     {
                         MessageHandler.PressAnyKey("Visita marcada com sucesso.");
+                        break;
+                    }else{
+                        MessageHandler.PressAnyKey("Erro ao marcar visita.");
+                    }
+                    break;
+                case "6":
+                    // Fazer pagamento
+                    Transactions? transaction = _transactionController.ChooseTransaction();
+                    if(transaction == null)
+                    {
+                        MessageHandler.PressAnyKey("Transação não encontrada.");
+                    }else
+                    {
+                        if(_paymentController.MakePayment(transaction))
+                        {
+                            MessageHandler.PressAnyKey("Pagamento efetuado com sucesso.");
+                        }else
+                        {
+                            MessageHandler.PressAnyKey("Pagamento falhou.");
+                        }
                     }
                     break;
                 case "0":

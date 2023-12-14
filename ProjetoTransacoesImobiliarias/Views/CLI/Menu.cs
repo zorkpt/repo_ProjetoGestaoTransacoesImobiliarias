@@ -152,6 +152,7 @@ public class Menu
         Console.WriteLine("3 Rejeitar proposta");
         Console.WriteLine("4 Listar propostas");
         Console.WriteLine("5 Marcar visita");
+        Console.WriteLine("6 Fazer pagamento");
         Console.WriteLine("0 Sair");
         Console.Write("Escolha uma opção: ");
         
