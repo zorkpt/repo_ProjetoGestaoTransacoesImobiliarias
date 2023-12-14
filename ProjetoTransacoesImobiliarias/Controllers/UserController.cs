@@ -92,6 +92,38 @@ public abstract class UserController
         return newUser;
     }
 
+    protected bool DeleteUser()
+    {
+        var user = ChooseUser();
+        if (user == null)
+        {
+            return false;
+        }else
+        {
+            bool apagar = _userService.DeleteUser(user);
+            if (apagar) return true;
+            return false;
+        }
+
+    }
+
+    protected virtual User ChooseUser()
+    {
+            string userName = UserView.ChooseUserNameView();
+            if (string.IsNullOrEmpty(userName))
+            {
+                MessageHandler.PressAnyKey("Pf inserir um nome valido");
+            }
+            var user = _userService.GetUserByUsername(userName);
+
+            if (user != null)
+            {
+                return user;
+            }else
+            {
+                return null;
+            }
+    }
 
     protected virtual Client ChooseClient()
     {

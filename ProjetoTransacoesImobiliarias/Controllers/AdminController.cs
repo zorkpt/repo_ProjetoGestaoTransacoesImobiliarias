@@ -121,6 +121,14 @@ public class AdminController : UserController
                     break;
                 case "3":
                     // Eliminar User
+                    bool apagar = DeleteUser();
+                    if(apagar)
+                    {
+                        MessageHandler.PressAnyKey("Utilizador Eliminado com sucesso.");
+                    }else
+                    {
+                        MessageHandler.PressAnyKey("Utilizador Nao Encontrado.");
+                    }
                     break;
                 case "4":
                     ListAllUsers(_userService);
