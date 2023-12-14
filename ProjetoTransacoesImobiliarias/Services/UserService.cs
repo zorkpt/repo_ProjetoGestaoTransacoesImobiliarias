@@ -23,6 +23,28 @@ public class UserService : IUserService
         return _users.FirstOrDefault(user => user.Id == id);
     }
 
+    public User GetUserByUsername(string username)
+    {
+        if (string.IsNullOrEmpty(username))
+        {
+            return null;
+        }else
+        {
+            return _users.FirstOrDefault(user => user.Username == username);
+        }
+    }
+
+    public bool DeleteUser(User user)
+    {
+        if (user == null)
+        {
+            return false;
+        }else
+        {
+            _users.Remove(user);
+            return true;
+        }
+    }
 
     /// <summary>
     /// Loads users from a JSON file.
