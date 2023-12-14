@@ -132,18 +132,36 @@ public abstract class UserController
                     break;
                 case "2":
                     // Aprovar proposta
-                    Proposal proposal = _proposalController.ChooseProposal();
-                    _proposalController.AcceptProposal(proposal.ProposalId.Value);
-                    _transactionController.AddTransaction(proposal);
-                    MessageHandler.PressAnyKey("Proposta aprovada com sucesso.");
+                    Proposal? proposal = _proposalController.ChooseProposal();
+                    if(proposal == null)
+                    {
+                        break;
+                    }else
+                    {
+                        _proposalController.AcceptProposal(proposal.ProposalId.Value);
+                        _transactionController.AddTransaction(proposal);
+                        MessageHandler.PressAnyKey("Proposta aprovada com sucesso.");
+                    }
+
                     break;
                 case "3":
-                    if (_proposalController.DeclineProposal(_proposalController.ChooseProposal().ProposalId.Value))
+                    // Rejeitar proposta
+                    Proposal? proposal1 = _proposalController.ChooseProposal();
+                    if(proposal1 == null)
                     {
-                        MessageHandler.PressAnyKey("Proposta rejeitada com sucesso.");
+                        break;
+                    }else{
+                        bool rej = _proposalController.DeclineProposal(_proposalController.ChooseProposal().ProposalId.Value);
+                        if (rej)
+                        {
+                            MessageHandler.PressAnyKey("Proposta rejeitada com sucesso.");
+                        }else{
+                            MessageHandler.PressAnyKey("Erro ao rejeitar proposta.");
+                        }
                     }
                     break;
                 case "4":
+                    // Ver propostas por cliente
                     _proposalController.SeeProposalsByClient(client);
                     break;
                 case "5":
@@ -151,11 +169,22 @@ public abstract class UserController
                     var allProperties = _propertyService.GetAllProperties();
                     PropertyView.DisplayAllProperties(allProperties);
                     Property? property = _propertyController.ChooseProperty();
-                    if (property == null) return;
+
+                    if (property == null){
+                        MessageHandler.PressAnyKey("Nenhuma propriedade encontrada.");
+                        break;
+                    }
                     DateTime date = _visitsController.ChooseDate();
+                    if(date == null){
+                        MessageHandler.PressAnyKey("Data inválida.");
+                        break;
+                    }
                     if(_visitsController.MakeVisit(property, client, date))
                     {
                         MessageHandler.PressAnyKey("Visita marcada com sucesso.");
+                        break;
+                    }else{
+                        MessageHandler.PressAnyKey("Erro ao marcar visita.");
                     }
                     break;
                 case "6":
