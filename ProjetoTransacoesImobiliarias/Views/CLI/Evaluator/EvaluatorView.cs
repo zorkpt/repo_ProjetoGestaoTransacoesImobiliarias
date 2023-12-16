@@ -10,16 +10,22 @@ public class EvaluatorView
         Menu.EvaluatorMenu(evaluator);
         return Console.ReadLine();
     }
-    
-    public static string? ManageTransactionsMenu()
+
+    /// <summary>
+    /// O menu desta função pergunta qual é o ID da propriedade a avaliar.
+    /// </summary>
+    /// <param name="evaluator"></param>
+    /// <returns></returns>
+    public static int? EvaluateAddAssessmentPropertyView(Evaluator evaluator)
     {
-        Menu.ManageTransactions();
-        return Console.ReadLine();
-    }
-    
-    public static string? ManagePropertiesMenu()
-    {
-        Menu.ManageProperties();
-        return Console.ReadLine();
+        Menu.EvaluateAddAssessmentPropertyMenu(evaluator);
+        if (int.TryParse(Console.ReadLine(), out int propertyId))
+        {
+            return propertyId;
+        }
+        else
+        {
+            return null;
+        }
     }
 }

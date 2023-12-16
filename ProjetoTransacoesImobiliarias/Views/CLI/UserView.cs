@@ -20,6 +20,15 @@ public class UserView
         MessageHandler.PressAnyKey();
     }
     
+    public static string ChooseUserNameView()
+    {
+        Console.Clear();
+
+        Console.WriteLine("========== Escolha o Nome do utilizador ==========");
+
+        string?  a = Console.ReadLine();
+        return a ?? string.Empty;
+    }    
     
     public static PropertyData AddProperty()
     {

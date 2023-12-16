@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ProjetoTransacoesImobiliarias.Models;
 using ProjetoTransacoesImobiliarias.Views.CLI.Proposal;
 using ProjetoTransacoesImobiliarias.Interfaces;
+using ProjetoTransacoesImobiliarias.Views.CLI;
 
 
 namespace ProjetoTransacoesImobiliarias.Controllers
@@ -110,8 +111,12 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         }
 
 
-        public Proposal ChooseProposal()
+        public Proposal? ChooseProposal()
         {
+            if(Proposal.ProposalList.Count == 0){
+                MessageHandler.PressAnyKey("Sem Propostas");
+                return null;
+            }
             while (true)
             {
                 SeeAllProposals();

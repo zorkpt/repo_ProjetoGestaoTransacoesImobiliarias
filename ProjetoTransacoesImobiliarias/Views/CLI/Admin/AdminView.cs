@@ -207,7 +207,7 @@ public class AdminView
         
         while (!isValidInput)
         {
-            string input = Console.ReadLine();
+            string? input = Console.ReadLine();
             
             // Tenta converter a string em um número inteiro
             isValidInput = int.TryParse(input, out int id);
