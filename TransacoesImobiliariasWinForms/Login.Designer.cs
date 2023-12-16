@@ -59,6 +59,7 @@
             LoginButton.Name = "LoginButton";
             LoginButton.Size = new Size(159, 28);
             LoginButton.TabIndex = 2;
+            LoginButton.TabStop = false;
             LoginButton.Text = "Login";
             LoginButton.UseVisualStyleBackColor = true;
             LoginButton.Click += LoginButton_Click;
@@ -67,6 +68,7 @@
             // 
             PasswordTxt.Location = new Point(135, 67);
             PasswordTxt.Name = "PasswordTxt";
+            PasswordTxt.PasswordChar = '*';
             PasswordTxt.Size = new Size(159, 23);
             PasswordTxt.TabIndex = 2;
             // 

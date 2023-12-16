@@ -1,16 +1,22 @@
 using ProjetoTransacoesImobiliarias;
+using ProjetoTransacoesImobiliarias.Services;
 namespace TransacoesImobiliariasWinForms
 {
     internal static class Program
     {
+
+        private static UserService _userService;
+        private static ServiceRepository _serviceRepository;
+
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
-        {   
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+        {
+
+
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
         }
