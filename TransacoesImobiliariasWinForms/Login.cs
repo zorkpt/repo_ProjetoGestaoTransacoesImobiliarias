@@ -23,19 +23,22 @@ namespace TransacoesImobiliariasWinForms
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
+
             
-            User user = _formController.StartLoginProcess(UserNameTex.Text, PasswordTxt.Text);
+            User user = _formController.StartLoginProcess(UserNameTex.Text, PasswordTxt.Text, "sql");
             if (user == null)
             {
                 MessageBox.Show("user nulo");
                 return;
             }
             _formController.Start(user);
+
+
         }
 
         private void LoginButton_MouseMove(object sender, EventArgs e)
         {
-            if(UserNameTex.Text == "" || PasswordTxt.Text == "")
+            if (UserNameTex.Text == "" || PasswordTxt.Text == "")
             {
                 LoginButton.Location = new Point(LoginButton.Location.X + 20, LoginButton.Location.Y + 20);
             }
@@ -48,6 +51,11 @@ namespace TransacoesImobiliariasWinForms
         private void PasswordTxt_TextChanged(object sender, EventArgs e)
         {
             LoginButton.Location = new Point(135, 106);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

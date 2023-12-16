@@ -18,6 +18,10 @@
       <Compile Remove="Controllers\AvaliatorController.cs" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.2" />
+    </ItemGroup>
+
 <!--    <ItemGroup>-->
 <!--      <PackageReference Include="docfx.console" Version="2.59.4">-->
 <!--        <PrivateAssets>all</PrivateAssets>-->

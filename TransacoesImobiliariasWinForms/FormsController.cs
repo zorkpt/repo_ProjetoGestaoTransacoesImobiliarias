@@ -16,10 +16,10 @@ namespace TransacoesImobiliariasWinForms
     public class FormsController
     {
         private UserService _userService = new UserService();
-
+        private Dados _dados;
         public FormsController()
         {
-            
+            _dados = new Dados();
         }
 
         public void Start(User user)
@@ -27,29 +27,54 @@ namespace TransacoesImobiliariasWinForms
             MessageBox.Show($"Resultou! {user.Name}");
         }
 
-        public User StartLoginProcess(string userName, string pass)
+        public User StartLoginProcess(string userName, string pass, string origenDados)
         {
-
-            bool carrega = _userService.LoadUsersFromJsonWinforms();
-
-
-            if (carrega)
+            #region json
+            if (origenDados != "sql")
             {
-                var allUsers = _userService.GetAllUsers();
+                bool carrega = _userService.LoadUsersFromJsonWinforms();
 
-                var user = allUsers.FirstOrDefault(u =>
-                     u.Username.Equals(userName, StringComparison.OrdinalIgnoreCase) &&
-                     u.Password == pass);
-                
-                if (user == null)
+
+                if (carrega)
                 {
-                    MessageBox.Show("Nao consegiu selecionar utilizador, nao existe?!");
-                    return null;
-                }
+                    var allUsers = _userService.GetAllUsers();
 
-                return (User)user;
+                    var user = allUsers.FirstOrDefault(u =>
+                         u.Username.Equals(userName, StringComparison.OrdinalIgnoreCase) &&
+                         u.Password == pass);
+
+                    if (user == null)
+                    {
+                        MessageBox.Show("Nao consegiu selecionar utilizador, nao existe?!");
+                        return null;
+                    }
+
+                    return (User)user;
+                }
+                return null;
             }
-            return null;
+            #endregion
+            #region sql
+
+            var query = $"SELECT * FROM Users WHERE UserName = '" + userName + "' AND Password = '" + pass + "'";
+            Clipboard.SetText(query);
+
+            var dados = _dados.Select(query);
+
+            if (dados.HasRows) // com erro aqui
+            {
+                string? uName = dados["UserName"].ToString();
+                string? password = dados["Password"].ToString();
+                string? name = dados["Name"].ToString();
+                UserRole role = (UserRole)Enum.Parse(typeof(UserRole), dados["Role"].ToString());
+
+                User user = _userService.CreateUser(uName, password, name, role);
+
+                return user;
+            }
+            else return null;
+
+            #endregion
 
         }
 
