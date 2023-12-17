@@ -1,4 +1,5 @@
 using ProjetoTransacoesImobiliarias.Models;
+using ProjetoTransacoesImobiliarias.Views.CLI;
 
 public class Menu
 {
@@ -131,6 +132,7 @@ public class Menu
     public static void ErrorMessage(){
         Console.Clear();
         Console.WriteLine("========== Algo de errado não está certo ==========");
+        MessageHandler.PressAnyKey();
     }
 
 
