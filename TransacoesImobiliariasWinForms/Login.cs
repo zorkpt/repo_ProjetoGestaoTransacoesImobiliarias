@@ -5,12 +5,12 @@ using ProjetoTransacoesImobiliarias.Services;
 
 namespace TransacoesImobiliariasWinForms
 {
-    public partial class Form1 : Form
+    public partial class LoginForm : Form
     {
         public FormsController _formController;
         public PaymentController _paymentController;
 
-        public Form1()
+        public LoginForm()
         {
             InitializeComponent();
             LoginButton.MouseMove += LoginButton_MouseMove;
@@ -31,7 +31,7 @@ namespace TransacoesImobiliariasWinForms
                 MessageBox.Show("user nulo");
                 return;
             }
-            _formController.Start(user);
+            _formController.Start(user, this);
 
 
         }

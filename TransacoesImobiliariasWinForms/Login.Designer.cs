@@ -1,6 +1,6 @@
 ﻿namespace TransacoesImobiliariasWinForms
 {
-    partial class Form1
+    partial class LoginForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -82,7 +82,7 @@
             label2.TabIndex = 3;
             label2.Text = "User Name";
             // 
-            // Form1
+            // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -96,7 +96,7 @@
             FormBorderStyle = FormBorderStyle.FixedDialog;
             KeyPreview = true;
             MaximizeBox = false;
-            Name = "Form1";
+            Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             Load += Form1_Load;

@@ -22,9 +22,11 @@ namespace TransacoesImobiliariasWinForms
             _dados = new Dados();
         }
 
-        public void Start(User user)
+        public void Start(User user, Form login)
         {
-            MessageBox.Show($"Resultou! {user.Name}");
+            login.Hide();
+            UserForm form = new UserForm(user);
+            form.Show();
         }
 
         public User StartLoginProcess(string userName, string pass, string origenDados)
@@ -90,10 +92,7 @@ namespace TransacoesImobiliariasWinForms
                                 break;
                             }
                         }
-                    
-                    
 
-                    
                 }
             }
             else return null;
@@ -102,5 +101,36 @@ namespace TransacoesImobiliariasWinForms
 
         }
 
+        public string TotalFuncionariosSQL()
+        {
+            var query = "SELECT COUNT(IdUser) as NumUsers FROM Users";
+            var dados = _dados.Select(query);
+
+            if (dados == null) return "";
+
+            if (dados.HasRows && dados.Read())
+            {
+                //var numUsers = dados.GetInt32(dados.GetOrdinal("NumUsers"));
+                string numUsers = dados["NumUsers"].ToString();
+                return numUsers;
+            }
+            return "Sem dados" ;
+        }
+
+        public string TotalClientesSQL()
+        {
+            var query = "SELECT COUNT(nif) as NumClientes FROM Cliente";
+            var dados = _dados.Select(query);
+
+            if (dados == null) return "";
+
+            if (dados.HasRows && dados.Read())
+            {
+                //var numUsers = dados.GetInt32(dados.GetOrdinal("NumUsers"));
+                string numUsers = dados["NumClientes"].ToString();
+                return numUsers;
+            }
+            return "Sem dados";
+        }
     }
 }

@@ -26,3 +26,24 @@ INSERT INTO Users (IdUserType, UserName, Passwords, Name) VALUES
 (2, 'Manager1', '1234', 'Manager 1 ');
 
 
+SELECT idUser, UserType, UserName, Passwords,Name
+FROM Users 
+	JOIN UserType ON UserType.IdUserType = Users.IdUserType
+WHERE UserName = 'Admin1' AND Passwords = '1234'
+
+SELECT * FROM Users WHERE UserName = 'asd' AND Passwords = 'asd'
+
+USE TrabalhoAAD;
+CREATE CREDENTIAL TrabalhoAAD
+WITH IDENTITY = 'POO',
+SECRET = 'POO';
+
+
+USE master;
+CREATE CREDENTIAL MyCredential
+WITH IDENTITY = 'POO',
+SECRET = 'POO';
+
+Use TrabalhoAAD;
+SELECT COUNT(IdUser) as Num
+FROM Users

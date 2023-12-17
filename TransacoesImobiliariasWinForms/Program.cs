@@ -18,7 +18,8 @@ namespace TransacoesImobiliariasWinForms
 
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            LoginForm loginForm = new LoginForm();  
+            Application.Run(loginForm);
         }
     }
 }
