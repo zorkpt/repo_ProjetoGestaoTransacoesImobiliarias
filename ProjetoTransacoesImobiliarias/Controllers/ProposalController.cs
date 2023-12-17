@@ -57,21 +57,23 @@ namespace ProjetoTransacoesImobiliarias.Controllers
         public bool SeeProposalsByClient(Client Client){
             List<Proposal> List = Proposal.ProposalList.FindAll(x => x.Client.Id == Client.Id).ToList();
             
-            if(List == null){
+            if(List == null || List.Count == 0){
                 Menu.ErrorMessage();
                 return false;
             }
+
+            Console.WriteLine("Lista de Todos os Utilizadores:");
+            Console.WriteLine("---------------------------------------------------");
+            Console.WriteLine("| ID | Username |                 Descrição  |              ProposalDate  | Proposal Acepted Date                        |");
+            Console.WriteLine("---------------------------------------------------");
             foreach (Proposal proposal in List)
             {
                 //eviar para as views...
-                Console.WriteLine("Lista de Todos os Utilizadores:");
-                Console.WriteLine("---------------------------------------------------");
-                Console.WriteLine("| ID | Username |                 Descrição  |              ProposalDate  | Proposal Acepted Date                        |");
-                Console.WriteLine("---------------------------------------------------");
-                Console.Write(proposal.ProposalId + "   ");
-                Console.Write(proposal.Client.Name + "   ");
-                Console.Write(proposal.Property.Description + "   ");
-                Console.Write(proposal.ProposalDate + "   ");
+
+                Console.Write(proposal.ProposalId + "   | ");
+                Console.Write(proposal.Client.Name + "   | ");
+                Console.Write(proposal.Property.Description + "   | ");
+                Console.Write(proposal.ProposalDate + "   | ");
                 Console.Write(proposal.ProposalAceptedDate);
                 Console.WriteLine("-----".PadRight(50, '-'));
             }
