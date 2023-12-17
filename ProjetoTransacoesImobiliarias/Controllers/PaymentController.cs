@@ -20,6 +20,7 @@ namespace ProjetoTransacoesImobiliarias.Controllers
 
         public bool MakePayment(Transactions transaction)
         {
+            if(transaction == null) return false;
             Payment payDay = new Payment(transaction);
             if(payDay == null) return false;
             return true;

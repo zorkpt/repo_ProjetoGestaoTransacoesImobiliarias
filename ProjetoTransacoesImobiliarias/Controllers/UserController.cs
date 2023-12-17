@@ -180,7 +180,7 @@ public abstract class UserController
                     break;
                 case "3":
                     // Ver propostas feitas por este cliente
-                    
+                    _proposalController.SeeProposalsByClient(client);
                     break;
                 case "4":
                     // Aprovar proposta
@@ -224,10 +224,6 @@ public abstract class UserController
                     }
                     break;
                 case "6":
-                    // Ver propostas por cliente
-                    _proposalController.SeeProposalsByClient(client);
-                    break;
-                case "7":
                     // Marcar visita
                     var allProperties = _propertyService.GetAllProperties();
                     PropertyView.DisplayAllProperties(allProperties);
@@ -250,16 +246,20 @@ public abstract class UserController
                         MessageHandler.PressAnyKey("Erro ao marcar visita.");
                     }
                     break;
-                case "8":
-                    // Fazer pagamento
+                case "7":
+                    // Fazer pagamento (Não permite pagamentos parciais, vale a pena ??)
                     Transactions? transaction = _transactionController.ChooseTransaction();
                     
-
                     if(transaction == null)
                     {
                         MessageHandler.PressAnyKey("Transação não encontrada.");
                     }else
                     {
+                        if(transaction.proposal.Client.Id != client.Id) {
+                            MessageHandler.PressAnyKey("Esta transação não pertence a este cliente");
+                            break;
+                        }
+
                         if(_paymentController.MakePayment(transaction))
                         {
                             MessageHandler.PressAnyKey("Pagamento efetuado com sucesso.");

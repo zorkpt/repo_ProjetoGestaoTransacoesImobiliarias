@@ -98,7 +98,7 @@ namespace ProjetoTransacoesImobiliarias.Controllers
                 {
                     Console.Write("   | ");
                 }else{
-                    Console.Write("Proposta cancelada");
+                    Console.Write(" Proposta cancelada");
                 }
                 Console.WriteLine("-----".PadRight(50, '-'));
             }
