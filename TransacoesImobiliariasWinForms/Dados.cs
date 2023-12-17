@@ -31,17 +31,20 @@ namespace TransacoesImobiliariasWinForms
 
         private SqlConnection Ligacao()
         {
-            string connectionString = "Data Source=" + servidor + ";Initial Catalog=" + tabelaBD + ";User ID=" + UsernameBD + ";Password=" + passwordBD + ";";
+            string connectionString = "Data Source=" + servidor + ";Initial Catalog=" + tabelaBD + ";User ID=" + UsernameBD + ";Password=" + passwordBD + ";TrustServerCertificate=True";
 
             SqlConnection conn = new SqlConnection(connectionString);
+//            conn.AccessToken = "Integrated Security=True; Encrypt=False; TrustServerCertificate=True;";
+
             try
             {
-                conn.Open();
+
                 return conn;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao abrir a conexão: " + ex.Message);//enviar para erros
+
+                MessageBox.Show("[Ligacao] Erro ao abrir a conexão: " + ex.Message);//enviar para erros
                 throw; // Re-throw a exceção para que o chamador possa lidar com ela
             }
         }
@@ -73,6 +76,7 @@ namespace TransacoesImobiliariasWinForms
             try
             {
                 SqlConnection conn = Ligacao();
+                conn.Open();
 
                 SqlCommand command = new SqlCommand(sql, conn);
                 if (command == null)
@@ -89,7 +93,9 @@ namespace TransacoesImobiliariasWinForms
                 return ler;
             } catch (Exception ex) 
             {
-                MessageBox.Show(ex.Message);
+                Clipboard.SetText(ex.Message);
+                
+                MessageBox.Show("[Select] " + ex.Message);
                 return null;
             }
 

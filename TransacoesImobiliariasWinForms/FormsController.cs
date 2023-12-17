@@ -56,24 +56,48 @@ namespace TransacoesImobiliariasWinForms
             #endregion
             #region sql
 
-            var query = $"SELECT * FROM Users WHERE UserName = '" + userName + "' AND Password = '" + pass + "'";
-            Clipboard.SetText(query);
+            //var query = $"SELECT * FROM Users WHERE UserName = '" + userName + "' AND Passwords = '" + pass + "'";
+            //Clipboard.SetText(query);
+            var query = $"SELECT idUser, UserType, UserName, Passwords, Name " +
+            $"FROM Users  " +
+            $"JOIN UserType ON UserType.IdUserType = Users.IdUserType " +
+            $"WHERE UserName = '{userName}' AND Passwords = '{pass}'";
+
 
             var dados = _dados.Select(query);
 
-            if (dados.HasRows) // com erro aqui
+            if (dados == null) return null;
+
+            if (dados.HasRows)
             {
-                string? uName = dados["UserName"].ToString();
-                string? password = dados["Password"].ToString();
-                string? name = dados["Name"].ToString();
-                UserRole role = (UserRole)Enum.Parse(typeof(UserRole), dados["Role"].ToString());
 
-                User user = _userService.CreateUser(uName, password, name, role);
+                while(dados.Read())
+                { 
+                    string? uName = dados["UserName"].ToString();
+                    string? password = dados["Passwords"].ToString();
+                    string? name = dados["Name"].ToString();
 
-                return user;
+                    
+                        string userTypeString = dados["UserType"].ToString();
+                        // Check if the 'UserType' column value is a valid UserRole enum
+                        foreach (UserRole item in Enum.GetValues(typeof(UserRole)))
+                        {
+                            if (item.ToString() == userTypeString)
+                            {
+                                UserRole role =  item;
+                                User user = _userService.CreateUser(uName, password, name, role);
+                                return (user);
+                                break;
+                            }
+                        }
+                    
+                    
+
+                    
+                }
             }
             else return null;
-
+            return null;
             #endregion
 
         }
