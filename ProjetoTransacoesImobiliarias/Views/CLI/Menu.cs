@@ -149,13 +149,15 @@ public class Menu
         //Console.Clear();
         Console.WriteLine("========== ========== ========== ==========");
         Console.WriteLine("Cliente " + nomeCLiente);
-        Console.WriteLine("1 Fazer proposta");
-        Console.WriteLine("2 Aprovar proposta");
-        Console.WriteLine("3 Rejeitar proposta");
-        Console.WriteLine("4 Listar propostas");
-        Console.WriteLine("5 Marcar visita");
-        Console.WriteLine("6 Fazer pagamento");
-        Console.WriteLine("0 Sair");
+        Console.WriteLine("1. Fazer proposta");
+        Console.WriteLine("2. Cancelar proposta");
+        Console.WriteLine("3. Ver propostas efetuadas");
+        Console.WriteLine("---------------------");
+        Console.WriteLine("4. Aprovar proposta");
+        Console.WriteLine("5. Rejeitar proposta");
+        Console.WriteLine("6. Marcar visita");
+        Console.WriteLine("7. Fazer pagamento");
+        Console.WriteLine("0. Sair");
         Console.Write("Escolha uma opção: ");
         
     }

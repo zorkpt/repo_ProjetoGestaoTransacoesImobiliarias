@@ -36,6 +36,24 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             decimal proposalValue = proposalView.ProposalViewProposalValue();
             Client? client = Client.ClientList.Find(x => x.Id == clientId);
             Property? property = Property.PropertyList.Find(x => x.Id == propertyId);
+
+            //Valida se este cliente já tem proposta para esta propriedade
+            bool hasProposal = Proposal.ProposalList.Exists(p => p.Client.Id == client.Id && p.Property.Id == property.Id && p.Active);
+            if (hasProposal)
+            {
+                // Cliente já tem proposta para esta propriedade
+                MessageHandler.PressAnyKey($"Cliente ({client.Name}) já fez proposta a esta propriedade, esta proposta foi cancelada");
+                return false;
+            }
+            //Valida se o cliente é o dono da propriedade
+            if (client.Id == property.Client.Id)
+            {
+                //Cliente não é dono da propriedade
+                MessageHandler.PressAnyKey($"Cliente ({client.Name}) é dono da propriedade não pode voltar a comprar");
+                return false;
+            }
+
+
             if(client == null || property == null){
                 Menu.ErrorMessage();
             }else
@@ -64,7 +82,7 @@ namespace ProjetoTransacoesImobiliarias.Controllers
 
             Console.WriteLine("Lista de Todos os Utilizadores:");
             Console.WriteLine("---------------------------------------------------");
-            Console.WriteLine("| ID | Username |                 Descrição  |              ProposalDate  | Proposal Acepted Date                        |");
+            Console.WriteLine("| ID | Username |                 Descrição  |              ProposalDate  | Proposal Acepted Date | Reject date                       |");
             Console.WriteLine("---------------------------------------------------");
             foreach (Proposal proposal in List)
             {
@@ -75,6 +93,13 @@ namespace ProjetoTransacoesImobiliarias.Controllers
                 Console.Write(proposal.Property.Description + "   | ");
                 Console.Write(proposal.ProposalDate + "   | ");
                 Console.Write(proposal.ProposalAceptedDate);
+                Console.Write(proposal.ProposalRejectedDate);
+                if(proposal.Active)
+                {
+                    Console.Write("   | ");
+                }else{
+                    Console.Write(" Proposta cancelada");
+                }
                 Console.WriteLine("-----".PadRight(50, '-'));
             }
             //proposalView.Print(List);

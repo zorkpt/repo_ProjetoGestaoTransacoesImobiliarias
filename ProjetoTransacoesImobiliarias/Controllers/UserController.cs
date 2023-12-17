@@ -163,24 +163,55 @@ public abstract class UserController
                     }
                     break;
                 case "2":
-                    // Aprovar proposta
-                    Proposal? proposal = _proposalController.ChooseProposal();
-                    if(proposal == null)
+                    //Cancelar proposta
+                    Proposal? proposal2 = _proposalController.ChooseProposal();
+                    if(proposal2 == null) break;
+
+                    if(proposal2.Property.ClientId == client.Id)// comentar se necessario testar
                     {
+                        MessageHandler.PressAnyKey("O Proprietário da propriedade não pode cancelar esta proposta");
                         break;
-                    }else
+                    }else 
                     {
-                        _proposalController.AcceptProposal(proposal.ProposalId.Value);
-                        _transactionController.AddTransaction(proposal);
-                        MessageHandler.PressAnyKey("Proposta aprovada com sucesso.");
+                        _proposalController.DeclineProposal(proposal2.ProposalId.Value);
+                        MessageHandler.PressAnyKey("Proposta cancelada com sucesso.");
                     }
 
                     break;
                 case "3":
+                    // Ver propostas feitas por este cliente
+                    _proposalController.SeeProposalsByClient(client);
+                    break;
+                case "4":
+                    // Aprovar proposta
+                    Proposal? proposal = _proposalController.ChooseProposal();
+                    if(proposal == null) break;
+
+                    if(proposal.Property.ClientId != client.Id)// comentar se necessario testar
+                    {
+                        MessageHandler.PressAnyKey("A propriedade da proposta não pertence a este cliente");
+                        break;
+                    }else 
+                    {
+                        //é dono, pode aceitar
+                        _proposalController.AcceptProposal(proposal.ProposalId.Value);
+                        _transactionController.AddTransaction(proposal);
+                        MessageHandler.PressAnyKey("Proposta aprovada com sucesso.");
+                    }
+                        #region Apenas para testes, aceita proposta mesmo que nao seja o dono
+                        // _proposalController.AcceptProposal(proposal.ProposalId.Value);
+                        // _transactionController.AddTransaction(proposal);
+                        // MessageHandler.PressAnyKey("Proposta aprovada com sucesso.");
+                        #endregion
+
+                    break;
+                case "5":
                     // Rejeitar proposta
                     Proposal? proposal1 = _proposalController.ChooseProposal();
-                    if(proposal1 == null)
+                    if(proposal1 == null) break;
+                    if(proposal1.Property.ClientId != client.Id)// Se não for o dono (comentar se necessario testar)
                     {
+                        MessageHandler.PressAnyKey("A propriedade da proposta não pertence a este cliente");
                         break;
                     }else{
                         bool rej = _proposalController.DeclineProposal(_proposalController.ChooseProposal().ProposalId.Value);
@@ -192,11 +223,7 @@ public abstract class UserController
                         }
                     }
                     break;
-                case "4":
-                    // Ver propostas por cliente
-                    _proposalController.SeeProposalsByClient(client);
-                    break;
-                case "5":
+                case "6":
                     // Marcar visita
                     var allProperties = _propertyService.GetAllProperties();
                     PropertyView.DisplayAllProperties(allProperties);
@@ -219,14 +246,20 @@ public abstract class UserController
                         MessageHandler.PressAnyKey("Erro ao marcar visita.");
                     }
                     break;
-                case "6":
-                    // Fazer pagamento
+                case "7":
+                    // Fazer pagamento (Não permite pagamentos parciais, vale a pena ??)
                     Transactions? transaction = _transactionController.ChooseTransaction();
+                    
                     if(transaction == null)
                     {
                         MessageHandler.PressAnyKey("Transação não encontrada.");
                     }else
                     {
+                        if(transaction.proposal.Client.Id != client.Id) {
+                            MessageHandler.PressAnyKey("Esta transação não pertence a este cliente");
+                            break;
+                        }
+
                         if(_paymentController.MakePayment(transaction))
                         {
                             MessageHandler.PressAnyKey("Pagamento efetuado com sucesso.");
