@@ -45,6 +45,13 @@ namespace ProjetoTransacoesImobiliarias.Controllers
                 MessageHandler.PressAnyKey($"Cliente ({client.Name}) já fez proposta a esta propriedade, esta proposta foi cancelada");
                 return false;
             }
+            //Valida se o cliente é o dono da propriedade
+            if (client.Id == property.Client.Id)
+            {
+                //Cliente não é dono da propriedade
+                MessageHandler.PressAnyKey($"Cliente ({client.Name}) é dono da propriedade não pode voltar a comprar");
+                return false;
+            }
 
 
             if(client == null || property == null){

@@ -164,7 +164,7 @@ public abstract class UserController
                     break;
                 case "2":
                     //Cancelar proposta
-
+                    
                     break;
                 case "3":
                     // Ver propostas feitas por este cliente
@@ -173,15 +173,24 @@ public abstract class UserController
                 case "4":
                     // Aprovar proposta
                     Proposal? proposal = _proposalController.ChooseProposal();
-                    if(proposal == null)
+                    if(proposal == null) break;
+
+                    if(proposal.Property.ClientId != client.Id)// comentar se necessario testar
                     {
+                        MessageHandler.PressAnyKey("A propriedade da proposta não pertence a este cliente");
                         break;
-                    }else
+                    }else 
                     {
+                        //é dono, pode aceitar
                         _proposalController.AcceptProposal(proposal.ProposalId.Value);
                         _transactionController.AddTransaction(proposal);
                         MessageHandler.PressAnyKey("Proposta aprovada com sucesso.");
                     }
+                        #region Apenas para testes, aceita proposta mesmo que nao seja o dono
+                        // _proposalController.AcceptProposal(proposal.ProposalId.Value);
+                        // _transactionController.AddTransaction(proposal);
+                        // MessageHandler.PressAnyKey("Proposta aprovada com sucesso.");
+                        #endregion
 
                     break;
                 case "5":
@@ -230,6 +239,8 @@ public abstract class UserController
                 case "8":
                     // Fazer pagamento
                     Transactions? transaction = _transactionController.ChooseTransaction();
+                    
+                    
                     if(transaction == null)
                     {
                         MessageHandler.PressAnyKey("Transação não encontrada.");
