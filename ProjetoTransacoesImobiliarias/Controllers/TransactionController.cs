@@ -74,7 +74,9 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             if(id == -1){
                 return null;
             }else{
+                
                 Transactions? transaction = Transactions.TransactionList.Find(x => x.TransactionId == id);
+
                 return transaction;
             }
         }

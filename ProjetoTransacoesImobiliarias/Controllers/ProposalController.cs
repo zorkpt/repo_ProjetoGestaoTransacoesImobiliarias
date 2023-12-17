@@ -82,7 +82,7 @@ namespace ProjetoTransacoesImobiliarias.Controllers
 
             Console.WriteLine("Lista de Todos os Utilizadores:");
             Console.WriteLine("---------------------------------------------------");
-            Console.WriteLine("| ID | Username |                 Descrição  |              ProposalDate  | Proposal Acepted Date                        |");
+            Console.WriteLine("| ID | Username |                 Descrição  |              ProposalDate  | Proposal Acepted Date | Reject date                       |");
             Console.WriteLine("---------------------------------------------------");
             foreach (Proposal proposal in List)
             {
@@ -93,6 +93,13 @@ namespace ProjetoTransacoesImobiliarias.Controllers
                 Console.Write(proposal.Property.Description + "   | ");
                 Console.Write(proposal.ProposalDate + "   | ");
                 Console.Write(proposal.ProposalAceptedDate);
+                Console.Write(proposal.ProposalRejectedDate);
+                if(proposal.Active)
+                {
+                    Console.Write("   | ");
+                }else{
+                    Console.Write("Proposta cancelada");
+                }
                 Console.WriteLine("-----".PadRight(50, '-'));
             }
             //proposalView.Print(List);

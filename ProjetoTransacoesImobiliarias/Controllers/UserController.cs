@@ -164,7 +164,19 @@ public abstract class UserController
                     break;
                 case "2":
                     //Cancelar proposta
-                    
+                    Proposal? proposal2 = _proposalController.ChooseProposal();
+                    if(proposal2 == null) break;
+
+                    if(proposal2.Property.ClientId == client.Id)// comentar se necessario testar
+                    {
+                        MessageHandler.PressAnyKey("O Proprietário da propriedade não pode cancelar esta proposta");
+                        break;
+                    }else 
+                    {
+                        _proposalController.DeclineProposal(proposal2.ProposalId.Value);
+                        MessageHandler.PressAnyKey("Proposta cancelada com sucesso.");
+                    }
+
                     break;
                 case "3":
                     // Ver propostas feitas por este cliente
@@ -196,8 +208,10 @@ public abstract class UserController
                 case "5":
                     // Rejeitar proposta
                     Proposal? proposal1 = _proposalController.ChooseProposal();
-                    if(proposal1 == null)
+                    if(proposal1 == null) break;
+                    if(proposal1.Property.ClientId != client.Id)// Se não for o dono (comentar se necessario testar)
                     {
+                        MessageHandler.PressAnyKey("A propriedade da proposta não pertence a este cliente");
                         break;
                     }else{
                         bool rej = _proposalController.DeclineProposal(_proposalController.ChooseProposal().ProposalId.Value);
@@ -240,7 +254,7 @@ public abstract class UserController
                     // Fazer pagamento
                     Transactions? transaction = _transactionController.ChooseTransaction();
                     
-                    
+
                     if(transaction == null)
                     {
                         MessageHandler.PressAnyKey("Transação não encontrada.");
