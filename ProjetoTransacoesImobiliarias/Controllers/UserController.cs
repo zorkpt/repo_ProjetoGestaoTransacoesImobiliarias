@@ -163,6 +163,14 @@ public abstract class UserController
                     }
                     break;
                 case "2":
+                    //Cancelar proposta
+
+                    break;
+                case "3":
+                    // Ver propostas feitas por este cliente
+                    
+                    break;
+                case "4":
                     // Aprovar proposta
                     Proposal? proposal = _proposalController.ChooseProposal();
                     if(proposal == null)
@@ -176,7 +184,7 @@ public abstract class UserController
                     }
 
                     break;
-                case "3":
+                case "5":
                     // Rejeitar proposta
                     Proposal? proposal1 = _proposalController.ChooseProposal();
                     if(proposal1 == null)
@@ -192,11 +200,11 @@ public abstract class UserController
                         }
                     }
                     break;
-                case "4":
+                case "6":
                     // Ver propostas por cliente
                     _proposalController.SeeProposalsByClient(client);
                     break;
-                case "5":
+                case "7":
                     // Marcar visita
                     var allProperties = _propertyService.GetAllProperties();
                     PropertyView.DisplayAllProperties(allProperties);
@@ -219,7 +227,7 @@ public abstract class UserController
                         MessageHandler.PressAnyKey("Erro ao marcar visita.");
                     }
                     break;
-                case "6":
+                case "8":
                     // Fazer pagamento
                     Transactions? transaction = _transactionController.ChooseTransaction();
                     if(transaction == null)

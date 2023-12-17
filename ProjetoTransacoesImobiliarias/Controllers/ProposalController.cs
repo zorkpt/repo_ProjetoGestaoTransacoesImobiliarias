@@ -36,6 +36,17 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             decimal proposalValue = proposalView.ProposalViewProposalValue();
             Client? client = Client.ClientList.Find(x => x.Id == clientId);
             Property? property = Property.PropertyList.Find(x => x.Id == propertyId);
+
+            //Valida se este cliente já tem proposta para esta propriedade
+            bool hasProposal = Proposal.ProposalList.Exists(p => p.Client.Id == client.Id && p.Property.Id == property.Id && p.Active);
+            if (hasProposal)
+            {
+                // Cliente já tem proposta para esta propriedade
+                MessageHandler.PressAnyKey($"Cliente ({client.Name}) já fez proposta a esta propriedade, esta proposta foi cancelada");
+                return false;
+            }
+
+
             if(client == null || property == null){
                 Menu.ErrorMessage();
             }else
