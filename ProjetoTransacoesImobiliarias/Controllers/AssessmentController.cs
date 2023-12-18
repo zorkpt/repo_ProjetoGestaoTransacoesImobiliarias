@@ -10,13 +10,13 @@ namespace ProjetoTransacoesImobiliarias.Controllers
     public class AssessmentController
     {
 
-        
+        /// <summary>
+        /// Initializes a new instance of the AssessmentController class.
+        /// </summary>
         public AssessmentController()
         {
             
         }
-
-        
 
         #region Methods
 

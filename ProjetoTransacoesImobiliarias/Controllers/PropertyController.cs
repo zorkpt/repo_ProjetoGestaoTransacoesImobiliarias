@@ -5,11 +5,20 @@ namespace ProjetoTransacoesImobiliarias.Controllers
 {
     public class PropertyController
     {
+        /// <summary>
+        /// Add a new property.
+        /// </summary>
+        /// <param name="property"></param>
+        /// <returns></returns>
         public Property AddProperty(Property property)
         {
             return property;
         }
 
+        /// <summary>
+        /// Find a property by id.
+        /// </summary>
+        /// <returns></returns>
         public Property? ChooseProperty()
         {
             int propertyId = PropertyView.ChooseProperty();

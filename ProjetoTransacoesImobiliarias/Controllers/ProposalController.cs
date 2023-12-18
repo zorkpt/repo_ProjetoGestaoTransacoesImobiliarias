@@ -23,6 +23,11 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             
         }
 
+        /// <summary>
+        /// Makes a proposal.
+        /// </summary>
+        /// <param name="numClient"></param>
+        /// <returns></returns>
         public bool MakeProposal(int numClient){
             int? clientId;
             if(numClient == -1){
@@ -72,6 +77,11 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             return false;
         }
 
+        /// <summary>
+        /// See all proposals by a client.
+        /// </summary>
+        /// <param name="Client"></param>
+        /// <returns></returns>
         public bool SeeProposalsByClient(Client Client){
             List<Proposal> List = Proposal.ProposalList.FindAll(x => x.Client.Id == Client.Id).ToList();
             
@@ -106,6 +116,11 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             return true;
         }
         
+        /// <summary>
+        /// See all proposals by a property.
+        /// </summary>
+        /// <param name="PropertyId"></param>
+        /// <returns></returns>
         public bool SeeProposalsByProperty(int PropertyId){
             List<Proposal>? List = Proposal.ProposalList.FindAll(x => x.Property.Id == PropertyId).ToList();
 
@@ -118,6 +133,10 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             return true;
         }
 
+        /// <summary>
+        /// See all proposals.
+        /// </summary>
+        /// <returns></returns>
         public bool SeeAllProposals(){
             List<Proposal> List = Proposal.ProposalList;
 
@@ -137,7 +156,10 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             return true;
         }
 
-
+        /// <summary>
+        /// Choose a proposal.
+        /// </summary>
+        /// <returns></returns>
         public Proposal? ChooseProposal()
         {
             if(Proposal.ProposalList.Count == 0){
@@ -157,6 +179,12 @@ namespace ProjetoTransacoesImobiliarias.Controllers
                 }
             }
         }
+
+        /// <summary>
+        /// Accept a proposal.
+        /// </summary>
+        /// <param name="proposalId"></param>
+        /// <returns></returns>
         public bool AcceptProposal(int proposalId){
             
             try{
@@ -176,6 +204,11 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             
         }
     
+        /// <summary>
+        /// Decline a proposal.
+        /// </summary>
+        /// <param name="proposalId"></param>
+        /// <returns></returns>
         public bool DeclineProposal(int proposalId){
             Proposal? proposal = Proposal.ProposalList.Find(x => x.ProposalId == proposalId);
             if (proposal == null) return false;

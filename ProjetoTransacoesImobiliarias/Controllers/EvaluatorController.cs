@@ -23,6 +23,9 @@ public class EvaluatorController : UserController
         _assessmentController = new AssessmentController();
     }
 
+    /// <summary>
+    /// Executes the menu functionality for the evaluator user.
+    /// </summary>
     public override void MenuStart()
     {
         var exitMenu = false;
@@ -51,6 +54,9 @@ public class EvaluatorController : UserController
 
     // Methods
 
+    /// <summary>
+    /// List all assessments of a property
+    /// </summary>
     private void ListAssessmentProperty()
     {
         Console.Clear();
@@ -64,6 +70,9 @@ public class EvaluatorController : UserController
         MessageHandler.PressAnyKey();
     }
 
+    /// <summary>
+    /// Add new assessment to property
+    /// </summary>
     private void AddAssessmentProperty()
     {
         var propertyId = EvaluatorView.EvaluateAddAssessmentPropertyView(_evaluator);

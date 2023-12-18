@@ -26,6 +26,9 @@ public class ManagerController: UserController
         managerView = new ManagerView();
     }
 
+    /// <summary>
+    /// Executes the menu functionality for the manager user.
+    /// </summary>
     public override void MenuStart()
     {
         var exitMenu = false;
@@ -59,7 +62,9 @@ public class ManagerController: UserController
         }
     }
     
-    
+    /// <summary>
+    /// Submenu for managing clients.
+    /// </summary>
     private void SubMenuManageClients()
     {
         var exitMenu = false;
@@ -98,6 +103,9 @@ public class ManagerController: UserController
         }
     }
 
+    /// <summary>
+    /// Submenu for managing transactions.
+    /// </summary>
     private void SubMenuManageTransactions()
     {
         var exitMenu = false;
@@ -125,6 +133,9 @@ public class ManagerController: UserController
         }
     }
 
+    /// <summary>
+    /// Submenu for managing properties.
+    /// </summary>
     private void SubMenuManageProperties()
     {
         var exitMenu = false;
@@ -156,8 +167,10 @@ public class ManagerController: UserController
         }
     }
 
-    
-    
+    /// <summary>
+    /// List all clients.
+    /// </summary>
+    /// <param name="all"></param>
     private void ListClients(bool all = true)
     {
         var clients = all ? _clientService.GetAllClients() : _manager.GetManagerClients();

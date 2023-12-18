@@ -13,11 +13,19 @@ namespace ProjetoTransacoesImobiliarias.Controllers
     {
         private PaymentView? paymentView{ get; set; }
         
+        /// <summary>
+        /// Initializes a new instance of the PaymentController class.
+        /// </summary>
         public PaymentController()
         {
             paymentView = new PaymentView();//vamos ver se é preciso...
         } 
 
+        /// <summary>
+        /// Makes a payment.
+        /// </summary>
+        /// <param name="transaction"></param>
+        /// <returns></returns>
         public bool MakePayment(Transactions transaction)
         {
             if(transaction == null) return false;

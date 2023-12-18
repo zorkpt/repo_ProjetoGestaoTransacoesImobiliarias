@@ -27,6 +27,9 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             agentView = new AgentView();
         }
 
+        /// <summary>
+        /// Executes the menu functionality for the agent user.
+        /// </summary>
         public override void MenuStart()
         {
             var exitMenu = false;
@@ -55,6 +58,9 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             }
         }
 
+        /// <summary>
+        /// Manages the submenu for managing clients.
+        /// </summary>
         private void SubMenuManageClients()
         {
             var exitMenu = false;
@@ -92,6 +98,10 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             }
         }
 
+        /// <summary>
+        /// Lists all the clients of the agent.
+        /// </summary>
+        /// <param name="all"></param>
         private void ListClients(bool all = true)
         {
             var clients = all ? _clientService.GetAllClients() : _agent.GetAgentClients();

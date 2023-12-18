@@ -19,6 +19,10 @@ namespace ProjetoTransacoesImobiliarias.Controllers
             
         }
 
+        /// <summary>
+        /// Adds a transaction to the list and hashtable.
+        /// </summary>
+        /// <param name="proposal"></param>
         public void AddTransaction(Proposal proposal){
             if(proposal == null)
             {

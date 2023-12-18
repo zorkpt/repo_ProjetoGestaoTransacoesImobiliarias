@@ -16,11 +16,19 @@ public class AppController
         _propertyService = propertyService;
     }
 
+    /// <summary>
+    /// Starts the application.
+    /// </summary>
+    /// <param name="user"></param>
     public void Start(User user)
     {
         ShowUserMenu(user);
     }
 
+    /// <summary>
+    /// Shows the menu for the user.
+    /// </summary>
+    /// <param name="user"></param>
     public void ShowUserMenu(User user)
     {
         UserController userController;

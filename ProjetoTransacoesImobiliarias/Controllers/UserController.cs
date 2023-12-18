@@ -32,6 +32,10 @@ public abstract class UserController
     
     #region Clients
 
+    /// <summary>
+    /// Edits a client.
+    /// </summary>
+    /// <returns></returns>
     protected Client? EditClient()
     {
         Console.Write("Insira o ID do cliente que deseja editar: ");
@@ -58,6 +62,10 @@ public abstract class UserController
         return client;
     }
 
+    /// <summary>
+    /// Lists all clients.
+    /// </summary>
+    /// <param name="clients"></param>
     protected void ListClients(IEnumerable<Client> clients)
     {
         if (!clients.Any())
@@ -74,12 +82,20 @@ public abstract class UserController
 
     #region Users
 
+    /// <summary>
+    /// Lists all users.
+    /// </summary>
+    /// <param name="userService"></param>
     protected void ListAllUsers(IUserService userService)
     {
         var allUsers = userService.GetAllUsers();
         UserView.DisplayUsers(allUsers);
     }
 
+    /// <summary>
+    /// Adds a user.
+    /// </summary>
+    /// <returns></returns>
     protected User AddUser()
     {
         var clientData = UserView.AddUser();
@@ -92,6 +108,10 @@ public abstract class UserController
         return newUser;
     }
 
+    /// <summary>
+    /// Deletes a user.
+    /// </summary>
+    /// <returns></returns>
     protected bool DeleteUser()
     {
         var user = ChooseUser();
@@ -107,6 +127,10 @@ public abstract class UserController
 
     }
 
+    /// <summary>
+    /// Chooses a user.
+    /// </summary>
+    /// <returns></returns>
     protected virtual User ChooseUser()
     {
             string userName = UserView.ChooseUserNameView();
@@ -125,6 +149,10 @@ public abstract class UserController
             }
     }
 
+    /// <summary>
+    /// Chooses a client.
+    /// </summary>
+    /// <returns></returns>
     protected virtual Client ChooseClient()
     {
         while (true)
@@ -145,6 +173,9 @@ public abstract class UserController
         }
     }
 
+    /// <summary>
+    /// Manage client options.
+    /// </summary>
     public void ManageClientOptions()
     {
         Client client = ChooseClient();
@@ -283,6 +314,11 @@ public abstract class UserController
 
     #region Properties
 
+    /// <summary>
+    /// Adds a property.
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
     protected Property? AddProperty(User user)
     {
         var propertyData = UserView.AddProperty();

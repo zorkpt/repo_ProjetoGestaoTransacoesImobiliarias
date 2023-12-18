@@ -8,8 +8,11 @@ using ProjetoTransacoesImobiliarias.Models;
 
 namespace ProjetoTransacoesImobiliarias.Controllers
 {
+    /// <summary>
+    /// Initializes a new instance of the ClientController class.
+    /// </summary>
     public class ClientController
     {
 
-}
+    }
 }
