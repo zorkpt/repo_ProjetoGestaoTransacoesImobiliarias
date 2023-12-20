@@ -1,84 +1,112 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="ProjetoTransacoesImobiliarias.Models.Admin">
-    <Position X="0.5" Y="1.75" Width="1.5" />
+    <Position X="4.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAAAAAAAAAACAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
       <FileName>Models\Admin.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProjetoTransacoesImobiliarias.Models.Agent">
-    <Position X="5" Y="1.75" Width="1.5" />
+    <Position X="9" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Agent.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProjetoTransacoesImobiliarias.Models.Client">
-    <Position X="11.25" Y="0.75" Width="1.5" />
+    <Position X="15.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABACACCAAAAAAAAAAAAAQAQAAAAAAAACBAgAAAAAAAA=</HashCode>
+      <HashCode>ABACACCAAAAAAAAAAAAAQAQAAAAAAAACBggAAAAAAAA=</HashCode>
       <FileName>Models\Client.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProjetoTransacoesImobiliarias.Models.Data">
-    <Position X="13" Y="0.75" Width="1.5" />
+    <Position X="17.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAABAEAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Data.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProjetoTransacoesImobiliarias.Models.Evaluator">
-    <Position X="2.75" Y="1.75" Width="1.5" />
+    <Position X="6.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Evaluator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProjetoTransacoesImobiliarias.Models.Manager">
-    <Position X="7.25" Y="1.75" Width="1.5" />
+    <Position X="11.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Manager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ProjetoTransacoesImobiliarias.Models.Property">
-    <Position X="9.5" Y="0.75" Width="1.5" />
+  <Class Name="ProjetoTransacoesImobiliarias.Models.Payment">
+    <Position X="19" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAABAAAAAAAEACAAAAAAAEAAAAAKAAAAAEAAEAA=</HashCode>
+      <HashCode>AACAAAAAQAAAAAAAAAAAAAAAAAAAUBAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Payment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetoTransacoesImobiliarias.Models.Property">
+    <Position X="20.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACAACAAAAgABAAgBAAAAAAAAAAAAACAAgCAAAAEQQ=</HashCode>
       <FileName>Models\Property.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ProjetoTransacoesImobiliarias.Models.User">
-    <Position X="3.75" Y="3.5" Width="1.5" />
+  <Class Name="ProjetoTransacoesImobiliarias.Models.Transactions">
+    <Position X="24.25" Y="2.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="ProjetoTransacoesImobiliarias.Models.Transactions.TransactionState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\Transaction.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAEQAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <HashCode>AACAAAAAAAEAAAAIgCAAAAAAAAgAEAAABAABBAAAAAA=</HashCode>
+      <FileName>Models\Transaction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetoTransacoesImobiliarias.Models.User">
+    <Position X="7.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAESAAAAQAAAAAAAAKAAACAAACAAA=</HashCode>
       <FileName>Models\User.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ProjetoTransacoesImobiliarias.Assessment">
-    <Position X="14.75" Y="0.75" Width="1.5" />
+  <Class Name="ProjetoTransacoesImobiliarias.Models.Visits">
+    <Position X="26" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAIAAAACAAAAAEAAAEIAEQAAAAgAggAAIEgAIAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAEABAAAAAAAAAAAAAAAAAABAAAABQAAAAE=</HashCode>
+      <FileName>Models\Visits.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetoTransacoesImobiliarias.Assessment">
+    <Position X="13.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAAAAAAAEAAAAIAAAAAAAgAAgIAAAAAAAAAE=</HashCode>
       <FileName>Models\Assessment.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProjetoTransacoesImobiliarias.Proposal">
-    <Position X="13" Y="3" Width="1.5" />
+    <Position X="22.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAAAAAAAAAAgAAAAgAAAAACBAAAAEAAgAAAAAAAAAQA=</HashCode>
+      <HashCode>EACAAAAAAAAgAAAAIAAAAAABAAIAAAAgAAAAAQAAAQQ=</HashCode>
       <FileName>Models\Proposal.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="ProjetoTransacoesImobiliarias.Models.PropertyType">
-    <Position X="9.5" Y="4" Width="1.5" />
+    <Position X="20.75" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgIAQAAAAAA=</HashCode>
       <FileName>Models\PropertyType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ProjetoTransacoesImobiliarias.Models.UserRole">
-    <Position X="3.75" Y="6" Width="1.5" />
+    <Position X="9.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAEAAQAAAAAABAAAAAAAACAAAAA=</HashCode>
       <FileName>Models\UserRole.cs</FileName>
