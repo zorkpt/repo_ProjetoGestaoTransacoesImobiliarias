@@ -109,6 +109,11 @@ namespace TransacoesImobiliariasWinForms
             //carregar dados aqui
             totalFuncionarios.Text = _formController.TotalFuncionariosSQL().ToString();
             totalClientesLabel.Text = _formController.TotalClientesSQL();
+            totalProVendaLabel.Text = _formController.TotalProVendaSQL();
+            proVendaMesLabel.Text = _formController.TotalProVendidasMesSQL();
+            clientesPropostasLabel.Text = _formController.ClintePropEfetuadaSQL();
+            clientesFaltaPagLabel.Text = _formController.ClienteFaltaPagamentoSQL();
+            funcionarioMesLLabel.Text = _formController.FuncionariosMesSQL();
         }
 
         #region Fazer pedidos SQL
@@ -142,6 +147,78 @@ namespace TransacoesImobiliariasWinForms
                 {
 
                     totalClientesLabel.Text = string.Empty; // ou outra lógica de tratamento
+                }
+            }
+        }
+
+        private void totalProVendaLabel_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(totalProVendaLabel.Text))
+            {
+                if (int.TryParse(totalProVendaLabel.Text, out int value))
+                {
+                    // Certifique-se de que o valor está dentro dos limites da barra de progresso
+                    value = Math.Max(progressBarTotalVendas.Minimum, Math.Min(value, progressBarTotalVendas.Maximum));
+
+                    progressBarTotalVendas.Value = value;
+                }
+                else
+                {
+                    totalProVendaLabel.Text = string.Empty; // ou outra lógica de tratamento
+                }
+            }
+        }
+
+        private void clientesPropostasLabel_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(clientesPropostasLabel.Text))
+            {
+                if (int.TryParse(clientesPropostasLabel.Text, out int value))
+                {
+                    // Certifique-se de que o valor está dentro dos limites da barra de progresso
+                    value = Math.Max(progressBarClienteProposta.Minimum, Math.Min(value, progressBarClienteProposta.Maximum));
+
+                    progressBarClienteProposta.Value = value;
+                }
+                else
+                {
+                    clientesPropostasLabel.Text = string.Empty; // ou outra lógica de tratamento
+                }
+            }
+        }
+
+        private void clientesFaltaPagLabel_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(clientesFaltaPagLabel.Text))
+            {
+                if (int.TryParse(clientesFaltaPagLabel.Text, out int value))
+                {
+                    // Certifique-se de que o valor está dentro dos limites da barra de progresso
+                    value = Math.Max(progressBarFaltaPag.Minimum, Math.Min(value, progressBarFaltaPag.Maximum));
+
+                    progressBarFaltaPag.Value = value;
+                }
+                else
+                {
+                    clientesFaltaPagLabel.Text = string.Empty; // ou outra lógica de tratamento
+                }
+            }
+        }
+
+        private void proVendaMesLabel_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(proVendaMesLabel.Text))
+            {
+                if (int.TryParse(proVendaMesLabel.Text, out int value))
+                {
+                    // Certifique-se de que o valor está dentro dos limites da barra de progresso
+                    value = Math.Max(progressBarProVendidas.Minimum, Math.Min(value, progressBarProVendidas.Maximum));
+
+                    progressBarProVendidas.Value = value;
+                }
+                else
+                {
+                    proVendaMesLabel.Text = string.Empty; // ou outra lógica de tratamento
                 }
             }
         }

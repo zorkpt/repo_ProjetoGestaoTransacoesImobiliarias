@@ -47,3 +47,5 @@ SECRET = 'POO';
 Use TrabalhoAAD;
 SELECT COUNT(IdUser) as Num
 FROM Users
+
+SELECT COUNT(nif) as NumClientes FROM Cliente

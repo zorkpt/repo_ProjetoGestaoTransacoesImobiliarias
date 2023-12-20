@@ -17,8 +17,8 @@ namespace TransacoesImobiliariasWinForms
 
         #region Atributos
         private string servidor = "127.0.0.1";
-        private string UsernameBD = "Geral";
-        private string passwordBD = "Ricardo10@@";
+        private string UsernameBD = "POO";
+        private string passwordBD = "poo";
         private string tabelaBD = "TrabalhoAAD";
 
         #endregion

@@ -132,5 +132,87 @@ namespace TransacoesImobiliariasWinForms
             }
             return "Sem dados";
         }
+
+        public string TotalProVendaSQL()
+        {
+            var query = "SELECT COUNT(IdCMediacao) as NumPropriedadesVenda FROM ContratoMediacao WHERE Ativo = 1;";
+            var dados = _dados.Select(query);
+
+            if (dados == null) return "";
+
+            if (dados.HasRows && dados.Read())
+            {
+                //var numUsers = dados.GetInt32(dados.GetOrdinal("NumUsers"));
+                string numUsers = dados["NumPropriedadesVenda"].ToString();
+                return numUsers;
+            }
+            return "Sem dados";
+        }
+
+        public string TotalProVendidasMesSQL()
+        {
+            var query = "SELECT COUNT(IdCMediacao) as NumPropriedadesVenda FROM ContratoMediacao WHERE Ativo = 1 AND data < DATEADD(Month, -1, GETDATE());";
+            var dados = _dados.Select(query);
+
+            if (dados == null) return "";
+
+            if (dados.HasRows && dados.Read())
+            {
+                //var numUsers = dados.GetInt32(dados.GetOrdinal("NumUsers"));
+                string numUsers = dados["NumPropriedadesVenda"].ToString();
+                return numUsers;
+            }
+            return "Sem dados";
+        }
+
+        public string ClintePropEfetuadaSQL()
+        {
+            var query = "SELECT COUNT(distinct NIF) as NumPropostas FROM Cliente JOIN Proposta ON Proposta.[ClienteNIF Comprador] = cliente.NIF WHERE Proposta.Ativa = 1;";
+            var dados = _dados.Select(query);
+
+            if (dados == null) return "";
+
+            if (dados.HasRows && dados.Read())
+            {
+                //var numUsers = dados.GetInt32(dados.GetOrdinal("NumUsers"));
+                string numUsers = dados["NumPropostas"].ToString();
+                return numUsers;
+            }
+            return "Sem dados";
+        }
+
+        public string ClienteFaltaPagamentoSQL()
+        {
+            var query = "SELECT COUNT(IdNegocio) as ContratosSemPagamento FROM ContratoCompraVenda LEFT JOIN Pagamento ON Pagamento.ContratoCompraVenda = ContratoCompraVenda.IdNegocio WHERE IdPagamento IS NULL;";
+            var dados = _dados.Select(query);
+
+            if (dados == null) return "";
+
+            if (dados.HasRows && dados.Read())
+            {
+                //var numUsers = dados.GetInt32(dados.GetOrdinal("NumUsers"));
+                string numUsers = dados["ContratosSemPagamento"].ToString();
+                return numUsers;
+            }
+            return "Sem dados";
+
+
+        }
+
+        public string FuncionariosMesSQL()
+        {
+            var query = " NULL;";
+            var dados = _dados.Select(query);
+
+            if (dados == null) return "";
+
+            if (dados.HasRows && dados.Read())
+            {
+                //var numUsers = dados.GetInt32(dados.GetOrdinal("NumUsers"));
+                string numUsers = dados["ContratosSemPagamento"].ToString();
+                return numUsers;
+            }
+            return "Sem dados";
+        }
     }
 }

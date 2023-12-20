@@ -39,22 +39,22 @@
             panel12 = new Panel();
             panel11 = new Panel();
             progressBarTotalFuncionarios = new ProgressBar();
-            label14 = new Label();
+            LocVendasLabel = new Label();
             label15 = new Label();
-            label16 = new Label();
+            funcionarioMesLLabel = new Label();
             label17 = new Label();
             totalFuncionarios = new Label();
             label19 = new Label();
             panel3 = new Panel();
             label1 = new Label();
             panel4 = new Panel();
-            progressBar3 = new ProgressBar();
-            progressBar2 = new ProgressBar();
+            progressBarFaltaPag = new ProgressBar();
+            progressBarClienteProposta = new ProgressBar();
             panel10 = new Panel();
             progressBarTotalCliente = new ProgressBar();
-            label13 = new Label();
+            clientesFaltaPagLabel = new Label();
             label12 = new Label();
-            label11 = new Label();
+            clientesPropostasLabel = new Label();
             label10 = new Label();
             totalClientesLabel = new Label();
             label8 = new Label();
@@ -62,12 +62,12 @@
             label2 = new Label();
             panel6 = new Panel();
             panel14 = new Panel();
-            progressBar8 = new ProgressBar();
+            progressBarProVendidas = new ProgressBar();
             panel13 = new Panel();
-            progressBar7 = new ProgressBar();
-            label7 = new Label();
+            progressBarTotalVendas = new ProgressBar();
+            proVendaMesLabel = new Label();
             label6 = new Label();
-            label5 = new Label();
+            totalProVendaLabel = new Label();
             label4 = new Label();
             panel7 = new Panel();
             label3 = new Label();
@@ -148,9 +148,9 @@
             panel2.Controls.Add(panel12);
             panel2.Controls.Add(panel11);
             panel2.Controls.Add(progressBarTotalFuncionarios);
-            panel2.Controls.Add(label14);
+            panel2.Controls.Add(LocVendasLabel);
             panel2.Controls.Add(label15);
-            panel2.Controls.Add(label16);
+            panel2.Controls.Add(funcionarioMesLLabel);
             panel2.Controls.Add(label17);
             panel2.Controls.Add(totalFuncionarios);
             panel2.Controls.Add(label19);
@@ -215,15 +215,15 @@
             progressBarTotalFuncionarios.TabIndex = 22;
             progressBarTotalFuncionarios.Value = 80;
             // 
-            // label14
+            // LocVendasLabel
             // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label14.Location = new Point(13, 248);
-            label14.Name = "label14";
-            label14.Size = new Size(40, 32);
-            label14.TabIndex = 21;
-            label14.Text = "15";
+            LocVendasLabel.AutoSize = true;
+            LocVendasLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LocVendasLabel.Location = new Point(13, 248);
+            LocVendasLabel.Name = "LocVendasLabel";
+            LocVendasLabel.Size = new Size(40, 32);
+            LocVendasLabel.TabIndex = 21;
+            LocVendasLabel.Text = "15";
             // 
             // label15
             // 
@@ -235,15 +235,15 @@
             label15.TabIndex = 20;
             label15.Text = "Localidade com mais vendas";
             // 
-            // label16
+            // funcionarioMesLLabel
             // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label16.Location = new Point(13, 165);
-            label16.Name = "label16";
-            label16.Size = new Size(74, 21);
-            label16.TabIndex = 19;
-            label16.Text = "Ze Manel";
+            funcionarioMesLLabel.AutoSize = true;
+            funcionarioMesLLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            funcionarioMesLLabel.Location = new Point(13, 165);
+            funcionarioMesLLabel.Name = "funcionarioMesLLabel";
+            funcionarioMesLLabel.Size = new Size(74, 21);
+            funcionarioMesLLabel.TabIndex = 19;
+            funcionarioMesLLabel.Text = "Ze Manel";
             // 
             // label17
             // 
@@ -300,13 +300,13 @@
             // panel4
             // 
             panel4.BorderStyle = BorderStyle.FixedSingle;
-            panel4.Controls.Add(progressBar3);
-            panel4.Controls.Add(progressBar2);
+            panel4.Controls.Add(progressBarFaltaPag);
+            panel4.Controls.Add(progressBarClienteProposta);
             panel4.Controls.Add(panel10);
             panel4.Controls.Add(progressBarTotalCliente);
-            panel4.Controls.Add(label13);
+            panel4.Controls.Add(clientesFaltaPagLabel);
             panel4.Controls.Add(label12);
-            panel4.Controls.Add(label11);
+            panel4.Controls.Add(clientesPropostasLabel);
             panel4.Controls.Add(label10);
             panel4.Controls.Add(totalClientesLabel);
             panel4.Controls.Add(label8);
@@ -317,27 +317,27 @@
             panel4.TabIndex = 5;
             panel4.Paint += panel4_Paint;
             // 
-            // progressBar3
+            // progressBarFaltaPag
             // 
-            progressBar3.ForeColor = SystemColors.GrayText;
-            progressBar3.Location = new Point(15, 283);
-            progressBar3.Name = "progressBar3";
-            progressBar3.Size = new Size(164, 18);
-            progressBar3.Step = 1;
-            progressBar3.Style = ProgressBarStyle.Continuous;
-            progressBar3.TabIndex = 15;
-            progressBar3.Value = 75;
+            progressBarFaltaPag.ForeColor = SystemColors.GrayText;
+            progressBarFaltaPag.Location = new Point(15, 283);
+            progressBarFaltaPag.Name = "progressBarFaltaPag";
+            progressBarFaltaPag.Size = new Size(164, 18);
+            progressBarFaltaPag.Step = 1;
+            progressBarFaltaPag.Style = ProgressBarStyle.Continuous;
+            progressBarFaltaPag.TabIndex = 15;
+            progressBarFaltaPag.Value = 75;
             // 
-            // progressBar2
+            // progressBarClienteProposta
             // 
-            progressBar2.ForeColor = SystemColors.GrayText;
-            progressBar2.Location = new Point(15, 186);
-            progressBar2.Name = "progressBar2";
-            progressBar2.Size = new Size(164, 18);
-            progressBar2.Step = 1;
-            progressBar2.Style = ProgressBarStyle.Continuous;
-            progressBar2.TabIndex = 14;
-            progressBar2.Value = 50;
+            progressBarClienteProposta.ForeColor = SystemColors.GrayText;
+            progressBarClienteProposta.Location = new Point(15, 186);
+            progressBarClienteProposta.Name = "progressBarClienteProposta";
+            progressBarClienteProposta.Size = new Size(164, 18);
+            progressBarClienteProposta.Step = 1;
+            progressBarClienteProposta.Style = ProgressBarStyle.Continuous;
+            progressBarClienteProposta.TabIndex = 14;
+            progressBarClienteProposta.Value = 50;
             // 
             // panel10
             // 
@@ -358,15 +358,16 @@
             progressBarTotalCliente.TabIndex = 11;
             progressBarTotalCliente.Value = 30;
             // 
-            // label13
+            // clientesFaltaPagLabel
             // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label13.Location = new Point(15, 248);
-            label13.Name = "label13";
-            label13.Size = new Size(40, 32);
-            label13.TabIndex = 10;
-            label13.Text = "15";
+            clientesFaltaPagLabel.AutoSize = true;
+            clientesFaltaPagLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            clientesFaltaPagLabel.Location = new Point(15, 248);
+            clientesFaltaPagLabel.Name = "clientesFaltaPagLabel";
+            clientesFaltaPagLabel.Size = new Size(40, 32);
+            clientesFaltaPagLabel.TabIndex = 10;
+            clientesFaltaPagLabel.Text = "15";
+            clientesFaltaPagLabel.TextChanged += clientesFaltaPagLabel_TextChanged;
             // 
             // label12
             // 
@@ -378,15 +379,16 @@
             label12.TabIndex = 9;
             label12.Text = "Falta de pagamento";
             // 
-            // label11
+            // clientesPropostasLabel
             // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.Location = new Point(15, 151);
-            label11.Name = "label11";
-            label11.Size = new Size(27, 32);
-            label11.TabIndex = 8;
-            label11.Text = "3";
+            clientesPropostasLabel.AutoSize = true;
+            clientesPropostasLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            clientesPropostasLabel.Location = new Point(15, 151);
+            clientesPropostasLabel.Name = "clientesPropostasLabel";
+            clientesPropostasLabel.Size = new Size(27, 32);
+            clientesPropostasLabel.TabIndex = 8;
+            clientesPropostasLabel.Text = "3";
+            clientesPropostasLabel.TextChanged += clientesPropostasLabel_TextChanged;
             // 
             // label10
             // 
@@ -443,12 +445,12 @@
             // 
             panel6.BorderStyle = BorderStyle.FixedSingle;
             panel6.Controls.Add(panel14);
-            panel6.Controls.Add(progressBar8);
+            panel6.Controls.Add(progressBarProVendidas);
             panel6.Controls.Add(panel13);
-            panel6.Controls.Add(progressBar7);
-            panel6.Controls.Add(label7);
+            panel6.Controls.Add(progressBarTotalVendas);
+            panel6.Controls.Add(proVendaMesLabel);
             panel6.Controls.Add(label6);
-            panel6.Controls.Add(label5);
+            panel6.Controls.Add(totalProVendaLabel);
             panel6.Controls.Add(label4);
             panel6.Controls.Add(panel7);
             panel6.Location = new Point(644, 79);
@@ -464,16 +466,16 @@
             panel14.Size = new Size(199, 10);
             panel14.TabIndex = 17;
             // 
-            // progressBar8
+            // progressBarProVendidas
             // 
-            progressBar8.ForeColor = SystemColors.GrayText;
-            progressBar8.Location = new Point(20, 186);
-            progressBar8.Name = "progressBar8";
-            progressBar8.Size = new Size(164, 18);
-            progressBar8.Step = 1;
-            progressBar8.Style = ProgressBarStyle.Continuous;
-            progressBar8.TabIndex = 18;
-            progressBar8.Value = 30;
+            progressBarProVendidas.ForeColor = SystemColors.GrayText;
+            progressBarProVendidas.Location = new Point(20, 186);
+            progressBarProVendidas.Name = "progressBarProVendidas";
+            progressBarProVendidas.Size = new Size(164, 18);
+            progressBarProVendidas.Step = 1;
+            progressBarProVendidas.Style = ProgressBarStyle.Continuous;
+            progressBarProVendidas.TabIndex = 18;
+            progressBarProVendidas.Value = 30;
             // 
             // panel13
             // 
@@ -483,26 +485,27 @@
             panel13.Size = new Size(199, 10);
             panel13.TabIndex = 13;
             // 
-            // progressBar7
+            // progressBarTotalVendas
             // 
-            progressBar7.ForeColor = SystemColors.GrayText;
-            progressBar7.Location = new Point(20, 89);
-            progressBar7.Name = "progressBar7";
-            progressBar7.Size = new Size(164, 18);
-            progressBar7.Step = 1;
-            progressBar7.Style = ProgressBarStyle.Continuous;
-            progressBar7.TabIndex = 16;
-            progressBar7.Value = 30;
+            progressBarTotalVendas.ForeColor = SystemColors.GrayText;
+            progressBarTotalVendas.Location = new Point(20, 89);
+            progressBarTotalVendas.Name = "progressBarTotalVendas";
+            progressBarTotalVendas.Size = new Size(164, 18);
+            progressBarTotalVendas.Step = 1;
+            progressBarTotalVendas.Style = ProgressBarStyle.Continuous;
+            progressBarTotalVendas.TabIndex = 16;
+            progressBarTotalVendas.Value = 30;
             // 
-            // label7
+            // proVendaMesLabel
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(20, 151);
-            label7.Name = "label7";
-            label7.Size = new Size(40, 32);
-            label7.TabIndex = 7;
-            label7.Text = "15";
+            proVendaMesLabel.AutoSize = true;
+            proVendaMesLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            proVendaMesLabel.Location = new Point(20, 151);
+            proVendaMesLabel.Name = "proVendaMesLabel";
+            proVendaMesLabel.Size = new Size(40, 32);
+            proVendaMesLabel.TabIndex = 7;
+            proVendaMesLabel.Text = "15";
+            proVendaMesLabel.TextChanged += proVendaMesLabel_TextChanged;
             // 
             // label6
             // 
@@ -514,15 +517,16 @@
             label6.TabIndex = 6;
             label6.Text = "Propriedades vendidas este mes";
             // 
-            // label5
+            // totalProVendaLabel
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(20, 54);
-            label5.Name = "label5";
-            label5.Size = new Size(40, 32);
-            label5.TabIndex = 5;
-            label5.Text = "15";
+            totalProVendaLabel.AutoSize = true;
+            totalProVendaLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            totalProVendaLabel.Location = new Point(20, 54);
+            totalProVendaLabel.Name = "totalProVendaLabel";
+            totalProVendaLabel.Size = new Size(40, 32);
+            totalProVendaLabel.TabIndex = 5;
+            totalProVendaLabel.Text = "15";
+            totalProVendaLabel.TextChanged += totalProVendaLabel_TextChanged;
             // 
             // label4
             // 
@@ -622,34 +626,34 @@
         private Panel panel7;
         private Label label3;
         private Panel panel8;
-        private Label label5;
+        private Label totalProVendaLabel;
         private Label label4;
         private ProgressBar progressBarTotalCliente;
-        private Label label13;
+        private Label clientesFaltaPagLabel;
         private Label label12;
-        private Label label11;
+        private Label clientesPropostasLabel;
         private Label label10;
         private Label totalClientesLabel;
         private Label label8;
-        private Label label7;
+        private Label proVendaMesLabel;
         private Label label6;
-        private ProgressBar progressBar3;
-        private ProgressBar progressBar2;
+        private ProgressBar progressBarFaltaPag;
+        private ProgressBar progressBarClienteProposta;
         private Panel panel10;
         private Panel panel9;
         private Panel panel12;
         private Panel panel11;
         private ProgressBar progressBarTotalFuncionarios;
-        private Label label14;
+        private Label LocVendasLabel;
         private Label label15;
-        private Label label16;
+        private Label funcionarioMesLLabel;
         private Label label17;
         private Label totalFuncionarios;
         private Label label19;
         private Panel panel14;
-        private ProgressBar progressBar8;
+        private ProgressBar progressBarProVendidas;
         private Panel panel13;
-        private ProgressBar progressBar7;
+        private ProgressBar progressBarTotalVendas;
         private FontAwesome.Sharp.IconButton iconButton1;
         private FontAwesome.Sharp.IconButton iconButton2;
         private FontAwesome.Sharp.IconButton iconButton3;
