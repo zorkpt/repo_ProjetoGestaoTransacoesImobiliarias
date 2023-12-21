@@ -116,7 +116,7 @@
             buttonGerirPropriedades.Name = "buttonGerirPropriedades";
             buttonGerirPropriedades.Size = new Size(121, 33);
             buttonGerirPropriedades.TabIndex = 2;
-            buttonGerirPropriedades.Text = "Gerir Clientes";
+            buttonGerirPropriedades.Text = "Def";
             buttonGerirPropriedades.UseVisualStyleBackColor = true;
             buttonGerirPropriedades.Visible = false;
             // 
@@ -126,7 +126,7 @@
             buttonGerirClientes.Name = "buttonGerirClientes";
             buttonGerirClientes.Size = new Size(121, 33);
             buttonGerirClientes.TabIndex = 1;
-            buttonGerirClientes.Text = "Gerir Clientes";
+            buttonGerirClientes.Text = "Gerir Users";
             buttonGerirClientes.UseVisualStyleBackColor = true;
             buttonGerirClientes.Visible = false;
             // 
@@ -139,6 +139,7 @@
             buttonGerirUsers.Text = "Gerir Clientes";
             buttonGerirUsers.UseVisualStyleBackColor = true;
             buttonGerirUsers.Visible = false;
+            buttonGerirUsers.Click += buttonGerirUsers_Click;
             // 
             // panel2
             // 

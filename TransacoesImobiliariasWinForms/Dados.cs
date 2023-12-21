@@ -102,6 +102,30 @@ namespace TransacoesImobiliariasWinForms
         }
 
         
+        public List<Client> ProcSqlByNif(string text)
+        {
+            List<Client> list = new List<Client>();
+
+            var query = "SELECT * FROM Cliente WHERE NIF LIKE '%" + text + "%';";
+            var dados = Select(query);
+            
+            if (dados == null) return null;
+            while (dados.HasRows && dados.Read())
+            {
+                //var numUsers = dados.GetInt32(dados.GetOrdinal("NumUsers"));
+                string nif = dados["NIF"].ToString();
+                string nome = dados["Nome"].ToString();
+                string morada = dados["Morada"].ToString();
+                string dataNasc = dados["DataNasc"].ToString();
+                string cc = dados["CC"].ToString();
+
+                Client novo = new Client(nome, morada, dataNasc, nif);
+
+                list.Add(novo);
+            }
+            return list;
+
+        }
 
         #endregion
     }

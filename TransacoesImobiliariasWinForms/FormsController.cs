@@ -117,6 +117,8 @@ namespace TransacoesImobiliariasWinForms
             return "Sem dados" ;
         }
 
+        #region Sql para atualizar UserForm
+
         public string TotalClientesSQL()
         {
             var query = "SELECT COUNT(nif) as NumClientes FROM Cliente";
@@ -214,5 +216,15 @@ namespace TransacoesImobiliariasWinForms
             }
             return "Sem dados";
         }
+
+        #endregion
+
+        #region Sql para Clientes
+
+
+
+
+        #endregion
+
     }
 }

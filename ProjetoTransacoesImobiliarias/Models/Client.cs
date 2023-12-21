@@ -10,6 +10,9 @@ namespace ProjetoTransacoesImobiliarias.Models
         public string PhoneNumber { get; set; }
         public int AddedById {get; set;}
         public User AddedBy { get; set; }
+
+        public string NIF { get; set; }
+
         public static List<Client> ClientList = new List<Client>();
 
         public Client(string name, string address, string phoneNumber, User addedBy, int addedById)
@@ -31,6 +34,17 @@ namespace ProjetoTransacoesImobiliarias.Models
             AddedById = addedById;
             ClientList.Add(this);
         }
+        /// <summary>
+        /// Contructor for UserForms
+        /// </summary>
+        public Client(string name, string address, string dataNasc, string nif)
+        {
+            Name = name;
+            Address = address;
+            PhoneNumber = dataNasc;
+            NIF = nif;
+        }
+
         public void SetAddedBy(User user)
         {
             AddedBy = user;

@@ -23,6 +23,7 @@ namespace TransacoesImobiliariasWinForms
             InitializeComponent();
             _formController = new FormsController();
 
+
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
@@ -221,6 +222,12 @@ namespace TransacoesImobiliariasWinForms
                     proVendaMesLabel.Text = string.Empty; // ou outra lógica de tratamento
                 }
             }
+        }
+
+        private void buttonGerirUsers_Click(object sender, EventArgs e)
+        {
+            GerirClientes a = new GerirClientes();
+            a.Show();
         }
     }
 }
