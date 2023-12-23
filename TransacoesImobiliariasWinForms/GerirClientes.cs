@@ -33,7 +33,10 @@ namespace TransacoesImobiliariasWinForms
 
         private void button6_Click(object sender, EventArgs e)
         {
-            List<Client> list = new List<Client>();
+
+            Dados _dados = new Dados();
+            List<Client> list = _dados.TodosClientes();
+
 
 
 
@@ -88,6 +91,9 @@ namespace TransacoesImobiliariasWinForms
 
                 // Do something with the selected item
                 textBox2.Text = nif[1];
+
+                FormsController formsController = new FormsController();
+                AtualizaCamposCliente(nif[1].ToString());
             }
 
             //Completa o form com dados
@@ -95,6 +101,37 @@ namespace TransacoesImobiliariasWinForms
 
             listBox1.Visible = false;
 
+        }
+
+        private void AtualizaCamposCliente(string nif)
+        {
+            Dados _dados = new Dados();
+            Client cliente = _dados.ProcClientSqlByNif(nif);
+            if( cliente != null )
+            {
+                CamposGereCliente(cliente);
+            }
+        }
+
+        private void CamposGereCliente(Client cliente)
+        {
+            textBox1.Text = cliente.Name;
+            textBox3.Text = cliente.CC;
+            dateTimePicker1.Text = cliente.DateOfBirth;
+            textBox5.Text = cliente.Address;
+            textBox6.Text = cliente.Contact.Descricao;
+
+        }
+
+        private bool LimparForm()
+        {
+            textBox1.Text = "";
+            textBox3.Text = "";
+            dateTimePicker1.Text = "";
+            textBox5.Text = "";
+            textBox6.Text = "";
+
+            return true;
         }
     }
 }

@@ -295,7 +295,7 @@
             // 
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(380, 105);
+            listBox1.Location = new Point(436, 105);
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(397, 109);
             listBox1.TabIndex = 16;

@@ -3,11 +3,15 @@ using ProjetoTransacoesImobiliarias.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.Contracts;
 using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows.Shapes;
+using static ProjetoTransacoesImobiliarias.Models.Contact;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace TransacoesImobiliariasWinForms
@@ -101,32 +105,147 @@ namespace TransacoesImobiliariasWinForms
 
         }
 
-        
+        /// <summary>
+        /// Procura clientes na base de dados por nif
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>Lista de Clientes!</returns>
         public List<Client> ProcSqlByNif(string text)
         {
             List<Client> list = new List<Client>();
 
-            var query = "SELECT * FROM Cliente WHERE NIF LIKE '%" + text + "%';";
+            //var query = "SELECT * FROM Cliente WHERE NIF LIKE '%" + text + "%';"; // tenho de mudar esta query
+
+            var query = "SELECT* " +
+                        "FROM Cliente " +
+                        "left JOIN ClienteContacto ON ClienteContacto.ClienteNIF = Cliente.NIF " +
+                        "LEFT JOIN[Tipo Contacto] ON[Tipo Contacto].TCId = ClienteContacto.TCId " +
+                        " WHERE NIF LIKE '%" + text + "%';"; 
+
             var dados = Select(query);
-            
+            string? nif;
+            string? morada;
+            string? nome;
+            string? dataNasc;
+            string? cc;
+            string? tel; string tipoContacto;
+
             if (dados == null) return null;
             while (dados.HasRows && dados.Read())
             {
                 //var numUsers = dados.GetInt32(dados.GetOrdinal("NumUsers"));
-                string nif = dados["NIF"].ToString();
-                string nome = dados["Nome"].ToString();
-                string morada = dados["Morada"].ToString();
-                string dataNasc = dados["DataNasc"].ToString();
-                string cc = dados["CC"].ToString();
+                nif = dados["NIF"].ToString();
+                nome = dados["Nome"].ToString();
+                morada = dados["Morada"].ToString();
+                dataNasc = dados["DataNasc"].ToString();
+                cc = dados["CC"].ToString();
+                tipoContacto = dados["DescTC"].ToString();
+                tel = dados["Contacto"].ToString();
 
-                Client novo = new Client(nome, morada, dataNasc, nif);
+                TipoContacto tipo =  Enum.TryParse(tipoContacto, ignoreCase: true, out TipoContacto result) ? result : TipoContacto.Email;
 
+
+                Contact contact = new Contact(nif, tipo, tipoContacto);
+
+                Client novo = new Client(nome, morada, contact, nif, cc, dataNasc);
                 list.Add(novo);
             }
+
             return list;
 
         }
 
+        /// <summary>
+        /// Procuar cliente na Base de dados por nif
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>devolve um cliente</returns>
+        public Client ProcClientSqlByNif(string text)
+        {
+            text = text.Trim();
+
+            var query = "SELECT* " +
+                        "FROM Cliente " +
+                        "left JOIN ClienteContacto ON ClienteContacto.ClienteNIF = Cliente.NIF " +
+                        "LEFT JOIN[Tipo Contacto] ON[Tipo Contacto].TCId = ClienteContacto.TCId " +
+                        " WHERE NIF LIKE '%" + text + "%';";
+
+            var dados = Select(query);
+            string? nif;
+            string? morada;
+            string? nome;
+            string? dataNasc;
+            string? cc;
+            string? tel; string tipoContacto;
+
+            if (dados == null) return null;
+            if (dados.HasRows && dados.Read())
+            {
+                //var numUsers = dados.GetInt32(dados.GetOrdinal("NumUsers"));
+                nif = dados["NIF"].ToString();
+                nome = dados["Nome"].ToString();
+                morada = dados["Morada"].ToString();
+                dataNasc = dados["DataNasc"].ToString();
+                cc = dados["CC"].ToString();
+                tipoContacto = dados["DescTC"].ToString();
+                tel = dados["Contacto"].ToString();
+
+                TipoContacto tipo = Enum.TryParse(tipoContacto, ignoreCase: true, out TipoContacto result) ? result : TipoContacto.Email;
+
+                Contact contact = new Contact(nif, tipo, tipoContacto);
+
+                Client novo = new Client(nome, morada, contact, nif, cc, dataNasc);
+                return novo;
+
+            }
+            return null;
+
+        }
+
+
+        public List<Client> TodosClientes()
+        {
+            List<Client> list = new List<Client>();
+
+            //var query = "SELECT * FROM Cliente WHERE NIF LIKE '%" + text + "%';"; // tenho de mudar esta query
+
+            var query = "SELECT* " +
+                        "FROM Cliente " +
+                        "left JOIN ClienteContacto ON ClienteContacto.ClienteNIF = Cliente.NIF " +
+                        "LEFT JOIN[Tipo Contacto] ON[Tipo Contacto].TCId = ClienteContacto.TCId ";
+
+            var dados = Select(query);
+            string? nif;
+            string? morada;
+            string? nome;
+            string? dataNasc;
+            string? cc;
+            string? tel; string tipoContacto;
+
+            if (dados == null) return null;
+            while (dados.HasRows && dados.Read())
+            {
+                //var numUsers = dados.GetInt32(dados.GetOrdinal("NumUsers"));
+                nif = dados["NIF"].ToString();
+                nome = dados["Nome"].ToString();
+                morada = dados["Morada"].ToString();
+                dataNasc = dados["DataNasc"].ToString();
+                cc = dados["CC"].ToString();
+                tipoContacto = dados["DescTC"].ToString();
+                tel = dados["Contacto"].ToString();
+
+                TipoContacto tipo = Enum.TryParse(tipoContacto, ignoreCase: true, out TipoContacto result) ? result : TipoContacto.Email;
+
+
+                Contact contact = new Contact(nif, tipo, tipoContacto);
+
+                Client novo = new Client(nome, morada, contact, nif, cc, dataNasc);
+                list.Add(novo);
+            }
+
+            return list;
+
+        }
         #endregion
     }
 }
