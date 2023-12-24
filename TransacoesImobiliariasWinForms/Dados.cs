@@ -53,6 +53,7 @@ namespace TransacoesImobiliariasWinForms
             }
         }
 
+
         private bool Disconnect(SqlConnection conn)
         {
 
@@ -104,6 +105,37 @@ namespace TransacoesImobiliariasWinForms
             }
 
         }
+
+        public bool Insert(string sql)
+        {
+            try
+            {
+                using (SqlConnection conn = Ligacao())
+                {
+                    conn.Open();
+
+                    using (SqlCommand command = new SqlCommand(sql, conn))
+                    {
+                        if (command == null)
+                        {
+                            return false;
+                        }
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        return rowsAffected > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Clipboard.SetText(ex.Message);
+                MessageBox.Show("[Insert] " + ex.Message);
+                return false;
+            }
+        }
+
+
 
         /// <summary>
         /// Procura clientes na base de dados por nif
@@ -198,6 +230,7 @@ namespace TransacoesImobiliariasWinForms
                 return novo;
 
             }
+
             return null;
 
         }
@@ -237,7 +270,7 @@ namespace TransacoesImobiliariasWinForms
                 TipoContacto tipo = Enum.TryParse(tipoContacto, ignoreCase: true, out TipoContacto result) ? result : TipoContacto.Email;
 
 
-                Contact contact = new Contact(nif, tipo, tipoContacto);
+                Contact contact = new Contact(nif, tipo, tel);
 
                 Client novo = new Client(nome, morada, contact, nif, cc, dataNasc);
                 list.Add(novo);
@@ -246,6 +279,79 @@ namespace TransacoesImobiliariasWinForms
             return list;
 
         }
+
+        public bool ExisteNif(string nif)
+        {
+            nif = nif.Trim();
+            var query = "SELECT NIF " +
+                        "FROM Cliente " +
+                        "WHERE NIF =  '" + nif + "';";
+
+            Clipboard.SetText(query);
+            var dados = Select(query);
+            if (dados == null) return false;
+            while (dados.HasRows && dados.Read())
+            {
+                //MessageBox.Show(dados["NIF"].ToString());
+                if (dados["NIF"].ToString() == nif)
+                {
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public string ProcTipoContactoByName(string nome) 
+        {
+            var query = "SELECT TCId FROM [Tipo Contacto] " +
+                        "WHERE DescTC = '" + nome + "';";
+            Clipboard.SetText(query);
+            var dados = Select(query);
+            
+            if(dados.HasRows && dados.Read())
+            {
+                
+                string? tipo = dados[0].ToString();
+                return tipo;
+            }
+
+            return "";
+
+        }
+
+
+        #region Inserir Cliente
+
+        public bool InserirContacto(int nif, int tipoContacto, string contacto)
+        {
+
+            var query = "INSERT ClienteContacto (ClienteNIF, TCId, Contacto) Values(" + nif + ", " + tipoContacto + ", '" + contacto + "');";
+
+            Clipboard.SetText(query);
+            if(!Insert(query)) return false;
+
+            return true;
+
+        }
+
+        public bool InserirCliente(int nif, string nome, string morada, DateTime data, int cc)
+        {
+
+            var query = "INSERT Cliente (Nome, Morada, DataNasc, NIF, CC) " +
+                        "Values('" + nome + "', '" + morada + "', '" + data + "', " + nif + ", " + cc + ");";
+
+            Clipboard.SetText(query);
+            if (!Insert(query)) return false;
+
+            return true;
+
+        }
+
+        #endregion
+
+
         #endregion
     }
 }

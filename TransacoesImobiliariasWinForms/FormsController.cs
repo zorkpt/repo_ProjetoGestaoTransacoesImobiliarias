@@ -10,6 +10,8 @@ using ProjetoTransacoesImobiliarias.Controllers;
 using ProjetoTransacoesImobiliarias.Services;
 
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using static ProjetoTransacoesImobiliarias.Models.Contact;
+using Microsoft.IdentityModel.Tokens;
 
 namespace TransacoesImobiliariasWinForms
 {
@@ -17,9 +19,11 @@ namespace TransacoesImobiliariasWinForms
     {
         private UserService _userService = new UserService();
         private Dados _dados;
+        private FormsController _formController;
         public FormsController()
         {
             _dados = new Dados();
+            
         }
 
         public void Start(User user, Form login)
@@ -220,7 +224,30 @@ namespace TransacoesImobiliariasWinForms
         #endregion
 
         #region Sql para Clientes
+        public bool InserirClienteSQL(string nome, string nif, DateTime data, string contacto, string cc,
+                                        string morada, string tipoContacto)
+        {
 
+            string? tipoTXT = _dados.ProcTipoContactoByName(tipoContacto);
+            if(tipoTXT.IsNullOrEmpty()) return false;
+            int tipo;
+            int nifInt = int.TryParse(nif, out int result) ? result : -1;
+            int ccInt;
+
+
+            if (int.TryParse(tipoTXT, out tipo))
+            {
+                if(int.TryParse(cc, out ccInt)){
+
+                    if (!_dados.InserirContacto(nifInt, tipo, contacto)) return false;
+
+                    //converter em data
+                    if (!_dados.InserirCliente(nifInt, nome, morada, data, ccInt)) return false;
+
+                }
+            }
+            return true;
+        }
 
 
 

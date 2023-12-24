@@ -53,6 +53,9 @@
             dateTimePicker1 = new DateTimePicker();
             panel8 = new Panel();
             listBox1 = new ListBox();
+            linkLabel1 = new LinkLabel();
+            linkLabel2 = new LinkLabel();
+            comboBox1 = new ComboBox();
             MenuPanel.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -156,7 +159,6 @@
             buttonGerirPropriedades.TabIndex = 2;
             buttonGerirPropriedades.Text = "Apagar Cliente";
             buttonGerirPropriedades.UseVisualStyleBackColor = true;
-            buttonGerirPropriedades.Visible = false;
             // 
             // buttonGerirClientes
             // 
@@ -167,7 +169,6 @@
             buttonGerirClientes.TabIndex = 1;
             buttonGerirClientes.Text = "Atualizar Cliente";
             buttonGerirClientes.UseVisualStyleBackColor = true;
-            buttonGerirClientes.Visible = false;
             // 
             // buttonGerirUsers
             // 
@@ -178,7 +179,7 @@
             buttonGerirUsers.TabIndex = 0;
             buttonGerirUsers.Text = "Adicionar cliente";
             buttonGerirUsers.UseVisualStyleBackColor = true;
-            buttonGerirUsers.Visible = false;
+            buttonGerirUsers.Click += buttonGerirUsers_Click;
             // 
             // label1
             // 
@@ -236,9 +237,9 @@
             label6.Font = new Font("Segoe UI", 11.25F);
             label6.Location = new Point(210, 324);
             label6.Name = "label6";
-            label6.Size = new Size(101, 20);
+            label6.Size = new Size(69, 20);
             label6.TabIndex = 7;
-            label6.Text = "Codigo Postal";
+            label6.Text = "Contacto";
             // 
             // textBox1
             // 
@@ -295,12 +296,40 @@
             // 
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(436, 105);
+            listBox1.Location = new Point(397, 107);
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(397, 109);
             listBox1.TabIndex = 16;
             listBox1.Visible = false;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(669, 370);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(108, 15);
+            linkLabel1.TabIndex = 17;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Todos os contactos";
+            // 
+            // linkLabel2
+            // 
+            linkLabel2.AutoSize = true;
+            linkLabel2.Location = new Point(636, 351);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new Size(141, 15);
+            linkLabel2.TabIndex = 18;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "Adicionar mais contactos";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(283, 367);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 19;
             // 
             // GerirClientes
             // 
@@ -308,6 +337,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(881, 414);
+            Controls.Add(comboBox1);
+            Controls.Add(linkLabel2);
+            Controls.Add(linkLabel1);
             Controls.Add(listBox1);
             Controls.Add(MenuPanel);
             Controls.Add(panel8);
@@ -364,5 +396,8 @@
         private DateTimePicker dateTimePicker1;
         private Panel panel8;
         private ListBox listBox1;
+        private LinkLabel linkLabel1;
+        private LinkLabel linkLabel2;
+        private ComboBox comboBox1;
     }
 }

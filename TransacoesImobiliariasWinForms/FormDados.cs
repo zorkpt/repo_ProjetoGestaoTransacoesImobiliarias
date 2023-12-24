@@ -17,7 +17,7 @@ namespace TransacoesImobiliariasWinForms
         {
 
             InitializeComponent();
-
+            
         }
 
         public void EncherLista<T>(List<T> list)

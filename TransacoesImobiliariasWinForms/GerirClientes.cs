@@ -19,6 +19,7 @@ namespace TransacoesImobiliariasWinForms
         public GerirClientes()
         {
             InitializeComponent();
+            
         }
 
         private void GerirClientes_Load(object sender, EventArgs e)
@@ -36,9 +37,6 @@ namespace TransacoesImobiliariasWinForms
 
             Dados _dados = new Dados();
             List<Client> list = _dados.TodosClientes();
-
-
-
 
             FormDados f = new FormDados();
             f.EncherLista(list);
@@ -107,7 +105,7 @@ namespace TransacoesImobiliariasWinForms
         {
             Dados _dados = new Dados();
             Client cliente = _dados.ProcClientSqlByNif(nif);
-            if( cliente != null )
+            if (cliente != null)
             {
                 CamposGereCliente(cliente);
             }
@@ -120,9 +118,56 @@ namespace TransacoesImobiliariasWinForms
             dateTimePicker1.Text = cliente.DateOfBirth;
             textBox5.Text = cliente.Address;
             textBox6.Text = cliente.Contact.Descricao;
+        }
+
+
+
+
+        /// <summary>
+        /// Adicionar clientes 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonGerirUsers_Click(object sender, EventArgs e)
+        {
+            Dados _dados = new Dados();
+            FormsController _formsController = new FormsController();
+            string? nome = textBox1.Text;
+            string? nif = textBox2.Text;
+            string? cc = textBox3.Text ;
+            //string? data = dateTimePicker1.Text;
+
+            DateTime data = dateTimePicker1.Checked ? dateTimePicker1.Value : DateTime.MinValue;
+
+            string? morada = textBox5.Text;
+            string? contacto = textBox6.Text;
+            string? tipoContacto = comboBox1.Text;
+
+            //verificar se dados estao preenchidos 
+            if (!VerificaCamposCliente()) return;
+            // Verificar se o nif ja existe
+            if (_dados.ExisteNif(textBox2.Text))
+            {
+                MessageBox.Show("Cliente ja existe");
+                return;
+            }
+
+            //inserir na base de dados 
+            if (data != null)
+            {
+                if (_formsController.InserirClienteSQL(nome, nif, data, contacto, cc, morada, tipoContacto))
+                {
+                    MessageBox.Show("Cliente inserido com sucesso.");
+                }
+            }
+            //informar user que os dados foram inseridos com sucesso 
+
+            //limpar form
+
 
         }
 
+        #region Gestao de form
         private bool LimparForm()
         {
             textBox1.Text = "";
@@ -133,5 +178,21 @@ namespace TransacoesImobiliariasWinForms
 
             return true;
         }
+
+        private bool VerificaCamposCliente()
+        {
+            if (string.IsNullOrWhiteSpace(textBox1.Text) ||
+                string.IsNullOrWhiteSpace(textBox3.Text) ||
+                string.IsNullOrWhiteSpace(textBox5.Text) ||
+                string.IsNullOrWhiteSpace(textBox6.Text))
+            {
+                MessageBox.Show("Por favor, preencha todos os campos.");
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
     }
 }

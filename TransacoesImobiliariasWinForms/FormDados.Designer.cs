@@ -31,22 +31,13 @@
             components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
             clientBindingSource = new BindingSource(components);
-            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            addressDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            phoneNumberDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            addedByIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            addedByDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)clientBindingSource).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
             // 
-            dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, addressDataGridViewTextBoxColumn, phoneNumberDataGridViewTextBoxColumn, addedByIdDataGridViewTextBoxColumn, addedByDataGridViewTextBoxColumn });
-            dataGridView1.DataSource = clientBindingSource;
             dataGridView1.Location = new Point(12, 40);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(782, 268);
@@ -55,42 +46,6 @@
             // clientBindingSource
             // 
             clientBindingSource.DataSource = typeof(ProjetoTransacoesImobiliarias.Models.Client);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            idDataGridViewTextBoxColumn.HeaderText = "Id";
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            // 
-            // phoneNumberDataGridViewTextBoxColumn
-            // 
-            phoneNumberDataGridViewTextBoxColumn.DataPropertyName = "PhoneNumber";
-            phoneNumberDataGridViewTextBoxColumn.HeaderText = "PhoneNumber";
-            phoneNumberDataGridViewTextBoxColumn.Name = "phoneNumberDataGridViewTextBoxColumn";
-            // 
-            // addedByIdDataGridViewTextBoxColumn
-            // 
-            addedByIdDataGridViewTextBoxColumn.DataPropertyName = "AddedById";
-            addedByIdDataGridViewTextBoxColumn.HeaderText = "AddedById";
-            addedByIdDataGridViewTextBoxColumn.Name = "addedByIdDataGridViewTextBoxColumn";
-            // 
-            // addedByDataGridViewTextBoxColumn
-            // 
-            addedByDataGridViewTextBoxColumn.DataPropertyName = "AddedBy";
-            addedByDataGridViewTextBoxColumn.HeaderText = "AddedBy";
-            addedByDataGridViewTextBoxColumn.Name = "addedByDataGridViewTextBoxColumn";
             // 
             // FormDados
             // 
@@ -111,12 +66,6 @@
         #endregion
 
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn phoneNumberDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn addedByIdDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn addedByDataGridViewTextBoxColumn;
         private BindingSource clientBindingSource;
     }
 }
