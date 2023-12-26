@@ -347,7 +347,7 @@ namespace TransacoesImobiliariasWinForms
 
             var query = "INSERT ClienteContacto (ClienteNIF, TCId, Contacto) Values(" + nif + ", " + tipoContacto + ", '" + contacto + "');";
 
-            Clipboard.SetText(query);
+            //Clipboard.SetText(query);
             if(!Insert(query)) return false;
 
             return true;
@@ -360,7 +360,7 @@ namespace TransacoesImobiliariasWinForms
             var query = "INSERT Cliente (Nome, Morada, DataNasc, NIF, CC) " +
                         "Values('" + nome + "', '" + morada + "', '" + data + "', " + nif + ", " + cc + ");";
 
-            Clipboard.SetText(query);
+            //Clipboard.SetText(query);
             if (!Insert(query)) return false;
 
             return true;

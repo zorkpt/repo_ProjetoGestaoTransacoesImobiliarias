@@ -14,18 +14,18 @@ namespace ProjetoTransacoesImobiliarias.Models
         public TipoContacto Tipo { get; set; }
 
         public string? Descricao { get; set; }
-
+        //public List<Contact> ContactList { get; set; }
         public enum TipoContacto
         {
             Email,
-            Telm,
-            Telefone
+            Telemóvel
         }
         public Contact(string? clientId, TipoContacto tipo, string descricao)
         {
             ClientID = clientId;
             Tipo = tipo;
             Descricao = descricao;
+//            ContactList.Add(this);
         }
 
     }

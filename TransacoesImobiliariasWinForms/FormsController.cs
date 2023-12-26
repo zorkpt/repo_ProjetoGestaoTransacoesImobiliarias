@@ -12,6 +12,7 @@ using ProjetoTransacoesImobiliarias.Services;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using static ProjetoTransacoesImobiliarias.Models.Contact;
 using Microsoft.IdentityModel.Tokens;
+using System.Diagnostics.Contracts;
 
 namespace TransacoesImobiliariasWinForms
 {
@@ -23,7 +24,7 @@ namespace TransacoesImobiliariasWinForms
         public FormsController()
         {
             _dados = new Dados();
-            
+
         }
 
         public void Start(User user, Form login)
@@ -77,25 +78,25 @@ namespace TransacoesImobiliariasWinForms
             if (dados.HasRows)
             {
 
-                while(dados.Read())
-                { 
+                while (dados.Read())
+                {
                     string? uName = dados["UserName"].ToString();
                     string? password = dados["Passwords"].ToString();
                     string? name = dados["Name"].ToString();
 
-                    
-                        string userTypeString = dados["UserType"].ToString();
-                        // Check if the 'UserType' column value is a valid UserRole enum
-                        foreach (UserRole item in Enum.GetValues(typeof(UserRole)))
+
+                    string userTypeString = dados["UserType"].ToString();
+                    // Check if the 'UserType' column value is a valid UserRole enum
+                    foreach (UserRole item in Enum.GetValues(typeof(UserRole)))
+                    {
+                        if (item.ToString() == userTypeString)
                         {
-                            if (item.ToString() == userTypeString)
-                            {
-                                UserRole role =  item;
-                                User user = _userService.CreateUser(uName, password, name, role);
-                                return (user);
-                                break;
-                            }
+                            UserRole role = item;
+                            User user = _userService.CreateUser(uName, password, name, role);
+                            return (user);
+                            break;
                         }
+                    }
 
                 }
             }
@@ -118,7 +119,7 @@ namespace TransacoesImobiliariasWinForms
                 string numUsers = dados["NumUsers"].ToString();
                 return numUsers;
             }
-            return "Sem dados" ;
+            return "Sem dados";
         }
 
         #region Sql para atualizar UserForm
@@ -224,12 +225,23 @@ namespace TransacoesImobiliariasWinForms
         #endregion
 
         #region Sql para Clientes
+        /// <summary>
+        /// Insere um cliente na base de dados
+        /// </summary>
+        /// <param name="nome"></param>
+        /// <param name="nif"></param>
+        /// <param name="data"></param>
+        /// <param name="contacto"></param>
+        /// <param name="cc"></param>
+        /// <param name="morada"></param>
+        /// <param name="tipoContacto"></param>
+        /// <returns></returns>
         public bool InserirClienteSQL(string nome, string nif, DateTime data, string contacto, string cc,
                                         string morada, string tipoContacto)
         {
 
             string? tipoTXT = _dados.ProcTipoContactoByName(tipoContacto);
-            if(tipoTXT.IsNullOrEmpty()) return false;
+            if (tipoTXT.IsNullOrEmpty()) return false;
             int tipo;
             int nifInt = int.TryParse(nif, out int result) ? result : -1;
             int ccInt;
@@ -237,7 +249,7 @@ namespace TransacoesImobiliariasWinForms
 
             if (int.TryParse(tipoTXT, out tipo))
             {
-                if(int.TryParse(cc, out ccInt)){
+                if (int.TryParse(cc, out ccInt)) {
 
                     if (!_dados.InserirContacto(nifInt, tipo, contacto)) return false;
 
@@ -248,7 +260,10 @@ namespace TransacoesImobiliariasWinForms
             }
             return true;
         }
-        
+        /// <summary>
+        /// Procura todos os tipos de contactos que possam existir
+        /// </summary>
+        /// <returns></returns>
         public List<string> TipoContactoSQL()
         {
             List<string> lista = new List<string>();
@@ -256,6 +271,58 @@ namespace TransacoesImobiliariasWinForms
             lista = _dados.TodosTiposContactos();
 
             return lista;
+
+        }
+        /// <summary>
+        /// Procura os contactos de um determinado cliente
+        /// </summary>
+        /// <param name="nif"></param>
+        /// <returns></returns>
+        public List<Contact> ListaContactos(string nif)
+        {
+            if (string.IsNullOrEmpty(nif)) return null;
+            int num = int.Parse(nif);
+            List<Contact> list = new List<Contact>();
+
+            var query = "SELECT distinct ClienteNIF, Cliente.Nome, [Tipo Contacto].DescTC,ClienteContacto.Contacto, IdContacto " +
+                        "FROM Cliente " +
+                        "JOIN ClienteContacto on ClienteContacto.ClienteNIF = Cliente.NIF  " +
+                        "JOIN[Tipo Contacto] ON[Tipo Contacto].TCId = ClienteContacto.TCId " +
+                        "WHERE ClienteContacto.ClienteNIF = '" + num + "'";
+
+            Clipboard.SetText(query);
+            var dados = _dados.Select(query);
+
+            while (dados.HasRows && dados.Read())
+            {
+                string? clienteNIF = dados["ClienteNIF"].ToString();
+                string? valor = dados["DescTC"].ToString();
+                string? contacto = dados["Contacto"].ToString();
+                
+                TipoContacto a = new TipoContacto();
+
+                foreach (TipoContacto tipo in Enum.GetValues(typeof(TipoContacto)))
+                {
+                    if(valor == tipo.ToString())
+                    {
+                        a = tipo;
+                        break;
+                    }
+                }
+
+                //if (int.TryParse(valor, out int tipoInt))
+                //{
+                Contact novo = new Contact(clienteNIF, a, contacto);
+                    list.Add(novo);
+                //}
+
+            }
+
+            if(list !=  null)
+            {
+                return list;
+            }
+            return null;
 
         }
 

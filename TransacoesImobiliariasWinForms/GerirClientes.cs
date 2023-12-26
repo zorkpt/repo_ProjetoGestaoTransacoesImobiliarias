@@ -1,4 +1,5 @@
-﻿using ProjetoTransacoesImobiliarias.Models;
+﻿using Microsoft.IdentityModel.Tokens;
+using ProjetoTransacoesImobiliarias.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -205,10 +206,38 @@ namespace TransacoesImobiliariasWinForms
         }
 
         #endregion
-
+        /// <summary>
+        /// Quan
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBox1_DataSourceChanged(object sender, EventArgs e)
         {
             listBox1.Visible = listBox1.Items.Count > 0;
+        }
+
+        /// <summary>
+        /// Ver todos os contactos do cliente
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+            var nif = textBox2.Text;
+            if (nif.IsNullOrEmpty()) MessageBox.Show("Sem dados");
+
+
+            List<Contact> list = _formController.ListaContactos(nif);
+
+            if (list == null)
+            {
+                MessageBox.Show("Nao existem dados");
+                return;
+            }
+            FormDados formDados = new FormDados();
+            formDados.EncherLista(list);
+            formDados.Show();
         }
     }
 }
