@@ -108,6 +108,20 @@ public class ClientService : IClientService
     public Client GetClientById(int id) => _clients.FirstOrDefault(c => c.Id == id);
     
     /// <summary>
+    /// Delete client from the client list
+    /// </summary>
+    /// <param name="client"></param>
+    /// <returns></returns>
+    public bool DeleteClient(Client client)
+    {
+        if(_clients.Remove(client))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
     /// Creates a new client with the given name, address, phone number, and added by user.
     /// </summary>
     /// <param name="name"></param>
@@ -152,5 +166,9 @@ public class ClientService : IClientService
 
         return clientToUpdate;
     }
+
+
+
+
     
 }

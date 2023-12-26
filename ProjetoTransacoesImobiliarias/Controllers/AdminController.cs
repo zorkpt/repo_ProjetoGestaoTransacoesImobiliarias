@@ -80,7 +80,7 @@ public class AdminController : UserController
                     EditClient();
                     break;
                 case "3":
-                    DeleteClient();
+                    DeleteClient();// done 
                     break;
                 case "4":
                     ListClients(false);
@@ -212,15 +212,5 @@ public class AdminController : UserController
     {
         var clients = all ? _clientService.GetAllClients() : _admin.GetAdminClients();
         ListClients(clients);
-    }
-
-
-    /// <summary>
-    /// Deletes a client.
-    /// </summary>
-    /// <returns></returns>
-    private Client? DeleteClient()
-    {
-        return null;
     }
 }

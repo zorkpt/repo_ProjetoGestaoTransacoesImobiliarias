@@ -1,7 +1,12 @@
 namespace ProjetoTransacoesImobiliarias.Views.CLI.Client;
+using ProjetoTransacoesImobiliarias.Models;
+using ProjetoTransacoesImobiliarias.Interfaces;
+using ProjetoTransacoesImobiliarias.Services;
 
 public class ClientView
 {
+
+
     public static ClientData AddClient()
     {
         Console.WriteLine("Adicionar novo cliente:");
@@ -20,6 +25,19 @@ public class ClientView
             Address = clientAddress,
             PhoneNumber = clientPhoneNumber
         };
+    }
+
+    /// <summary>
+    /// Delete client view 
+    /// </summary>
+    /// <returns></returns>
+    public static string DeleteClientView()
+    {
+        Console.Clear();
+        Console.WriteLine("Id do cliente a eliminar?");
+        string num = Console.ReadLine() ?? string.Empty;
+        return num;
+
     }
     
     public class ClientData
