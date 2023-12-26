@@ -133,6 +133,7 @@ public class ClientService : IClientService
         }
 
         user.AddClient(newClient);
+        MessageHandler.PressAnyKey("Cliente Inserido com sucesso!");
         return newClient;
     }
     
@@ -147,6 +148,7 @@ public class ClientService : IClientService
         clientToUpdate.Name = client.Name;
         clientToUpdate.Address = client.Address;
         clientToUpdate.PhoneNumber = client.PhoneNumber;
+        MessageHandler.PressAnyKey("Cliente editado com sucesso!");
 
         return clientToUpdate;
     }
