@@ -11,4 +11,5 @@ public interface IClientService
     bool SaveClientsToJson();
     Client AddClient(ClientView.ClientData clientData, User user);
     Client UpdateClient(Client client);
+    bool DeleteClient(Client client);
 }

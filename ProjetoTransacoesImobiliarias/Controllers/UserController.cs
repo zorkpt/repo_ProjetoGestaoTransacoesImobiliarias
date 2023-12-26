@@ -3,6 +3,7 @@ using ProjetoTransacoesImobiliarias.Controllers;
 using ProjetoTransacoesImobiliarias.Interfaces;
 using ProjetoTransacoesImobiliarias.Models;
 using ProjetoTransacoesImobiliarias.Views.CLI;
+using ProjetoTransacoesImobiliarias.Views.CLI.Client;
 
 public abstract class UserController
 {
@@ -61,6 +62,33 @@ public abstract class UserController
 
         
         return client;
+    }
+
+    /// <summary>
+    /// Delete's a client
+    /// </summary>
+    /// <returns></returns>
+    protected bool DeleteClient()
+    {
+        //escolher o cliente a apagar. 
+        var idClient = ClientView.DeleteClientView();
+        int id = int.Parse(idClient);
+        Client client = _clientService.GetClientById(id);
+        if(client != null)
+        {
+            if(_clientService.DeleteClient(client))
+            {
+                MessageHandler.PressAnyKey("Cliente eliminado com sucesso");
+                return true;
+            }else{
+                MessageHandler.PressAnyKey("Cliente não foi eliminado");
+                return false;
+            }
+
+        }else{
+            MessageHandler.PressAnyKey("Cliente não encontrado");
+        }
+        return false;
     }
 
     /// <summary>
