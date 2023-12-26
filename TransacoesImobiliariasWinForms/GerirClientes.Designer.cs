@@ -274,7 +274,7 @@
             // 
             textBox6.Location = new Point(380, 325);
             textBox6.Name = "textBox6";
-            textBox6.Size = new Size(397, 23);
+            textBox6.Size = new Size(295, 23);
             textBox6.TabIndex = 13;
             // 
             // dateTimePicker1
@@ -296,12 +296,13 @@
             // 
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(397, 107);
+            listBox1.Location = new Point(380, 105);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(397, 109);
+            listBox1.Size = new Size(397, 199);
             listBox1.TabIndex = 16;
             listBox1.Visible = false;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+            listBox1.DataSourceChanged += listBox1_DataSourceChanged;
             // 
             // linkLabel1
             // 
@@ -325,10 +326,11 @@
             // 
             // comboBox1
             // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(283, 367);
+            comboBox1.Location = new Point(681, 325);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
+            comboBox1.Size = new Size(96, 23);
             comboBox1.TabIndex = 19;
             // 
             // GerirClientes

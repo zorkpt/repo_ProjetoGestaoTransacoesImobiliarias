@@ -115,6 +115,8 @@ namespace TransacoesImobiliariasWinForms
             clientesPropostasLabel.Text = _formController.ClintePropEfetuadaSQL();
             clientesFaltaPagLabel.Text = _formController.ClienteFaltaPagamentoSQL();
             funcionarioMesLLabel.Text = _formController.FuncionariosMesSQL();
+            
+
         }
 
         #region Fazer pedidos SQL

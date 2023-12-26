@@ -51,6 +51,7 @@
             UserNameTex.Name = "UserNameTex";
             UserNameTex.Size = new Size(159, 23);
             UserNameTex.TabIndex = 1;
+            UserNameTex.KeyDown += UserNameTex_KeyDown;
             // 
             // LoginButton
             // 
@@ -58,7 +59,7 @@
             LoginButton.Location = new Point(135, 106);
             LoginButton.Name = "LoginButton";
             LoginButton.Size = new Size(159, 28);
-            LoginButton.TabIndex = 2;
+            LoginButton.TabIndex = 3;
             LoginButton.TabStop = false;
             LoginButton.Text = "Login";
             LoginButton.UseVisualStyleBackColor = true;
@@ -71,6 +72,8 @@
             PasswordTxt.PasswordChar = '*';
             PasswordTxt.Size = new Size(159, 23);
             PasswordTxt.TabIndex = 2;
+            PasswordTxt.TextChanged += PasswordTxt_TextChanged_1;
+            PasswordTxt.KeyDown += PasswordTxt_KeyDown;
             // 
             // label2
             // 
@@ -78,9 +81,9 @@
             label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label2.Location = new Point(40, 69);
             label2.Name = "label2";
-            label2.Size = new Size(89, 21);
+            label2.Size = new Size(79, 21);
             label2.TabIndex = 3;
-            label2.Text = "User Name";
+            label2.Text = "Password";
             // 
             // LoginForm
             // 

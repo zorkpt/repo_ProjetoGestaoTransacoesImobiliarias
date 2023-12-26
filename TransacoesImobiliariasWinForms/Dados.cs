@@ -307,7 +307,7 @@ namespace TransacoesImobiliariasWinForms
         {
             var query = "SELECT TCId FROM [Tipo Contacto] " +
                         "WHERE DescTC = '" + nome + "';";
-            Clipboard.SetText(query);
+            //Clipboard.SetText(query);
             var dados = Select(query);
             
             if(dados.HasRows && dados.Read())
@@ -319,6 +319,24 @@ namespace TransacoesImobiliariasWinForms
 
             return "";
 
+        }
+
+        public List<string> TodosTiposContactos()
+        {
+
+            var query = "SELECT DescTC FROM [Tipo Contacto]";
+            List<String> list = new List<String>();
+            bool temDados = false;
+            var dados = Select(query);
+            while (dados.HasRows && dados.Read())
+            {
+
+                list.Add(dados[0].ToString());
+                temDados = true;
+            }
+
+            if(temDados) return list;
+            return null;
         }
 
 

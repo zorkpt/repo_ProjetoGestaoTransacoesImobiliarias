@@ -248,7 +248,16 @@ namespace TransacoesImobiliariasWinForms
             }
             return true;
         }
+        
+        public List<string> TipoContactoSQL()
+        {
+            List<string> lista = new List<string>();
 
+            lista = _dados.TodosTiposContactos();
+
+            return lista;
+
+        }
 
 
         #endregion

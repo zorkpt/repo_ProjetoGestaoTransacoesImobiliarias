@@ -16,15 +16,21 @@ namespace TransacoesImobiliariasWinForms
 {
     public partial class GerirClientes : Form
     {
+
+        public FormsController _formController;
+
         public GerirClientes()
         {
             InitializeComponent();
-            
+            _formController = new FormsController();
+
+
         }
 
         private void GerirClientes_Load(object sender, EventArgs e)
         {
-
+            List<string> list = _formController.TipoContactoSQL();
+            comboBox1.DataSource = list; comboBox1.Text = "";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -63,7 +69,8 @@ namespace TransacoesImobiliariasWinForms
             // Update the suggestions list
             AtualizarListBox(list);
 
-            listBox1.Visible = true;
+            //listBox1.Visible = true;
+            listBox1.Visible = listBox1.Items.Count > 0;
         }
 
         private void AtualizarListBox(List<Client> list)
@@ -75,6 +82,8 @@ namespace TransacoesImobiliariasWinForms
                 listBox1.Items.Add($"Nome: {client.Name}, NIF: {client.NIF}");
 
             }
+
+
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -98,6 +107,8 @@ namespace TransacoesImobiliariasWinForms
 
 
             listBox1.Visible = false;
+
+
 
         }
 
@@ -134,7 +145,7 @@ namespace TransacoesImobiliariasWinForms
             FormsController _formsController = new FormsController();
             string? nome = textBox1.Text;
             string? nif = textBox2.Text;
-            string? cc = textBox3.Text ;
+            string? cc = textBox3.Text;
             //string? data = dateTimePicker1.Text;
 
             DateTime data = dateTimePicker1.Checked ? dateTimePicker1.Value : DateTime.MinValue;
@@ -194,5 +205,10 @@ namespace TransacoesImobiliariasWinForms
         }
 
         #endregion
+
+        private void listBox1_DataSourceChanged(object sender, EventArgs e)
+        {
+            listBox1.Visible = listBox1.Items.Count > 0;
+        }
     }
 }
