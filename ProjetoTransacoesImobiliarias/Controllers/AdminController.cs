@@ -178,6 +178,7 @@ public class AdminController : UserController
         var exitMenu = false;
         while (!exitMenu)
         {
+            var allProperties = _propertyService.GetAllProperties();
             var option = AdminView.ManagePropertiesMenu();
             switch (option)
             {
@@ -185,13 +186,13 @@ public class AdminController : UserController
                     AddProperty(_admin);
                     break;
                 case "2":
-                    // Editar Propriedade
+                    EditProperty();
                     break;
                 case "3":
+                    DeleteProperty();
                     // Eliminar Propriedade
                     break;
                 case "4":
-                    var allProperties = _propertyService.GetAllProperties();
                     PropertyView.DisplayAllProperties(allProperties);
                     break;
                 case "0":

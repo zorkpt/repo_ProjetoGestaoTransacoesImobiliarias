@@ -51,7 +51,7 @@ public class AppController
                 break;
 
             default:
-                Console.WriteLine("Tipo de usuário desconhecido.");
+                Console.WriteLine("Tipo de utilizador desconhecido.");
                 return;
         }
 

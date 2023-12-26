@@ -341,6 +341,39 @@ public abstract class UserController
         user.AddProperty(newProperty);
         return newProperty;
     }
+    
+    protected Property EditProperty()
+    {
+        // inserir o numero da propriedade a editar
+        var property =  _propertyController.ChooseProperty();
+        if(property == null)
+        {
+            MessageHandler.PressAnyKey("Propriedade não encontrada.");
+            return null;
+        }
 
+        var propertyData = UserView.EditPropertyData(property);
+        
+        property.Address = propertyData.Address; 
+        property.Description = propertyData.Description;
+        property.PropertyType = propertyData.PropertyType;
+        property.SquareMeters = propertyData.SquareMeters; 
+
+        return property;
+    } 
+    
+    protected void DeleteProperty()
+    {
+        var property =  _propertyController.ChooseProperty();
+        if(property == null)
+        {
+            MessageHandler.PressAnyKey("Propriedade não encontrada.");
+            return;
+        }
+
+        _propertyService.DeleteProperty(property);
+        MessageHandler.PressAnyKey("Propriedade eliminada com sucesso.");
+    }
+    
     #endregion
 }
