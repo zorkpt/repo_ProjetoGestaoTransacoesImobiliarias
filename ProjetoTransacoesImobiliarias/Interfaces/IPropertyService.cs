@@ -13,5 +13,6 @@ namespace ProjetoTransacoesImobiliarias.Interfaces
 
         Property CreateProperty(string address, string description, PropertyType propertyType, double size,
              User addedBy,Client client);
+        void DeleteProperty(Property property);
     }
 }

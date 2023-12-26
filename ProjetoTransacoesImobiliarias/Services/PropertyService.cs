@@ -108,5 +108,11 @@ namespace ProjetoTransacoesImobiliarias.Services
             if (id < 0) return null;
             return _propertiesList.FirstOrDefault(property => property.Id == id);
         }
+        
+        public void DeleteProperty(Property property)
+        {
+            if (property == null) return;
+            _propertiesList.Remove(property);
+        }
     }
 }

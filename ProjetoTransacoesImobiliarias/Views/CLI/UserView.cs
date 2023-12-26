@@ -19,17 +19,17 @@ public class UserView
         Console.WriteLine("---------------------------------------------------");
         MessageHandler.PressAnyKey();
     }
-    
+
     public static string ChooseUserNameView()
     {
         Console.Clear();
 
         Console.WriteLine("========== Escolha o Nome do utilizador ==========");
 
-        string?  a = Console.ReadLine();
+        string? a = Console.ReadLine();
         return a ?? string.Empty;
-    }    
-    
+    }
+
     public static PropertyData AddProperty()
     {
         Console.WriteLine("Adicionar nova propriedade:");
@@ -38,16 +38,16 @@ public class UserView
 
         Console.Write("Descrição: ");
         var description = Console.ReadLine() ?? string.Empty;
-        
+
         Console.Write("Tipo de Propriedade\n");
         var propertyType = SelectPropertyType();
-        
+
         Console.Write("Área: ");
         var size = double.Parse(Console.ReadLine() ?? string.Empty);
 
         Console.Write("ID do Cliente: ");
         var clientId = int.Parse(Console.ReadLine() ?? string.Empty);
-        
+
         return new PropertyData
         {
             Address = address,
@@ -57,7 +57,7 @@ public class UserView
             ClientId = clientId
         };
     }
-    
+
     private static PropertyType SelectPropertyType()
     {
         while (true)
@@ -82,7 +82,7 @@ public class UserView
         }
     }
 
-    
+
     public class PropertyData
     {
         public string Address { get; set; }
@@ -91,7 +91,7 @@ public class UserView
         public double Size { get; set; }
         public int ClientId { get; set; }
     }
-    
+
     public static void DisplayUsers(IEnumerable<User> users)
     {
         Console.Clear();
@@ -108,8 +108,8 @@ public class UserView
         Console.WriteLine("---------------------------------------------------");
         MessageHandler.PressAnyKey();
     }
-    
-    
+
+
     public static UserData AddUser()
     {
         Console.WriteLine("Adicionar novo utilizador:");
@@ -118,7 +118,7 @@ public class UserView
 
         Console.Write("Username: ");
         var username = Console.ReadLine() ?? string.Empty;
-        
+
         Console.Write("Password: ");
         var password = Console.ReadLine() ?? string.Empty;
 
@@ -161,9 +161,27 @@ public class UserView
         }
     }
 
-    
-    
-    
+    public static PropData EditPropertyData(Property property)
+    {
+        var propertyData = new PropData();
+        Console.WriteLine("Editar Propriedade:");
+        Console.WriteLine("Morada Atual: " + property.Address + "\n");
+        Console.Write("Insira a nova morada da propriedade: ");
+        propertyData.Address = Console.ReadLine() ?? string.Empty;
+
+        Console.WriteLine("Descrição Atual: " + property.Description  + "\n");
+        Console.Write("Insira a nova descrição da propriedade: ");
+        propertyData.Description = Console.ReadLine() ?? string.Empty;
+
+        Console.WriteLine("Tipo Atual: " + property.PropertyType + "\n");
+        Console.Write("Insira o novo tipo da propriedade: \n");
+        propertyData.PropertyType = SelectPropertyType();
+
+        Console.WriteLine("Tamanho Atual: " + property.SquareMeters + "\n");
+        Console.Write("Insira o novo tamanho da propriedade: ");
+        propertyData.SquareMeters = double.Parse(Console.ReadLine() ?? string.Empty);
+        return propertyData;
+    }
 }
 
 public class UserData
@@ -173,4 +191,12 @@ public class UserData
 
     public string Password { get; set; }
     public UserRole Role { get; set; }
+}
+
+public class PropData
+{
+    public string Address { get; set; }
+    public string Description { get; set; }
+    public PropertyType PropertyType { get; set; }
+    public double SquareMeters { get; set; }
 }
