@@ -59,6 +59,7 @@ public abstract class UserController
 
         _clientService.UpdateClient(client);
 
+        
         return client;
     }
 
