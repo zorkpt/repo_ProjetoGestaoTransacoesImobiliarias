@@ -107,6 +107,14 @@ namespace TransacoesImobiliariasWinForms
         private void UserForm_Load(object sender, EventArgs e)
         {
 
+            UpdateForm();
+
+
+        }
+
+        private void UpdateForm()
+        {
+
             //carregar dados aqui
             totalFuncionarios.Text = _formController.TotalFuncionariosSQL().ToString();
             totalClientesLabel.Text = _formController.TotalClientesSQL();
@@ -115,7 +123,6 @@ namespace TransacoesImobiliariasWinForms
             clientesPropostasLabel.Text = _formController.ClintePropEfetuadaSQL();
             clientesFaltaPagLabel.Text = _formController.ClienteFaltaPagamentoSQL();
             funcionarioMesLLabel.Text = _formController.FuncionariosMesSQL();
-            
 
         }
 
@@ -230,6 +237,16 @@ namespace TransacoesImobiliariasWinForms
         {
             GerirClientes a = new GerirClientes();
             a.Show();
+        }
+
+        private void UserForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void UserForm_Activated(object sender, EventArgs e)
+        {
+            UpdateForm();
         }
     }
 }

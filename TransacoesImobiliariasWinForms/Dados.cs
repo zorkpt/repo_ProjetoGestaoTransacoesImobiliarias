@@ -201,7 +201,7 @@ namespace TransacoesImobiliariasWinForms
                         "left JOIN ClienteContacto ON ClienteContacto.ClienteNIF = Cliente.NIF " +
                         "LEFT JOIN[Tipo Contacto] ON[Tipo Contacto].TCId = ClienteContacto.TCId " +
                         " WHERE NIF LIKE '%" + text + "%';";
-
+            Clipboard.SetText(query);
             var dados = Select(query);
             string? nif;
             string? morada;
@@ -224,7 +224,7 @@ namespace TransacoesImobiliariasWinForms
 
                 TipoContacto tipo = Enum.TryParse(tipoContacto, ignoreCase: true, out TipoContacto result) ? result : TipoContacto.Email;
 
-                Contact contact = new Contact(nif, tipo, tipoContacto);
+                Contact contact = new Contact(nif, tipo, tel);
 
                 Client novo = new Client(nome, morada, contact, nif, cc, dataNasc);
                 return novo;

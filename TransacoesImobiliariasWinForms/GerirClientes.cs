@@ -87,6 +87,11 @@ namespace TransacoesImobiliariasWinForms
 
         }
 
+        /// <summary>
+        /// Quando ;e selecionado alguma item da listbox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBox1.SelectedIndex != -1)
@@ -97,7 +102,6 @@ namespace TransacoesImobiliariasWinForms
                 string[] nome = a[0].Split(":");
                 string[] nif = a[1].Split(":");
 
-                // Do something with the selected item
                 textBox2.Text = nif[1];
 
                 FormsController formsController = new FormsController();
@@ -130,6 +134,10 @@ namespace TransacoesImobiliariasWinForms
             dateTimePicker1.Text = cliente.DateOfBirth;
             textBox5.Text = cliente.Address;
             textBox6.Text = cliente.Contact.Descricao;
+
+
+
+            comboBox1.SelectedItem = cliente.Contact.Tipo.ToString();
         }
 
 
@@ -170,6 +178,7 @@ namespace TransacoesImobiliariasWinForms
                 if (_formsController.InserirClienteSQL(nome, nif, data, contacto, cc, morada, tipoContacto))
                 {
                     MessageBox.Show("Cliente inserido com sucesso.");
+                    LimparForm();
                 }
             }
             //informar user que os dados foram inseridos com sucesso 
@@ -180,9 +189,11 @@ namespace TransacoesImobiliariasWinForms
         }
 
         #region Gestao de form
+        //limpa todos os campos do form Cliente
         private bool LimparForm()
         {
             textBox1.Text = "";
+            textBox2.Text = "";
             textBox3.Text = "";
             dateTimePicker1.Text = "";
             textBox5.Text = "";
@@ -190,7 +201,9 @@ namespace TransacoesImobiliariasWinForms
 
             return true;
         }
-
+        /// <summary>
+        /// Verifica se campos do cliente estao preenchidos ou nao        /// </summary>
+        /// <returns></returns>
         private bool VerificaCamposCliente()
         {
             if (string.IsNullOrWhiteSpace(textBox1.Text) ||
@@ -238,6 +251,11 @@ namespace TransacoesImobiliariasWinForms
             FormDados formDados = new FormDados();
             formDados.EncherLista(list);
             formDados.Show();
+        }
+
+        private void LimparCampos_Click(object sender, EventArgs e)
+        {
+            LimparForm();
         }
     }
 }

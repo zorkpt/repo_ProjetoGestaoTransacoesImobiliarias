@@ -208,7 +208,26 @@ namespace TransacoesImobiliariasWinForms
 
         public string FuncionariosMesSQL()
         {
-            var query = " NULL;";
+            var query = " SELECT Agente.NomeAgente, COUNT(IdNegocio) " +
+                        "FROM Agente " +
+                        "JOIN ContratoMediacao ON NIFAgente = AgenteNIF " +
+                        "JOIN Proposta ON IdContratoMediacao = IdCMediacao " +
+                        "JOIN PropostaContrato ON PropostaIdProposta = IdProposta " +
+                        "JOIN ContratoCompraVenda ON IdNegocio = ContratoCompraVenda " +
+                        "JOIN Pagamento ON IdNegocio = Pagamento.ContratoCompraVenda " +
+                        "WHERE Pagamento.IdPagamento IS NOT NULL " +
+                        "GROUP BY NomeAgente " +
+                        "HAVING COUNT(IdNegocio) >= ALL( " +
+                        "                SELECT COUNT(IdNegocio) " +
+                        "                FROM Agente " +
+                        "                JOIN ContratoMediacao ON NIFAgente = AgenteNIF " +
+                        "                JOIN Proposta ON IdContratoMediacao = IdCMediacao " +
+                        "                JOIN PropostaContrato ON PropostaIdProposta = IdProposta " +
+                        "                JOIN ContratoCompraVenda ON IdNegocio = ContratoCompraVenda " +
+                        "                JOIN Pagamento ON IdNegocio = Pagamento.ContratoCompraVenda " +
+                        "                WHERE Pagamento.IdPagamento IS NOT NULL " +
+                        "                GROUP BY NomeAgente);";
+
             var dados = _dados.Select(query);
 
             if (dados == null) return "";
@@ -216,7 +235,7 @@ namespace TransacoesImobiliariasWinForms
             if (dados.HasRows && dados.Read())
             {
                 //var numUsers = dados.GetInt32(dados.GetOrdinal("NumUsers"));
-                string numUsers = dados["ContratosSemPagamento"].ToString();
+                string numUsers = dados["NomeAgente"].ToString();
                 return numUsers;
             }
             return "Sem dados";

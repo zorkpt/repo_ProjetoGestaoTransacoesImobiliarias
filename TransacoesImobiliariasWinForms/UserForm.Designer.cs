@@ -591,6 +591,8 @@
             MaximizeBox = false;
             Name = "UserForm";
             StartPosition = FormStartPosition.CenterScreen;
+            Activated += UserForm_Activated;
+            FormClosed += UserForm_FormClosed;
             Load += UserForm_Load;
             MenuPanel.ResumeLayout(false);
             panel2.ResumeLayout(false);

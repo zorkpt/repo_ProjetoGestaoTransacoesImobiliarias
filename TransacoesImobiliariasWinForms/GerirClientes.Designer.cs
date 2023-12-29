@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             MenuPanel = new Panel();
+            LimparCampos = new Button();
             button6 = new Button();
             panel1 = new Panel();
             button2 = new Button();
@@ -63,6 +64,7 @@
             // MenuPanel
             // 
             MenuPanel.BackColor = Color.GhostWhite;
+            MenuPanel.Controls.Add(LimparCampos);
             MenuPanel.Controls.Add(button6);
             MenuPanel.Controls.Add(panel1);
             MenuPanel.Controls.Add(button1);
@@ -73,6 +75,16 @@
             MenuPanel.Name = "MenuPanel";
             MenuPanel.Size = new Size(166, 433);
             MenuPanel.TabIndex = 1;
+            // 
+            // LimparCampos
+            // 
+            LimparCampos.Location = new Point(12, 222);
+            LimparCampos.Name = "LimparCampos";
+            LimparCampos.Size = new Size(121, 23);
+            LimparCampos.TabIndex = 6;
+            LimparCampos.Text = "Limpar Campos";
+            LimparCampos.UseVisualStyleBackColor = true;
+            LimparCampos.Click += LimparCampos_Click;
             // 
             // button6
             // 
@@ -327,7 +339,6 @@
             // 
             // comboBox1
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(681, 325);
             comboBox1.Name = "comboBox1";
@@ -402,5 +413,6 @@
         private LinkLabel linkLabel1;
         private LinkLabel linkLabel2;
         private ComboBox comboBox1;
+        private Button LimparCampos;
     }
 }
