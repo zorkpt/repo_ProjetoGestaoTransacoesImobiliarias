@@ -10,6 +10,13 @@ namespace ProjetoTransacoesImobiliarias.Models
         public string PhoneNumber { get; set; }
         public int AddedById {get; set;}
         public User AddedBy { get; set; }
+        #region para winforms
+        public string NIF { get; set; }
+        public string CC { get; set; }
+        public string DateOfBirth { get; set; }
+        public Contact Contact { get; set; }
+        #endregion
+
         public static List<Client> ClientList = new List<Client>();
 
         public Client(string name, string address, string phoneNumber, User addedBy, int addedById)
@@ -31,6 +38,20 @@ namespace ProjetoTransacoesImobiliarias.Models
             AddedById = addedById;
             ClientList.Add(this);
         }
+        /// <summary>
+        /// Contructor for UserForms
+        /// </summary>
+        public Client(string name, string address, Contact contacto, string nif, string cc, string dateOfBirth)
+        {
+            Name = name;
+            Address = address;
+            Contact = contacto;
+            DateOfBirth = dateOfBirth;
+            NIF = nif;
+            CC = cc;
+            //falta adicionar alguma coisa para guardar varios contactos , classe?
+        }
+
         public void SetAddedBy(User user)
         {
             AddedBy = user;
