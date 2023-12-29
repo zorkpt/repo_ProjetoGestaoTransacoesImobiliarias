@@ -257,5 +257,11 @@ namespace TransacoesImobiliariasWinForms
         {
             LimparForm();
         }
+
+        private void GerirClientes_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+
+        }
     }
 }

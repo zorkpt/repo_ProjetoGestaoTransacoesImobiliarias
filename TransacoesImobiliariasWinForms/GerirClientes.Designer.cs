@@ -374,6 +374,7 @@
             Name = "GerirClientes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "GerirClientes";
+            FormClosed += GerirClientes_FormClosed;
             Load += GerirClientes_Load;
             MenuPanel.ResumeLayout(false);
             panel1.ResumeLayout(false);

@@ -241,7 +241,7 @@ namespace TransacoesImobiliariasWinForms
 
         private void UserForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Close();
+            LoginForm.
         }
 
         private void UserForm_Activated(object sender, EventArgs e)
