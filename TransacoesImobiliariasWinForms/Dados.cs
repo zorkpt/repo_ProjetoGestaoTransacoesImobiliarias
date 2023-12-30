@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Shapes;
 using static ProjetoTransacoesImobiliarias.Models.Contact;
 using static System.Net.Mime.MediaTypeNames;
-
+using Microsoft.Data.Sqlite;
 
 namespace TransacoesImobiliariasWinForms
 {
@@ -27,12 +27,51 @@ namespace TransacoesImobiliariasWinForms
 
         #endregion
 
-        #region Contrutor 
-        public Dados() { }
+
+        #region testes
+
+        private string? CaminhoBD = "../../teste.db";
+        private string? scriptBD = "C:\\Users\\PRS\\source\\repos\\repo_ProjetoGestaoTransacoesImobiliarias\\TransacoesImobiliariasWinForms\\scriptBD.sql";
+
+        private void testeBD()
+        {
+            if (!File.Exists(CaminhoBD))
+            {
+                var connection = new SqliteConnection($"Data Source={CaminhoBD}");
+                connection.Open();
+                var commando = connection.CreateCommand();
+                string scriptContent = File.ReadAllText(scriptBD);
+                string[] commands = scriptContent.Split(';');
+
+                foreach (var cmd in commands)
+                {
+                    if (!string.IsNullOrWhiteSpace(cmd))
+                    {
+                        commando.CommandText = cmd;
+                        commando.ExecuteNonQuery();
+                    }
+                }
+
+            }
+        }
 
         #endregion
+
+
+        #region Contrutor 
+        public Dados() 
+        {
+
+        }
+
+        #endregion
+        
         #region Metodos
 
+        /// <summary>
+        /// Liga com a base de dados 
+        /// </summary>
+        /// <returns></returns>
         private SqlConnection Ligacao()
         {
             string connectionString = "Data Source=" + servidor + ";Initial Catalog=" + tabelaBD + ";User ID=" + UsernameBD + ";Password=" + passwordBD + ";TrustServerCertificate=True";
@@ -48,8 +87,8 @@ namespace TransacoesImobiliariasWinForms
             catch (Exception ex)
             {
 
-                MessageBox.Show("[Ligacao] Erro ao abrir a conexão: " + ex.Message);//enviar para erros
-                throw; // Re-throw a exceção para que o chamador possa lidar com ela
+                MessageBox.Show("[Ligacao] Erro ao abrir a conexão: " + ex.Message);
+                throw; 
             }
         }
 
@@ -135,6 +174,35 @@ namespace TransacoesImobiliariasWinForms
             }
         }
 
+        private bool Update(string sql)
+        {
+            try
+            {
+                SqlConnection conn = Ligacao();
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        conn.Close();
+                        return true;
+                    }
+                    else
+                    {
+                        conn.Close();
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
 
 
         /// <summary>
@@ -366,6 +434,70 @@ namespace TransacoesImobiliariasWinForms
             return true;
 
         }
+
+        public bool UpdateCliente(Client cliente)
+        {
+
+            var query = "UPDATE Cliente ";
+
+            if(Update(query)) return true;
+            return false;
+        }
+
+        public bool UpdateClieteNomeSQL(string nome, string nif)
+        {
+            var query = "UPDATE Cliente SET Nome = '" + nome + "' WHERE NIF = " + nif ;
+            Clipboard.SetText(query);
+            if (Update(query)) return true;
+            return false;
+        }
+
+        public bool ClienteUpdateMoradaSQL(string morada, string nif)
+        {
+            var query = "UPDATE Cliente SET Morada = '" + morada + "' WHERE NIF = " + nif;
+
+            if (Update(query)) return true;
+            return false;
+        }
+
+        public bool ClienteUpdateDataNascSQL(DateTime data, string nif)
+        {
+            var query = "UPDATE Cliente SET DataNasc = '" + data + "' WHERE NIF = " + nif;
+
+            if (Update(query)) return true;
+            return false;
+        }
+
+        public bool ClienteUpdateCCSQL(string cc, string nif)
+        {
+
+            var query = "UPDATE Cliente SET CC = '" + cc + "' WHERE NIF = " + nif;
+
+            if (Update(query)) return true;
+            return false;
+        }
+
+        public bool ContactoUpdateDescricaoSQL(Contact contact, string nif)
+        {
+            var query = "UPDATE ClienteContacto SET Contacto = '" + contact.Descricao + 
+                        "' WHERE ClienteNIF = " + nif;
+
+            if (Update(query)) return true;
+            return false;
+        }
+
+        public bool ContactoUpdateTipoSQL(Contact contact, string nif)
+        {
+
+
+            var query = "UPDATE ClienteContacto SET Contacto = '" + contact.Tipo +
+                        "' WHERE ClienteNIF = " + nif;
+
+            if (Update(query)) return true;
+            return false;
+        }
+
+
 
         #endregion
 

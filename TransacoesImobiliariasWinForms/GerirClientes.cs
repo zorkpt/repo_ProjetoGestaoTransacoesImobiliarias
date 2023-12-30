@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using TransacoesImobiliariasWinForms.DefForms;
+using static ProjetoTransacoesImobiliarias.Models.Contact;
 
 
 namespace TransacoesImobiliariasWinForms
@@ -88,7 +89,7 @@ namespace TransacoesImobiliariasWinForms
         }
 
         /// <summary>
-        /// Quando ;e selecionado alguma item da listbox
+        /// Quando é selecionado alguma item da listbox
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -117,6 +118,10 @@ namespace TransacoesImobiliariasWinForms
 
         }
 
+        /// <summary>
+        /// Atualiza campos no forms com dados retirados da BD
+        /// </summary>
+        /// <param name="nif"></param>
         private void AtualizaCamposCliente(string nif)
         {
             Dados _dados = new Dados();
@@ -168,7 +173,7 @@ namespace TransacoesImobiliariasWinForms
             // Verificar se o nif ja existe
             if (_dados.ExisteNif(textBox2.Text))
             {
-                MessageBox.Show("Cliente ja existe");
+                MessageBox.Show("Cliente já existe");
                 return;
             }
 
@@ -245,7 +250,7 @@ namespace TransacoesImobiliariasWinForms
 
             if (list == null)
             {
-                MessageBox.Show("Nao existem dados");
+                MessageBox.Show("Não existem dados");
                 return;
             }
             FormDados formDados = new FormDados();
@@ -261,6 +266,59 @@ namespace TransacoesImobiliariasWinForms
         private void GerirClientes_FormClosed(object sender, FormClosedEventArgs e)
         {
 
+
+        }
+
+        private void buttonGerirClientes_Click(object sender, EventArgs e)
+        {
+            // Confirmar se todos os campos estao preenchidos
+            if (!VerificaCamposCliente()) 
+            {
+                return; 
+            }
+
+
+            // fazer update no sql 
+
+            DialogResult  resposta = MessageBox.Show("Deseja atualizar dados deste cliente?", "Confirma", MessageBoxButtons.YesNo);
+            if(resposta == DialogResult.Yes)
+            {
+                string? nome = textBox1.Text;
+                string? nif = textBox2.Text;
+                string? cc = textBox3.Text;
+                string? d = dateTimePicker1.Text;
+
+                DateTime data = dateTimePicker1.Checked ? dateTimePicker1.Value : DateTime.MinValue;
+
+                string? morada = textBox5.Text;
+                string? desc = textBox6.Text;
+                string? tipoContacto = comboBox1.Text;
+
+                TipoContacto tipo = Enum.TryParse(tipoContacto, ignoreCase: true, out TipoContacto result) ? result : TipoContacto.Email;
+
+
+                Contact contacto = new Contact(nif, tipo, desc);
+
+
+                Client client = new Client(nome, morada, contacto, nif, cc, d);
+
+                // update 
+                if (_formController.CLienteUpdate(client))
+                {
+                    MessageBox.Show("Dados atualizados com sucesso!");
+                    LimparForm();
+                }
+                else
+                {
+                    MessageBox.Show("ERRO, dados não foram atualizados!");
+
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Nada foi atualizado!");
+            }
 
         }
     }
