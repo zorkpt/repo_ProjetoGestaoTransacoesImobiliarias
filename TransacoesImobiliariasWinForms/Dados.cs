@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Shapes;
 using static ProjetoTransacoesImobiliarias.Models.Contact;
 using static System.Net.Mime.MediaTypeNames;
-
+using Microsoft.Data.Sqlite;
 
 namespace TransacoesImobiliariasWinForms
 {
@@ -27,12 +27,50 @@ namespace TransacoesImobiliariasWinForms
 
         #endregion
 
+
+        #region testes
+
+        private string? CaminhoBD = "../../teste.db";
+        private string? scriptBD = "C:\\Users\\PRS\\source\\repos\\repo_ProjetoGestaoTransacoesImobiliarias\\TransacoesImobiliariasWinForms\\scriptBD.sql";
+
+        private void testeBD()
+        {
+            if (!File.Exists(CaminhoBD))
+            {
+                var connection = new SqliteConnection($"Data Source={CaminhoBD}");
+                connection.Open();
+                var commando = connection.CreateCommand();
+                string scriptContent = File.ReadAllText(scriptBD);
+                string[] commands = scriptContent.Split(';');
+
+                foreach (var cmd in commands)
+                {
+                    if (!string.IsNullOrWhiteSpace(cmd))
+                    {
+                        commando.CommandText = cmd;
+                        commando.ExecuteNonQuery();
+                    }
+                }
+
+            }
+        }
+
+        #endregion
+
+
         #region Contrutor 
-        public Dados() { }
+        public Dados() 
+        {
+
+        }
 
         #endregion
         #region Metodos
 
+        /// <summary>
+        /// Liga com a base de dados 
+        /// </summary>
+        /// <returns></returns>
         private SqlConnection Ligacao()
         {
             string connectionString = "Data Source=" + servidor + ";Initial Catalog=" + tabelaBD + ";User ID=" + UsernameBD + ";Password=" + passwordBD + ";TrustServerCertificate=True";
@@ -48,8 +86,8 @@ namespace TransacoesImobiliariasWinForms
             catch (Exception ex)
             {
 
-                MessageBox.Show("[Ligacao] Erro ao abrir a conexão: " + ex.Message);//enviar para erros
-                throw; // Re-throw a exceção para que o chamador possa lidar com ela
+                MessageBox.Show("[Ligacao] Erro ao abrir a conexão: " + ex.Message);
+                throw; 
             }
         }
 

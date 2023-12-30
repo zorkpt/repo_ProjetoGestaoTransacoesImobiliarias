@@ -92,14 +92,13 @@ namespace TransacoesImobiliariasWinForms
             {
                 if (int.TryParse(totalFuncionarios.Text, out int value))
                 {
-                    // Certifique-se de que o valor está dentro dos limites da barra de progresso
                     value = Math.Max(progressBarTotalFuncionarios.Minimum, Math.Min(value, progressBarTotalFuncionarios.Maximum));
 
                     progressBarTotalFuncionarios.Value = value;
                 }
                 else
                 {
-                    totalFuncionarios.Text = string.Empty; // ou outra lógica de tratamento
+                    totalFuncionarios.Text = string.Empty;
                 }
             }
         }
@@ -148,7 +147,6 @@ namespace TransacoesImobiliariasWinForms
             {
                 if (int.TryParse(totalClientesLabel.Text, out int value))
                 {
-                    // Certifique-se de que o valor está dentro dos limites da barra de progresso
                     value = Math.Max(progressBarTotalCliente.Minimum, Math.Min(value, progressBarTotalCliente.Maximum));
 
                     progressBarTotalCliente.Value = value;
@@ -156,7 +154,7 @@ namespace TransacoesImobiliariasWinForms
                 else
                 {
 
-                    totalClientesLabel.Text = string.Empty; // ou outra lógica de tratamento
+                    totalClientesLabel.Text = string.Empty; 
                 }
             }
         }
@@ -167,14 +165,13 @@ namespace TransacoesImobiliariasWinForms
             {
                 if (int.TryParse(totalProVendaLabel.Text, out int value))
                 {
-                    // Certifique-se de que o valor está dentro dos limites da barra de progresso
                     value = Math.Max(progressBarTotalVendas.Minimum, Math.Min(value, progressBarTotalVendas.Maximum));
 
                     progressBarTotalVendas.Value = value;
                 }
                 else
                 {
-                    totalProVendaLabel.Text = string.Empty; // ou outra lógica de tratamento
+                    totalProVendaLabel.Text = string.Empty; 
                 }
             }
         }
@@ -185,14 +182,13 @@ namespace TransacoesImobiliariasWinForms
             {
                 if (int.TryParse(clientesPropostasLabel.Text, out int value))
                 {
-                    // Certifique-se de que o valor está dentro dos limites da barra de progresso
                     value = Math.Max(progressBarClienteProposta.Minimum, Math.Min(value, progressBarClienteProposta.Maximum));
 
                     progressBarClienteProposta.Value = value;
                 }
                 else
                 {
-                    clientesPropostasLabel.Text = string.Empty; // ou outra lógica de tratamento
+                    clientesPropostasLabel.Text = string.Empty; 
                 }
             }
         }
@@ -203,14 +199,13 @@ namespace TransacoesImobiliariasWinForms
             {
                 if (int.TryParse(clientesFaltaPagLabel.Text, out int value))
                 {
-                    // Certifique-se de que o valor está dentro dos limites da barra de progresso
                     value = Math.Max(progressBarFaltaPag.Minimum, Math.Min(value, progressBarFaltaPag.Maximum));
 
                     progressBarFaltaPag.Value = value;
                 }
                 else
                 {
-                    clientesFaltaPagLabel.Text = string.Empty; // ou outra lógica de tratamento
+                    clientesFaltaPagLabel.Text = string.Empty; 
                 }
             }
         }
@@ -221,14 +216,13 @@ namespace TransacoesImobiliariasWinForms
             {
                 if (int.TryParse(proVendaMesLabel.Text, out int value))
                 {
-                    // Certifique-se de que o valor está dentro dos limites da barra de progresso
                     value = Math.Max(progressBarProVendidas.Minimum, Math.Min(value, progressBarProVendidas.Maximum));
 
                     progressBarProVendidas.Value = value;
                 }
                 else
                 {
-                    proVendaMesLabel.Text = string.Empty; // ou outra lógica de tratamento
+                    proVendaMesLabel.Text = string.Empty; 
                 }
             }
         }
@@ -241,7 +235,7 @@ namespace TransacoesImobiliariasWinForms
 
         private void UserForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            LoginForm.
+            
         }
 
         private void UserForm_Activated(object sender, EventArgs e)

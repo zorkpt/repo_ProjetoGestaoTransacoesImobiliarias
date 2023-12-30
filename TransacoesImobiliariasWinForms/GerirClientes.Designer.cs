@@ -181,6 +181,7 @@
             buttonGerirClientes.TabIndex = 1;
             buttonGerirClientes.Text = "Atualizar Cliente";
             buttonGerirClientes.UseVisualStyleBackColor = true;
+            buttonGerirClientes.Click += buttonGerirClientes_Click;
             // 
             // buttonGerirUsers
             // 

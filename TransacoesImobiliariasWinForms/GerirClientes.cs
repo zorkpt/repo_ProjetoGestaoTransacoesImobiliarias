@@ -88,7 +88,7 @@ namespace TransacoesImobiliariasWinForms
         }
 
         /// <summary>
-        /// Quando ;e selecionado alguma item da listbox
+        /// Quando é selecionado alguma item da listbox
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -117,6 +117,10 @@ namespace TransacoesImobiliariasWinForms
 
         }
 
+        /// <summary>
+        /// Atualiza campos no forms com dados retirados da BD
+        /// </summary>
+        /// <param name="nif"></param>
         private void AtualizaCamposCliente(string nif)
         {
             Dados _dados = new Dados();
@@ -168,7 +172,7 @@ namespace TransacoesImobiliariasWinForms
             // Verificar se o nif ja existe
             if (_dados.ExisteNif(textBox2.Text))
             {
-                MessageBox.Show("Cliente ja existe");
+                MessageBox.Show("Cliente já existe");
                 return;
             }
 
@@ -245,7 +249,7 @@ namespace TransacoesImobiliariasWinForms
 
             if (list == null)
             {
-                MessageBox.Show("Nao existem dados");
+                MessageBox.Show("Não existem dados");
                 return;
             }
             FormDados formDados = new FormDados();
@@ -261,6 +265,30 @@ namespace TransacoesImobiliariasWinForms
         private void GerirClientes_FormClosed(object sender, FormClosedEventArgs e)
         {
 
+
+        }
+
+        private void buttonGerirClientes_Click(object sender, EventArgs e)
+        {
+            // Confirmar se todos os campos estao preenchidos
+            if (!VerificaCamposCliente()) 
+            {
+                return; 
+            }
+
+
+            // fazer update no sql 
+
+            DialogResult  resposta = MessageBox.Show("Deseja atualizar dados deste cliente?", "Confirma", MessageBoxButtons.YesNo);
+            if(resposta == DialogResult.Yes)
+            {
+                // update 
+                //_formController.CLienteUpdate(nif);
+            }
+            else
+            {
+                MessageBox.Show("Nada foi atualizado!");
+            }
 
         }
     }

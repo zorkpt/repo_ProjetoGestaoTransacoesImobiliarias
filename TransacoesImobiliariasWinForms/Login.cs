@@ -37,7 +37,7 @@ namespace TransacoesImobiliariasWinForms
             User user = _formController.StartLoginProcess(UserNameTex.Text, PasswordTxt.Text, "sql");
             if (user == null)
             {
-                MessageBox.Show("User ou Password nao foram encontrados");
+                MessageBox.Show("User ou Password não foram encontrados");
                 return;
             }
             _formController.Start(user, this);
