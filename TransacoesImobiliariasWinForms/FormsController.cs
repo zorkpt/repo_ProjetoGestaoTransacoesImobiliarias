@@ -13,6 +13,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using static ProjetoTransacoesImobiliarias.Models.Contact;
 using Microsoft.IdentityModel.Tokens;
 using System.Diagnostics.Contracts;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using Azure.Core.Pipeline;
 
 namespace TransacoesImobiliariasWinForms
 {
@@ -345,6 +347,73 @@ namespace TransacoesImobiliariasWinForms
 
         }
 
+        public bool CLienteUpdate(Client cliente)
+        {
+            if (cliente == null) return false;
+
+            //procura na bd se existe nif
+            if (_dados.ExisteNif(cliente.NIF))
+            {
+                //Client client = _dados.ProcClientSqlByNif(cliente.NIF);
+
+
+                if (!ClienteUpdateNome(cliente.Name, cliente.NIF)) return false;
+                if(!ClienteUpdateMorada(cliente.Address, cliente.NIF)) return false;
+                if (!ClienteUpdateDataNasc(cliente.DateOfBirth, cliente.NIF)) return false;
+                if (!ClienteUpdateCC(cliente.CC, cliente.NIF)) return false;
+
+                if (!ContactoUpdateDescricao(cliente)) return false;
+                if (!ContactoUpdateTipo(cliente)) return false;
+
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public bool ClienteUpdateNome(string nome, string nif)
+        {
+            if(_dados.UpdateClieteNomeSQL(nome, nif)) return true;
+            return false;
+        }
+        public bool ClienteUpdateMorada(string morada, string nif)
+        {
+            if(_dados.ClienteUpdateMoradaSQL(morada, nif)) return true;
+            return false;
+        }
+        public bool ClienteUpdateDataNasc(string data, string nif)
+        {
+            //transformar string em DateTime
+            if (DateTime.TryParse(data, out DateTime dataNascimento))
+            {
+                if (_dados.ClienteUpdateDataNascSQL(dataNascimento, nif)) return true;
+                
+            }
+            return false;
+        }
+        public bool ClienteUpdateCC(string cc, string nif)
+        {
+            if(_dados.ClienteUpdateCCSQL(cc, nif)) return true;
+            return false;
+        }
+
+        public bool ContactoUpdateDescricao(Client cliente)
+        {
+            if(_dados.ContactoUpdateDescricaoSQL(cliente.Contact, cliente.NIF)) return true;
+            
+            return false;
+        }
+
+        public bool ContactoUpdateTipo(Client cliente)
+        {
+            if (_dados.ContactoUpdateTipoSQL(cliente.Contact, cliente.NIF)) return true;
+
+            return false;
+        }
 
         #endregion
 

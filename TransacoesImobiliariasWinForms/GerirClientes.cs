@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using TransacoesImobiliariasWinForms.DefForms;
+using static ProjetoTransacoesImobiliarias.Models.Contact;
 
 
 namespace TransacoesImobiliariasWinForms
@@ -282,8 +283,37 @@ namespace TransacoesImobiliariasWinForms
             DialogResult  resposta = MessageBox.Show("Deseja atualizar dados deste cliente?", "Confirma", MessageBoxButtons.YesNo);
             if(resposta == DialogResult.Yes)
             {
+                string? nome = textBox1.Text;
+                string? nif = textBox2.Text;
+                string? cc = textBox3.Text;
+                string? d = dateTimePicker1.Text;
+
+                DateTime data = dateTimePicker1.Checked ? dateTimePicker1.Value : DateTime.MinValue;
+
+                string? morada = textBox5.Text;
+                string? desc = textBox6.Text;
+                string? tipoContacto = comboBox1.Text;
+
+                TipoContacto tipo = Enum.TryParse(tipoContacto, ignoreCase: true, out TipoContacto result) ? result : TipoContacto.Email;
+
+
+                Contact contacto = new Contact(nif, tipo, desc);
+
+
+                Client client = new Client(nome, morada, contacto, nif, cc, d);
+
                 // update 
-                //_formController.CLienteUpdate(nif);
+                if (_formController.CLienteUpdate(client))
+                {
+                    MessageBox.Show("Dados atualizados com sucesso!");
+                    LimparForm();
+                }
+                else
+                {
+                    MessageBox.Show("ERRO, dados não foram atualizados!");
+
+                }
+
             }
             else
             {

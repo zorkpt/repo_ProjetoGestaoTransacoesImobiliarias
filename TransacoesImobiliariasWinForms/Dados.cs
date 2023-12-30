@@ -65,6 +65,7 @@ namespace TransacoesImobiliariasWinForms
         }
 
         #endregion
+        
         #region Metodos
 
         /// <summary>
@@ -173,6 +174,35 @@ namespace TransacoesImobiliariasWinForms
             }
         }
 
+        private bool Update(string sql)
+        {
+            try
+            {
+                SqlConnection conn = Ligacao();
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        conn.Close();
+                        return true;
+                    }
+                    else
+                    {
+                        conn.Close();
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
 
 
         /// <summary>
@@ -404,6 +434,70 @@ namespace TransacoesImobiliariasWinForms
             return true;
 
         }
+
+        public bool UpdateCliente(Client cliente)
+        {
+
+            var query = "UPDATE Cliente ";
+
+            if(Update(query)) return true;
+            return false;
+        }
+
+        public bool UpdateClieteNomeSQL(string nome, string nif)
+        {
+            var query = "UPDATE Cliente SET Nome = '" + nome + "' WHERE NIF = " + nif ;
+            Clipboard.SetText(query);
+            if (Update(query)) return true;
+            return false;
+        }
+
+        public bool ClienteUpdateMoradaSQL(string morada, string nif)
+        {
+            var query = "UPDATE Cliente SET Morada = '" + morada + "' WHERE NIF = " + nif;
+
+            if (Update(query)) return true;
+            return false;
+        }
+
+        public bool ClienteUpdateDataNascSQL(DateTime data, string nif)
+        {
+            var query = "UPDATE Cliente SET DataNasc = '" + data + "' WHERE NIF = " + nif;
+
+            if (Update(query)) return true;
+            return false;
+        }
+
+        public bool ClienteUpdateCCSQL(string cc, string nif)
+        {
+
+            var query = "UPDATE Cliente SET CC = '" + cc + "' WHERE NIF = " + nif;
+
+            if (Update(query)) return true;
+            return false;
+        }
+
+        public bool ContactoUpdateDescricaoSQL(Contact contact, string nif)
+        {
+            var query = "UPDATE ClienteContacto SET Contacto = '" + contact.Descricao + 
+                        "' WHERE ClienteNIF = " + nif;
+
+            if (Update(query)) return true;
+            return false;
+        }
+
+        public bool ContactoUpdateTipoSQL(Contact contact, string nif)
+        {
+
+
+            var query = "UPDATE ClienteContacto SET Contacto = '" + contact.Tipo +
+                        "' WHERE ClienteNIF = " + nif;
+
+            if (Update(query)) return true;
+            return false;
+        }
+
+
 
         #endregion
 
