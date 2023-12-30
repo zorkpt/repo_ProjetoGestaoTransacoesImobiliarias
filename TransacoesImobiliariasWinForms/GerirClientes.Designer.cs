@@ -81,7 +81,7 @@
             LimparCampos.Location = new Point(12, 222);
             LimparCampos.Name = "LimparCampos";
             LimparCampos.Size = new Size(121, 23);
-            LimparCampos.TabIndex = 6;
+            LimparCampos.TabIndex = 14;
             LimparCampos.Text = "Limpar Campos";
             LimparCampos.UseVisualStyleBackColor = true;
             LimparCampos.Click += LimparCampos_Click;
@@ -92,7 +92,7 @@
             button6.Location = new Point(12, 149);
             button6.Name = "button6";
             button6.Size = new Size(123, 52);
-            button6.TabIndex = 5;
+            button6.TabIndex = 13;
             button6.Text = "Ver lista de clientes";
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click;
@@ -157,7 +157,7 @@
             button1.Location = new Point(12, 309);
             button1.Name = "button1";
             button1.Size = new Size(121, 33);
-            button1.TabIndex = 3;
+            button1.TabIndex = 14;
             button1.Text = "Voltar";
             button1.UseVisualStyleBackColor = true;
             button1.Visible = false;
@@ -168,9 +168,10 @@
             buttonGerirPropriedades.Location = new Point(12, 94);
             buttonGerirPropriedades.Name = "buttonGerirPropriedades";
             buttonGerirPropriedades.Size = new Size(121, 33);
-            buttonGerirPropriedades.TabIndex = 2;
+            buttonGerirPropriedades.TabIndex = 12;
             buttonGerirPropriedades.Text = "Apagar Cliente";
             buttonGerirPropriedades.UseVisualStyleBackColor = true;
+            buttonGerirPropriedades.Click += buttonGerirPropriedades_Click;
             // 
             // buttonGerirClientes
             // 
@@ -178,7 +179,7 @@
             buttonGerirClientes.Location = new Point(12, 55);
             buttonGerirClientes.Name = "buttonGerirClientes";
             buttonGerirClientes.Size = new Size(121, 33);
-            buttonGerirClientes.TabIndex = 1;
+            buttonGerirClientes.TabIndex = 11;
             buttonGerirClientes.Text = "Atualizar Cliente";
             buttonGerirClientes.UseVisualStyleBackColor = true;
             buttonGerirClientes.Click += buttonGerirClientes_Click;
@@ -189,7 +190,7 @@
             buttonGerirUsers.Location = new Point(12, 16);
             buttonGerirUsers.Name = "buttonGerirUsers";
             buttonGerirUsers.Size = new Size(121, 33);
-            buttonGerirUsers.TabIndex = 0;
+            buttonGerirUsers.TabIndex = 10;
             buttonGerirUsers.Text = "Adicionar cliente";
             buttonGerirUsers.UseVisualStyleBackColor = true;
             buttonGerirUsers.Click += buttonGerirUsers_Click;
@@ -259,43 +260,44 @@
             textBox1.Location = new Point(380, 126);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(397, 23);
-            textBox1.TabIndex = 8;
+            textBox1.TabIndex = 2;
             // 
             // textBox2
             // 
             textBox2.Location = new Point(380, 80);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(397, 23);
-            textBox2.TabIndex = 9;
+            textBox2.TabIndex = 1;
             textBox2.TextChanged += textBox2_TextChanged;
+            textBox2.Leave += textBox2_Leave;
             // 
             // textBox3
             // 
             textBox3.Location = new Point(380, 174);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(397, 23);
-            textBox3.TabIndex = 10;
+            textBox3.TabIndex = 3;
             // 
             // textBox5
             // 
             textBox5.Location = new Point(380, 274);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(397, 23);
-            textBox5.TabIndex = 12;
+            textBox5.TabIndex = 5;
             // 
             // textBox6
             // 
             textBox6.Location = new Point(380, 325);
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(295, 23);
-            textBox6.TabIndex = 13;
+            textBox6.TabIndex = 6;
             // 
             // dateTimePicker1
             // 
             dateTimePicker1.Location = new Point(380, 220);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(397, 23);
-            dateTimePicker1.TabIndex = 14;
+            dateTimePicker1.TabIndex = 4;
             // 
             // panel8
             // 
@@ -323,7 +325,7 @@
             linkLabel1.Location = new Point(669, 370);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(108, 15);
-            linkLabel1.TabIndex = 17;
+            linkLabel1.TabIndex = 9;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Todos os contactos";
             linkLabel1.LinkClicked += linkLabel1_LinkClicked;
@@ -334,17 +336,19 @@
             linkLabel2.Location = new Point(636, 351);
             linkLabel2.Name = "linkLabel2";
             linkLabel2.Size = new Size(141, 15);
-            linkLabel2.TabIndex = 18;
+            linkLabel2.TabIndex = 8;
             linkLabel2.TabStop = true;
             linkLabel2.Text = "Adicionar mais contactos";
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
+            comboBox1.ImeMode = ImeMode.NoControl;
+            comboBox1.ItemHeight = 15;
             comboBox1.Location = new Point(681, 325);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(96, 23);
-            comboBox1.TabIndex = 19;
+            comboBox1.TabIndex = 7;
             // 
             // GerirClientes
             // 

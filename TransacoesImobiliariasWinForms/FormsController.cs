@@ -347,6 +347,7 @@ namespace TransacoesImobiliariasWinForms
 
         }
 
+        #region Update cliente
         public bool CLienteUpdate(Client cliente)
         {
             if (cliente == null) return false;
@@ -400,20 +401,39 @@ namespace TransacoesImobiliariasWinForms
             if(_dados.ClienteUpdateCCSQL(cc, nif)) return true;
             return false;
         }
-
         public bool ContactoUpdateDescricao(Client cliente)
         {
             if(_dados.ContactoUpdateDescricaoSQL(cliente.Contact, cliente.NIF)) return true;
             
             return false;
         }
-
         public bool ContactoUpdateTipo(Client cliente)
         {
             if (_dados.ContactoUpdateTipoSQL(cliente.Contact, cliente.NIF)) return true;
 
             return false;
         }
+        #endregion
+
+        #region Apagar cliente
+        public bool ApagarCliente(Client cliente)
+        {
+            if (cliente == null) return false;
+            //verifica se cliente existe na base de dados
+            if (_dados.ExisteNif(cliente.NIF))
+            {
+                //elimina contactos deste cliente
+                if(!_dados.DeleteContactos(cliente)) return false;
+                //elimina este cliente!
+                if(!_dados.DeleteCliente(cliente)) return false;
+                return true;
+
+            }
+            return false;
+
+        }
+
+        #endregion
 
         #endregion
 

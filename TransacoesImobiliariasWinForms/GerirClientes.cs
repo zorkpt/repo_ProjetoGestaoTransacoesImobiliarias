@@ -268,20 +268,24 @@ namespace TransacoesImobiliariasWinForms
 
 
         }
-
+        /// <summary>
+        /// Atualizar dados do cliente
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonGerirClientes_Click(object sender, EventArgs e)
         {
             // Confirmar se todos os campos estao preenchidos
-            if (!VerificaCamposCliente()) 
+            if (!VerificaCamposCliente())
             {
-                return; 
+                return;
             }
 
 
             // fazer update no sql 
 
-            DialogResult  resposta = MessageBox.Show("Deseja atualizar dados deste cliente?", "Confirma", MessageBoxButtons.YesNo);
-            if(resposta == DialogResult.Yes)
+            DialogResult resposta = MessageBox.Show("Deseja atualizar dados deste cliente?", "Confirma", MessageBoxButtons.YesNo);
+            if (resposta == DialogResult.Yes)
             {
                 string? nome = textBox1.Text;
                 string? nif = textBox2.Text;
@@ -320,6 +324,68 @@ namespace TransacoesImobiliariasWinForms
                 MessageBox.Show("Nada foi atualizado!");
             }
 
+        }
+
+        /// <summary>
+        /// Apagar cliente!
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonGerirPropriedades_Click(object sender, EventArgs e)
+        {
+            // Confirmar se todos os campos estao preenchidos
+            if (!VerificaCamposCliente())
+            {
+                return;
+            }
+
+
+            // fazer update no sql 
+
+            DialogResult resposta = MessageBox.Show("Deseja ELIMINAR dados deste cliente?", "Confirma", MessageBoxButtons.YesNo);
+            if (resposta == DialogResult.Yes)
+            {
+                string? nome = textBox1.Text;
+                string? nif = textBox2.Text;
+                string? cc = textBox3.Text;
+                string? d = dateTimePicker1.Text;
+
+                DateTime data = dateTimePicker1.Checked ? dateTimePicker1.Value : DateTime.MinValue;
+
+                string? morada = textBox5.Text;
+                string? desc = textBox6.Text;
+                string? tipoContacto = comboBox1.Text;
+
+                TipoContacto tipo = Enum.TryParse(tipoContacto, ignoreCase: true, out TipoContacto result) ? result : TipoContacto.Email;
+
+
+                Contact contacto = new Contact(nif, tipo, desc);
+
+
+                Client client = new Client(nome, morada, contacto, nif, cc, d);
+
+                // update 
+                if (_formController.ApagarCliente(client))
+                {
+                    MessageBox.Show("Cliente eliminado com sucesso!");
+                    LimparForm();
+                }
+                else
+                {
+                    MessageBox.Show("ERRO, dados não foram eliminados!");
+
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Nada foi eliminado!");
+            }
+        }
+
+        private void textBox2_Leave(object sender, EventArgs e)
+        {
+            listBox1.Visible = false;
         }
     }
 }

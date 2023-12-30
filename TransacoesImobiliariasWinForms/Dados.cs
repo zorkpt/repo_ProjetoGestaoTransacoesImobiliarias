@@ -303,7 +303,10 @@ namespace TransacoesImobiliariasWinForms
 
         }
 
-
+        /// <summary>
+        /// Cria uma lista de todos os clientes 
+        /// </summary>
+        /// <returns></returns>
         public List<Client> TodosClientes()
         {
             List<Client> list = new List<Client>();
@@ -347,7 +350,11 @@ namespace TransacoesImobiliariasWinForms
             return list;
 
         }
-
+        /// <summary>
+        /// Procura se existe um cliente com base no nif
+        /// </summary>
+        /// <param name="nif"></param>
+        /// <returns></returns>
         public bool ExisteNif(string nif)
         {
             nif = nif.Trim();
@@ -371,6 +378,11 @@ namespace TransacoesImobiliariasWinForms
             return false;
         }
 
+        /// <summary>
+        /// Procura tipo de contacto pelo nome.
+        /// </summary>
+        /// <param name="nome"></param>
+        /// <returns></returns>
         public string ProcTipoContactoByName(string nome) 
         {
             var query = "SELECT TCId FROM [Tipo Contacto] " +
@@ -389,6 +401,10 @@ namespace TransacoesImobiliariasWinForms
 
         }
 
+        /// <summary>
+        /// Lista todos os tipos de contactos disponiveis 
+        /// </summary>
+        /// <returns></returns>
         public List<string> TodosTiposContactos()
         {
 
@@ -434,7 +450,9 @@ namespace TransacoesImobiliariasWinForms
             return true;
 
         }
-
+        #endregion
+        
+        #region update cliente
         public bool UpdateCliente(Client cliente)
         {
 
@@ -497,9 +515,27 @@ namespace TransacoesImobiliariasWinForms
             return false;
         }
 
+        #endregion
 
+        #region Delete cliente / contactos
+
+        public bool DeleteContactos(Client cliente)
+        {
+            var query = "DELETE FROM ClienteContacto WHERE ClienteNIF = " + cliente.NIF;
+            if(Update(query)) return true;
+            return false;
+
+        }
+
+        public bool DeleteCliente(Client cliente)
+        {
+            var query = "DELETE FROM Cliente WHERE NIF = " + cliente.NIF;
+            if (Update(query)) return true;
+            return false;
+        }
 
         #endregion
+
 
 
         #endregion
