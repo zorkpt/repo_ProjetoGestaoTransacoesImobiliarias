@@ -23,6 +23,7 @@ public class Property
     public User AddedBy { get; set; }
     public static List<Property> PropertyList = new List<Property>();
     
+    public string? PropriedadeWinforms { get; set; }
     
     [JsonConstructor]
     public Property(int id, string address, string description, PropertyType propertyType, double squareMeters, int addedById, bool forSale, int clientId)
@@ -50,6 +51,18 @@ public class Property
         AddedBy = addedBy;
         ForSale = true;
         PropertyList.Add(this);
+    }
+
+    /// <summary>
+    /// Contrutor para winforms 
+    /// </summary>
+    public Property(int id, string propertyType, double area, int proprietarioNif) 
+    {
+        Id = id;
+        PropriedadeWinforms = propertyType;
+        SquareMeters = area;
+        ClientId = proprietarioNif;
+
     }
 
     public void SetAddedBy(User user)

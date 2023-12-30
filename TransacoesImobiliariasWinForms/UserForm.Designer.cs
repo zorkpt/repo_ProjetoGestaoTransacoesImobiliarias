@@ -73,6 +73,7 @@
             label3 = new Label();
             panel8 = new Panel();
             panel9 = new Panel();
+            button1 = new Button();
             MenuPanel.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -85,6 +86,7 @@
             // MenuPanel
             // 
             MenuPanel.BackColor = Color.GhostWhite;
+            MenuPanel.Controls.Add(button1);
             MenuPanel.Controls.Add(iconButton3);
             MenuPanel.Controls.Add(buttonGerirPropriedades);
             MenuPanel.Controls.Add(buttonGerirClientes);
@@ -112,13 +114,14 @@
             // 
             // buttonGerirPropriedades
             // 
-            buttonGerirPropriedades.Location = new Point(10, 190);
+            buttonGerirPropriedades.Location = new Point(10, 200);
             buttonGerirPropriedades.Name = "buttonGerirPropriedades";
             buttonGerirPropriedades.Size = new Size(121, 33);
             buttonGerirPropriedades.TabIndex = 2;
-            buttonGerirPropriedades.Text = "Def";
+            buttonGerirPropriedades.Text = "Propriedades";
             buttonGerirPropriedades.UseVisualStyleBackColor = true;
             buttonGerirPropriedades.Visible = false;
+            buttonGerirPropriedades.Click += buttonGerirPropriedades_Click;
             // 
             // buttonGerirClientes
             // 
@@ -575,6 +578,16 @@
             panel9.Size = new Size(199, 10);
             panel9.TabIndex = 12;
             // 
+            // button1
+            // 
+            button1.Location = new Point(10, 247);
+            button1.Name = "button1";
+            button1.Size = new Size(121, 33);
+            button1.TabIndex = 29;
+            button1.Text = "Definições";
+            button1.UseVisualStyleBackColor = true;
+            button1.Visible = false;
+            // 
             // UserForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -660,5 +673,6 @@
         private FontAwesome.Sharp.IconButton iconButton1;
         private FontAwesome.Sharp.IconButton iconButton2;
         private FontAwesome.Sharp.IconButton iconButton3;
+        private Button button1;
     }
 }
