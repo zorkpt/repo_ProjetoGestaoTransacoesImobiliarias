@@ -16,12 +16,13 @@ namespace TransacoesImobiliariasWinForms
     {
         private string message = "Bem-vindo ";
         public FormsController _formController;
-
+        private User utilizador { get; set; }
         public UserForm(User user)
         {
             this.Text = message + user.Name;
             InitializeComponent();
             _formController = new FormsController();
+            utilizador = user;
 
 
         }
@@ -154,7 +155,7 @@ namespace TransacoesImobiliariasWinForms
                 else
                 {
 
-                    totalClientesLabel.Text = string.Empty; 
+                    totalClientesLabel.Text = string.Empty;
                 }
             }
         }
@@ -171,7 +172,7 @@ namespace TransacoesImobiliariasWinForms
                 }
                 else
                 {
-                    totalProVendaLabel.Text = string.Empty; 
+                    totalProVendaLabel.Text = string.Empty;
                 }
             }
         }
@@ -188,7 +189,7 @@ namespace TransacoesImobiliariasWinForms
                 }
                 else
                 {
-                    clientesPropostasLabel.Text = string.Empty; 
+                    clientesPropostasLabel.Text = string.Empty;
                 }
             }
         }
@@ -205,7 +206,7 @@ namespace TransacoesImobiliariasWinForms
                 }
                 else
                 {
-                    clientesFaltaPagLabel.Text = string.Empty; 
+                    clientesFaltaPagLabel.Text = string.Empty;
                 }
             }
         }
@@ -222,7 +223,7 @@ namespace TransacoesImobiliariasWinForms
                 }
                 else
                 {
-                    proVendaMesLabel.Text = string.Empty; 
+                    proVendaMesLabel.Text = string.Empty;
                 }
             }
         }
@@ -235,12 +236,18 @@ namespace TransacoesImobiliariasWinForms
 
         private void UserForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            
+
         }
 
         private void UserForm_Activated(object sender, EventArgs e)
         {
             UpdateForm();
+        }
+
+        private void buttonGerirPropriedades_Click(object sender, EventArgs e)
+        {
+            FormPropriedades a = new FormPropriedades(utilizador);
+            a.Show();
         }
     }
 }

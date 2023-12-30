@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using static ProjetoTransacoesImobiliarias.Models.Contact;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.Data.Sqlite;
+using System.DirectoryServices.ActiveDirectory;
 
 namespace TransacoesImobiliariasWinForms
 {
@@ -536,7 +537,53 @@ namespace TransacoesImobiliariasWinForms
 
         #endregion
 
+        #region Propriedades
 
+        public List<Property> ListaPropriedades()
+        {
+            List<Property> lista = new List<Property>();
+
+            var query = "SELECT Imovel.IdImovel, TipoImovel.Descricao, Area, [ClienteNIF Proprientario] as proprietario, Cliente.Nome " +
+                        "FROM Imovel " +
+                        "JOIN TipoImovel ON TipoImovel.IdTipoImovel = Imovel.IdTipoImovel " +
+                        "JOIN Cliente ON Cliente.NIF = Imovel.[ClienteNIF Proprientario]";
+            var dados = Select(query);
+
+            string? id;
+            string? propertyType;
+            string? area;
+            string? proprietarioNif;
+
+
+            while (dados.HasRows && dados.Read())
+            {
+                id = dados["IdImovel"].ToString();
+                propertyType = dados["Descricao"].ToString();
+                area = dados["Area"].ToString();
+                proprietarioNif = dados["proprietario"].ToString();
+
+                if(int.TryParse(id, out int imovelId))
+                {
+                    if(double.TryParse(area, out double imovelArea))
+                    {
+                        if(int.TryParse(proprietarioNif, out int imovelProprietarioNif))
+                        {
+                            Property nova = new Property(imovelId, propertyType, imovelArea, imovelProprietarioNif);
+
+                            lista.Add(nova);
+                        }
+
+                    }
+
+                }
+
+            }
+
+            return lista;
+
+        }
+
+        #endregion
 
         #endregion
     }

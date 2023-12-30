@@ -375,7 +375,6 @@ namespace TransacoesImobiliariasWinForms
             }
 
         }
-
         public bool ClienteUpdateNome(string nome, string nif)
         {
             if(_dados.UpdateClieteNomeSQL(nome, nif)) return true;
@@ -434,6 +433,21 @@ namespace TransacoesImobiliariasWinForms
         }
 
         #endregion
+
+        #endregion
+
+
+        #region Propriedades
+
+        public List<Property> CriaListaPropriedades()
+        {
+            
+
+            List<Property> list =  _dados.ListaPropriedades();
+
+            return list;
+
+        }
 
         #endregion
 
