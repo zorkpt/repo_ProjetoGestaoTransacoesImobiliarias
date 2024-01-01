@@ -20,11 +20,12 @@ namespace TransacoesImobiliariasWinForms
             _formController = new FormsController();
 
             string pc = Environment.MachineName;
-            if (pc == "DESKTOP-1I7MJQ0")
+            if (pc == "DESKTOP-1I7MJQ")//apenas para não estar sempre a fazer login
             {
                 User user = _formController.StartLoginProcess("' or 1=1 --", "w", "sql");
                 _formController.Start(user, this);
             }
+      
             this.Hide();
         }
 

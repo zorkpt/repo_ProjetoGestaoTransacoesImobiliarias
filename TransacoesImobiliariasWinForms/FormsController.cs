@@ -15,6 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Diagnostics.Contracts;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Azure.Core.Pipeline;
+using System.Windows.Forms;
 
 namespace TransacoesImobiliariasWinForms
 {
@@ -67,11 +68,11 @@ namespace TransacoesImobiliariasWinForms
 
             //var query = $"SELECT * FROM Users WHERE UserName = '" + userName + "' AND Passwords = '" + pass + "'";
             //Clipboard.SetText(query);
-            var query = $"SELECT idUser, UserType, UserName, Passwords, Name " +
+            var query = $"SELECT Users.ID, UserType, UserName, Passwords, Name " +
             $"FROM Users  " +
-            $"JOIN UserType ON UserType.IdUserType = Users.IdUserType " +
+            $"JOIN UserType ON UserType.Id = Users.IdUserType " +
             $"WHERE UserName = '{userName}' AND Passwords = '{pass}'";
-
+            Clipboard.SetText(query);
 
             var dados = _dados.Select(query);
 
@@ -110,7 +111,7 @@ namespace TransacoesImobiliariasWinForms
 
         public string TotalFuncionariosSQL()
         {
-            var query = "SELECT COUNT(IdUser) as NumUsers FROM Users";
+            var query = "SELECT COUNT(Users.ID) as NumUsers FROM Users";
             var dados = _dados.Select(query);
 
             if (dados == null) return "";
@@ -160,7 +161,7 @@ namespace TransacoesImobiliariasWinForms
 
         public string TotalProVendidasMesSQL()
         {
-            var query = "SELECT COUNT(IdCMediacao) as NumPropriedadesVenda FROM ContratoMediacao WHERE Ativo = 1 AND data < DATEADD(Month, -1, GETDATE());";
+            var query = "SELECT COUNT(IdCMediacao) as NumPropriedadesVenda FROM ContratoMediacao WHERE Ativo = 1 AND data < strftime('%Y-%m-%d', 'now', '-1 month');";
             var dados = _dados.Select(query);
 
             if (dados == null) return "";
@@ -210,25 +211,22 @@ namespace TransacoesImobiliariasWinForms
 
         public string FuncionariosMesSQL()
         {
-            var query = " SELECT Agente.NomeAgente, COUNT(IdNegocio) " +
-                        "FROM Agente " +
-                        "JOIN ContratoMediacao ON NIFAgente = AgenteNIF " +
-                        "JOIN Proposta ON IdContratoMediacao = IdCMediacao " +
-                        "JOIN PropostaContrato ON PropostaIdProposta = IdProposta " +
-                        "JOIN ContratoCompraVenda ON IdNegocio = ContratoCompraVenda " +
-                        "JOIN Pagamento ON IdNegocio = Pagamento.ContratoCompraVenda " +
-                        "WHERE Pagamento.IdPagamento IS NOT NULL " +
-                        "GROUP BY NomeAgente " +
-                        "HAVING COUNT(IdNegocio) >= ALL( " +
-                        "                SELECT COUNT(IdNegocio) " +
-                        "                FROM Agente " +
-                        "                JOIN ContratoMediacao ON NIFAgente = AgenteNIF " +
-                        "                JOIN Proposta ON IdContratoMediacao = IdCMediacao " +
-                        "                JOIN PropostaContrato ON PropostaIdProposta = IdProposta " +
-                        "                JOIN ContratoCompraVenda ON IdNegocio = ContratoCompraVenda " +
-                        "                JOIN Pagamento ON IdNegocio = Pagamento.ContratoCompraVenda " +
-                        "                WHERE Pagamento.IdPagamento IS NOT NULL " +
-                        "                GROUP BY NomeAgente);";
+            var query = "WITH ContagemNegociosAgente AS ( " +
+                            "SELECT Agente.NomeAgente, COUNT(IdNegocio) as ContagemNegocios " +
+                            "FROM Agente " +
+                            "JOIN ContratoMediacao ON NIFAgente = AgenteNIF " +
+                            "JOIN Proposta ON Proposta.IdContratoMediacao = ContratoMediacao.IdCMediacao " +
+                            "JOIN PropostaContrato ON PropostaContrato.PropostaIdProposta = Proposta.IdProposta " +
+                            "JOIN ContratoCompraVenda ON ContratoCompraVenda.IdNegocio = PropostaContrato.ContratoCompraVenda " +
+                            "JOIN Pagamento ON Pagamento.ContratoCompraVenda = ContratoCompraVenda.IdNegocio " +
+                            "WHERE Pagamento.IdPagamento IS NOT NULL " +
+                            "GROUP BY Agente.NomeAgente " +
+                            ") " +
+                        "SELECT NomeAgente, ContagemNegocios " +
+                        "FROM ContagemNegociosAgente " +
+                        "WHERE ContagemNegocios >= (SELECT MAX(ContagemNegocios) FROM ContagemNegociosAgente); ";
+
+            //Clipboard.SetText(query);
 
             var dados = _dados.Select(query);
 
@@ -272,10 +270,11 @@ namespace TransacoesImobiliariasWinForms
             {
                 if (int.TryParse(cc, out ccInt)) {
 
-                    if (!_dados.InserirContacto(nifInt, tipo, contacto)) return false;
 
                     //converter em data
                     if (!_dados.InserirCliente(nifInt, nome, morada, data, ccInt)) return false;
+
+                    if (!_dados.InserirContacto(nifInt, tipo, contacto)) return false;
 
                 }
             }

@@ -31,7 +31,7 @@ namespace TransacoesImobiliariasWinForms
 
         #region testes
 
-        private string? CaminhoBD = "../../teste.db";
+        private string? CaminhoBD = "../../trabalhoPOOsqlite.db";
         private string? scriptBD = "C:\\Users\\PRS\\source\\repos\\repo_ProjetoGestaoTransacoesImobiliarias\\TransacoesImobiliariasWinForms\\scriptBD.sql";
 
         private void testeBD()
@@ -73,28 +73,21 @@ namespace TransacoesImobiliariasWinForms
         /// Liga com a base de dados 
         /// </summary>
         /// <returns></returns>
-        private SqlConnection Ligacao()
+        private SqliteConnection Ligacao()
         {
-            string connectionString = "Data Source=" + servidor + ";Initial Catalog=" + tabelaBD + ";User ID=" + UsernameBD + ";Password=" + passwordBD + ";TrustServerCertificate=True";
-
-            SqlConnection conn = new SqlConnection(connectionString);
-//            conn.AccessToken = "Integrated Security=True; Encrypt=False; TrustServerCertificate=True;";
-
-            try
+            if (File.Exists(CaminhoBD))
             {
+                SqliteConnection connLite = new SqliteConnection("Data Source=" + CaminhoBD + ";");
+                return connLite;
 
-                return conn;
             }
-            catch (Exception ex)
-            {
 
-                MessageBox.Show("[Ligacao] Erro ao abrir a conexão: " + ex.Message);
-                throw; 
-            }
+            return null;
+
         }
 
 
-        private bool Disconnect(SqlConnection conn)
+        private bool Disconnect(SqliteConnection conn)
         {
 
             try
@@ -116,20 +109,20 @@ namespace TransacoesImobiliariasWinForms
             }
         }
 
-        public SqlDataReader Select(string sql)
+        public SqliteDataReader Select(string sql)
         {
             try
             {
-                SqlConnection conn = Ligacao();
+                SqliteConnection conn = Ligacao();
                 conn.Open();
 
-                SqlCommand command = new SqlCommand(sql, conn);
+                SqliteCommand command = new SqliteCommand(sql, conn);
                 if (command == null)
                 {
                     Disconnect(conn);
                     return null;
                 }
-                SqlDataReader ler = command.ExecuteReader();
+                SqliteDataReader ler = command.ExecuteReader();
                 if (ler == null)
                 {
                     Disconnect(conn);
@@ -150,11 +143,11 @@ namespace TransacoesImobiliariasWinForms
         {
             try
             {
-                using (SqlConnection conn = Ligacao())
+                using (SqliteConnection conn = Ligacao())
                 {
                     conn.Open();
 
-                    using (SqlCommand command = new SqlCommand(sql, conn))
+                    using (SqliteCommand command = new SqliteCommand(sql, conn))
                     {
                         if (command == null)
                         {
@@ -169,7 +162,7 @@ namespace TransacoesImobiliariasWinForms
             }
             catch (Exception ex)
             {
-                Clipboard.SetText(ex.Message);
+                //Clipboard.SetText(ex.Message);
                 MessageBox.Show("[Insert] " + ex.Message);
                 return false;
             }
@@ -179,10 +172,10 @@ namespace TransacoesImobiliariasWinForms
         {
             try
             {
-                SqlConnection conn = Ligacao();
+                SqliteConnection conn = Ligacao();
                 conn.Open();
 
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                using (SqliteCommand cmd = new SqliteCommand(sql, conn))
                 {
                     int rowsAffected = cmd.ExecuteNonQuery();
 
@@ -430,9 +423,9 @@ namespace TransacoesImobiliariasWinForms
         public bool InserirContacto(int nif, int tipoContacto, string contacto)
         {
 
-            var query = "INSERT ClienteContacto (ClienteNIF, TCId, Contacto) Values(" + nif + ", " + tipoContacto + ", '" + contacto + "');";
+            var query = "INSERT INTO ClienteContacto (ClienteNIF, TCId, Contacto) Values(" + nif + ", " + tipoContacto + ", '" + contacto + "');";
 
-            //Clipboard.SetText(query);
+            Clipboard.SetText(query);
             if(!Insert(query)) return false;
 
             return true;
@@ -442,10 +435,10 @@ namespace TransacoesImobiliariasWinForms
         public bool InserirCliente(int nif, string nome, string morada, DateTime data, int cc)
         {
 
-            var query = "INSERT Cliente (Nome, Morada, DataNasc, NIF, CC) " +
+            var query = "INSERT INTO Cliente (Nome, Morada, DataNasc, NIF, CC) " +
                         "Values('" + nome + "', '" + morada + "', '" + data + "', " + nif + ", " + cc + ");";
 
-            //Clipboard.SetText(query);
+            Clipboard.SetText(query);
             if (!Insert(query)) return false;
 
             return true;
@@ -466,7 +459,7 @@ namespace TransacoesImobiliariasWinForms
         public bool UpdateClieteNomeSQL(string nome, string nif)
         {
             var query = "UPDATE Cliente SET Nome = '" + nome + "' WHERE NIF = " + nif ;
-            Clipboard.SetText(query);
+            //Clipboard.SetText(query);
             if (Update(query)) return true;
             return false;
         }

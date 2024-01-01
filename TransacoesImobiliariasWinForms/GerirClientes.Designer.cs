@@ -318,6 +318,7 @@
             listBox1.Visible = false;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             listBox1.DataSourceChanged += listBox1_DataSourceChanged;
+            listBox1.SelectedValueChanged += listBox1_SelectedValueChanged;
             // 
             // linkLabel1
             // 

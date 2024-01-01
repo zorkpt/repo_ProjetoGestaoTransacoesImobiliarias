@@ -387,5 +387,10 @@ namespace TransacoesImobiliariasWinForms
         {
             listBox1.Visible = false;
         }
+
+        private void listBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
