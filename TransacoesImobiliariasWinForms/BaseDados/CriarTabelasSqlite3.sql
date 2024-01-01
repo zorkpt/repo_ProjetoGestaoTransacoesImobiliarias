@@ -142,7 +142,91 @@ CREATE TABLE IF NOT EXISTS Users (
 );
 
 
-  --Inserir dados na tabela UserType
+
+-- Inserir dados na tabela [Cod. Postal]
+INSERT INTO [Cod. Postal] (Descricao) VALUES ('Porto');
+INSERT INTO [Cod. Postal] (Descricao) VALUES ('Braga');
+
+-- Inserir dados na tabela TipoImovel
+INSERT INTO TipoImovel (Descricao) VALUES ('Casa');
+INSERT INTO TipoImovel (Descricao) VALUES ('Apartamento');
+
+-- Inserir dados na tabela Cliente
+--INSERT INTO Cliente (Nome, Morada, DataNasc, NIF, CC) VALUES ('João Silva', 'Rua A, Lisboa', '1990-01-01', 123456789, 111222333);
+
+--SET IDENTITY_INSERT INTO Cliente ON
+INSERT INTO Cliente (IdCP, Nome, Morada, DataNasc, NIF, CC) VALUES (1, 'João Silva', 'Rua A, Lisboa', '1990-01-01', 123456789, 111222333);
+INSERT INTO Cliente (IdCP ,Nome, Morada, DataNasc, NIF, CC) VALUES (2, 'Maria Santos', 'Rua B, Porto', '1985-05-15', 987654321, 444555666);
+INSERT INTO Cliente (IdCP ,Nome, Morada, DataNasc, NIF, CC) VALUES (2, 'Alice', 'Rua de casa dela, Porto', '2020-06-29', 21545665, 1548794);
+
+-- Inserir dados na tabela Imovel
+INSERT INTO Imovel (IdCP, IdTipoImovel, Area, [ClienteNIF Proprientario]) VALUES (1, 1, 150.5, 123456789);
+INSERT INTO Imovel (IdCP, IdTipoImovel, Area, [ClienteNIF Proprientario]) VALUES (2, 2, 80.0, 987654321);
+INSERT INTO Imovel (IdCP, IdTipoImovel, Area, [ClienteNIF Proprientario]) VALUES (2, 2, 200.0, 21545665);
+
+-- Inserir dados na tabela Agente
+INSERT INTO Agente (NomeAgente) VALUES ('Agente1');
+INSERT INTO Agente (NomeAgente) VALUES ('Agente2');
+
+
+-- Inserir dados na tabela VisitaImovel
+INSERT INTO VisitaImovel (IdImovel, Data, ClienteNIF) VALUES (1, '2023-01-05', 987654321);
+INSERT INTO VisitaImovel (IdImovel, Data, ClienteNIF) VALUES (2, '2023-01-10', 123456789);
+
+-- Inserir dados na tabela Avaliador
+INSERT INTO Avaliador (Nome) VALUES ('Avaliador1');
+INSERT INTO Avaliador (Nome) VALUES ('Avaliador2');
+
+-- Inserir dados na tabela Avaliar
+INSERT INTO Avaliar (IdAvaliador, DataAvaliacao) VALUES (1, '2023-01-08');
+INSERT INTO Avaliar (IdAvaliador, DataAvaliacao) VALUES (2, '2023-01-12');
+
+-- Inserir dados na tabela ImovelAvalia
+INSERT INTO ImovelAvalia (IdImovel, IdAvalia) VALUES (1, 1);
+INSERT INTO ImovelAvalia (IdImovel, IdAvalia) VALUES (2, 2);
+
+-- Inserir dados na tabela ContratoCompraVenda
+INSERT INTO ContratoCompraVenda (TimeStamp, Data) VALUES ('2023-01-15 12:00:00', '2023-01-15');
+INSERT INTO ContratoCompraVenda (TimeStamp, Data) VALUES ('2023-01-20 14:30:00', '2023-01-20');
+
+-- Inserir dados na tabela Pagamento
+INSERT INTO Pagamento (DataPagamento, ContratoCompraVenda, Valor) VALUES ('2023-01-20', 1, 180000);
+INSERT INTO Pagamento (DataPagamento, ContratoCompraVenda, Valor) VALUES ('2023-01-25', 2, 100000);
+
+-- Inserir dados na tabela [Tipo Contacto]
+INSERT INTO [Tipo Contacto] (DescTC) VALUES ('Telemóvel');
+INSERT INTO [Tipo Contacto] (DescTC) VALUES ('Email');
+
+-- Inserir dados na tabela ClienteContacto
+INSERT INTO ClienteContacto (TCId, Contacto, ClienteNIF, IdContacto) VALUES (1, '912345678', 123456789, 1);
+INSERT INTO ClienteContacto (TCId, Contacto, ClienteNIF, IdContacto) VALUES (2, '987654321', 987654321, 2);
+
+-- Inserir dados na tabela AgenteContacto
+INSERT INTO AgenteContacto (TCId, Contacto, AgenteNIF) VALUES (1, '923456789', 1);
+INSERT INTO AgenteContacto (TCId, Contacto, AgenteNIF) VALUES (2, 'agente1@email.com', 2);
+
+-- Inserir dados na tabela ContratoMediacao
+INSERT INTO ContratoMediacao (ImovelIdImovel, AgenteNIF, ClienteNIF, Data, Validade, ValorPedido, Ativo) 
+VALUES (1, 1, 123456789, '2023-01-15', '2023-02-15', 200000, 1);
+INSERT INTO ContratoMediacao (ImovelIdImovel, AgenteNIF, ClienteNIF, Data, Validade, ValorPedido, Ativo) VALUES (2, 2, 987654321, '2023-01-20', '2023-02-20', 120000, 1);
+
+-- Inserir dados na tabela Proposta
+INSERT INTO Proposta (Data, Valor, DataLimite, [ClienteNIF Comprador], IdContratoMediacao, Ativa) VALUES ('2023-01-15', 200000, '2023-02-01', 987654321, 1, 1);
+INSERT INTO Proposta (Data, Valor, DataLimite, [ClienteNIF Comprador], IdContratoMediacao, Ativa) VALUES ('2023-01-20', 120000, '2023-02-10', 123456789, 2, 1);
+
+-- Inserir dados na tabela PropostaContrato
+INSERT INTO PropostaContrato (ContratoCompraVenda, PropostaIdProposta) VALUES (1, 1); -- atencao aqui pode ser necessario mudar para (1, 2)
+INSERT INTO PropostaContrato (ContratoCompraVenda, PropostaIdProposta) VALUES (2, 2);
+
+-- Inserir dados na tabela Lucro
+INSERT INTO Lucro (Valor, IdCMediacao) VALUES (5000, 1);
+INSERT INTO Lucro (Valor, IdCMediacao) VALUES (3000, 2);
+
+--Inserir dados na tabela Comissao
+INSERT INTO ComissaoAgente (AgenteNIF, Valor, Lucro) VALUES (1, 4000, 2);-- atencao aqui pode ser necessario mudar para (1, 2)
+INSERT INTO ComissaoAgente (AgenteNIF, Valor, [Lucro]) VALUES (2, 23000, 1);-- atencao aqui pode ser necessario mudar para (1, 2)
+
+--Inserir dados na tabela UserType
 INSERT INTO UserType (UserType) VALUES ('Admin');
 INSERT INTO UserType (UserType) VALUES ('Manager');
 INSERT INTO UserType (UserType) VALUES ('Agent');
@@ -152,4 +236,3 @@ INSERT INTO Users (IdUserType, UserName, Passwords, Name) VALUES
 (1, 'Admin1', '1234', 'Administrador 1');
 INSERT INTO Users (IdUserType, UserName, Passwords, Name) VALUES 
 (2, 'Manager1', '1234', 'Manager 1 ');
-  

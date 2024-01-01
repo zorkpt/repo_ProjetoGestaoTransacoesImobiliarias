@@ -137,7 +137,7 @@ namespace TransacoesImobiliariasWinForms
                 return ler;
             } catch (Exception ex) 
             {
-                Clipboard.SetText(ex.Message);
+                //Clipboard.SetText(ex.Message);
                 
                 MessageBox.Show("[Select] " + ex.Message);
                 return null;
@@ -157,12 +157,20 @@ namespace TransacoesImobiliariasWinForms
                     {
                         if (command == null)
                         {
+                            conn.Close() ;
                             return false;
                         }
 
                         int rowsAffected = command.ExecuteNonQuery();
 
-                        return rowsAffected > 0;
+                        if (rowsAffected > 0)
+                        {
+                            conn.Close();
+                            return true;
+                        }
+                        conn.Close();
+                        return false;
+                        //return rowsAffected > 0;
                     }
                 }
             }
@@ -183,6 +191,8 @@ namespace TransacoesImobiliariasWinForms
 
                 using (SqliteCommand cmd = new SqliteCommand(sql, conn))
                 {
+
+
                     int rowsAffected = cmd.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
@@ -199,6 +209,7 @@ namespace TransacoesImobiliariasWinForms
             }
             catch (Exception ex)
             {
+
                 return false;
             }
 
@@ -269,7 +280,7 @@ namespace TransacoesImobiliariasWinForms
                         "left JOIN ClienteContacto ON ClienteContacto.ClienteNIF = Cliente.NIF " +
                         "LEFT JOIN[Tipo Contacto] ON[Tipo Contacto].TCId = ClienteContacto.TCId " +
                         " WHERE NIF LIKE '%" + text + "%';";
-            Clipboard.SetText(query);
+            //Clipboard.SetText(query);
             var dados = Select(query);
             string? nif;
             string? morada;
@@ -362,7 +373,7 @@ namespace TransacoesImobiliariasWinForms
                         "FROM Cliente " +
                         "WHERE NIF =  '" + nif + "';";
 
-            Clipboard.SetText(query);
+            //Clipboard.SetText(query);
             var dados = Select(query);
             if (dados == null) return false;
             while (dados.HasRows && dados.Read())
@@ -431,7 +442,7 @@ namespace TransacoesImobiliariasWinForms
 
             var query = "INSERT INTO ClienteContacto (ClienteNIF, TCId, Contacto) Values(" + nif + ", " + tipoContacto + ", '" + contacto + "');";
 
-            Clipboard.SetText(query);
+            //Clipboard.SetText(query);
             if(!Insert(query)) return false;
 
             return true;
@@ -444,7 +455,7 @@ namespace TransacoesImobiliariasWinForms
             var query = "INSERT INTO Cliente (Nome, Morada, DataNasc, NIF, CC) " +
                         "Values('" + nome + "', '" + morada + "', '" + data + "', " + nif + ", " + cc + ");";
 
-            Clipboard.SetText(query);
+            //Clipboard.SetText(query);
             if (!Insert(query)) return false;
 
             return true;
@@ -522,6 +533,7 @@ namespace TransacoesImobiliariasWinForms
         public bool DeleteContactos(Client cliente)
         {
             var query = "DELETE FROM ClienteContacto WHERE ClienteNIF = " + cliente.NIF;
+            //Clipboard.SetText(query);
             if(Update(query)) return true;
             return false;
 

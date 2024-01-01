@@ -105,7 +105,7 @@ namespace TransacoesImobiliariasWinForms
 
                 textBox2.Text = nif[1];
 
-                FormsController formsController = new FormsController();
+                //FormsController formsController = new FormsController();
                 AtualizaCamposCliente(nif[1].ToString());
             }
 
@@ -231,7 +231,7 @@ namespace TransacoesImobiliariasWinForms
         /// <param name="e"></param>
         private void listBox1_DataSourceChanged(object sender, EventArgs e)
         {
-            listBox1.Visible = listBox1.Items.Count > 0;
+            //listBox1.Visible = listBox1.Items.Count > 0;
         }
 
         /// <summary>
@@ -385,12 +385,78 @@ namespace TransacoesImobiliariasWinForms
 
         private void textBox2_Leave(object sender, EventArgs e)
         {
-            listBox1.Visible = false;
+
+            //listBox1.Visible = false; listBox1.Visible = false;
+
         }
 
         private void listBox1_SelectedValueChanged(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+            listBox1.Visible = false;
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+                e.Handled = true; // Isso impede que o caractere de retorno seja incluído no TextBox
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+                e.Handled = true; // Isso impede que o caractere de retorno seja incluído no TextBox
+            }
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+                e.Handled = true; // Isso impede que o caractere de retorno seja incluído no TextBox
+            }
+        }
+
+        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+                e.Handled = true; // Isso impede que o caractere de retorno seja incluído no TextBox
+            }
+        }
+
+        private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+                e.Handled = true; // Isso impede que o caractere de retorno seja incluído no TextBox
+            }
+        }
+
+        private void dateTimePicker1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+                e.Handled = true; // Isso impede que o caractere de retorno seja incluído no TextBox
+            }
         }
     }
 }

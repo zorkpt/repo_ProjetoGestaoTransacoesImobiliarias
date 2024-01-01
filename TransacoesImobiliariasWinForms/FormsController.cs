@@ -275,10 +275,10 @@ namespace TransacoesImobiliariasWinForms
                     if (!_dados.InserirCliente(nifInt, nome, morada, data, ccInt)) return false;
 
                     if (!_dados.InserirContacto(nifInt, tipo, contacto)) return false;
-
+                    return true;
                 }
             }
-            return true;
+            return false;
         }
         /// <summary>
         /// Procura todos os tipos de contactos que possam existir

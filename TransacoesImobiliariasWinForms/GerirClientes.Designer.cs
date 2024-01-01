@@ -37,7 +37,7 @@
             button4 = new Button();
             button5 = new Button();
             button1 = new Button();
-            buttonGerirPropriedades = new Button();
+            ButtonpagarCliente = new Button();
             buttonGerirClientes = new Button();
             buttonGerirUsers = new Button();
             label1 = new Label();
@@ -68,7 +68,7 @@
             MenuPanel.Controls.Add(button6);
             MenuPanel.Controls.Add(panel1);
             MenuPanel.Controls.Add(button1);
-            MenuPanel.Controls.Add(buttonGerirPropriedades);
+            MenuPanel.Controls.Add(ButtonpagarCliente);
             MenuPanel.Controls.Add(buttonGerirClientes);
             MenuPanel.Controls.Add(buttonGerirUsers);
             MenuPanel.Location = new Point(0, 52);
@@ -162,16 +162,16 @@
             button1.UseVisualStyleBackColor = true;
             button1.Visible = false;
             // 
-            // buttonGerirPropriedades
+            // ButtonpagarCliente
             // 
-            buttonGerirPropriedades.Font = new Font("Segoe UI", 12F);
-            buttonGerirPropriedades.Location = new Point(12, 94);
-            buttonGerirPropriedades.Name = "buttonGerirPropriedades";
-            buttonGerirPropriedades.Size = new Size(121, 33);
-            buttonGerirPropriedades.TabIndex = 12;
-            buttonGerirPropriedades.Text = "Apagar Cliente";
-            buttonGerirPropriedades.UseVisualStyleBackColor = true;
-            buttonGerirPropriedades.Click += buttonGerirPropriedades_Click;
+            ButtonpagarCliente.Font = new Font("Segoe UI", 12F);
+            ButtonpagarCliente.Location = new Point(12, 94);
+            ButtonpagarCliente.Name = "ButtonpagarCliente";
+            ButtonpagarCliente.Size = new Size(121, 33);
+            ButtonpagarCliente.TabIndex = 12;
+            ButtonpagarCliente.Text = "Apagar Cliente";
+            ButtonpagarCliente.UseVisualStyleBackColor = true;
+            ButtonpagarCliente.Click += buttonGerirPropriedades_Click;
             // 
             // buttonGerirClientes
             // 
@@ -261,6 +261,9 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(397, 23);
             textBox1.TabIndex = 2;
+            textBox1.TextChanged += textBox1_TextChanged;
+            textBox1.Enter += textBox1_Enter;
+            textBox1.KeyPress += textBox1_KeyPress;
             // 
             // textBox2
             // 
@@ -269,6 +272,7 @@
             textBox2.Size = new Size(397, 23);
             textBox2.TabIndex = 1;
             textBox2.TextChanged += textBox2_TextChanged;
+            textBox2.KeyPress += textBox2_KeyPress;
             textBox2.Leave += textBox2_Leave;
             // 
             // textBox3
@@ -277,6 +281,7 @@
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(397, 23);
             textBox3.TabIndex = 3;
+            textBox3.KeyPress += textBox3_KeyPress;
             // 
             // textBox5
             // 
@@ -284,6 +289,7 @@
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(397, 23);
             textBox5.TabIndex = 5;
+            textBox5.KeyPress += textBox5_KeyPress;
             // 
             // textBox6
             // 
@@ -291,6 +297,7 @@
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(295, 23);
             textBox6.TabIndex = 6;
+            textBox6.KeyPress += textBox6_KeyPress;
             // 
             // dateTimePicker1
             // 
@@ -298,6 +305,7 @@
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(397, 23);
             dateTimePicker1.TabIndex = 4;
+            dateTimePicker1.KeyPress += dateTimePicker1_KeyPress;
             // 
             // panel8
             // 
@@ -311,7 +319,7 @@
             // 
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(407, 107);
+            listBox1.Location = new Point(452, 98);
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(397, 199);
             listBox1.TabIndex = 16;
@@ -391,7 +399,7 @@
         #endregion
 
         private Panel MenuPanel;
-        private Button buttonGerirPropriedades;
+        private Button ButtonpagarCliente;
         private Button buttonGerirClientes;
         private Button buttonGerirUsers;
         private Button button1;

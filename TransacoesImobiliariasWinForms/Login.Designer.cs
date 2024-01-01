@@ -51,6 +51,7 @@
             UserNameTex.Name = "UserNameTex";
             UserNameTex.Size = new Size(159, 23);
             UserNameTex.TabIndex = 1;
+            UserNameTex.TextChanged += UserNameTex_TextChanged;
             UserNameTex.KeyDown += UserNameTex_KeyDown;
             // 
             // LoginButton

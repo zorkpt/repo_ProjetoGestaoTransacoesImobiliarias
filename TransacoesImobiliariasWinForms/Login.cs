@@ -25,7 +25,7 @@ namespace TransacoesImobiliariasWinForms
                 User user = _formController.StartLoginProcess("' or 1=1 --", "w", "sql");
                 _formController.Start(user, this);
             }
-      
+
             this.Hide();
         }
 
@@ -89,7 +89,7 @@ namespace TransacoesImobiliariasWinForms
                     e.Handled = true;
                 }
             }
-        
+
         }
 
         private void UserNameTex_KeyDown(object sender, KeyEventArgs e)
@@ -99,6 +99,11 @@ namespace TransacoesImobiliariasWinForms
                 this.SelectNextControl(this.ActiveControl, true, true, true, true);
                 e.Handled = true;
             }
+        }
+
+        private void UserNameTex_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
