@@ -68,7 +68,7 @@ public abstract class UserController
     /// Delete's a client
     /// </summary>
     /// <returns></returns>
-    protected bool DeleteClient()
+    protected bool DeleteClient(User user)
     {
         //escolher o cliente a apagar. 
         var idClient = ClientView.DeleteClientView();
@@ -76,7 +76,7 @@ public abstract class UserController
         Client client = _clientService.GetClientById(id);
         if(client != null)
         {
-            if(_clientService.DeleteClient(client))
+            if(_clientService.DeleteClient(client) && user.RemoveClient(client))
             {
                 MessageHandler.PressAnyKey("Cliente eliminado com sucesso");
                 return true;

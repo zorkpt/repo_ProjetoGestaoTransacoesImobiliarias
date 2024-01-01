@@ -31,5 +31,10 @@ public abstract class User
         Properties.Add(property);
     }
 
+   public bool RemoveClient(Client client)
+   {
+       return Clients.Remove(client);
+   }
     
+
 }
