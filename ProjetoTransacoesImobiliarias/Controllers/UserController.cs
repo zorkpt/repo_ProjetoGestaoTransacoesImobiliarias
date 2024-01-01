@@ -17,7 +17,7 @@ public abstract class UserController
     protected PaymentController _paymentController;
 
     protected UserController(IUserService userService, IClientService clientService, IPropertyService propertyService,
-        ProposalController proposalController, TransactionController transactionController, 
+        ProposalController proposalController, TransactionController transactionController,
         PropertyController propertyController, VisitsController visitsController)
     {
         _userService = userService;
@@ -29,8 +29,9 @@ public abstract class UserController
         _visitsController = visitsController;
         _paymentController = new PaymentController();
     }
+
     public abstract void MenuStart();
-    
+
     #region Clients
 
     /// <summary>
@@ -60,7 +61,7 @@ public abstract class UserController
 
         _clientService.UpdateClient(client);
 
-        
+
         return client;
     }
 
@@ -68,27 +69,33 @@ public abstract class UserController
     /// Delete's a client
     /// </summary>
     /// <returns></returns>
-    protected bool DeleteClient(User user)
+    protected bool DeleteClient()
     {
-        //escolher o cliente a apagar. 
         var idClient = ClientView.DeleteClientView();
         int id = int.Parse(idClient);
         Client client = _clientService.GetClientById(id);
-        if(client != null)
+        if (client == null)
         {
-            if(_clientService.DeleteClient(client) && user.RemoveClient(client))
-            {
-                MessageHandler.PressAnyKey("Cliente eliminado com sucesso");
-                return true;
-            }else{
-                MessageHandler.PressAnyKey("Cliente não foi eliminado");
-                return false;
-            }
-
-        }else{
             MessageHandler.PressAnyKey("Cliente não encontrado");
+            return false;
         }
-        return false;
+
+        var addedBy = client.AddedBy;
+        if (_clientService.DeleteClient(client))
+        {
+            if (addedBy != null)
+            {
+                addedBy.RemoveClient(client);
+            }
+            
+            MessageHandler.PressAnyKey("Cliente eliminado com sucesso");
+            return true;
+        }
+        else
+        {
+            MessageHandler.PressAnyKey("Cliente não foi eliminado");
+            return false;
+        }
     }
 
     /// <summary>
@@ -147,13 +154,13 @@ public abstract class UserController
         if (user == null)
         {
             return false;
-        }else
+        }
+        else
         {
             bool apagar = _userService.DeleteUser(user);
             if (apagar) return true;
             return false;
         }
-
     }
 
     /// <summary>
@@ -162,20 +169,22 @@ public abstract class UserController
     /// <returns></returns>
     protected virtual User ChooseUser()
     {
-            string userName = UserView.ChooseUserNameView();
-            if (string.IsNullOrEmpty(userName))
-            {
-                MessageHandler.PressAnyKey("Pf inserir um nome valido");
-            }
-            var user = _userService.GetUserByUsername(userName);
+        string userName = UserView.ChooseUserNameView();
+        if (string.IsNullOrEmpty(userName))
+        {
+            MessageHandler.PressAnyKey("Pf inserir um nome valido");
+        }
 
-            if (user != null)
-            {
-                return user;
-            }else
-            {
-                return null;
-            }
+        var user = _userService.GetUserByUsername(userName);
+
+        if (user != null)
+        {
+            return user;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     /// <summary>
@@ -186,7 +195,9 @@ public abstract class UserController
     {
         while (true)
         {
-            int clientId = AdminView.ChooseClientIdView();// Em vez de passar o ID, passamos o nome? para quem utiliza é mais facil...
+            int clientId =
+                AdminView
+                    .ChooseClientIdView(); // Em vez de passar o ID, passamos o nome? para quem utiliza é mais facil...
 
             while (!int.TryParse(clientId.ToString(), out clientId))
             {
@@ -217,21 +228,23 @@ public abstract class UserController
             switch (option)
             {
                 case "1":
-                    if(_proposalController.MakeProposal(client.Id))
+                    if (_proposalController.MakeProposal(client.Id))
                     {
                         MessageHandler.PressAnyKey("Proposta enviada com sucesso.");
                     }
+
                     break;
                 case "2":
                     //Cancelar proposta
                     Proposal? proposal2 = _proposalController.ChooseProposal();
-                    if(proposal2 == null) break;
+                    if (proposal2 == null) break;
 
-                    if(proposal2.Property.ClientId == client.Id)// comentar se necessario testar
+                    if (proposal2.Property.ClientId == client.Id) // comentar se necessario testar
                     {
                         MessageHandler.PressAnyKey("O Proprietário da propriedade não pode cancelar esta proposta");
                         break;
-                    }else 
+                    }
+                    else
                     {
                         _proposalController.DeclineProposal(proposal2.ProposalId.Value);
                         MessageHandler.PressAnyKey("Proposta cancelada com sucesso.");
@@ -245,43 +258,53 @@ public abstract class UserController
                 case "4":
                     // Aprovar proposta
                     Proposal? proposal = _proposalController.ChooseProposal();
-                    if(proposal == null) break;
+                    if (proposal == null) break;
 
-                    if(proposal.Property.ClientId != client.Id)// comentar se necessario testar
+                    if (proposal.Property.ClientId != client.Id) // comentar se necessario testar
                     {
                         MessageHandler.PressAnyKey("A propriedade da proposta não pertence a este cliente");
                         break;
-                    }else 
+                    }
+                    else
                     {
                         //é dono, pode aceitar
                         _proposalController.AcceptProposal(proposal.ProposalId.Value);
                         _transactionController.AddTransaction(proposal);
                         MessageHandler.PressAnyKey("Proposta aprovada com sucesso.");
                     }
-                        #region Apenas para testes, aceita proposta mesmo que nao seja o dono
-                        // _proposalController.AcceptProposal(proposal.ProposalId.Value);
-                        // _transactionController.AddTransaction(proposal);
-                        // MessageHandler.PressAnyKey("Proposta aprovada com sucesso.");
-                        #endregion
+
+                    #region Apenas para testes, aceita proposta mesmo que nao seja o dono
+
+                    // _proposalController.AcceptProposal(proposal.ProposalId.Value);
+                    // _transactionController.AddTransaction(proposal);
+                    // MessageHandler.PressAnyKey("Proposta aprovada com sucesso.");
+
+                    #endregion
 
                     break;
                 case "5":
                     // Rejeitar proposta
                     Proposal? proposal1 = _proposalController.ChooseProposal();
-                    if(proposal1 == null) break;
-                    if(proposal1.Property.ClientId != client.Id)// Se não for o dono (comentar se necessario testar)
+                    if (proposal1 == null) break;
+                    if (proposal1.Property.ClientId != client.Id) // Se não for o dono (comentar se necessario testar)
                     {
                         MessageHandler.PressAnyKey("A propriedade da proposta não pertence a este cliente");
                         break;
-                    }else{
-                        bool rej = _proposalController.DeclineProposal(_proposalController.ChooseProposal().ProposalId.Value);
+                    }
+                    else
+                    {
+                        bool rej = _proposalController.DeclineProposal(_proposalController.ChooseProposal().ProposalId
+                            .Value);
                         if (rej)
                         {
                             MessageHandler.PressAnyKey("Proposta rejeitada com sucesso.");
-                        }else{
+                        }
+                        else
+                        {
                             MessageHandler.PressAnyKey("Erro ao rejeitar proposta.");
                         }
                     }
+
                     break;
                 case "6":
                     // Marcar visita
@@ -289,45 +312,56 @@ public abstract class UserController
                     PropertyView.DisplayAllProperties(allProperties);
                     Property? property = _propertyController.ChooseProperty();
 
-                    if (property == null){
+                    if (property == null)
+                    {
                         MessageHandler.PressAnyKey("Nenhuma propriedade encontrada.");
                         break;
                     }
+
                     DateTime date = _visitsController.ChooseDate();
-                    if(date == null){
+                    if (date == null)
+                    {
                         MessageHandler.PressAnyKey("Data inválida.");
                         break;
                     }
-                    if(_visitsController.MakeVisit(property, client, date))
+
+                    if (_visitsController.MakeVisit(property, client, date))
                     {
                         MessageHandler.PressAnyKey("Visita marcada com sucesso.");
                         break;
-                    }else{
+                    }
+                    else
+                    {
                         MessageHandler.PressAnyKey("Erro ao marcar visita.");
                     }
+
                     break;
                 case "7":
                     // Fazer pagamento (Não permite pagamentos parciais, vale a pena ??)
                     Transactions? transaction = _transactionController.ChooseTransaction();
-                    
-                    if(transaction == null)
+
+                    if (transaction == null)
                     {
                         MessageHandler.PressAnyKey("Transação não encontrada.");
-                    }else
+                    }
+                    else
                     {
-                        if(transaction.proposal.Client.Id != client.Id) {
+                        if (transaction.proposal.Client.Id != client.Id)
+                        {
                             MessageHandler.PressAnyKey("Esta transação não pertence a este cliente");
                             break;
                         }
 
-                        if(_paymentController.MakePayment(transaction))
+                        if (_paymentController.MakePayment(transaction))
                         {
                             MessageHandler.PressAnyKey("Pagamento efetuado com sucesso.");
-                        }else
+                        }
+                        else
                         {
                             MessageHandler.PressAnyKey("Pagamento falhou.");
                         }
                     }
+
                     break;
                 case "0":
                     exitMenu = true;
@@ -369,31 +403,31 @@ public abstract class UserController
         user.AddProperty(newProperty);
         return newProperty;
     }
-    
+
     protected Property EditProperty()
     {
         // inserir o numero da propriedade a editar
-        var property =  _propertyController.ChooseProperty();
-        if(property == null)
+        var property = _propertyController.ChooseProperty();
+        if (property == null)
         {
             MessageHandler.PressAnyKey("Propriedade não encontrada.");
             return null;
         }
 
         var propertyData = UserView.EditPropertyData(property);
-        
-        property.Address = propertyData.Address; 
+
+        property.Address = propertyData.Address;
         property.Description = propertyData.Description;
         property.PropertyType = propertyData.PropertyType;
-        property.SquareMeters = propertyData.SquareMeters; 
+        property.SquareMeters = propertyData.SquareMeters;
 
         return property;
-    } 
-    
+    }
+
     protected void DeleteProperty()
     {
-        var property =  _propertyController.ChooseProperty();
-        if(property == null)
+        var property = _propertyController.ChooseProperty();
+        if (property == null)
         {
             MessageHandler.PressAnyKey("Propriedade não encontrada.");
             return;
@@ -402,6 +436,6 @@ public abstract class UserController
         _propertyService.DeleteProperty(property);
         MessageHandler.PressAnyKey("Propriedade eliminada com sucesso.");
     }
-    
+
     #endregion
 }
