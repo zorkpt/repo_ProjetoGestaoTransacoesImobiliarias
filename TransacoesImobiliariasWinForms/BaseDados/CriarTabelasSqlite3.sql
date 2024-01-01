@@ -142,5 +142,14 @@ CREATE TABLE IF NOT EXISTS Users (
 );
 
 
-  
+  --Inserir dados na tabela UserType
+INSERT INTO UserType (UserType) VALUES ('Admin');
+INSERT INTO UserType (UserType) VALUES ('Manager');
+INSERT INTO UserType (UserType) VALUES ('Agent');
+INSERT INTO UserType (UserType) VALUES ('Evaluator');
+
+INSERT INTO Users (IdUserType, UserName, Passwords, Name) VALUES 
+(1, 'Admin1', '1234', 'Administrador 1');
+INSERT INTO Users (IdUserType, UserName, Passwords, Name) VALUES 
+(2, 'Manager1', '1234', 'Manager 1 ');
   

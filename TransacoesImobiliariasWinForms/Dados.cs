@@ -31,10 +31,10 @@ namespace TransacoesImobiliariasWinForms
 
         #region testes
 
-        private string? CaminhoBD = "../../trabalhoPOOsqlite.db";
-        private string? scriptBD = "../../CriarTabelasSqlite3.sql";
+        private string? CaminhoBD = "../../../BaseDados/trabalhoPOOsqlite.db";
+        private string? scriptBD = "../../../BaseDados/CriarTabelasSqlite3.sql";
 
-        private void testeBD()
+        private void CriaBD()
         {
             if (!File.Exists(CaminhoBD))
             {
@@ -81,6 +81,12 @@ namespace TransacoesImobiliariasWinForms
                 return connLite;
 
             }
+            else
+            {
+                CriaBD();
+                Ligacao();
+            }
+
 
             return null;
 
