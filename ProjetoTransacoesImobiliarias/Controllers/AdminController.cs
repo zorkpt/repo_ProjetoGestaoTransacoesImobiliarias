@@ -80,7 +80,7 @@ public class AdminController : UserController
                     EditClient();
                     break;
                 case "3":
-                    DeleteClient();// done 
+                    DeleteClient(_admin);// done 
                     break;
                 case "4":
                     ListClients(false);
