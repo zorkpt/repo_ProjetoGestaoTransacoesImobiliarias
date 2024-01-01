@@ -32,7 +32,7 @@ namespace TransacoesImobiliariasWinForms
         #region testes
 
         private string? CaminhoBD = "../../trabalhoPOOsqlite.db";
-        private string? scriptBD = "C:\\Users\\PRS\\source\\repos\\repo_ProjetoGestaoTransacoesImobiliarias\\TransacoesImobiliariasWinForms\\scriptBD.sql";
+        private string? scriptBD = "../../CriarTabelasSqlite3.sql";
 
         private void testeBD()
         {
